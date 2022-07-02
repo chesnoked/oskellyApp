@@ -1,0 +1,95 @@
+<!doctype html>
+<html
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:th="http://www.thymeleaf.org"
+        layout:decorate="~{admin/layout}">
+<head>
+    <title>Склад  OSKELLY</title>
+    <link rel="stylesheet" href="/admin/styles/warehouse.css"/>
+</head>
+<body>
+
+<main layout:fragment="content">
+    <header>
+        <div class="breadcrumbs">
+            <ul>
+                <li><a href="/admin">Админка</a></li>
+                <li>Склад</li>
+            </ul>
+        </div>
+        <ul class="menu" style="margin-bottom: 2rem;">
+            <li><a href="/admin/warehouse">Ожидаем прибытие</a></li>
+            <li><a href="/admin/warehouse/sold">Реализованные товары на складе</a></li>
+            <li><a href="/admin/warehouse/cleaning">Химчистка</a></li>
+            <li class="active"><a href="#">Отправка получателю</a></li>
+        </ul>
+    </header>
+    <div id="warehouseModuleContent">
+        <h3>Отправка товаров</h3>
+        <div>
+            <table class="table-expand">
+                <thead>
+                <tr class="table-expand-row">
+                    <th width="20"></th>
+                    <th width="150">ID Вещи</th>
+                    <th width="150">ID Товара</th>
+                    <th width="200">Номер Заказа</th>
+                    <th width="200">Номер накладной</th>
+                    <th>Описание товара</th>
+                    <th width="150">Статус</th>
+                </tr>
+                </thead>
+                <tbody th:each="item : ${readyToShipItems}" th:data-warehouse-item-id="${item.originalProductItem.id}" th:id="${item.originalProductItem.id}">
+                <tr class="table-expand-row" data-open-details>
+                    <td><span class="expand-icon"></span></td>
+                    <td th:text="${item.originalProductItem.id}">OSK-0001</td>
+                    <td th:text="${item.originalProduct.id}">pr000231</td>
+                    <td th:text="${item.originalOrder.get().id}">3287432</td>
+                    <td th:text="${item.itemState == 'CREATE_WAYBILL_TO_BUYER'} ? |CSE: ${item.lastWaybillExternalId}| : 'N/A'">CSE: 888-0006983-00006566</td>
+                    <td>
+                        <span th:text="${item.originalProduct.category} + ' - (' + ${item.originalProduct.brand} + ') состояние: ' + ${item.originalProduct.condition}">Женское - Блузка (PRADA) размер FR40 состояние "С биркой"</span>
+                    </td>
+                    <td>
+                        <span class="label success" th:id="'state-label-1-'+${item.originalProductItem.id}" th:if="${item.itemState == 'READY_TO_SHIP' }">Готово к отгрузке</span>
+                        <span class="label warning" th:id="'state-label-1-'+${item.originalProductItem.id}" th:if="${item.itemState == 'CREATE_WAYBILL_TO_BUYER' }">Ожидаем курьера</span>
+                    </td>
+                </tr>
+
+                <tr class="table-expand-row-content">
+                    <td colspan="8" class="table-expand-row-nested">
+                        <div class="column shrink align-center">
+                            <div class="row">
+                                <div class="column shrink align-center" >
+                                    <button class="button" type="button" th:id="|${item.originalProductItem.id}-waybill-button|"
+                                            th:if="${item.itemState == 'READY_TO_SHIP' }"
+                                            th:onclick="|createWaybill(${item.originalProductItem.id})|">Создать перевозку</button>
+                                    <button class="button" type="button" th:id="|${item.originalProductItem.id}-pickup-button|"
+                                            th:if="${item.itemState == 'CREATE_WAYBILL_TO_BUYER' }"
+                                            th:onclick="|sendToBuyer(${item.originalProductItem.id})|">Передать курьеру</button>
+                                </div>
+                                <div class="column" th:object="${item.buyer.get()}">
+                                    <p>Адрес Получателя: <span th:text="*{deliveryAddress}">140001, г.Москва ул.Кого-то-там 23 корп.7 стр.1 кв.21</span></p>
+                                    <p>Телефон Получателя: <span th:text="*{phone}">+7(900)100-2030</span></p>
+                                    <p>Получатель: <span th:text="*{firstName} + ' ' + *{lastName}">Иван Иванов</span> </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+<div layout:fragment="custom-scripts">
+    <script src="/admin/scripts/warehouse.js"></script>
+</div>
+
+</body>
+</html>

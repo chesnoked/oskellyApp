@@ -1,0 +1,250 @@
+<!doctype html>
+<html
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{admin/layout}">
+<head>
+	<title>Управление пользователями</title>
+	<link rel="stylesheet" href="/admin/styles/users.css"/>
+</head>
+<body>
+
+<main layout:fragment="content" th:object="${user}">
+	<div class="breadcrumbs">
+		<ul>
+			<li><a href="/admin">Админка</a></li>
+			<li><a href="/admin/users">Управление пользователями</a></li>
+			<li th:text="*{nickname}"></li>
+		</ul>
+	</div>
+	<div class="row offsetStack-y empty-left-margin">
+		<div class="columns small-8 user-info-block">
+			<img id="avatar-img" th:src="*{avatar}?*{avatar}:'http://placehold.it/200x200&text=Profile'"/>
+			<div class="vertically-spaced">
+				<div>
+					<span class="bold">USER ID:</span>
+					<span th:text="*{userId}"></span>
+				</div>
+				<div>
+					<span class="bold">Ник:</span>
+					<span th:text="*{nickname}"></span>
+				</div>
+				<div>
+					<span class="bold">Телефон:</span>
+					<span th:text="*{phone}"></span>
+				</div>
+				<div>
+					<span class="bold">Email:</span>
+					<span th:text="*{email}"></span>
+				</div>
+				<div>
+					<span class="bold">Статус:</span>
+					<span th:text="*{status}"></span>
+				</div>
+				<div>
+					<span class="bold">ФИО(Название):</span>
+					<span th:text="*{name}"></span>
+				</div>
+				<div>
+					<span class="bold">Дата регистрации:</span>
+					<span th:text="*{registrationDate}"></span>
+				</div>
+			</div>
+		</div>
+		<div class="columns small-4 vertically-spaced">
+			<button type="button" class="button fullWidth">Сбросить пароль</button>
+			<button type="button" class="button fullWidth">Запрет на публикацию</button>
+			<button type="button" class="button fullWidth">Запрет на комментарии</button>
+		</div>
+	</div>
+	<div class="row empty-left-margin offsetStack-y">
+		<div class="column">
+			<ul class="tabs" data-tabs="data-tabs" id="user-tabs" data-deep-link="true" data-update-history="true">
+				<li class="is-active tabs-title"><a href="#profile" aria-selected="true"
+													aria-controls="profile">Профиль</a></li>
+				<li class="tabs-title"><a href="#pro" aria-selected="true" aria-controls="pro">PRO-давец</a></li>
+				<li class="tabs-title"><a href="#products" aria-selected="true" aria-controls="products">Товары</a></li>
+				<li class="tabs-title"><a href="#orders" aria-selected="true" aria-controls="orders">Заказы</a></li>
+				<li class="tabs-title"><a href="#payments" aria-selected="true" aria-controls="payments">Оплаты</a></li>
+				<li class="tabs-title"><a href="#comments" aria-selected="true" aria-controls="comments">Комментарии</a>
+				</li>
+				<li class="tabs-title"><a href="#history" aria-selected="true" aria-controls="history">История</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="tabs-content" data-tabs-content="user-tabs">
+		<div class="tabs-panel" aria-hidden="false" id="profile" th:object="${user.profile}">
+			<div class="row empty-left-margin">
+				<div class="columns small-4 right-border">
+					<div>
+						<span class="bold">Пол:</span>
+						<span th:text="*{sex}"></span>
+					</div>
+					<div>
+						<span class="bold">Дата рождения:</span>
+						<span th:text="*{birthday}"></span>
+					</div>
+					<div>
+						<span class="bold">Город:</span>
+						<span th:text="*{sellerCity}"></span>
+					</div>
+					<div>
+						<span class="bold">Ушел в отпуск:</span>
+						<span th:text="*{active} ? 'Нет' : 'Да'"></span>
+					</div>
+				</div>
+				<div class="columns small-4 right-border">
+					<div><span>Адрес доставки</span></div>
+					<div>
+						<span class="bold">Город:</span>
+						<span th:text="*{deliveryCity}"></span>
+					</div>
+					<div>
+						<span class="bold">Индекс:</span>
+						<span th:text="*{deliveryPostcode}"></span>
+					</div>
+					<div>
+						<span class="bold">Адрес:</span>
+						<span th:text="*{deliveryAddress}"></span>
+					</div>
+				</div>
+				<div class="columns small-4"></div>
+			</div>
+		</div>
+		<div class="tabs-panel" id="pro" th:object="${user.seller}">
+			<div class="row offsetStack-y empty-left-margin">
+				<div class="columns switch-container">
+					<div class="switch">
+						<input id="pro-status-switch" class="switch-input"
+							   type="checkbox"
+							   th:checked="*{pro} ? 'checked' : _"
+							   th:disabled="*{pro}"
+							   th:name="pro-status"
+							   th:data-user-id="${user.userId}"/>
+						<label class="switch-paddle"
+							   for="pro-status-switch"> </label>
+					</div>
+					<span class="authority-label">Статус PRO</span>
+				</div>
+			</div>
+			<div class="row offsetStack-y empty-left-margin hide">
+				<div class="columns small-1">Тип</div>
+				<div class="columns small-11">
+					<input type="radio" name="user-type" value="SIMPLE_USER" id="user-type-simple"/><label
+						for="user-type-simple">Физ.Лицо</label>
+					<input type="radio" name="user-type" th:disabled="*{pro}" value="IP" id="user-type-ip"/>
+					<label for="user-type-ip">ИП</label>
+					<input type="radio" name="user-type" th:disabled="*{pro}" value="OOO"
+						   id="user-type-ooo"/><label
+						for="user-type-ooo">ООО</label>
+				</div>
+			</div>
+			<div class="row offsetStack-y empty-left-margin">
+				<div class="columns small-12">
+					<th:block th:switch="*{userType.name()}">
+						<div th:case="SIMPLE_USER" th:object="${user.seller.sellerRequisite}">
+							<table class="unstriped table-fit-content">
+								<tr>
+									<td>Паспорт:</td>
+									<td th:text="*{passport}"></td>
+								</tr>
+								<tr>
+									<td>ИНН:</td>
+									<td th:text="*{inn}"></td>
+								</tr>
+								<tr>
+									<td>ФИО:</td>
+									<td th:text="*{name}"></td>
+								</tr>
+								<tr>
+									<td>Адрес приемки товаров:</td>
+									<td th:text="*{address}"></td>
+								</tr>
+							</table>
+						</div>
+						<div th:case="IP">
+							<table>
+								<tr>
+									<td>ИНН:</td>
+									<td th:text="*{inn}"></td>
+								</tr>
+								<tr>
+									<td>ОГРНИП:</td>
+									<td th:text="*{ogrnip}"></td>
+								</tr>
+								<tr>
+									<td>ФИО:</td>
+									<td th:text="*{name}"></td>
+								</tr>
+								<tr>
+									<td>Адрес приемки товаров:</td>
+									<td th:text="*{address}"></td>
+								</tr>
+							</table>
+						</div>
+						<div th:case="OOO">
+							<table>
+								<tr>
+									<td>ИНН:</td>
+									<td th:text="*{inn}"></td>
+								</tr>
+								<tr>
+									<td>КПП:</td>
+									<td th:text="*{kpp}"></td>
+								</tr>
+								<tr>
+									<td>ОГРН:</td>
+									<td th:text="*{orgn}"></td>
+								</tr>
+								<tr>
+									<td>Наименование:</td>
+									<td th:text="*{name}"></td>
+								</tr>
+								<tr>
+									<td>Адрес приемки товаров:</td>
+									<td th:text="*{address}"></td>
+								</tr>
+							</table>
+						</div>
+					</th:block>
+				</div>
+			</div>
+			<div class="row offsetStack-y empty-left-margin">
+				<div class="columns small-12">
+					<h6>Реквизиты на оплату</h6>
+					<table class="unstriped table-fit-content">
+						<tr>
+							<td>БИК:</td>
+							<td th:text="*{bik}"></td>
+						</tr>
+						<tr>
+							<td>Корреспондентский счет:</td>
+							<td th:text="*{correspondentAccount}"></td>
+						</tr>
+						<tr>
+							<td>Лицевой/Расчетный счет:</td>
+							<td th:text="*{paymentAccount}"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tabs-panel" id="products">
+		</div>
+		<div class="tabs-panel" id="orders">
+		</div>
+		<div class="tabs-panel" id="payments">
+		</div>
+		<div class="tabs-panel" id="comments">
+		</div>
+		<div class="tabs-panel" id="history">
+		</div>
+	</div>
+</main>
+
+<div layout:fragment="custom-scripts">
+	<script src="/admin/scripts/users/user.js"></script>
+</div>
+
+</body>
+</html>

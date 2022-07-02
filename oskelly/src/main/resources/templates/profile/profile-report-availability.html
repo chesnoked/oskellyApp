@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html
+  class="no-js" lang="ru_RU"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  xmlns:th="http://www.thymeleaf.org"
+  layout:decorate="~{profile/profile}" th:with="pageStyle='profilePage'"
+>
+
+<!--/*@thymesVar id="productSubscriptions" type="java.util.List"*/-->
+<!--/*@thymesVar id="sub" type="su.reddot.domain.service.profile.view.ProductSubscription"*/-->
+
+<body class="profilePage">
+  <div role="main" layout:fragment="profileContent">
+    <div class="row align-middle">
+      <div class="column small-12 large-6">
+        <h3 class="h5 text-serif">Сообщить о наличии</h3>
+      </div>
+      <div class="column small-12">
+        <p class="x-txt-s no-mrg-b">
+          Создайте свое персональное оповещение на товар, который Вы давно искали и мы сообщим вам, как только вещь
+          появится на OSKELLY.
+        </p>
+      </div>
+
+      <div class="column small-12 large-4 padding-y">
+        <a class="hollow small button expanded" href="#" disabled="">Сообщить о наличии</a>
+      </div>
+
+      <div class="column small-12">
+        <h4 class="bld">Товары которые я ищу:</h4>
+      </div>
+      <div class="column small-12 padding-top">
+        <hr>
+      </div>
+
+      <div class="column small-12" data-product-subscriptions th:if="${productSubscriptions}">
+
+        <div th:each="sub: ${productSubscriptions}" data-element>
+        <div class="row">
+          <div class="column small-11">
+            <p class="no-mrg-b">
+              <span class="bld">Создан: </span>[[${sub.createdAt}]]
+            </p>
+          </div>
+          <div class="column small-1 align-right">
+            <button type="button" title="Удалить оповещение" style="cursor: pointer" data-remove th:data-id="${sub.id}">
+              <i class="fa fa-times text-secondary"> </i></button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column small-12">
+            <p>
+                <!--/*
+                 если итерироваться по категориям в самом span'е,
+                 а не во внешнем th:block, то значки категорий на странице отображаются слитно,
+                 между ними нет никакого расстояния.
+                 */-->
+
+                <!--/*/<th:block th:each="category: ${sub.categories}" th:if="${sub.categories}">/*/-->
+                <span class="label profilePage-label" th:text="${category}">Сумка</span>
+                <!--/*/</th:block>/*/-->
+
+              <span class="label profilePage-label"
+                    th:text="${sub.brand}"
+                    th:if="${sub.brand}">
+                HERMES</span>
+
+              <span class="label profilePage-label"
+                    th:text="|${sub.size.type}:${sub.size.value}"
+                    th:if="${sub.size}">
+                RUS:42</span>
+
+              <!--/*/<th:block th:each="attribute: ${sub.attributes}" th:if="${sub.attributes}">/*/-->
+              <span class="label profilePage-label" th:text="${attribute}">Ч0рный</span>
+              <!--/*/</th:block>/*/-->
+
+              <span class="label profilePage-label"
+                    th:text="${sub.condition}"
+                    th:if="${sub.condition}">
+                С биркой</span>
+            </p>
+            <hr>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="column small-12 text-center text-secondary" th:unless="${productSubscriptions}">Список пуст</div>
+
+    </div>
+  </div>
+</body>
+</html>

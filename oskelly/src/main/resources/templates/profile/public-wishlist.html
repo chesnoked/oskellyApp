@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{profile/public}" th:with="pageStyle='profilePage'">
+<body class="profilePage">
+<div role="main" layout:fragment="profileContent" class="large-9 medium-9 columns">
+    <div class="row large-unstack">
+        <div class="column">
+            <div id="products" class="row goodsGrid">
+
+                <div th:replace="catalog/product_card :: product_card (${productCards}, _)"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

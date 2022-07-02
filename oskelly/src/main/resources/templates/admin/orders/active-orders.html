@@ -1,0 +1,117 @@
+<!doctype html>
+<html
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:th="http://www.thymeleaf.org"
+    layout:decorate="~{admin/layout}">
+<head>
+  <title>Заказы - OSKELLY</title>
+  <link rel="stylesheet" href="/admin/styles/warehouse.css"/>
+</head>
+<body>
+  <main layout:fragment="content">
+    <header>
+      <div class="breadcrumbs">
+        <ul>
+          <li>
+            <a href="/admin">Админка</a>
+          </li>
+          <li>
+            Заказы и платежи
+          </li>
+        </ul>
+      </div>
+      <ul class="menu" style="margin-bottom: 2rem;">
+        <li class="active">
+          <a href="#">Активные заказы</a>
+        </li>
+        <li>
+          <a href="/admin/orders/need-attention">Требуют внимания</a>
+        </li>
+      </ul>
+    </header>
+    <div id="OrdersAdministrationModuleContent">
+      <h3>Активные заказы</h3>
+      <p>Заказы в статусе HOLD(денежные средства заблокированны)</p>
+      <div>
+        <table class="table-expand">
+          <thead>
+            <tr class="table-expand-row">
+              <th width="20"></th>
+              <th width="150">ID Заказа</th>
+              <th width="200">Ник Покупателя</th>
+              <th width="200">Сумма</th>
+              <th width="200">Статус</th>
+              <th width="200">Дата обновления</th>
+            </tr>
+          </thead>
+          <tbody th:each="order : ${activeOrders}" th:data-order-id="${order.id}" th:id="${order.id}">
+            <tr class="table-expand-row" data-open-details>
+              <td>
+                <span class="expand-icon"></span>
+              </td>
+              <td>
+                <span th:text="${order.id}"></span>
+              </td>
+              <td>
+                <a th:text="${order.buyerProfile.nickname}" th:href="@{/admin/users/{id}(id = ${order.buyerProfile.user.getId()})}" target="_blank"></a>
+              </td>
+              <td>
+                <span th:text="${order.getPrice()}"></span>
+              </td>
+              <td>
+                <span class="label success" th:if="${order.state}" th:text="${order.state}"></span>
+              </td>
+              <td>
+                <span th:text="${order.lastUpdateTime}"></span>
+              </td>
+            </tr>
+            <tr class="table-expand-row-content">
+              <td colspan="6" class="table-expand-row-nested">
+                <div class="column">
+                  <div class="small-12 collumns">
+                    <p><strong>Данные получателя: </strong>
+                      <span th:text="${order.deliveryRequisite.humanReadable()}"></span></p>
+                  </div>
+                  <div class="small-up-2 medium-up-4 large-up-6" th:each="item : ${order.items}">
+                    <div class="card column-block">
+                      <div class="card-divider" th:text="${item.productName}">тип вещи</div>
+                      <div class="card-section">
+                        <img th:src="${item.imageUrl}">
+                        <p>
+                          <strong>Бренд: </strong><span th:text="${item.brandName}"></span>
+                        </p>
+                        <p>
+                          <strong>Размер: </strong><span th:text="${item.productSize}"></span>
+                        </p>
+                        <p>
+                          <strong>Цена: </strong><span th:text="${item.productPrice}"></span>
+                        </p>
+                        <p>
+                          <strong>Товар: </strong><span><a th:href="|/admin/moderation/${item.productId}|" target="_blank" th:text="${item.productId}"></a></span>
+                        </p>
+                        <p>
+                          <strong>ID вещи на складе: </strong><span th:text="${item.productItemId}"></span>
+                        </p>
+                        <p>
+                          <strong>Статус: </strong><span th:text="${item.state}"></span>
+                        </p>
+                        <p>
+                          <strong>Продавец: </strong><span><a th:href="|/admin/users/${item.sellerId}|" target="_blank" th:text="${item.sellerNick}"></a></span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <div layout:fragment="custom-scripts">
+    <script src="/admin/scripts/admin-orders.js"></script>
+  </div>
+</body>
+</html>

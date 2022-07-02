@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html
+	class="no-js" lang="ru_RU"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{profile/profile}" th:with="pageStyle='profilePage'"
+>
+
+<!--/*@thymesVar id="offers" type="java.util.List<su.reddot.domain.service.profile.view.OffersByProduct>"*/-->
+<!--/*@thymesVar id="offersByProduct" type="su.reddot.domain.service.profile.view.OffersByProduct"*/-->
+<!--/*@thymesVar id="offer" type="su.reddot.domain.service.profile.view.OffersByProduct.Offer"*/-->
+
+<body class="profilePage">
+<div role="main" layout:fragment="profileContent">
+
+	<div class="row">
+		<div class="column small-12 medium-uncollapse-selfStacked text-center">
+			<div class="profilePage-scroll-menu">
+				<nav class="menu profilePage-styled-menu">
+					<span class="profilePage-styled-menu-item">
+						<a href="/account/pricesubscriptions">Слежу за ценой</a>
+					</span>
+					<span class="profilePage-styled-menu-item active">
+						<a href="/account/offers">Я предложил цену</a>
+					</span>
+					<span class="profilePage-styled-menu-item">
+						<a href="/account/offers-to-me">Мне предложили цену</a>
+					</span>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+	<div class="row padding-y" th:each="offersByProduct: ${offers}">
+		<div class="column small-4">
+			<div class="productCard-image">
+				<a href="#" th:href="@{/products/{id}(id=${offersByProduct.product.id})}">
+				<img class="thumbnail" src="http://placehold.it/150x150" width="150" height="150" alt="Категория Бренд"
+					 th:src="@{${offersByProduct.product.imageUrl}}"
+					 th:alt="${offersByProduct.product.name}"
+				>
+				</a>
+				<div class="productCard-badge" th:if="${offersByProduct.product.notUsedYet}">С биркой</div>
+			</div>
+		</div>
+		<div class="column small-7">
+            <h5 class="h5 productCard-brand" th:text="${offersByProduct.product.brand}">ADIDAS</h5>
+			<div class="productCard-kind">
+				<span th:text="${offersByProduct.product.name}">Туфли на высоком каблуке</span>
+			</div>
+			<div class="productCard-size"
+				 th:if="${offersByProduct.product.size}"
+				 th:text="|${offersByProduct.product.size.type}: ${offersByProduct.product.size.values}|">
+				<span>INT: 39.5/40.5</span>
+			</div>
+			<div class="profilePage-text" th:if="${offersByProduct.product.currentPrice}">
+				<span th:text="|Начальная цена: ${offersByProduct.product.currentPrice} ₽|">Начальная цена: 30 000 ₽</span>
+			</div>
+
+            <!--/*/ <th:block th:each="offer: ${offersByProduct.offers}"> /*/-->
+			<div class="profilePage-text">
+				<span th:text="|Ваше предложение: ${offer.offeredPrice} ₽|">Ваше предложение: 30 000 ₽</span>
+			</div>
+			<div class="profilePage-text" th:switch="${offer.isAccepted}">
+				<span th:case="true">Продавец подтвердил предложение</span>
+				<span th:case="false">Продавец отклонил предложение</span>
+				<span th:case="null">Ожидаем ответа продавца</span>
+			</div>
+
+            <!--/*/ </th:block> /*/-->
+			<div class="profilePage-text padding-top">
+				<strong>
+
+					<a href="#" th:if="${offersByProduct.negotiability.negotiated}"
+					   th:href="@{/products/{id}(id=${offersByProduct.product.id})}">Добавить в корзину</a>
+
+					<a href="#" th:if="${not offersByProduct.negotiability.negotiated and offersByProduct.negotiability.negotiable}"
+					   th:href="@{/products/{id}#sendOffer-popup(id=${offersByProduct.product.id})}">Предложить еще раз</a>
+
+				</strong>
+				<strong th:if="${offersByProduct.negotiability.optionalFailMessage}"
+						th:text="${offersByProduct.negotiability.optionalFailMessage}">Товара нет в продаже</strong>
+			</div>
+
+		</div>
+	</div>
+
+	<p class="text-center text-secondary" style="margin-top: 2rem" th:if="${offers.empty}">Список пуст</p>
+
+</div>
+</body>
+</html>

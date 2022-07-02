@@ -1,0 +1,63 @@
+.bottomSection
+	&-wrapper
+		display: flex
+		flex: 1
+		flex-direction: column
+		align-items: center
+		justify-content: space-around
+	&-item
+		display: flex
+		position: relative
+		justify-content: space-between
+		margin-bottom: 1rem
+		&::after
+			height: 124px
+			content: ''
+		&:not(:last-of-type)
+			&::after
+				+breakpoint(medium down)
+					display: none
+				position: absolute
+				top: 0
+				right: 0
+				border-right: 1px solid hsl(0, 0%, 52.9%)
+			+breakpoint(medium down)
+				border-bottom: 1px solid hsl(180, 0.5%, 37.1%)
+				padding-bottom: 1em
+	&-title
+		margin: 0 10% 0.75em
+		text-align: center
+		font-family: $font-family-serif
+		font-size: 22px
+	&-linksColumns
+		display: flex
+		flex-direction: row
+		flex-wrap: wrap
+		justify-content: center
+	&-linksColumn
+		+breakpoint(large only)
+			width: 100%
+			text-align: center
+		padding-x: 0.1em
+		&:nth-child(even)
+			+breakpoint(large only)
+				text-align: center
+			text-align: right
+	&-link
+		display: block
+		margin: 0.3em 0
+		padding-right: 1em
+		color: hsl(348, 5.8%, 13%)
+		font-size: 12px
+		font-weight: 400
+		text-transform: uppercase
+		vertical-align: middle
+		&:hover
+			text-decoration: none
+			span
+				text-decoration: underline
+		&::after
+			relative: top -0.2em
+			margin-left: 0.3em
+			font-size: 0.8em
+			content: '►'

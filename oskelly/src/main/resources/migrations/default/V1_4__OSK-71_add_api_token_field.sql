@@ -1,0 +1,1 @@
+ALTER TABLE "user" ADD COLUMN api_hashed_password TEXT;

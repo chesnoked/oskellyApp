@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="151px" height="103px" viewBox="0 0 151 103" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>two-coins-stacks</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <ellipse id="path-1" cx="38.8012048" cy="53.8" rx="35.0060241" ry="11.7"></ellipse>
+        <ellipse id="path-2" cx="35.0060241" cy="11.7" rx="35.0060241" ry="11.7"></ellipse>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Inviting-Page" transform="translate(-706.000000, -828.000000)">
+            <g id="two-coins-stacks" transform="translate(707.000000, 830.000000)">
+                <path d="M73.8072289,53.8 L73.8072289,67.2999939 C73.8072289,73.7617316 58.1344981,79 38.8012048,79 C19.4679116,79 3.79518072,73.7617316 3.79518072,67.3 L3.79518072,53.8 C3.79518072,47.3382684 19.4679116,42.1 38.8012048,42.1 C58.1344981,42.1 73.8072289,47.3382684 73.8072289,53.8 Z" id="Combined-Shape" stroke="#CFA788" stroke-width="3.60000014" fill="#FFFFFF"></path>
+                <g id="Oval-4-Copy-15">
+                    <use fill="#CFA788" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <ellipse stroke="#CFA788" stroke-width="3.60000014" cx="38.8012048" cy="53.8" rx="33.206024" ry="9.89999993"></ellipse>
+                </g>
+                <path d="M123.012048,72.9853659 L123.012048,86.8146279 C123.012048,93.4339689 107.339317,98.8 88.0060241,98.8 C68.6727308,98.8 53,93.4339689 53,86.8146341 L53,72.9853659 C53,66.3660311 68.6727308,61 88.0060241,61 C107.339317,61 123.012048,66.3660311 123.012048,72.9853659 Z" id="Combined-Shape" stroke="#CFA788" stroke-width="3.60000014" fill="#FFFFFF"></path>
+                <ellipse id="Oval-4-Copy-15" stroke="#CFA788" stroke-width="3.60000014" fill="#FFFFFF" cx="87.9638554" cy="73.1853659" rx="35.0060241" ry="11.9853659"></ellipse>
+                <g id="Group-7" transform="translate(13.463855, 27.000000)">
+                    <path d="M70.0120482,11.7 L70.0120482,25.1999939 C70.0120482,31.6617316 54.3393174,36.9 35.0060241,36.9 C15.6727308,36.9 6.96009065e-15,31.6617316 2.31817587e-30,25.2 L0,11.7 C0,5.23826843 15.6727308,0 35.0060241,0 C54.3393174,0 70.0120482,5.23826843 70.0120482,11.7 Z" id="Combined-Shape" stroke="#CFA788" stroke-width="3.60000014" fill="#FFFFFF"></path>
+                    <g id="Oval-4-Copy-15">
+                        <use fill="#CFA788" fill-rule="evenodd" xlink:href="#path-2"></use>
+                        <ellipse stroke="#CFA788" stroke-width="3.60000014" cx="35.0060241" cy="11.7" rx="33.206024" ry="9.89999993"></ellipse>
+                    </g>
+                </g>
+                <path d="M123.012048,60.7 L123.012048,74.1999939 C123.012048,80.6617316 107.339317,85.9 88.0060241,85.9 C68.6727308,85.9 53,80.6617316 53,74.2 L53,60.7 C53,54.2382684 68.6727308,49 88.0060241,49 C107.339317,49 123.012048,54.2382684 123.012048,60.7 Z" id="Combined-Shape" stroke="#CFA788" stroke-width="3.60000014" fill="#FFFFFF"></path>
+                <ellipse id="Oval-4-Copy-15" stroke="#CFA788" stroke-width="3.60000014" fill="#FFFFFF" cx="88.0060241" cy="60.7" rx="35.0060241" ry="11.7"></ellipse>
+                <path d="M123.012048,46.7 L123.012048,60.2 C123.012048,66.6617316 107.339317,71.9 88.0060241,71.9 C68.6727308,71.9 53,66.6617316 53,60.2 L53,46.7 C53,40.2382684 68.6727308,35 88.0060241,35 C107.339317,35 123.012048,40.2382684 123.012048,46.7 Z" id="Combined-Shape" stroke="#CFA788" stroke-width="3.60000014" fill="#FFFFFF"></path>
+                <ellipse id="Oval-4-Copy-15" stroke="#CFA788" stroke-width="3.60000014" fill="#FFFFFF" cx="88.0060241" cy="45.7" rx="35.0060241" ry="11.7"></ellipse>
+                <g id="Group-8" transform="translate(53.000000, 21.000000)" stroke="#CFA788" stroke-width="3.60000014">
+                    <path d="M70.0120482,11.7 L70.0120482,25.1999939 C70.0120482,31.6617316 54.3393174,36.9 35.0060241,36.9 C15.6727308,36.9 0,31.6617316 0,25.2 L0,11.7 C0,5.23826843 15.6727308,0 35.0060241,0 C54.3393174,0 70.0120482,5.23826843 70.0120482,11.7 Z" id="Combined-Shape" fill="#FFFFFF"></path>
+                    <ellipse id="Oval-4-Copy-15" fill="#CFA788" cx="35.0060241" cy="11.7" rx="35.0060241" ry="11.7"></ellipse>
+                </g>
+                <path d="M120.664045,7.08386335 L119.379518,-2.27373675e-13" id="Line-2-Copy-6" stroke="#CFA788" stroke-width="2.70000011" stroke-linecap="round"></path>
+                <path d="M131.945783,10.5228705 L136.835753,0.9" id="Line-2-Copy-7" stroke="#CFA788" stroke-width="2.70000011" stroke-linecap="round"></path>
+                <path d="M141.819277,16.1740129 L148.486411,13.5" id="Line-2-Copy-8" stroke="#CFA788" stroke-width="2.70000011" stroke-linecap="round"></path>
+                <g id="Group-3-Copy" transform="translate(14.810241, 11.700000) scale(-1, 1) translate(-14.810241, -11.700000) translate(0.000000, 3.600000)" stroke="#CFA788" stroke-width="2.70000011" stroke-linecap="round">
+                    <path d="M1.28452676,7.08386335 L0,-2.27373675e-13" id="Line-2-Copy-3"></path>
+                    <path d="M12.5662651,10.5228705 L17.456235,0.9" id="Line-2-Copy-4"></path>
+                    <path d="M22.439759,16.1740129 L29.1068929,13.5" id="Line-2-Copy-5"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

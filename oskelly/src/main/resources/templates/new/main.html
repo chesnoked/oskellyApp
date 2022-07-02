@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html class="no-js" lang=""
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{new/layout}" th:with="pageStyle='frontPage'"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<main role="main" layout:fragment="content">
+<div th:replace="new/index/page-index :: page-index"></div>
+	<!--/*
+	<style>@media screen and (max-width: 1200px) {
+		.siteSlogan {
+			margin-top: 125px
+		}
+	}</style>
+	*/-->
+</main>
+</html>

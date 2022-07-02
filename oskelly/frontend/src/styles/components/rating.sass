@@ -1,0 +1,54 @@
+/*
+	$fa-var-star
+	$fa-var-star-half
+	$fa-var-star-half-empty
+	$fa-var-star-half-full
+	$fa-var-star-o
+	$fa-var-star-half-o
+	*/
+\:root .ratingInput
+	$color-not-checked: hsl(0, 0%, 86.7%)
+	$color-checked: hsl(50.6, 100%, 50%)
+	$color-hover: hsl(51.1, 100%, 76.1%)
+	border: none
+	position: relative
+	&-inner
+		float: left // because of reversed position of elements for hovering
+		clear: both
+	&_inline
+		display: inline-block
+		vertical-align: middle
+	input
+		display: none
+	label
+		float: right
+		margin: 0
+		cursor: default
+		color: $color-not-checked
+		&::before
+			display: inline-block
+			margin: 5px
+			font-family: FontAwesome
+			font-size: 1.25em
+			content: $fa-var-star
+	.half
+		&::before
+			position: absolute
+			content: $fa-var-star-half
+	// sass-lint:disable force-pseudo-nesting
+	input:checked ~ label
+		color: $color-checked
+	&:not(:disabled)
+		label
+			cursor: pointer
+		// CSS Magic to Highlight Stars on Hover
+		&:not(:checked) label:hover,
+		&:not(:checked) label:hover ~ label
+			color: $color-checked
+		// Hover previous stars in list
+		input:checked + label:hover,
+		input:checked ~ label:hover,
+		label:hover ~ input:checked ~ label,
+		input:checked ~ label:hover ~ label
+			color: $color-hover
+	// sass-lint:enable force-pseudo-nesting

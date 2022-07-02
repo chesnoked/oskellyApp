@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{new/layout}" th:with="pageStyle='cataloguePage'">
+
+<head>
+</head>
+
+<body>
+
+<main role="main" layout:fragment="content">
+
+    <div class="row column text-center">
+        <h1 class="h2 ruledHeading text-serif text-uppercase" th:text="|${query?: ''} - Результаты поиска|">Поисковый запрос - Результаты поиска</h1>
+    </div>
+
+    <div class="row" th:unless="${#lists.isEmpty(products)}">
+        <div th:replace="catalog/product_card :: product_card (${products}, 'xlarge-3')"></div>
+    </div>
+    <div class="row column small-6" th:if="${#lists.isEmpty(products)}">
+        <h4 class="text-center">Нет товаров</h4>
+    </div>
+</main>
+
+</body>
+</html>

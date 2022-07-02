@@ -1,0 +1,7 @@
+<label id="categorySelectLabel">
+Категория
+</label>
+<select class="js-select" data-search="data-search" name="category" id="categorySelect">
+	<option selected="selected" class="is-placeholder" disabled="disabled">Выберите</option>
+	<option th:each="category: ${publicationGridInfo.categories}" th:value="${category.id}" th:text="${category.displayName}">title</option>
+</select>

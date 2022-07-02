@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{new/layout}" th:with="pageStyle='productAddPage'">
+<head>
+	<style>
+		.styledTextInput { background-color: #fff !important; }
+	</style>
+</head>
+<body class="productPage">
+
+<!--/*@thymesVar id="offer" type="su.reddot.domain.service.product.view.OfferView" */-->
+<main role="main" layout:fragment="content">
+
+
+	<h1 class="h3 text-center" th:if="${offer.isAccepted == null}">Новое предложение о снижении цены</h1>
+
+	<h1 class="h3 text-center" th:if="${offer.isAccepted == true}">Вы подтвердили предложение о снижении цены</h1>
+
+	<h1 class="h3 text-center" th:if="${offer.isAccepted == false}">Вы отклонили предложение о снижении цены</h1>
+
+	<div class="row">
+		<div class="column">
+
+			<h2 class="offset-y_small text-size-x-large text-strong">Информация о товаре</h2>
+
+			<div class="row">
+				<div class="small-12 large-4 xlarge-3 columns">
+					<img src="//placehold.it/200x200&text=X" th:src="${offer.primaryImage?.url}?:_" alt="Название вещи" th:alt="${offer.brand}">
+				</div>
+
+				<div class="column">
+
+                    <h2 class="h2 text-uppercase" th:text="${offer.brand}">Бренд</h2>
+                    <p th:text="${offer.category}">Категория</p>
+					<p th:text="|Состояние: ${offer.condition}|">Состояние: новый</p>
+
+					<dl class="inlineDescriptions">
+						<div th:each="attribute: ${offer.attributes}">
+							<dt class="inlineDescriptions-term" th:text="|${attribute.key}:|">Атрибут</dt>
+							<dd class="inlineDescriptions-description" th:text="${attribute.value}">Значение</dd>
+						</div>
+					</dl>
+
+					<p class="text-size-larger"
+					   th:utext="|Цена на сайте: <strong>${offer.currentPrice} ₽</strong>|">
+						Цена на сайте: <strong>123.00 ₽</strong>
+					</p>
+					<p class="text-size-larger"
+					   th:utext="|Пользователь предложил: <strong>${offer.offeredPrice} ₽</strong>|">
+						Пользователь предложил: <strong>123.00 ₽</strong>
+					</p>
+                    <p class="text-size-larger"
+					    th:utext="|Вы получите: <strong>${offer.offeredPriceWithoutCommission} ₽</strong>|">
+						Вы получите: <strong>165.00 ₽</strong></p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+    <div class="row column" th:if="${offer.isAccepted == null}">
+        <form id="offer-confirmation" class="offset-y" th:data-offer-id="${offer.id}">
+			<div class="row align-center">
+				<fieldset class="small-12 medium-5 xlarge-3 column">
+					<button type="submit" class="button expanded offset-y_tiny nowrap" value="confirm">Подтвердить</button>
+				</fieldset>
+				<fieldset class="small-12 medium-5 xlarge-3 column">
+					<button type="submit" class="button hollow expanded offset-y_tiny nowrap" value="reject">Отказаться</button>
+				</fieldset>
+			</div>
+        </form>
+	</div>
+</main>
+
+<div layout:fragment="custom-scripts">
+	<script th:src="|/js/product/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+	<script th:src="|/js/product/offer.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+</div>
+
+</body>
+</html>

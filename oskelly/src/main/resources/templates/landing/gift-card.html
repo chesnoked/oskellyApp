@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html
+	class="no-js" lang="ru_RU"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{new/layout}"
+>
+<body>
+<main role="main" layout:fragment="content">
+	<div class="row">
+		<div class="column small-12">
+			<div class="row">
+				<div class="column small-12">
+					<div class="row align-middle align-center big-padding-bottom">
+						<div class="column small-12 large-5 text-center">
+							<h1 class="landing-page-header-title">Подарочные сертификаты</h1>
+						</div>
+						<div class="column small-9 large-4">
+							<img src="/images/pictures/gift-card.jpeg">
+						</div>
+					</div>
+					<div class="row align-center">
+						<div class="column small-12 large-8 text-center">
+							<h4 class="landing-page-slide-text landing-page-space">
+								Если вы хотите порадовать своих любимых в торжественный день,
+								 но сомневаетесь в выборе подарка, преподнесите им подарочный сертификат на покупки в интернет-магазине
+								OSKELLY. Это будет лучшим проявлением заботы с вашей стороны, а близкие смогут выбрать то,  что точно
+								придется им по вкусу!
+							</h4>
+							<h4 class="landing-page-slide-text landing-page-space">
+								У нас есть разные номиналы подарочных карт – 5 000, 10 000,
+								25 000, 50 000 и 100 000 рублей. Срок действия сертификата – 6 месяцев. Вы можете приобрести печатный
+								вариант сертификата – мы оформим его в нашу фирменную упаковку и при необходимости доставим в любую точку
+								страны. Также мы можем выслать виртуальный вариант подарочной карты на адрес электронной почты
+								получателя.
+							</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+				<div class="row align-center">
+					<div class="column small-12 large-8">
+						<h2 class="text-serif text-center text-strong offset-y_small">Я хочу подарить сертификат</h2>
+						<form id="new-gift-card" data-abide novalidate>
+							<div class="row">
+								<div class="small-6 column">
+									<label class="text-right text-serif middle" for="gift-card-amount">на сумму</label>
+								</div>
+								<div class="small-6 xlarge-3 column">
+									<select id="gift-card-amount" class="js-select" data-response-field="amount">
+										<option value="5000">5 000 ₽</option>
+										<option value="10000">10 000 ₽</option>
+										<option value="25000">25 000 ₽</option>
+										<option value="50000">50 000 ₽</option>
+										<option value="100000">100 000 ₽</option>
+									</select>
+									<span class="form-error"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="small-6 column">
+									<label class="middle text-right text-serif" for="gift-card-recipient-name">человеку по имени</label>
+								</div>
+								<div class="small-6 xlarge-4 column">
+									<input
+										id="gift-card-recipient-name" placeholder="имя получателя"
+										class="styledTextInput styledTextInput_secondary"
+										type="text" required data-response-field="recipient.name"
+									>
+									<span class="form-error">Обязательно для заполнения</span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="small-6 column">
+									<label class="middle text-right text-serif" for="gift-card-giving-name">от своего имени</label>
+								</div>
+								<div class="small-6 xlarge-4 column">
+									<input
+										id="gift-card-giving-name" placeholder="ваше имя" class="styledTextInput styledTextInput_secondary"
+										type="text" required data-response-field="givingName"
+									>
+									<span class="form-error">Обязательно для заполнения</span>
+								</div>
+							</div>
+							<h2 class="text-center text-serif offset-y_small text-strong">Отправить сертификат</h2>
+							<div class="row align-justify" data-gift-card-delivery>
+								<div class="small-12 medium-6 column text-center">
+									<input
+										id="gift-card-email-delivery" type="radio" name="gift-card-delivery" required
+										data-response-field="recipient"
+									>
+									<label class="middle text-serif" for="gift-card-email-delivery">По электронной почте</label>
+									<span class="form-error"></span>
+								</div>
+								<div class="small-12 medium-6 column text-center">
+									<input id="gift-card-courier-delivery" name="gift-card-delivery" type="radio">
+									<label class="middle text-serif" for="gift-card-courier-delivery">Курьером</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="small-12 medium-6 column invisible" data-for="gift-card-email-delivery">
+									<input
+										id="gift-card-recipient-email" name="delivery" type="text" placeholder="электронная почта получателя"
+										required data-response-field="recipient.email"
+									>
+									<span class="form-error">Обязательно для заполнения</span>
+								</div>
+								<div class="small-12 medium-6 column invisible" data-for="gift-card-courier-delivery">
+									<input
+										id="gift-card-recipient-address" type="text" placeholder="адрес получателя" required
+										data-response-field="recipient.address"
+									>
+									<span class="form-error">Обязательно для заполнения</span>
+								</div>
+							</div>
+							<div class="row align-right">
+								<div class="small-12 medium-6 xlarge-4 column">
+									<button class="button expanded large-at-small nowrap" type="submit">Оплатить</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="row align-middle align-center big-padding-y">
+					<div class="column small-12 large-1 small-text-center small-margin-y">
+						<img src="/images/icons/certificate.svg">
+					</div>
+					<div class="column small-12 large-8 small-text-center">
+						<p class="landing-page-slide-text">
+							Обладатель подарочного сертификата может совершать покупки на сайте OSKELLY.  Чтобы активировать карту,
+							при формировании вашего заказа на странице «Корзина» введите промокод, указанный на сертификате, и
+							продолжайте оформление заказа. Ваш промокод будет активирован  и учтен при расчете стоимости заказа.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--<div class="certificatePage-container">-->
+			<!--<div class="certificatePage-blockMain">-->
+				<!--<div-->
+					<!--class="certificatePage-backgroundBlock"-->
+					<!--style="background-image: linear-gradient(0deg,#fffc,hsla(0,0%,100%,0) 72%,hsla(0,0%,100%,0) 10%,hsla(0,0%,100%,0))"-->
+				<!--&gt;-->
+
+				<!--</div>-->
+
+			<!--</div>-->
+			<!--<div class="row column">-->
+				<!--<div class="certificatePage-description">-->
+
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="row align-center">-->
+				<!--<div class="small-12 large-8 xlarge-6 column">-->
+					<!--<h2 class="text-serif text-center text-strong offset-y_small">Я хочу подарить сертификат</h2>-->
+					<!--<form id="new-gift-card" data-abide novalidate>-->
+						<!--<div class="row">-->
+							<!--<div class="small-6 column">-->
+								<!--<label class="text-right text-serif middle" for="gift-card-amount">на сумму</label>-->
+							<!--</div>-->
+							<!--<div class="small-6 xlarge-3 column">-->
+								<!--<select id="gift-card-amount" class="js-select" data-response-field="amount">-->
+									<!--<option value="5000">5 000 ₽</option>-->
+									<!--<option value="10000">10 000 ₽</option>-->
+									<!--<option value="25000">25 000 ₽</option>-->
+									<!--<option value="50000">50 000 ₽</option>-->
+									<!--<option value="100000">100 000 ₽</option>-->
+								<!--</select>-->
+								<!--<span class="form-error"></span>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<div class="row">-->
+							<!--<div class="small-6 column">-->
+								<!--<label class="middle text-right text-serif" for="gift-card-recipient-name">человеку по имени</label>-->
+							<!--</div>-->
+							<!--<div class="small-6 xlarge-4 column">-->
+								<!--<input-->
+									<!--id="gift-card-recipient-name" placeholder="имя получателя"-->
+									<!--class="styledTextInput styledTextInput_secondary"-->
+									<!--type="text" required data-response-field="recipient.name"-->
+								<!--&gt;-->
+								<!--<span class="form-error">Обязательно для заполнения</span>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<div class="row">-->
+							<!--<div class="small-6 column">-->
+								<!--<label class="middle text-right text-serif" for="gift-card-giving-name">от своего имени</label>-->
+							<!--</div>-->
+							<!--<div class="small-6 xlarge-4 column">-->
+								<!--<input-->
+									<!--id="gift-card-giving-name" placeholder="ваше имя" class="styledTextInput styledTextInput_secondary"-->
+									<!--type="text" required data-response-field="givingName"-->
+								<!--&gt;-->
+								<!--<span class="form-error">Обязательно для заполнения</span>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<h2 class="text-center text-serif offset-y_small text-strong">Отправить сертификат</h2>-->
+						<!--<div class="row align-justify" data-gift-card-delivery>-->
+							<!--<div class="small-12 medium-6 column text-center">-->
+								<!--<input-->
+									<!--id="gift-card-email-delivery" type="radio" name="gift-card-delivery" required-->
+									<!--data-response-field="recipient"-->
+								<!--&gt;-->
+								<!--<label class="middle text-serif" for="gift-card-email-delivery">По электронной почте</label>-->
+								<!--<span class="form-error"></span>-->
+							<!--</div>-->
+							<!--<div class="small-12 medium-6 column text-center">-->
+								<!--<input id="gift-card-courier-delivery" name="gift-card-delivery" type="radio">-->
+								<!--<label class="middle text-serif" for="gift-card-courier-delivery">Курьером</label>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<div class="row">-->
+							<!--<div class="small-12 medium-6 column invisible" data-for="gift-card-email-delivery">-->
+								<!--<input-->
+									<!--id="gift-card-recipient-email" name="delivery" type="text" placeholder="электронная почта получателя"-->
+									<!--required data-response-field="recipient.email"-->
+								<!--&gt;-->
+								<!--<span class="form-error">Обязательно для заполнения</span>-->
+							<!--</div>-->
+							<!--<div class="small-12 medium-6 column invisible" data-for="gift-card-courier-delivery">-->
+								<!--<input-->
+									<!--id="gift-card-recipient-address" type="text" placeholder="адрес получателя" required-->
+									<!--data-response-field="recipient.address"-->
+								<!--&gt;-->
+								<!--<span class="form-error">Обязательно для заполнения</span>-->
+							<!--</div>-->
+						<!--</div>-->
+						<!--<div class="row align-right">-->
+							<!--<div class="small-12 medium-6 xlarge-4 column">-->
+								<!--<button class="button expanded large-at-small nowrap" type="submit">Оплатить</button>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</form>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="certificatePage-slide">-->
+				<!--<div class="column large-unstack">-->
+					<!--<div class="certificatePage-slideFeature row">-->
+						<!--<div class="certificatePage-slideFeature-icon">-->
+							<!--<img src="/images/icons/certificate.svg">-->
+						<!--</div>-->
+						<!--<p>Обладатель подарочного сертификата может совершать покупки на сайте OSKELLY.  Чтобы активировать карту,-->
+							<!--при формировании вашего заказа на странице «Корзина» введите промокод, указанный на сертификате, и-->
+							<!--продолжайте оформление заказа. Ваш промокод будет активирован  и учтен при расчете стоимости заказа.-->
+						<!--</p>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+	</div>
+</main>
+<div layout:fragment="custom-scripts">
+	<script src="/scripts/discount/client.js"></script>
+	<script src="/scripts/discount/gift-card.js"></script>
+
+</div>
+</body>
+</html>

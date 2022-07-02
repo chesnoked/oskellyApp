@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{layout/layout}">
+<head>
+	<script defer type="text/javascript" th:src="@{/js/publication/publication_prepare.js}"></script>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+	<div class="first_level_categories">
+		<form>
+			<div>
+				<label th:each="category: ${catalog}">
+					<input type="radio" name="top_category" th:value="${category.id}"/>
+					<span th:text="${category.displayName}"></span>
+				</label>
+			</div>
+		</form>
+	</div>
+	<div>
+		<label>
+			Наименование бренда
+			<input type="text" class="brand_name"/>
+		</label>
+	</div>
+	<div>
+		<label>
+			Описание товара
+			<input type="text" class="product_name"/>
+		</label>
+	</div>
+	<div class="btn btn-default btn-publish">
+		Продолжить
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+ALTER TABLE exported_image ADD COLUMN added_to_product BOOLEAN NOT NULL DEFAULT FALSE;

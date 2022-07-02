@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html
+		xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="details_description">
+	<label for="product-description">
+		Описание товара
+	</label>
+	<textarea style="min-width:300px;" id="product-description"></textarea>
+	<label>
+		Винтажный
+		<input type="checkbox" name="vintage" id="product-vintage"/>
+	</label>
+	<div>
+		<button class="publication-back">Назад</button>
+		<button class="publication-next">Далее</button>
+	</div>
+</div>
+</body>
+</html>

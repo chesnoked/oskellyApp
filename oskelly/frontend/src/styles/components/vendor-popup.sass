@@ -1,0 +1,104 @@
+.whitePopup
+	position: relative
+	margin: 20px auto
+	background: white
+.authPopup
+	+breakpoint(small only)
+		margin-y: 0
+		.styledTextInput
+			background-color: transparent
+		&-authButton
+			&, &.disabled, &[disabled]
+				color: black
+				background-color: white
+				&:hover
+					color: black
+					background-color: white
+			&.disabled, &[disabled]
+				opacity: 0.5
+		.ruledHeading
+			margin-top: 0.75rem !important
+			margin-bottom: -1rem
+			&_secondary
+				color: rgba(white, 0.8)
+				font-size: 1rem
+				&::before,
+				&::after
+					height: 1px
+					background-color: rgba(white, 0.6)
+				&::before
+					margin-left: 20%
+				&::after
+					margin-right: 20%
+	position: relative
+	z-index: 1
+	margin: 20px auto
+	background: white
+	.form
+		padding: 4rem 1rem
+	&-backgroundImage
+		+breakpoint(medium down)
+			height: 200px
+			min-height: 0
+		+breakpoint(small only)
+			display: none
+		min-height: 90vh
+		background:
+			size: cover
+			position: center
+			repeat: no-repeat
+	&-alternateBackground
+		+breakpoint(small only)
+			display: block
+		display: none
+		absolute: top left
+		size: 100%
+		z-index: -1
+		background:
+			repeat: no-repeat
+			size: cover
+			position: center
+@keyframes mfp-slide-in
+	from
+		transform: translateY(40px)
+		opacity: 0
+	to
+		transform: translateY(0)
+		opacity: 1
+@keyframes mfp-fade-in
+	from
+		opacity: 0
+	to
+		opacity: 0.8
+.mfp
+	&-wrap
+		-webkit-overflow-scrolling: touch
+	&-bg
+		transition: opacity 0.5s, backdrop-filter 0.5s
+		animation: mfp-fade-in 0.5s
+		backdrop-filter: blur(10px) brightness(60%)
+		will-change: opacity, backdrop-filter
+		margin-x: auto
+		&.mfp-removing
+			opacity: 0
+			backdrop-filter: blur(0) brightness(100%)
+	&-container
+		+breakpoint(small only)
+			padding-x: 0
+		transition: opacity 0.5s
+		opacity: 0
+		will-change: opacity
+		@at-root .mfp-ready #{&}
+			opacity: 1
+		@at-root .mfp-removing #{&}
+			opacity: 0
+	&-content
+		// to allow user to click on a backdrop on left/right of modal
+		pointer-events: none
+		&-inner
+			pointer-events: initial
+			max-width: 100%
+	&-close
+		opacity: 1
+		&:hover
+			opacity: 0.85

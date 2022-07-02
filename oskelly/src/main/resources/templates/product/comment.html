@@ -1,0 +1,19 @@
+<div th:each="comment : ${comments}" th:fragment="comments">
+	<div class="row productPage-comments-comment">
+		<div class="shrink column">
+			<a href="profile.html" th:href="|/profile/${comment.userId}|" th:title="${comment.user}" title="Татьяна">
+			<img class="productPage-comments-userPic" src="images/tmp/users/userpic-3.jpg"
+			th:src="${comment.avatar}?: '/images/no-photo.jpg'" th:alt="${comment.user}"
+			alt="Татьяна">
+			</a>
+		</div>
+		<div class="column">
+			<p th:text="${comment.text}">Мне платье очень нравится! Розовый цвет, качественный пошив, интересный крой, хороший
+				состав ткани! Стиль повседневный, но если сдобрить его определёнными аксессуарами,
+				то и на праздничный подойдёт.</p>
+			<a href="profile.html" th:href="|/profile/${comment.userId}|" th:title="${comment.user}" th:text="${comment.user}">Татьяна</a>
+			<span class="text-color-gray">|</span>
+				<span class="text-color-gray" th:text="|${comment.publishTime}|">(1 день назад)</span>
+		</div>
+	</div>
+</div>

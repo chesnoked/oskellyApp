@@ -1,0 +1,337 @@
+{
+  "ClientId": "oskelly.ru",
+  "Date": {
+    "Date": {
+      "Day": 29,
+      "Month": 8,
+      "Year": 17
+    },
+    "Time": {
+      "Hour": 11,
+      "Minute": 43,
+      "Second": 31
+    }
+  },
+  "Device": {
+    "Name": "10000000000000000201",
+    "Address": "192.168.142.20:4201"
+  },
+  "DeviceRegistrationNumber": "2505480089055112",
+  "DeviceSerialNumber": "10000000000000000201",
+  "DocNumber": 1,
+  "DocumentType": 0,
+  "FNSerialNumber": "9999999999999201",
+  "FiscalDocNumber": 3,
+  "FiscalSign": 1644948637,
+  "GrandTotal": 17589000,
+  "Path": "/fr/api/v2/Complex",
+  "QR": "t=20170829T1143\u0026s=175890.00\u0026fn=9999999999999201\u0026i=3\u0026fp=1644948637\u0026n=1",
+  "RequestId": "19",
+  "Response": {
+    "Error": 0
+  },
+  "Responses": [
+    {
+      "Path": "/fr/api/v2/OpenTurn",
+      "Response": {
+        "Error": 0,
+        "FiscalDocNumber": 2,
+        "FiscalDocument": {
+          "TagID": 2,
+          "TagType": "stlv",
+          "Value": [
+            {
+              "TagID": 1000,
+              "TagType": "string",
+              "Value": "Отчет об открытии смены"
+            },
+            {
+              "TagID": 1188,
+              "TagType": "string",
+              "Value": "3.4.0"
+            },
+            {
+              "TagID": 1189,
+              "TagType": "byte",
+              "Value": 2
+            },
+            {
+              "TagID": 1209,
+              "TagType": "byte",
+              "Value": 2
+            },
+            {
+              "TagID": 1048,
+              "TagType": "string",
+              "Value": "ИП Иванов И.И."
+            },
+            {
+              "TagID": 1018,
+              "TagType": "string",
+              "Value": "1234567890  "
+            },
+            {
+              "TagID": 1012,
+              "TagType": "unixtime",
+              "Value": "2017-08-29T11:43:00Z"
+            },
+            {
+              "TagID": 1037,
+              "TagType": "string",
+              "Value": "2505480089055112"
+            },
+            {
+              "TagID": 1021,
+              "TagType": "string",
+              "Value": "КАССИР 1"
+            },
+            {
+              "TagID": 1009,
+              "TagType": "string",
+              "Value": "г. Челябинск, ул. Ленина, д. 16"
+            },
+            {
+              "TagID": 1187,
+              "TagType": "string",
+              "Value": "Подземный переход"
+            },
+            {
+              "TagID": 1038,
+              "TagType": "uint32",
+              "Value": 1
+            },
+            {
+              "TagID": 1077,
+              "TagType": "byte[]",
+              "Value": "AAAaukc6"
+            },
+            {
+              "TagID": 1040,
+              "TagType": "uint32",
+              "Value": 2
+            },
+            {
+              "TagID": 1041,
+              "TagType": "string",
+              "Value": "9999999999999201"
+            }
+          ]
+        },
+        "Password": 1,
+        "TurnNumber": 1
+      }
+    },
+    {
+      "Path": "/fr/api/v2/CloseDocument",
+      "Response": {
+        "Date": {
+          "Date": {
+            "Day": 29,
+            "Month": 8,
+            "Year": 17
+          },
+          "Time": {
+            "Hour": 11,
+            "Minute": 43,
+            "Second": 31
+          }
+        },
+        "DocNumber": 1,
+        "DocumentType": 0,
+        "Error": 0,
+        "FiscalDocNumber": 3,
+        "FiscalDocument": {
+          "TagID": 3,
+          "TagType": "stlv",
+          "Value": [
+            {
+              "TagID": 1000,
+              "TagType": "string",
+              "Value": "Кассовый чек"
+            },
+            {
+              "TagID": 1054,
+              "TagType": "byte",
+              "Value": 1
+            },
+            {
+              "TagID": 1055,
+              "TagType": "byte",
+              "Value": 1
+            },
+            {
+              "TagID": 1031,
+              "TagType": "money",
+              "Value": 0
+            },
+            {
+              "TagID": 1081,
+              "TagType": "money",
+              "Value": 17589000
+            },
+            {
+              "TagID": 9997,
+              "TagType": "money",
+              "Value": 0
+            },
+            {
+              "TagID": 9996,
+              "TagType": "money",
+              "Value": 17589000
+            },
+            {
+              "TagID": 1020,
+              "TagType": "money",
+              "Value": 17589000
+            },
+            {
+              "TagID": 1196,
+              "TagType": "string",
+              "Value": "QR"
+            },
+            {
+              "TagID": 1215,
+              "TagType": "money",
+              "Value": 0
+            },
+            {
+              "TagID": 1216,
+              "TagType": "money",
+              "Value": 0
+            },
+            {
+              "TagID": 1217,
+              "TagType": "money",
+              "Value": 0
+            },
+            {
+              "TagID": 1060,
+              "TagType": "string",
+              "Value": "www.nalog.ru"
+            },
+            {
+              "TagID": 1036,
+              "TagType": "string",
+              "Value": "720760"
+            },
+            {
+              "TagID": 1209,
+              "TagType": "byte",
+              "Value": 2
+            },
+            {
+              "TagID": 1048,
+              "TagType": "string",
+              "Value": "ИП Иванов И.И."
+            },
+            {
+              "TagID": 1018,
+              "TagType": "string",
+              "Value": "1234567890  "
+            },
+            {
+              "TagID": 1012,
+              "TagType": "unixtime",
+              "Value": "2017-08-29T11:43:00Z"
+            },
+            {
+              "TagID": 1037,
+              "TagType": "string",
+              "Value": "2505480089055112"
+            },
+            {
+              "TagID": 1009,
+              "TagType": "string",
+              "Value": "г. Челябинск, ул. Ленина, д. 16"
+            },
+            {
+              "TagID": 1187,
+              "TagType": "string",
+              "Value": "OSKELLY.RU"
+            },
+            {
+              "TagID": 1105,
+              "TagType": "money",
+              "Value": 17589000
+            },
+            {
+              "TagID": 1059,
+              "TagType": "stlv",
+              "Value": [
+                {
+                  "TagID": 1079,
+                  "TagType": "money",
+                  "Value": 17589000
+                },
+                {
+                  "TagID": 1023,
+                  "TagType": "qty",
+                  "Value": 1000
+                },
+                {
+                  "TagID": 1043,
+                  "TagType": "money",
+                  "Value": 17589000
+                },
+                {
+                  "TagID": 1199,
+                  "TagType": "byte",
+                  "Value": 6
+                },
+                {
+                  "TagID": 1030,
+                  "TagType": "string",
+                  "Value": "fgsfgsd 1"
+                },
+                {
+                  "TagID": 1214,
+                  "TagType": "byte",
+                  "Value": 4
+                }
+              ]
+            },
+            {
+              "TagID": 1038,
+              "TagType": "uint32",
+              "Value": 1
+            },
+            {
+              "TagID": 1042,
+              "TagType": "uint32",
+              "Value": 1
+            },
+            {
+              "TagID": 1077,
+              "TagType": "byte[]",
+              "Value": "AABiC+yd"
+            },
+            {
+              "TagID": 1040,
+              "TagType": "uint32",
+              "Value": 3
+            },
+            {
+              "TagID": 1041,
+              "TagType": "string",
+              "Value": "9999999999999201"
+            }
+          ]
+        },
+        "FiscalSign": 1644948637,
+        "GrandTotal": 17589000,
+        "NonCash": [
+          17589000,
+          0,
+          0
+        ],
+        "Password": 1,
+        "PaymentAgentModes": 0,
+        "Place": "OSKELLY.RU",
+        "QR": "t=20170829T1143\u0026s=175890.00\u0026fn=9999999999999201\u0026i=3\u0026fp=1644948637\u0026n=1",
+        "TaxCalculationMethod": 1,
+        "TaxMode": 0,
+        "Text": "КАССОВЫЙ ЧЕК/ПРИХОД\t29-08-17 11:43\nИП Иванов И.И.\nг. Челябинск, ул. Ленина, д. 16\nМЕСТО РАСЧЕТОВ\tOSKELLY.RU\nИНН\t1234567890\nНОМЕР ЧЕКА ЗА СМЕНУ: 1\tСМЕНА: 1\nСНО\tОСН\nАВТОМАТ\t720760\nfgsfgsd 1\nПОЛНЫЙ РАСЧЕТ\t ~175890.00\n##BIG##ИТОГ\t~175890.00\nВСЕГО ПОЛУЧЕНО\t~175890.00\nЭЛЕКТРОННЫМИ\t~175890.00\nСУММА БЕЗ НДС\t~175890.00\nСАЙТ ФНС\twww.nalog.ru\nРН ККТ: 2505480089055112\tФН: 9999999999999201\nФД: 3\tФП: 1644948637"
+      }
+    }
+  ]
+}

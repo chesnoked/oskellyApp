@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{new/layout}"
+      th:with="pageStyle='orderPage'">
+
+<!--/*@thymesVar id="order" type="su.reddot.domain.service.order.view.OrderView"*/-->
+<!--/*@thymesVar id="unavailableItems" type="java.util.List<su.reddot.domain.service.order.view.OrderItem>"*/-->
+<!--/*@thymesVar id="item" type="su.reddot.domain.service.order.view.OrderItem"*/-->
+
+<body>
+
+<main role="main" layout:fragment="content">
+    <div class="row large-unstack margin-from-header">
+        <main class="column" th:data-order="${order.id}">
+
+            <div class="offsetStack-y row column">
+                <ul class="progressBar">
+                    <li class="progressBar-item">Корзина</li>
+                    <li class="progressBar-item is-active">Заказ</li>
+                    <li class="progressBar-item">Оплата</li>
+                    <li class="progressBar-item">Статус заказа</li>
+                </ul>
+            </div>
+
+            <h2 class="offset-y_small text-size-x-large text-strong">1. Корзина</h2>
+
+            <div class="offsetStack-y row column">
+                <table class="unstriped orderPage-table">
+                    <thead>
+                    <tr>
+                        <th>Позиция</th>
+                        <th>Описание</th>
+                        <th class="show-for-medium">Размер</th>
+                        <th>Цена</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <tr th:each="item : ${order.items.?[available]}" th:data-available-order-position="${item.id}">
+
+                        <td class="dottedBorder orderPage-table-productPhoto">
+                            <a href="#" th:href="@{'/products/' + ${item.productId}}">
+                                <img alt="Категория Бренд" th:src="${item.imageUrl}?: _" th:alt="|${item.productName} ${item.brandName}|">
+                            </a>
+                        </td>
+
+                        <td class="dottedBorder orderPage-table-controlCell">
+                            <div class="offset-y_small">
+                                <div><a href="#" th:href="@{'/products/' + ${item.productId}}">
+                                    <strong class="text-uppercase" th:text="${item.brandName}">Бренд</strong></a>
+                                </div>
+                                <div th:text="${item.productName}">Категория</div>
+                                <div class="show-for-small-only nowrap" th:text="${item.productSize}?: _">Размер не указан</div>
+                            </div>
+                            <div class="orderPage-table-controlCell-controls"></div>
+                        </td>
+
+                        <td class="dottedBorder show-for-medium">
+                            <div class="offset-y_small">
+                                <p class="nowrap" th:text="${item.productSize}?: _">Не указан</p>
+                            </div>
+                        </td>
+
+                        <td class="dottedBorder orderPage-table-price">
+                            <div class="offset-y_small">
+                                <p class="nowrap" th:text="|${T(su.reddot.presentation.Utils).prettyRoundToCents(item.productPrice)} ₽|">Текущая цена</p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!--/* Недоступные товары отображать в конце списка всех позиций заказа */-->
+                    <tr th:each="item : ${order.items.?[not available]}" th:data-unavailable-order-position="${item.id}">
+
+                        <td class="dottedBorder orderPage-table-productPhoto">
+                            <a href="#" th:href="@{'/products/' + ${item.productId}}">
+                                <img alt="Категория Бренд" th:src="${item.imageUrl}?: _" th:alt="|${item.productName} ${item.brandName}|">
+                            </a>
+                        </td>
+
+                        <td class="dottedBorder orderPage-table-controlCell">
+                            <div class="offset-y_small">
+                                <div><a href="#" th:href="@{'/products/' + ${item.productId}}">
+                                    <strong class="text-uppercase" th:text="${item.brandName}">Бренд</strong></a>
+                                </div>
+                                <div th:text="${item.productName}">Категория</div>
+                                <div class="show-for-small-only nowrap" th:text="${item.productSize}?: _">Размер не указан</div>
+                            </div>
+                            <div class="orderPage-table-controlCell-controls"></div>
+                        </td>
+
+                        <td class="dottedBorder show-for-medium">
+                            <div class="offset-y_small">
+                                <p class="nowrap" th:text="${item.productSize}?: _">Не указан</p>
+                            </div>
+                        </td>
+
+                        <td class="dottedBorder orderPage-table-price">
+                            <div class="offset-y_small">
+                                <p class="nowrap">Нет в наличии</p>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mfp-hide" id="unavailableItems-popup" th:if="${unavailableItems}">
+                <div class="row align-center">
+                    <div class="large-8 columns mfp-content-inner">
+                        <div class="whitePopup offset_fill">
+                            <button class="mfp-close" type="button" title="Закрыть">×</button>
+                            <h4 class="h4">Следующих товаров нет в продаже</h4>
+
+                            <div class="offset-at-medium-up offset-y_tiny">
+                                <div class="row">
+                                    <table class="unstriped orderPage-table">
+                                        <thead>
+                                        <tr>
+                                            <th>Позиция</th>
+                                            <th>Описание</th>
+                                            <th class="show-for-medium">Размер</th>
+                                            <th>Цена</th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                        <tr th:each="item : ${unavailableItems}">
+
+                                            <td class="dottedBorder orderPage-table-productPhoto">
+                                                <a href="#" th:href="@{'/products/' + ${item.productId}}">
+                                                    <img alt="Категория Бренд" th:src="${item.imageUrl}?: _" th:alt="|${item.productName} ${item.brandName}|">
+                                                </a>
+                                            </td>
+
+                                            <td class="dottedBorder orderPage-table-controlCell">
+                                                <div class="offset-y_small">
+                                                    <div><a href="#" th:href="@{'/products/' + ${item.productId}}">
+                                                        <strong class="text-uppercase" th:text="${item.brandName}">Бренд</strong></a>
+                                                    </div>
+                                                    <div th:text="${item.productName}">Категория</div>
+                                                    <div class="show-for-small-only nowrap" th:text="${item.productSize}?: _">Размер не указан</div>
+                                                </div>
+                                                <div class="orderPage-table-controlCell-controls"></div>
+                                            </td>
+
+                                            <td class="dottedBorder show-for-medium">
+                                                <div class="offset-y_small">
+                                                    <p class="nowrap" th:text="${item.productSize}?: _">Не указан</p>
+                                                </div>
+                                            </td>
+
+                                            <td class="dottedBorder orderPage-table-price">
+                                                <div class="offset-y_small">
+                                                    <p class="nowrap" th:text="|${T(su.reddot.presentation.Utils).prettyRoundToCents(item.productPrice)} ₽|">Текущая цена</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-justify medium-uncollapse large-unstack">
+
+                <!--/* Нельзя задать скидку, если заказ не содержит ни одного доступного для покупки товара.
+                       Если заказ невалиден, но на него уже назначена скидка, то ее можно только снять. Применить новую нельзя. */-->
+                <div class="shrink-at-medium-up columns" data-discount
+                     th:if="${not order.faulty or order.faulty and order.appliedDiscount != null}">
+
+                    <h5 class="text-strong offset-y_small"
+                        th:utext="${order.appliedDiscount}? '<span class=\'fa fa-check\'> </span>Скидка применена' : 'Введи код для получения скидки'">
+                    </h5>
+
+                    <form data-abide novalidate>
+                        <div class="input-group">
+                            <input id="discount" name="code" class="input-group-field" type="text"
+                                   style="margin-right: 10px;"
+                                   th:classappend="${order.appliedDiscount != null and not order.appliedDiscount.isValidYet}? 'is-invalid-input'"
+                                   th:value="${order.appliedDiscount?.code}" th:disabled="${order.appliedDiscount}" required>
+                            <div class="input-group-button">
+                                <input type="submit" class="button hollow"
+                                       th:data-order-id="${order.id}"
+                                       th:value="${order.appliedDiscount}? 'Отменить' : 'Применить'"
+                                       th:data-discount-remove="${order.appliedDiscount}? 'data-discount-remove' : null"
+                                       th:data-discount-apply="${order.appliedDiscount}? null : 'data-discount-apply'">
+                            </div>
+                        </div>
+
+                        <span class="form-error" data-form-error-for="discount" data-discount-error
+                              th:classappend="${order.appliedDiscount != null and not order.appliedDiscount.isValidYet}? 'is-visible'"
+                              th:text="${order.appliedDiscount != null and not order.appliedDiscount.isValidYet}? 'Срок действия скидки истек'">
+                        </span>
+
+                        <dl class="inlineDescriptions" th:if="${order.appliedDiscount?.isValidYet}">
+                            <div th:if="${order.appliedDiscount.optionalText}">
+                                <dd class="inlineDescriptions-description text-strong" th:text="${order.appliedDiscount.optionalText}"></dd>
+                            </div>
+                            <div>
+                                <dt class="inlineDescriptions-term text-secondary">Скидка</dt>
+                                <dd class="inlineDescriptions-description" th:text="${order.appliedDiscount.discountValue}"></dd>
+                            </div>
+                            <div th:if="${order.appliedDiscount.savingsValue}"> <!--/* необязательное значение */-->
+                                <dt class="inlineDescriptions-term text-secondary">Вы экономите</dt>
+                                <dd class="inlineDescriptions-description" th:text="|${order.appliedDiscount.savingsValue} ₽|">100 ₽</dd>
+                            </div>
+                        </dl>
+                    </form>
+                </div>
+                <div class="shrink-at-medium-up columns" th:unless="${order.faulty}">
+                    <!--/* Не реализовано -->
+                    <div class="offsetStack-y offset-y row align-right">
+                        <div class="shrink column">
+                            <select class="js-select">
+                                <option class="is-placeholder" selected="selected" disabled="disabled">Способ доставки
+                                </option>
+                                <option>Самолётом</option>
+                                <option>Пароходом</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--*/-->
+                    <div class="offsetStack-y">
+                        <table class="orderPage-summary text-right unstriped text-size-large">
+                            <tr>
+                                <th class="text-secondary">Общая сумма заказа:</th>
+                                <td th:utext="${order.appliedDiscount?.isValidYet}?
+
+                                |<span class='productPage-productMeta-price_discounted'>
+                                    ${T(su.reddot.presentation.Utils).prettyRoundToCents(order.price)} ₽</span>
+                                    ${order.appliedDiscount.updatedOrderAmount} ₽|
+
+                                : |${T(su.reddot.presentation.Utils).prettyRoundToCents(order.price)} ₽|">
+                                    52 000 ₽</td>
+                            </tr>
+                            <tr>
+                                <th class="text-secondary">Стоимость доставки:</th>
+                                <td th:text="|${T(su.reddot.presentation.Utils).prettyRoundToCents(order.deliveryCost)} ₽|">0 ₽</td>
+                            </tr>
+                            <tr>
+                                <th class="text-secondary">Итого:</th>
+                                <td th:utext="${order.appliedDiscount?.isValidYet}?
+                                |<span class='productPage-productMeta-price_discounted'>${T(su.reddot.presentation.Utils).prettyRoundToCents(order.price.add(order.deliveryCost))} ₽</span>
+                                 ${order.appliedDiscount.finalOrderAmount} ₽|
+                                 : |${T(su.reddot.presentation.Utils).prettyRoundToCents(order.price.add(order.deliveryCost))} ₽|">52 000 ₽</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!--/* Нет ни одного доступного товара - пользователь не может ни отредактировать доставку, ни перейти к оплате */-->
+            <!--/*/ <th:block th:unless="${order.faulty}"> /*/-->
+            <h2 class="offset-y_small text-size-x-large text-strong">2. Доставка</h2>
+
+            <div class="row bg-light-gray offset_tiny-at-small_fill offset-at-medium-up_fill offsetStack-y_large xlarge-unstack">
+                <!--/*@thymesVar id="deliveryRequisite" type="su.reddot.domain.model.DeliveryRequisite"*/-->
+                <div class="column" th:if="${deliveryRequisite}" th:object="${deliveryRequisite}">
+                    <div class="row align-bottom align-justify medium-uncollapse">
+                        <div class="column">
+                            <table class="unstriped">
+                                <tbody>
+                                <tr>
+                                    <th>Имя:</th>
+                                    <td th:text="*{deliveryName}" th:if="*{deliveryName}">Ольга Иванова</td>
+                                    <td th:unless="*{deliveryName}">
+                                        <button type="button" data-mfp-src="#order-changeDeliveryRequisite-popup" class="button alert hollow offset-y_small-at-small">Заполнить</button></td>
+                                </tr>
+                                <tr>
+                                    <th>Телефон:</th>
+                                    <td th:text="*{deliveryPhone}" th:if="*{deliveryPhone}">8 (987) 654 32 10</td>
+                                    <td th:unless="*{deliveryPhone}">
+                                        <button type="button" data-mfp-src="#order-changeDeliveryRequisite-popup" class="button alert hollow offset-y_small-at-small">Заполнить</button></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>Страна:</th>
+                                    <td th:text="*{deliveryCountry}" th:if="*{deliveryCountry}">Россия</td>
+                                    <td th:unless="*{deliveryCountry}">
+                                        <button type="button" data-mfp-src="#order-changeDeliveryRequisite-popup" class="button alert hollow offset-y_small-at-small">Заполнить</button></td>
+                                </tr>
+                                <tr>
+                                    <th>Город:</th>
+                                    <td th:text="*{deliveryCity}" th:if="*{deliveryCity}">Москва</td>
+                                    <td th:unless="*{deliveryCity}">
+                                        <button type="button" data-mfp-src="#order-changeDeliveryRequisite-popup" class="button alert hollow offset-y_small-at-small">Заполнить</button></td>
+                                </tr>
+                                <tr>
+                                    <th>Адрес:</th>
+                                    <td th:text="*{deliveryAddress}" th:if="*{deliveryAddress}">Ватутина 14, 6</td>
+                                    <td th:unless="*{deliveryAddress}">
+                                        <button type="button" data-mfp-src="#order-changeDeliveryRequisite-popup" class="button alert hollow offset-y_small-at-small">Заполнить</button></td>
+                                </tr>
+                                <tr>
+                                    <th>Индекс:</th>
+                                    <td th:text="*{deliveryZipCode}" th:if="*{deliveryZipCode}">121357</td>
+                                    <td th:unless="*{deliveryZipCode}">
+                                        <button type="button" data-mfp-src="#order-changeDeliveryRequisite-popup" class="button alert hollow offset-y_small-at-small">Заполнить</button></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrink-at-large-up medium-12 columns align-self-bottom text-right-at-xlarge">
+                    <button class="button hollow large-at-small expanded-at-small offset-y_small-at-small"
+                            type="button" data-mfp-src="#order-changeDeliveryRequisite-popup" th:text="${deliveryRequisite}? 'Изменить информацию' : _">Добавить адрес
+                    </button>
+                </div>
+
+                <div class="mfp-hide" id="order-changeDeliveryRequisite-popup">
+                    <div class="row align-center">
+                        <div class="large-7 columns mfp-content-inner">
+                            <div class="whitePopup offset_fill">
+                                <button class="mfp-close" type="button" title="Закрыть">×</button>
+                                <div class="row offsetStack-y">
+                                    <div class="column">
+                                        <h4 class="h5 text-serif" th:text="${deliveryRequisite}? 'Изменить информацию' : _">Добавить адрес</h4>
+                                        <hr class="hr_black hr_no-top">
+                                    </div>
+                                </div>
+
+                                <form data-abide th:data-order-delivery="${order.id}" novalidate>
+                                        <div>
+                                            <label>Имя
+                                                <input name="deliveryName" type="text" required th:value="${deliveryRequisite?.deliveryName}">
+                                                <span class="form-error">Поле обязательно для заполнения</span>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>Телефон
+                                                <input name="deliveryPhone" type="text" required th:value="${deliveryRequisite?.deliveryPhone}">
+                                                <span class="form-error">Поле обязательно для заполнения</span>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>Страна
+                                                <input name="deliveryCountry" type="text" value="Россия" required th:value="${deliveryRequisite?.deliveryCountry}?: _">
+                                                <span class="form-error">Поле обязательно для заполнения</span>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>Город
+                                                <input name="deliveryCity" type="text" required th:value="${deliveryRequisite?.deliveryCity}">
+                                                <span class="form-error">Поле обязательно для заполнения</span>
+                                            </label>
+                                        </div>
+                                    <div>
+                                        <label>Адрес
+                                            <input name="deliveryAddress" type="text" required th:value="${deliveryRequisite?.deliveryAddress}">
+                                            <span class="form-error">Поле обязательно для заполнения</span>
+                                        </label>
+                                        <p class="help-text">Например: Ватутина 14, 6</p>
+                                    </div>
+                                    <div>
+                                        <label>Почтовый индекс
+                                            <input name="deliveryZipCode" type="text" required th:value="${deliveryRequisite?.deliveryZipCode}">
+                                            <span class="form-error">Поле обязательно для заполнения</span>
+                                        </label>
+                                        <p class="help-text">Например: 121357</p>
+                                    </div>
+
+                                <div class="row align-middle" th:classappend="${deliveryRequisite}? 'align-justify' : 'align-right'">
+                                    <!--/* Если в профиле нет данных о доставке, то сохранить введенные в эту форму данные в профиль, не спрашивая об этом пользователя */-->
+                                    <div class="shrink-at-medium-up small-12 column offset-y_small-at-small-up text-center-at-small" th:if="${deliveryRequisite}">
+                                        <input class="styledCheckbox" type="checkbox" id="order-do-update-profile-delivery">
+                                        <label class="text-size-x-large-at-small" for="order-do-update-profile-delivery"><span class="text-size-small-at-small">Сохранить в профиле</span></label>
+                                    </div>
+                                    <div class="medium-5 large-5 xlarge-4 columns">
+                                        <button type="reset" class="button expanded hollow large-at-small" title="Сбросить адрес">Сбросить</button>
+                                        <button type="submit" class="button expanded large-at-small nowrap"
+                                           title="Сохранить адрес">Сохранить
+                                        </button>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="offset-y_small text-size-x-large text-strong offsetStack-y_large">3. Способ оплаты</h2>
+            <div class="offset-y picturedRadio-group">
+                <div class="row columns shrink">
+                    <input class="picturedRadio" type="radio" name="pay-option"
+                                                        id="pay-option-bank-card" value="bank-card"
+                                                        checked="checked">
+                    <label for="pay-option-bank-card">
+                        <div class="picturedRadio-image"><img src="/images/payments/visa-mastercard.svg"
+                                                              alt="Банковская карта"></div>
+                        <div class="picturedRadio-title">Банковская карта</div>
+                    </label>
+                </div>
+                <!--/* На бэкенде функциональность выбора метода оплаты пока не реализована -->
+                <input class="picturedRadio" type="radio" name="pay-option" id="pay-option-apple-pay" value="apple-pay">
+                <label for="pay-option-apple-pay">
+                    <div class="picturedRadio-image"><img src="/images/payments/apple-pay.svg" alt="Apple Pay"></div>
+                    <div class="picturedRadio-title">Apple Pay</div>
+                </label>
+                <input class="picturedRadio" type="radio" name="pay-option" id="pay-option-sansung-pay"
+                       value="sansung-pay">
+                <label for="pay-option-sansung-pay">
+                    <div class="picturedRadio-image"><img src="/images/payments/samsung-pay.svg" alt="Samsung Pay"></div>
+                    <div class="picturedRadio-title">Samsung Pay</div>
+                </label>
+                <input class="picturedRadio" type="radio" name="pay-option" id="pay-option-yandex-money"
+                       value="yandex-money">
+                <label for="pay-option-yandex-money">
+                    <div class="picturedRadio-image"><img src="/images/payments/yandex-money.svg" alt="Яндекс.Деньги">
+                    </div>
+                    <div class="picturedRadio-title">Яндекс.Деньги</div>
+                </label>
+                <!--*/-->
+            </div>
+            <div class="row align-justify align-middle offset-y_large">
+                <div class="shrink-at-medium-up small-12 column offset-y_small-at-small-up text-center-at-small">
+                    <input class="styledCheckbox" id="agreement" type="checkbox" name="agreement">
+                    <label class="text-size-x-large-at-small" for="agreement"><span class="text-size-small-at-small">Я согласен с условиями использования</span></label>
+                </div>
+                <div class="medium-5 large-5 xlarge-4 columns">
+                    <a class="button expanded large-at-small nowrap" href="#"
+                       title="Перейти к оплате" data-submit-payment
+                       th:classappend="not ${order.readyForPayment}? 'disabled'">
+                        Перейти к оплате
+                    </a>
+                </div>
+            </div>
+            <!--/*/ </th:block> /*/-->
+        </main>
+
+        <aside class="large-4 xlarge-3 columns">
+            <div class="bg-light-gray text-center offset-y_small_fill offsetStack-y">
+                <div class="text-size-small">Свяжитесь с нами</div>
+                <div class="text-size-large"><strong class="nowrap">8 (800) 707-53-08</strong></div>
+                <div class="text-size-small"><a href="mailto:info@oskelly.ru" title="Написать письмо на адрес info@oskelly.ru">info@oskelly.ru</a></div>
+            </div>
+            <section class="offsetStack-y">
+                <h5 class="text-strong text-uppercase">Доставка</h5>
+                <div class="text-size-smaller">
+                    <p>Доставка заказов OSKELLY осуществляется в рабочие дни. Срок доставки рассчитывается автоматически при оформлении заказа и составляет до 5 рабочих дней с момента подтверждения заказа продавцом.  <a class="text-underlined" href="/info/dostavka-i-vozvrat" title="Узнать подробнее о доставке товаров Oskelly">Узнать подробнее</a></p>
+                </div>
+            </section>
+            <section class="offsetStack-y">
+                <h5 class="text-strong text-uppercase">Оплата</h5>
+                <div class="text-size-smaller">
+                    <p>Оплата производится при оформлении заказа. Расчет осуществляется банковскими картами Visa и MasterCard. Безопасность сделки и доставки покупок гарантируем мы, страховая компания и наш банк-партнер. <a class="text-underlined" href="/info/oplata" title="Условия Оплаты Oskelly">Узнать подробнее</a></p>
+                </div>
+            </section>
+        </aside>
+    </div>
+</main>
+
+<div layout:fragment="custom-scripts">
+    <script th:src="@{/js/order/client.js(v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')})}"></script>
+    <script th:src="@{/js/order/page.js(v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')})}"></script>
+    <script th:src="@{/js/order/delivery.js(v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')})}"></script>
+
+</div>
+
+</body>
+</html>

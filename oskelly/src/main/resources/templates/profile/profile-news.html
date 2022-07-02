@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html
+	class="no-js" lang="ru_RU"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{profile/profile}" th:with="pageStyle='profilePage'"
+>
+<body class="profilePage">
+<div role="main" layout:fragment="profileContent">
+	<h3 class="h5 text-serif">Мои новости</h3>
+	<div class="row align-middle padding-y" th:each="action : ${actions}">
+		<div class="column small-3 large-3">
+			<a th:href="|/profile/${action.initiatorId}|">
+				<img class="news-avatar" th:src="${action.initiatorAvatar}?: '/images/no-photo.jpg'">
+			</a>
+		</div>
+		<div class="column small-6 large-6 landing-page-slide-text">
+			<div>
+				<b>
+					<a th:href="|/profile/${action.initiatorId}|">
+						<span th:text="${action.initiatorNickname}"></span>
+					</a>
+				</b>
+				<span th:text="${action.baseMessage}"></span>
+				<b th:if="${action.targetUserNickname}">
+					<a th:href="|/profile/${action.targetUserId}|">
+						<span th:text="${action.targetUserNickname}"></span>
+					</a>
+				</b>
+			</div>
+			<div class="landing-page-header-grey-color">
+				<span th:text="${action.prettyCreateTime}"></span>
+			</div>
+		</div>
+		<div class="column small-3 large-3">
+			<a th:href="${action.urlOfTargetObject}">
+				<img th:src="${action.imageOfTargetObject}">
+			</a>
+		</div>
+	</div>
+</div>
+</body>
+</html>

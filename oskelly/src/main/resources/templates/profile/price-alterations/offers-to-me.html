@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html
+	class="no-js" lang="ru_RU"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{profile/profile}" th:with="pageStyle='profilePage'"
+>
+
+<body class="profilePage">
+<div role="main" layout:fragment="profileContent">
+
+	<div class="row">
+		<div class="column small-12 medium-uncollapse-selfStacked text-center">
+			<div class="profilePage-scroll-menu">
+				<nav class="menu profilePage-styled-menu">
+					<span class="profilePage-styled-menu-item">
+						<a href="/account/pricesubscriptions">Слежу за ценой</a>
+					</span>
+					<span class="profilePage-styled-menu-item">
+						<a href="/account/offers">Я предложил цену</a>
+					</span>
+					<span class="profilePage-styled-menu-item active">
+						<a href="/account/offers-to-me">Мне предложили цену</a>
+					</span>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+	<div data-offers>
+
+	<!--/*@thymesVar id="offers" type="java.util.List<su.reddot.domain.service.profile.view.OffersByProduct>"*/-->
+	<div class="row padding-y" th:each="offersByProduct: ${offers}">
+		<div class="column small-4">
+			<div class="productCard-image">
+				<a href="#" th:href="@{/products/{id}(id=${offersByProduct.product.id})}">
+					<img class="thumbnail" src="http://placehold.it/150x150" width="150" height="150" alt="Категория Бренд"
+						 th:src="@{${offersByProduct.product.imageUrl}}"
+						 th:alt="${offersByProduct.product.name}"
+					>
+				</a>
+				<div class="productCard-badge" th:if="${offersByProduct.product.notUsedYet}">С биркой</div>
+			</div>
+		</div>
+		<div class="column small-7">
+			<h5 class="h5 productCard-brand" th:text="${offersByProduct.product.brand}">ADIDAS</h5>
+			<div class="productCard-kind">
+				<span th:text="${offersByProduct.product.name}">Туфли на высоком каблуке</span>
+			</div>
+			<div class="productCard-size"
+				 th:if="${offersByProduct.product.size}"
+				 th:text="|${offersByProduct.product.size.type}: ${offersByProduct.product.size.values}|">
+				<span>INT: 39.5/40.5</span>
+			</div>
+			<div class="profilePage-text" th:if="${offersByProduct.product.currentPrice}">
+				<span th:text="|Начальная цена: ${offersByProduct.product.currentPrice} ₽|">Начальная цена: 30 000 ₽</span>
+			</div>
+
+			<!--/*@thymesVar id="offer" type="su.reddot.domain.service.profile.view.OffersByProduct.Offer"*/-->
+
+			<!--/*/ <th:block th:each="offer: ${offersByProduct.offers}"> /*/-->
+			<div class="profilePage-text">
+				<span th:text="|Вам ${offerStat.index > 0? 'повторно': ''} предложили: ${offer.offeredPrice} ₽|">Вам предложили: 30 000 P</span>
+			</div>
+
+			<div class="padding-top" th:if="${offer.isAccepted == null}" data-offer>
+
+				<button type="button" class="profilePage-buttom profilePage-black" data-confirm-offer
+						th:data-offer-id="${offer.id}">Подтвердить</button>
+
+				<button type="button" class="profilePage-buttom profilePage-white" data-reject-offer
+						th:data-offer-id="${offer.id}">Отклонить</button>
+			</div>
+
+			<strong th:unless="${offer.isAccepted == null}"
+					th:text="${offer.isAccepted}? 'Вы подтвердили предложение': _">Вы отказались от предложения</strong>
+			<!--/*/ </th:block> /*/-->
+		</div>
+	</div>
+
+	<p class="text-center text-secondary" style="margin-top: 2rem" th:if="${offers.empty}">Список пуст</p>
+
+	</div>
+
+</div>
+</body>
+</html>

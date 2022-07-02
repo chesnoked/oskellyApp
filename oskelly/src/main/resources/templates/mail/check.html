@@ -1,0 +1,810 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xml:lang="en" style="background:#f3f3f3!important">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title></title>
+	<style>@media only screen {
+		html {
+			min-height: 100%;
+			background: #fefefe
+		}
+	}
+
+	@media only screen and (max-width: 596px) {
+		.small-float-center {
+			margin: 0 auto !important;
+			float: none !important;
+			text-align: center !important
+		}
+
+		.small-text-center {
+			text-align: center !important
+		}
+	}
+
+	@media only screen and (max-width: 596px) {
+		table.body img {
+			width: auto;
+			height: auto
+		}
+
+		table.body center {
+			min-width: 0 !important
+		}
+
+		table.body .container {
+			width: 95% !important
+		}
+
+		table.body .columns {
+			height: auto !important;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			padding-left: 16px !important;
+			padding-right: 16px !important
+		}
+
+		table.body .columns .columns {
+			padding-left: 0 !important;
+			padding-right: 0 !important
+		}
+
+		table.body .collapse .columns {
+			padding-left: 0 !important;
+			padding-right: 0 !important
+		}
+
+		th.small-6 {
+			display: inline-block !important;
+			width: 50% !important
+		}
+
+		th.small-12 {
+			display: inline-block !important;
+			width: 100% !important
+		}
+
+		.columns th.small-12 {
+			display: block !important;
+			width: 100% !important
+		}
+
+		table.menu {
+			width: 100% !important
+		}
+
+		table.menu td, table.menu th {
+			width: auto !important;
+			display: inline-block !important
+		}
+
+		table.menu.vertical td, table.menu.vertical th {
+			display: block !important
+		}
+
+		table.menu[align=center] {
+			width: auto !important
+		}
+	}</style>
+</head>
+
+<!--/*@thymesVar id="check" type="su.reddot.domain.service.order.impl.DefaultOrderService.Check" */-->
+
+<body
+	style="-moz-box-sizing:border-box;-ms-text-size-adjust:100%;-webkit-box-sizing:border-box;-webkit-text-size-adjust:100%;Margin:0;background:#f3f3f3!important;box-sizing:border-box;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;min-width:100%;padding:0;text-align:left;width:100%!important"
+>
+<span
+	class="preheader"
+	style="color:#fefefe;display:none!important;font-size:1px;line-height:1px;max-height:0;max-width:0;mso-hide:all!important;opacity:0;overflow:hidden;visibility:hidden"
+></span>
+<table
+	class="body"
+	style="Margin:0;background:#f3f3f3!important;border-collapse:collapse;border-spacing:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;height:100%;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;width:100%"
+>
+	<tr style="padding:0;text-align:left;vertical-align:top">
+		<td
+			class="center" align="center" valign="top"
+			style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word"
+		>
+			<center data-parsed="" style="min-width:580px;width:100%">
+				<table
+					align="center" class="container float-center"
+					style="Margin:0 auto;background:#fefefe;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:580px"
+				>
+					<tbody>
+					<tr style="padding:0;text-align:left;vertical-align:top">
+						<td
+							style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word"
+						>
+							<table
+								class="spacer"
+								style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+							>
+								<tbody>
+								<tr style="padding:0;text-align:left;vertical-align:top">
+									<td
+										height="10px"
+										style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:top;word-wrap:break-word"
+									>&#xA0;
+									</td>
+								</tr>
+								</tbody>
+							</table>
+							<table
+								class="row"
+								style="border-collapse:collapse;border-spacing:0;display:table;padding:0;position:relative;text-align:left;vertical-align:top;width:100%"
+							>
+								<tbody>
+								<tr style="padding:0;text-align:left;vertical-align:top">
+									<th
+										class="small-12 large-3 columns first" valign="middle"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:16px;padding-right:8px;text-align:left;width:129px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												>
+													<img
+														src="images/logo.svg" alt="Oskelly"
+														th:src="|${host}/images/logo.svg|"
+														style="-ms-interpolation-mode:bicubic;clear:both;display:block;max-width:100%;outline:0;text-decoration:none;width:auto"
+													>
+												</th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="small-12 large-5 columns"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:225.67px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												>
+													<p
+														class="text-cg no-mrg-b x-tiny-text small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#9b9b9b;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:left"
+													>Россия, 119180, г. Москва,
+													</p>
+													<p
+														class="text-cg no-mrg-b x-tiny-text small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#9b9b9b;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:left"
+													>3-й Голутвинский переулок 10 строение 6 офис 60
+													</p>
+													<p
+														class="text-cg no-mrg-b x-tiny-text small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#9b9b9b;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:left"
+													>ИНН КПП
+													</p>
+												</th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="small-12 large-2 columns last"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:16px;text-align:left;width:80.67px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												>
+													<p
+														class="text-cg no-mrg-b x-tiny-text text-right small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#9b9b9b;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:right"
+													>8 (800) 707-53-08
+													</p>
+													<p
+														class="text-cg no-mrg-b x-tiny-text text-right small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#9b9b9b;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:right"
+													>info@oskelly.ru
+													</p>
+													<p
+														class="text-cg no-mrg-b x-tiny-text text-right small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#9b9b9b;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:right"
+													>www.oskelly.ru
+													</p>
+												</th>
+											</tr>
+										</table>
+									</th>
+								</tr>
+								</tbody>
+							</table>
+
+                            <!--/*/ <th:block th:each="line: ${check.lines}"> /*/-->
+							<table
+								class="spacer"
+								style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+							>
+								<tbody>
+								<tr style="padding:0;text-align:left;vertical-align:top">
+									<td
+										height="15px"
+										style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:400;hyphens:auto;line-height:15px;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:top;word-wrap:break-word"
+									>&#xA0;
+									</td>
+								</tr>
+								</tbody>
+							</table><!-- Products -->
+							<table
+								class="row"
+								style="border-collapse:collapse;border-spacing:0;display:table;padding:0;position:relative;text-align:left;vertical-align:top;width:100%"
+							>
+								<tbody>
+								<tr style="padding:0;text-align:left;vertical-align:top">
+									<th
+										class="small-12 large-1 columns first"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:16px;padding-right:8px;text-align:left;width:32.33px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												></th>
+											</tr>
+										</table>
+									</th>
+									<!--/* Изображение товара */-->
+									<th
+										class="brd-btm small-12 large-6 columns"
+										style="Margin:0 auto;border-bottom:2px dotted #9b9b9b;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:274px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												>
+													<img
+														src="" alt="Product image"
+														th:alt="|${line.product.name} ${line.product.brand}|"
+														th:src="${line.product.absoluteImageUrl}"
+														style="-ms-interpolation-mode:bicubic;clear:both;display:block;max-width:100%;outline:0;text-decoration:none;width:auto"
+													>
+												</th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="brd-btm small-12 large-6 columns" valign="middle"
+										style="Margin:0 auto;border-bottom:2px dotted #9b9b9b;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:274px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												><h4
+													class="text-bld small-text-center"
+													style="Margin:0;Margin-bottom:10px;color:inherit;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:700;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left;word-wrap:normal"
+													th:text="${line.product.brand}"
+												>11 BY BORIS BIDJAN SABERI</h4>
+													<p
+														class="small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left"
+														th:text="${line.product.name}"
+													>Юбка / шорты
+													</p>
+													<p
+														class="small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left"
+														th:text="|Состояние: ${line.product.condition}|"
+													>Состояние: Ни разу
+													</p>
+													<p
+														class="small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left"
+														th:text="|Продавец: ${line.seller.name}|"
+													>Продавец: STAR
+													</p>
+													<h4
+														class="text-bld small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:inherit;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:700;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left;word-wrap:normal"
+														th:text="|Стоимость доставки: ${line.amount.deliveryPart} ₽|"
+													>Стоимость доставки: 1 800 Р</h4><h4
+														class="text-bld small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:inherit;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:700;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left;word-wrap:normal"
+														th:text="|Цена товара: ${line.amount.productPart} ₽|"
+													>Цена товара: 20 667 Р</h4><h4
+														class="text-bld small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:inherit;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:700;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left;word-wrap:normal"
+														th:text="|Итого: ${line.amount.total} ₽|"
+													>Итого: 22 467 Р</h4></th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="small-12 large-1 columns last"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:16px;text-align:left;width:32.33px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												></th>
+											</tr>
+										</table>
+									</th>
+								</tr>
+								</tbody>
+							</table>
+							<!--/*/ </th:block> /*/-->
+
+							<table
+								class="spacer"
+								style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+							>
+								<tbody>
+								<tr style="padding:0;text-align:left;vertical-align:top">
+									<td
+										height="15px"
+										style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:400;hyphens:auto;line-height:15px;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:top;word-wrap:break-word"
+									>&#xA0;
+									</td>
+								</tr>
+								</tbody>
+							</table>
+							<table
+								class="row"
+								style="border-collapse:collapse;border-spacing:0;display:table;padding:0;position:relative;text-align:left;vertical-align:top;width:100%"
+							>
+								<tbody>
+								<tr style="padding:0;text-align:left;vertical-align:top">
+									<th
+										class="small-12 large-1 columns first"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:16px;padding-right:8px;text-align:left;width:32.33px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												></th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="brd-btm small-12 large-12 columns"
+										style="Margin:0 auto;border-bottom:2px dotted #9b9b9b;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:564px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												><h4
+													class="text-bld no-mrg-b text-center"
+													style="Margin:0;Margin-bottom:10px;color:inherit;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:700;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:center;word-wrap:normal"
+													th:text="|Общая сумма покупки: ${check.details.formattedTotal.get()} ₽|"
+												>Общая сумма покупки: 54 879 P</h4></th>
+												<th
+													class="expander"
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0!important;text-align:left;visibility:hidden;width:0"
+												></th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="small-12 large-1 columns last"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:16px;text-align:left;width:32.33px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												></th>
+											</tr>
+										</table>
+									</th>
+								</tr>
+								</tbody>
+							</table>
+							<table
+								class="spacer"
+								style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+							>
+								<tbody>
+								<tr style="padding:0;text-align:left;vertical-align:top">
+									<td
+										height="15px"
+										style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:15px;font-weight:400;hyphens:auto;line-height:15px;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:top;word-wrap:break-word"
+									>&#xA0;
+									</td>
+								</tr>
+								</tbody>
+							</table>
+							<table
+								class="row"
+								style="border-collapse:collapse;border-spacing:0;display:table;padding:0;position:relative;text-align:left;vertical-align:top;width:100%"
+							>
+								<tbody>
+								<tr style="padding:0;text-align:left;vertical-align:top">
+									<th
+										class="small-12 large-1 columns first"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:16px;padding-right:8px;text-align:left;width:32.33px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												></th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="brd-btm small-12 large-12 columns"
+										style="Margin:0 auto;border-bottom:2px dotted #9b9b9b;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:564px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												>
+													<p
+														class="no-mrg-b x-tiny-text text-center"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:center"
+														th:text="|${check.details.shopInfo.get().name} ${check.details.shopInfo.get().address}|"
+													>ООО "ОСКЕЛЛИ ГРУПП" г. Москва, ул. Ленина, д. 16
+													</p>
+													<p
+														class="no-mrg-b x-tiny-text text-center"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:center"
+														th:text="|ИНН ${check.details.shopInfo.get().tin}"
+													>ИНН
+													</p>
+													<p
+														class="no-mrg-b x-tiny-text text-center"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:center"
+														th:text="|МЕСТО РАСЧЕТОВ ${check.details.shopInfo.get().location}"
+													>ИНН
+													>МЕСТО РАСЧЕТОВ OSKELLY.RU
+													</p>
+												</th>
+												<th
+													class="expander"
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0!important;text-align:left;visibility:hidden;width:0"
+												></th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="small-12 large-1 columns last"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:16px;text-align:left;width:32.33px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												></th>
+											</tr>
+										</table>
+									</th>
+								</tr>
+								</tbody>
+							</table>
+							<table
+								class="spacer"
+								style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+							>
+								<tbody>
+								<tr style="padding:0;text-align:left;vertical-align:top">
+									<td
+										height="10px"
+										style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:top;word-wrap:break-word"
+									>&#xA0;
+									</td>
+								</tr>
+								</tbody>
+							</table>
+							<table
+								class="row"
+								style="border-collapse:collapse;border-spacing:0;display:table;padding:0;position:relative;text-align:left;vertical-align:top;width:100%"
+							>
+								<tbody>
+								<tr style="padding:0;text-align:left;vertical-align:top">
+									<th
+										class="no-pdng-b small-12 large-12 columns first last"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:0!important;padding-left:16px;padding-right:16px;text-align:left;width:564px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												>
+													<p
+														class="no-mrg-b x-tiny-text text-center"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:center"
+													>КАССОВЫЙ ЧЕК/ПРИХОД
+													</p>
+												</th>
+												<th
+													class="expander"
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0!important;text-align:left;visibility:hidden;width:0"
+												></th>
+											</tr>
+										</table>
+									</th>
+								</tr>
+								</tbody>
+							</table>
+							<table
+								class="row"
+								style="border-collapse:collapse;border-spacing:0;display:table;padding:0;position:relative;text-align:left;vertical-align:top;width:100%"
+							>
+								<tbody>
+								<tr style="padding:0;text-align:left;vertical-align:top">
+									<th
+										class="small-12 large-2 columns first"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:16px;padding-right:8px;text-align:left;width:80.67px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												></th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="small-6 large-6 columns"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:274px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												>
+													<p
+														class="no-mrg-b x-tiny-text"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:left"
+														th:text="|№ ${check.details.documentNumber}|"
+													>№ 31
+													</p>
+													<p
+														class="no-mrg-b x-tiny-text"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:left"
+														th:text="|№ смены ${check.details.turnNumber.get()}|"
+													>№ смены 28
+													</p>
+												</th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="small-12 large-2 columns"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:80.67px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												></th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="small-6 large-6 columns"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:274px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												>
+													<p
+														class="no-mrg-b x-tiny-text text-right"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:right"
+														th:text="${check.details.formattedDateTime.get()}"
+													>29-08-17 11:43
+													</p>
+													<p
+														class="no-mrg-b x-tiny-text text-right"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:right"
+													>АВТОМАТ 720760
+													</p>
+												</th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="small-12 large-2 columns last"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:16px;text-align:left;width:80.67px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												></th>
+											</tr>
+										</table>
+									</th>
+								</tr>
+								</tbody>
+							</table>
+							<table
+								class="row"
+								style="border-collapse:collapse;border-spacing:0;display:table;padding:0;position:relative;text-align:left;vertical-align:top;width:100%"
+							>
+								<tbody>
+								<tr style="padding:0;text-align:left;vertical-align:top">
+									<th
+										class="small-12 large-2 columns first"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:16px;padding-right:8px;text-align:left;width:80.67px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												></th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="small-12 large-6 columns" valign="middle"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:274px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												>
+													<img
+														src="/assets/img/QRCode.png" alt="QR Code" width="150" height="150"
+														style="-ms-interpolation-mode:bicubic;clear:both;display:block;max-width:100%;outline:0;text-decoration:none;width:auto"
+														th:src="${check.qrAbsoluteUrl}"
+													>
+												</th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="small-12 large-2 columns"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:80.67px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												></th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="small-12 large-6 columns" valign="middle"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:274px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												>
+													<p
+														class="no-mrg-b x-tiny-text small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:left"
+														th:text="|Электронными: ${check.details.formattedNonCash.get()} ₽|"
+													>Электронными: 51 867.00 Р
+													</p>
+													<p
+														class="x-tiny-text small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left"
+													>НДС: -
+													</p>
+													<p
+														class="no-mrg-b x-tiny-text small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:left"
+														th:text="|РН ККТ: ${check.details.fiscalDetails.deviceRegistrationNumber}|"
+													>РН ККТ: 2505180089055112
+													</p>
+													<p
+															class="no-mrg-b x-tiny-text small-text-center"
+															style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:left"
+															th:text="|ФН: ${check.details.fiscalDetails.serialNumber}|"
+													>РН ККТ: 2505180089055112
+													</p>
+													<p
+														class="no-mrg-b x-tiny-text small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:left"
+														th:text="|ФД: ${check.details.fiscalDetails.documentNumber}|"
+													>ФД: 3
+													</p>
+													<p
+														class="no-mrg-b x-tiny-text small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:left"
+														th:text="|ФП: ${check.details.fiscalDetails.sign}|"
+													>ФП: 1644948637
+													</p>
+													<p
+														class="x-tiny-text small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left"
+													>СНО ОСН
+													</p>
+													<p
+														class="no-mrg-b x-tiny-text small-text-center"
+														style="Margin:0;Margin-bottom:10px;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:11px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0!important;padding:0;text-align:left"
+													>САЙТ ФНС www.nalog.ru
+													</p>
+												</th>
+											</tr>
+										</table>
+									</th>
+									<th
+										class="small-12 large-2 columns last"
+										style="Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:16px;text-align:left;width:80.67px"
+									>
+										<table
+											style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%"
+										>
+											<tr style="padding:0;text-align:left;vertical-align:top">
+												<th
+													style="Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left"
+												></th>
+											</tr>
+										</table>
+									</th>
+								</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</center>
+		</td>
+	</tr>
+</table><!-- prevent Gmail on iOS font size manipulation -->
+<div style="display:none;white-space:nowrap;font:15px courier;line-height:0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+</div>
+</body>
+</html>

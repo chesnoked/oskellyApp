@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{layout/layout}">
+<head>
+	<script type="text/javascript" th:src="@{/js/dropzone.js}"></script>
+	<script type="text/javascript" th:src="@{/js/publication/details_info.js}"></script>
+	<script type="text/javascript" th:src="@{/js/publication/details_photo.js}"></script>
+	<script type="text/javascript" th:src="@{/js/publication/details_description.js}"></script>
+	<script type="text/javascript" th:src="@{/js/publication/details_condition.js}"></script>
+	<script type="text/javascript" th:src="@{/js/publication/details_main.js}"></script>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<div id="product-info" th:data-product-id="${productId}">
+				<div class="brand"></div>
+				<div class="description"></div>
+			</div>
+			<ul id="publication-tabs" class="nav nav-pills nav-stacked" style="cursor: pointer;">
+				<li class="active"><a data-target="#info">Информация</a></li>
+				<li><a data-target="#photo">Фотографии</a></li>
+				<li><a data-target="#description">Описание</a></li>
+				<li><a data-target="#condition">Состояние товара и цена</a></li>
+				<li><a data-target="#seller">Продавец</a></li>
+			</ul>
+		</div>
+		<div class="col-md-4">
+			<div class="tab-content">
+				<div id="info" class="tab-pane fade in active">
+					<div th:replace="publication/details_info::details_info"></div>
+				</div>
+				<div id="photo" class="tab-pane fade">
+					<div th:replace="publication/details_photos::details_photos"></div>
+				</div>
+				<div id="description" class="tab-pane fade">
+					<div th:replace="publication/details_description::details_description"></div>
+				</div>
+				<div id="condition" class="tab-pane fade">
+					<div th:replace="publication/details_condition::details_condition"></div>
+				</div>
+				<div id="seller" class="tab-pane fade">Продавец</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

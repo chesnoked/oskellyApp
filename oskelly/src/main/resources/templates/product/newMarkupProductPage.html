@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/tthymeleaf/layout"
+      xmlns:tth="http://www.tthymeleaf.org"
+      layout:decorate="~{new/layout}" tth:witth="pageStyle='productPage'">
+  <head>
+    <title tth:text="|${product.breadcrumbs.current} купить в интернет-магазине OSKELLY|">(название товара)  (бренд) (id товара) купить  за  (цена товара) в интернет-магазине OSKELLY</title>
+  </head>
+
+ <body>
+
+<!--/*@tthymesVar id="alertTemplate" type="su.reddot.domain.service.subscription.AlertTemplate"*/-->
+<!--/*@tthymesVar id="product" type="su.reddot.presentation.view.product.ProductView"*/-->
+<!--/*@tthymesVar id="cartability" type="su.reddot.domain.service.cart.ProductCartability"*/-->
+
+   <main role="main" layout:fragment="content" tth:data-product-id="${product.id}" tth:data-product-state="${product.getState()}" id="main" itemscope itemtype="http://schema.org/Product">
+     <div class="productPage">
+       <!--/*Nav bar*/-->
+         <div class="row margin-from-header hide-for-small-only hide-for-medium-only">
+           <div class="column productPage-breadCrumb">
+               <span>Главная / Женское / Платья</span>
+           </div>
+         </div>
+         <!--/*ProductPage*/-->
+         <div class="row align-center offset-y">
+             <!--/*Gallery*/-->
+             <div class="column small-order-1 small-12 large-7 xlarge-6">
+                 <div class="row">
+                     <!--/*SideSwiper*/-->
+                     <div class="column xlarge-3 hide-for-large-only hide-for-medium-only hide-for-small-only">
+                         <div class="productPage-gallary-sideImage">
+                             <img src="/images/tmp/product/product-gallery-2.jpg">
+                         </div>
+                         <div class="productPage-gallary-sideImage">
+                             <img src="/images/tmp/product/product-gallery-2.jpg">
+                         </div>
+                         <div class="productPage-gallary-sideImage">
+                             <img src="/images/tmp/product/product-gallery-2.jpg">
+                         </div>
+                     </div>
+                     <!--/*MainImage and Sharing*/-->
+                     <div class="column large-12 xlarge-9">
+                         <div class="productPage-gallary-mainImage">
+                             <div class="productPage-gallary-mainImage-like">
+                                 <div class="productPage-gallary-mainImage-like-icon">
+                                     <a href="" title="Поставить лайк" alt="Поставить лайк">
+                                         <img src="/images/icons/dntLiked.svg">
+                                     </a>
+                                 </div>
+                                 <span>15</span>
+                             </div>
+                             <div class="productPage-gallary-mainImage-slider hide-for-small-only hide-for-medium-only">
+                                 <div class="row align-justify">
+                                     <div class="column productPage-gallary-mainImage-slider-button">
+                                         <a href="" title="Листать влево" alt="Листать влево">
+                                             <img src="/images/icons/leftSlide.svg">
+                                         </a>
+                                     </div>
+                                     <div class="column text-right productPage-gallary-mainImage-slider-button">
+                                         <a href="" title="Листать вправо" alt="Листать вправо">
+                                             <img src="/images/icons/rightSlide.svg">
+                                         </a>
+                                     </div>
+                                 </div>
+                             </div>
+                             <img src="/images/tmp/product/product-gallery-2.jpg">
+                         </div>
+                         <!--/*Sharing*/-->
+                         <div class="row offset-y_small productPage-sharing hide-for-small-only hide-for-medium-only">
+                             <div class="column arge-6 align-self-middle">
+                                 Поделиться с друзьями:
+                             </div>
+                             <div class="column large-6 align-self-middle productPage-sharing-icon">
+                                 <div>
+                                     <a href="https://www.facebook.com/Oskelly-1806794169642059/?fref=ts" target="_blank" title="Facebook">
+                                     <span class="fa fa-facebook"></span></a>
+                                 </div>
+                                 <div>
+                                     <a href="https://www.instagram.com/oskellyofficial/" target="_blank" title="Instagram">
+                                     <span class="fa fa-instagram"></span></a>
+                                 </div>
+                                 <div>
+                                     <a href="https://vk.com/public144997048" target="_blank" title="ВКонтакте">
+                                     <span class="fa fa-vk"></span></a>
+                                 </div>
+                                 <div>
+                                     <a href="https://whatsapp.com" target="_blank" title="WhatsApp">
+                                     <span class="fa fa-whatsapp "></span></a>
+                                 </div>
+                                 <div>
+                                     <a href="https://ok.ru/group/55421112483870" target="_blank" title="OK.RU">
+                                     <span class="fa fa-odnoklassniki"></span></a>
+                                 </div>
+                                 <div>
+                                     <a href="https://telegram.org" target="_blank" title="Telegram">
+                                     <span class="fa fa-telegram"></span></a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <!--/*Information about product*/-->
+             <div class="column small-order-2 small-12 large-5 xlarge-6 productPage-productInfo">
+                 <a href="">
+                     <h2 class="h2 text-uppercase">
+                         Maximilian mirstein
+                     </h2>
+                 </a>
+                 <p class="productPage-productInfo-name">
+                     <span>Платье</span>
+                 </p>
+                 <p>
+                     <span>Материал одежды:</span>
+                     <span>Габелен</span>
+                 </p>
+                 <p>
+                     <span>Цвет:</span>
+                     <span>Розовый</span>
+                 </p>
+                 <p>
+                     <span>Состояние:</span>
+                     <span>С биркой</span>
+                 </p>
+                 <p>
+                     <span>Артикул товара:</span>
+                     <span>7212</span>
+                 </p>
+                 <div class="row productPage-productInfo-sizeSelector">
+                     <div class="column small-12 medium-12 large-9 xlarge-8 small-order-2 medium-order-2 large-order-1">
+                         <div class="js-hoverList">
+                             <select class="js-select" data-size-selector id="product-size-select">
+                                 <option class="is-placeholder" disabled="disabled" selected="selected">Выбрать размер</option>
+                                 <option class="js-hoverList-item js-hoverList-item-fr38-last" value="FR: 38">
+                                     FR 38 – последний
+                                 </option>
+                             </select>
+                         </div>
+                     </div>
+                     <div class="column small-12 medium-12 large-3 xlarge-2 small-order-1 medium-order-1 large-order-2">
+                         <a class="link-dashed-noDecHover" href="">Таблица размеров</a>
+                     </div>
+                 </div>
+                 <div class="text-color-gray">
+                     РРЦ
+                     <span class="text-lineThrough">245 000</span> руб. |
+                     <span class="text-color-black">
+                         Экономия
+                         <span> 32%</span>
+                     </span>
+                 </div>
+                 <div class="productPage-productInfo-price">
+                     <span>Цена:</span>
+                     <span> 27 000 руб.</span>
+                 </div>
+                 <button class="button text-uppercase nowrap productPage-productInfo-button-addCart">
+                     Добавить в корзину
+                 </button>
+                 <div class="productPage-productInfo-button-functional">
+                     <p>
+                         <a href="" title="Уведомить о поступлении товара" alt="Уведомить о поступлении товара">
+                             <img src="/images/icons/alertIcon.svg" title="Уведомить о поступлении товара" alt="Листать вправо">
+                             <span>Уведомить о поступлении товара</span>
+                         </a>
+                     </p>
+                     <p>
+                         <a href="" title="Предложить свою цену" alt="Предложить свою цену">
+                             <img src="/images/icons/investment.svg" title="Предложить свою цену" alt="Предложить свою цену">
+                             <span>Предложить свою цену</span>
+                         </a>
+                     </p>
+                     <p>
+                         <a href="" title="Подписаться на снижение цены" alt="Подписаться на снижение цены">
+                             <img src="/images/icons/discount-voucher.svg" title="Подписаться на снижение цены" alt="Подписаться на снижение цены">
+                             <span>Подписаться на снижение цены</span>
+                         </a>
+                     </p>
+                     <!--/*Sharing for small screen*/-->
+                     <div class="row offset-y productPage-sharing hide-for-large">
+                         <div class="column medium-order-1 large-order-1 small-12 large-6 align-self-middle">
+                             Поделиться с друзьями:
+                         </div>
+                         <div class="column medium-order-2 large-order-1 small-12 medium-10 align-self-middle productPage-sharing-icon">
+                             <div>
+                                 <a href="https://www.facebook.com/Oskelly-1806794169642059/?fref=ts" target="_blank" title="Facebook">
+                                     <span class="fa fa-facebook"></span></a>
+                             </div>
+                             <div>
+                                 <a href="https://www.instagram.com/oskellyofficial/" target="_blank" title="Instagram">
+                                     <span class="fa fa-instagram"></span></a>
+                             </div>
+                             <div>
+                                 <a href="https://vk.com/public144997048" target="_blank" title="ВКонтакте">
+                                     <span class="fa fa-vk"></span></a>
+                             </div>
+                             <div>
+                                 <a href="https://whatsapp.com" target="_blank" title="WhatsApp">
+                                     <span class="fa fa-whatsapp "></span></a>
+                             </div>
+                             <div>
+                                 <a href="https://ok.ru/group/55421112483870" target="_blank" title="OK.RU">
+                                     <span class="fa fa-odnoklassniki"></span></a>
+                             </div>
+                             <div>
+                                 <a href="https://telegram.org" target="_blank" title="Telegram">
+                                     <span class="fa fa-telegram"></span></a>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <!--/*Seller and notation*/-->
+         <div class="row offset-y_small">
+             <!--/*Information about seller*/-->
+             <div class="column small-order-2 medium-order-2 large-order-1 small-12 medium-12 large-7 xlarge-6 productPage-seller">
+                 <!--/*Recomended for small screen*/-->
+                 <div class="row column productPage-recomended hide-for-large">
+                     <div class="h4 offset-y_large">
+                         Рекомендуем
+                     </div>
+                     <div class="swiper_wrap">
+                         <div class="slider-wrapper" id="you-like-it">
+                             <div class="swiper-button-prev"></div>
+                             <div class="swiper-container" id="product-suggestions">
+                                 <div class="swiper-wrapper">
+                                     <div class="swiper-slide">
+                                         <a href="">
+                                             <img class="productPage-img-size" src="/images/tmp/product/product-gallery-2.jpg">
+                                         </a>
+                                         <a href="">
+                                             <div>MAX MARA</div>
+                                         </a>
+                                         <div class="text-color-gray">Платье</div>
+                                         <div>200 000 руб.</div>
+                                     </div>
+                                     <div class="swiper-slide">
+                                         <a href="">
+                                             <img class="productPage-img-size" src="/images/tmp/product/product-gallery-2.jpg">
+                                         </a>
+                                         <a href="">
+                                             <div>MAX MARA</div>
+                                         </a>
+                                         <div class="text-color-gray">Платье</div>
+                                         <div>200 000 руб.</div>
+                                     </div>
+                                     <div class="swiper-slide">
+                                         <a href="">
+                                             <img class="productPage-img-size" src="/images/tmp/product/product-gallery-2.jpg">
+                                         </a>
+                                         <a href="">
+                                             <div>MAX MARA</div>
+                                         </a>
+                                         <div class="text-color-gray">Платье</div>
+                                         <div>200 000 руб.</div>
+                                     </div>
+                                 </div>
+                                 <div class="swiper-scrollbar"></div>
+                             </div>
+                             <div class="swiper-button-next"></div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="productPage-seller-wrapper">
+                     <div class="productPage-seller-badges">
+                         <div class="productPage-seller-badges-proBadge">
+                             <span>PRO</span>
+                         </div>
+                         <div class="productPage-seller-badges-raitingBadge">
+                             <span>5</span>
+                             <img src="/images/icons/starIcon.svg">
+                         </div>
+                     </div>
+                     <div class="row align-middle">
+                         <div class="column small-5 medium-4 large-5 xlarge-4">
+                             <img src="/images/tmp/users/userpic-1.jpg" title="Fashion Story" alt="Fashion Story">
+                         </div>
+                         <div class="column small-7 medium-8 large-7 xlarge-8 productPage-seller-info">
+                            <p>
+                                <span>Продавец:</span>
+                                <span class="h4">Fashion Story</span>
+                            </p>
+                            <p>
+                                <span>Присоеденился к Oskelly</span>
+                                <span>06 октября 2017</span>
+                            </p>
+                             <button class="button hollow expanded hide-for-large-only hide-for-xlarge-only hide-for-xxlarge-only">
+                                 Подписаться
+                             </button>
+                         </div>
+                     </div>
+                     <div class="row align-middle productPage-seller-counters-wrapper grayline-top">
+                         <div class="column hide-for-small-only hide-for-medium-only large-5 xlarge-4">
+                             <button class="button hollow expanded">
+                                 Подписаться
+                             </button>
+                         </div>
+                         <div class="column small-12 large-7 xlarge-8 productPage-seller-counters">
+                             <div>
+                                 <div class="text-strong">
+                                    Подписчики
+                                 </div>
+                                 <div>
+                                    <a class="link-dashed-noDecHover" href="">
+                                        25 0000
+                                    </a>
+                                 </div>
+                             </div>
+                             <div>
+                                 <div class="text-strong">
+                                    Товары
+                                 </div>
+                                 <div>
+                                     <a class="link-dashed-noDecHover" href="">
+                                         5225
+                                     </a>
+                                 </div>
+                             </div>
+                             <div>
+                                 <div class="text-strong">
+                                    Продажи
+                                 </div>
+                                 <div>
+                                     <a class="link-dashed-noDecHover" href="">
+                                         487
+                                     </a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="productPage-seller-comments">
+                         <p>
+                             Комментарий продавца
+                         </p>
+                         <hr class="hrSeparator">
+                         <p>
+                             Отличное платье классического фасона. Приятный цвета и удобная посадка
+                             обеспечат вам отличное настроение в течении всего дня где бы вы не находились.
+                             Торг.
+                         </p>
+                         <p>
+                            <a class="link-dashed-noDecHover" href="" title="Перейти к коментариям пользователей">
+                                Перейти к коментариям
+                            </a>
+                         </p>
+                     </div>
+                     <div class="row align-justify productPage-seller-anotherProducts">
+                         <div class="column small-7">
+                            Другие товары продавца
+                         </div>
+                         <div class="column text-right">
+                            <a href="" title="Перейти на страницу публичного профиля пользователя">
+                               Смотреть все
+                               (<span>520</span>)
+                            </a>
+                         </div>
+                     </div>
+                     <hr class="hrSeparator">
+                     <div class="productPage-seller-anotherProducts-list">
+                         <div class="swiper_wrap">
+                             <div class="slider-wrapper" id="you-like-it">
+                                 <div class="swiper-button-prev"></div>
+                                 <div class="swiper-container" id="product-suggestions">
+                                     <div class="swiper-wrapper">
+                                         <div class="swiper-slide">
+                                             <a href="">
+                                                 <img class="productPage-img-size" src="/images/tmp/product/product-gallery-2.jpg">
+                                             </a>
+                                             <a href="">
+                                                 <div>MAX MARA</div>
+                                             </a>
+                                             <div class="text-color-gray">Платье</div>
+                                             <div>200 000 руб.</div>
+                                         </div>
+                                         <div class="swiper-slide">
+                                             <a href="">
+                                                 <img class="productPage-img-size" src="/images/tmp/product/product-gallery-2.jpg">
+                                             </a>
+                                             <a href="">
+                                                 <div>MAX MARA</div>
+                                             </a>
+                                             <div class="text-color-gray">Платье</div>
+                                             <div>200 000 руб.</div>
+                                         </div>
+                                         <div class="swiper-slide">
+                                             <a href="">
+                                                 <img class="productPage-img-size" src="/images/tmp/product/product-gallery-2.jpg">
+                                             </a>
+                                             <a href="">
+                                                 <div>MAX MARA</div>
+                                             </a>
+                                             <div class="text-color-gray">Платье</div>
+                                             <div>200 000 руб.</div>
+                                         </div>
+                                     </div>
+                                     <div class="swiper-scrollbar"></div>
+                                 </div>
+                                 <div class="swiper-button-next"></div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+
+             </div>
+             <!--/*Notation*/-->
+             <div class="column small-order-1 medium-order-1 large-order-2 small-12 medium-12 large-5 xlarge-6 productPage-notation">
+                 <ul class="accordion" data-slide-speed="1" data-responsive-accordion-tabs="accordion xlarge-accordion">
+                     <li class="accordion-item is-active" data-accordion-item>
+                         <a href="#" class="accordion-title">Описание</a>
+                         <div class="accordion-content" data-tab-content>
+                                 Отличное платье классического фасона. Приятный цвета и удобная посадка
+                                 обеспечат вам отличное настроение в течении всего дня где бы вы не находились.
+                                 Торг.
+                         </div>
+                     </li>
+                     <li class="accordion-item" data-accordion-item>
+                         <a href="#" class="accordion-title">Доставка</a>
+                         <div class="accordion-content" data-tab-content>
+                             <p>
+                                 После оформления вашего заказа, продавец подтверждает сделку и отправляет товар на экспертизу
+                                 OSKELLY. После подтверждения подлинности и качества товара, товар будет отправлен вам.
+                                 Вы можете отслеживать статусы доставки в личном кабинете.
+                             </p>
+                             <p>
+                                 Процесс доставки состоит из двух этапов: от продавца до офиса OSKELLY и от офиса OSKELLY до покупателя.
+                             </p>
+                             <p>
+                                 Доставка товара покупателю осуществляется бесплатно.
+                             </p>
+                         </div>
+                     </li>
+                     <li class="accordion-item" data-accordion-item>
+                         <a href="#" class="accordion-title">Оплата</a>
+                         <div class="accordion-content" data-tab-content>
+                             <p>
+                                 При совершении покупки деньги на банковском счете покупателя замораживаются. Они не спишутся
+                                 до тех пор, пока изделие не пройдет аутентификацию.
+                             </p>
+                             <p>
+                                Перевод денег продавцу осуществляется после доставки товара клиенту. Это является гарантией
+                                безопасности сделки и, в частности, гарантией добросовестности продавца.
+                             </p>
+                             <img class="productPage-tabs-paymentlogo" src="images/payments/visa-mastercard.svg" alt="Visa, MasterCard">
+                         </div>
+                     </li>
+                     <li class="accordion-item" data-accordion-item>
+                         <a href="#" class="accordion-title">Контроль качества</a>
+                         <div class="accordion-content" data-tab-content>
+                             <p>
+                                Наши специалисты не только проверяют вещь на подлинность, но и оценивают, насколько
+                                она соответствует описанию продавца. На экспертизе уделяется внимание каждой детали:
+                                размеру, цвету, модели и общему состоянию вещи.
+                             </p>
+                         </div>
+                     </li>
+                 </ul>
+                 <div class="productPage-notation-wrapper">
+                     <div class="row align-middle">
+                         <div class="column small-3 medium-2 large-3 xlarge-2">
+                            <img src="/images/icons/deliveryTrack.svg" title="Доставка" alt="Доставка">
+                         </div>
+                         <div class="column small-9 medium-10 large-9 xlarge-10">
+                             <p class="text-strong">
+                                 Бесплатная доставка
+                             </p>
+                             Наша курьерская служба бесплатно доставит товар в любую точки России.
+                         </div>
+                     </div>
+                     <div class="row align-middle">
+                         <div class="column small-3 medium-2 large-3 xlarge-2">
+                             <img src="/images/icons/priceTip.svg" title="Оригинальные бренды" alt="Оригинальные бренды">
+                         </div>
+                         <div class="column small-9 medium-10 large-9 xlarge-10">
+                             <p class="text-strong">
+                                  Только оригиналы брендов
+                             </p>
+                             Мы гарантируем качество и подлинность каждого товара купленного на OSKELLY.
+                         </div>
+                     </div>
+                     <div class="row align-middle">
+                         <div class="column small-3 medium-2 large-3 xlarge-2">
+                             <img src="/images/icons/giftIcon.svg" title="Упаковка" alt="Упаковка">
+                         </div>
+                         <div class="column small-9 medium-10 large-9 xlarge-10">
+                             <p class="text-strong">
+                                  Фирменная упаковка
+                             </p>
+                             Вещи, купленные на OSKELLY, доставляются в презентабельной фирменной упаковке,
+                             защищающей их при транспортировке.
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <!--/*Recomended Products*/-->
+         <div class="row column productPage-recomended hide-for-small-only hide-for-medium-only">
+            <div class="h4 offset-y_large">
+                Рекомендуем
+            </div>
+             <div class="swiper_wrap">
+                 <div class="slider-wrapper" id="you-like-it">
+                     <div class="swiper-button-prev"></div>
+                     <div class="swiper-container" id="product-suggestions">
+                         <div class="swiper-wrapper">
+                             <div class="swiper-slide">
+                                 <a href="">
+                                     <img class="productPage-img-size" src="/images/tmp/product/product-gallery-2.jpg">
+                                 </a>
+                                 <a href="">
+                                     <div>MAX MARA</div>
+                                 </a>
+                                 <div class="text-color-gray">Платье</div>
+                                 <div>200 000 руб.</div>
+                             </div>
+                             <div class="swiper-slide">
+                                 <a href="">
+                                     <img class="productPage-img-size" src="/images/tmp/product/product-gallery-2.jpg">
+                                 </a>
+                                 <a href="">
+                                     <div>MAX MARA</div>
+                                 </a>
+                                 <div class="text-color-gray">Платье</div>
+                                 <div>200 000 руб.</div>
+                             </div>
+                             <div class="swiper-slide">
+                                 <a href="">
+                                     <img class="productPage-img-size" src="/images/tmp/product/product-gallery-2.jpg">
+                                 </a>
+                                 <a href="">
+                                     <div>MAX MARA</div>
+                                 </a>
+                                 <div class="text-color-gray">Платье</div>
+                                 <div>200 000 руб.</div>
+                             </div>
+                         </div>
+                         <div class="swiper-scrollbar"></div>
+                     </div>
+                     <div class="swiper-button-next"></div>
+                 </div>
+             </div>
+         </div>
+         <!--/*How It Works*/-->
+         <div class="row column offset-y align-middle hide-for-small-only hide-for-medium-only">
+             <div class="productPage-howItWorks">
+                 <ul class="tabs" data-tabs id="example-tabs">
+                     <li class="tabs-title-notation">Как работает сервис?</li>
+                     <li class="tabs-title is-active"><a href="#productPage-tab-sell" aria-selected="true">Я хочу продать</a></li>
+                     <li class="tabs-title"><a data-tabs-target="productPage-tab-buy" href="#productPage-tab-buy">Я хочу купить</a></li>
+                 </ul>
+                 <div class="tabs-content offset-y_small productPage-howItWorks-tab" data-tabs-content="example-tabs">
+                     <div class="tabs-panel is-active" id="productPage-tab-sell">
+                         <div class="row text-center">
+                             <div class="column large-4 productPage-howItWorks-tab-content">
+                                 <div>
+                                     <span>1</span>
+                                 </div>
+                                 <img src="/images/pictures/toSellStep1.png" title="Добавь товар">
+                                 <div class="h5 offset-y_tiny">Добавь товар</div>
+                                 <div class="h6 text-color-gray">Выложи брендовую вещь на продажу, следуя простым шагам.</div>
+                             </div>
+                             <div class="column large-4 productPage-howItWorks-tab-content">
+                                 <div>
+                                     <span>2</span>
+                                 </div>
+                                 <img src="/images/pictures/toSellStep2.png" title="Подтверди сделку">
+                                 <div class="h5 offset-y_tiny">Подтверди сделку</div>
+                                 <div class="h6 text-color-gray">Покупатель найден! Подтвердите сделку
+                                     в личном кабинете.</div>
+                             </div>
+                             <div class="column large-4 productPage-howItWorks-tab-content">
+                                 <div>
+                                     <span>3</span>
+                                 </div>
+                                 <img src="/images/pictures/toSellStep3.png" title="Получи оплату">
+                                 <div class="h5 offset-y_tiny">Получи оплату</div>
+                                 <div class="h6 text-color-gray">Ты увидишь деньги на карте, сразу после отправки товара покупателю.</div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="tabs-panel offset-y_small productPage-howItWorks-tab" id="productPage-tab-buy">
+                         <div class="row text-center">
+                             <div class="column large-4 productPage-howItWorks-tab-content">
+                                 <div>
+                                     <span>1</span>
+                                 </div>
+                                 <img src="/images/pictures/toBuyStep1.png" title="Выбери товар">
+                                 <div class="h5 offset-y_tiny">Выбери товар</div>
+                                 <div class="h6 text-color-gray">Более чем из 5 000 брендов и 100 000 товаров.</div>
+                             </div>
+                             <div class="column large-4 productPage-howItWorks-tab-content">
+                                 <div>
+                                     <span>2</span>
+                                 </div>
+                                 <img src="/images/pictures/toBuyStep2.png" title="Оплати заказ">
+                                 <div class="h5 offset-y_tiny">Оплати заказ</div>
+                                 <div class="h6 text-color-gray">С нашей системой оплаты заказов совершать покупки можно быстро и безопасно.</div>
+                             </div>
+                             <div class="column large-4 productPage-howItWorks-tab-content">
+                                 <div>
+                                     <span>3</span>
+                                 </div>
+                                 <img src="/images/pictures/toBuyStep3.png" title="Получи заказ">
+                                 <div class="h5 offset-y_tiny">Получи заказ</div>
+                                 <div class="h6 text-color-gray">Отслеживай заказ в личном кабинете.</div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+
+
+
+
+   </main>
+   <div layout:fragment="custom-scripts">
+        <script tth:src="|/scripts/ga_events.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+        <script tth:src="|/js/product/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+        <script tth:src="|/scripts/subscription/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+        <script tth:src="|/js/product/main.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+        <script tth:src="|/scripts/comments.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+        <script tth:src="|/js/cart/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+        <script tth:src="|/scripts/wishlist.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+        <script tth:src="|/scripts/follow.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+        <script tth:src="|/scripts/subscription.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+   </div>
+ </body>
+</html>

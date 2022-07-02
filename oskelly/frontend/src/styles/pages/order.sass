@@ -1,0 +1,83 @@
+.orderPage
+  table
+    border-collapse: unset
+  $bp-phone: small only
+  &-table
+    +breakpoint(small only)
+      +table-scroll
+      font-size: 0.7rem
+    border-spacing: 0
+    th,
+    td
+      &:first-child
+        padding-left: 0
+      &:last-child
+        padding-right: 0
+    th
+      +breakpoint($bp-phone)
+        font-weight: normal
+      &:last-of-type
+        +breakpoint($bp-phone)
+          text-align: right
+    thead
+      background: transparent
+      th,
+      td
+        border-bottom: 1px solid rgba(#888888, 0.75)
+    tbody
+      tr
+        &:last-child
+          th,
+          td
+            border-bottom: 1px solid rgba(#888888, 0.75)
+            background-image: none
+    td
+      vertical-align: top
+      &:not(.dottedBorder)
+        border-bottom: 1px solid rgba(#888888, 0.75)
+    &-productPhoto
+      +breakpoint($bp-phone)
+        width: 80px
+      img
+        +breakpoint($bp-phone)
+          width: auto
+          height: auto
+        height: 140px
+    &-controlCell
+      +breakpoint($bp-phone)
+        width: 60%
+      position: relative
+      &-controls
+        +breakpoint($bp-phone)
+          position: static
+        absolute: bottom 1rem left 0.625rem
+    &-price
+      +breakpoint($bp-phone)
+        width: 1%
+        text-align: right
+    & thead
+      tr th:nth-of-type(1)
+        text-align: center
+      tr th:last-child
+        text-align: left
+  &-summary
+    +breakpoint($bp-phone)
+      border-collapse: collapse
+      font-size: 0.8rem
+    td,
+    th
+      +breakpoint($bp-phone)
+        background-color: $light-gray
+        border-bottom: 1px solid white
+        text-align: right
+    th
+      +breakpoint($bp-phone)
+        color: $secondary-color
+        font-weight: normal
+  &-asideHint
+    background-color: $light-gray
+  .bottomSection-menu
+    margin-top: 5rem
+  &-table
+    @media screen and (max-width: 640px)
+      border-collapse: initial

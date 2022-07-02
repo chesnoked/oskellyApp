@@ -1,0 +1,111 @@
+.offset
+	$default: 2rem
+	$tiny: 0.5rem
+	$small: 1rem
+	$large: 4rem
+	=offset-breakpoints
+		@each $zf-size in $breakpoint-classes
+			&-at-#{$zf-size}
+				+breakpoint($zf-size only)
+					@content
+	=offset-breakpoints-up
+		@each $zf-size in $breakpoint-classes
+			&-at-#{$zf-size}-up
+				+breakpoint($zf-size)
+					@content
+	=offset-core($y, $x)
+		@if ($y)
+			@at-root :root &
+				margin-top: $y
+				margin-bottom: $y
+		@if ($x)
+			@at-root :root &
+				margin-left: $x
+				margin-right: $x
+		&_fill
+			@if ($y)
+				@at-root :root &
+					padding-top: $y
+					padding-bottom: $y
+			@if ($x)
+				@at-root :root &
+					padding-left: $x
+					padding-right: $x
+	=offset($y, $x)
+		+offset-core($y, $x)
+		+offset-breakpoints
+			+offset-core($y, $x)
+		+offset-breakpoints-up
+			+offset-core($y, $x)
+	+offset($default, $default)
+	&_tiny
+		+offset($tiny, $tiny)
+	&_small
+		+offset($small, $small)
+	&_large
+		+offset($large, $large)
+	&-y
+		+offset($default, false)
+		&_tiny
+			+offset($tiny, false)
+		&_small
+			+offset($small, false)
+		&_large
+			+offset($large, false)
+	&-x
+		+offset(false, $default)
+		&_tiny
+			+offset(false, $tiny)
+		&_small
+			+offset(false, $small)
+		&_large
+			+offset(false, $large)
+	=offsetStack-core($y, $x)
+		@if ($y)
+			@at-root :root &
+				margin-top: $y
+		@if ($x)
+			@at-root :root &
+				margin-left: $x
+	=offsetStack($y, $x)
+		+offsetStack-core($y, $x)
+		+offset-breakpoints
+			+offsetStack-core($y, $x)
+		+offset-breakpoints-up
+			+offsetStack-core($y, $x)
+	&Stack
+		& + &
+			+offsetStack($default, $default)
+		&_tiny
+			& + &
+				+offsetStack($tiny, $tiny)
+		&_small
+			& + &
+				+offsetStack($small, $small)
+		&_large
+			& + &
+				+offsetStack($large, $large)
+		&-y
+			& + &
+				+offsetStack($default, false)
+			&_tiny
+				& + &
+					+offsetStack($tiny, false)
+			&_small
+				& + &
+					+offsetStack($small, false)
+			&_large
+				& + &
+					+offsetStack($large, false)
+		&-x
+			& + &
+				+offsetStack(false, $default)
+			&_tiny
+				& + &
+					+offsetStack(false, $tiny)
+			&_small
+				& + &
+					+offsetStack(false, $small)
+			&_large
+				& + &
+					+offsetStack(false, $large)

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{new/layout}" th:with="pageStyle='productPage'">
+<body class="productPage">
+
+<main role="main" layout:fragment="content">
+	<div th:replace="product/page-product"></div>
+</main>
+</body>
+
+<div layout:fragment="custom-scripts">
+	<script th:src="|/js/product/main.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+</div>
+
+</html>

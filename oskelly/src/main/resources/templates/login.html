@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{new/layout}">
+<head>
+	<title>OSKELLY</title>
+</head>
+<body>
+<main role="main" layout:fragment="content">
+	<div class="authPopup">
+		<div class="row align-center">
+			<div class="medium-6 columns text-center">
+				<form class="form authentication-form" th:data-from="${from}">
+					<div class="offsetStack-y">
+						<h2 class="text-uppercase h5">
+							<div class="show-for-small-only row align-center">
+								<div class="small-10 columns"><img src="images/logo.svg" alt="Oskelly - Luxury Resale Store" th:src="@{/images/logo.svg}"></div>
+							</div><span class="hide-for-small-only">Вход</span>
+						</h2>
+					</div>
+					<div class="offsetStack-y">
+						<p>
+							<input class="styledTextInput" type="email" placeholder="Email" name="email">
+						</p>
+						<p>
+							<input class="styledTextInput" type="password" placeholder="Пароль" name="password">
+						<div class="row align-justify">
+							<div class="shrink column"><a class="text-size-small text-secondary" href="#" title="Регистрация" data-mfp-src="#register-popup">Регистрация</a></div>
+							<div class="shrink column"><a class="text-size-small text-secondary" href="#" title="Восстановить пароль" data-mfp-src="#reset-password-popup">Забыли пароль?</a></div>
+						</div>
+						</p>
+					</div>
+					<div class="offsetStack-y row align-center">
+						<div class="medium-8 columns">
+							<button class="button expanded authentication-button" type="button">Войти</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</main>
+</body>
+</html>

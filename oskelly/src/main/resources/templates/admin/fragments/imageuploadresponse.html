@@ -1,0 +1,27 @@
+<html>
+<body>
+<span id="uploadedImageLink" th:text="${url}"></span>
+</body>
+<script>
+	var parentDocument = parent.document;
+	var iframeDocument = document;
+
+	//получаем ссылку
+	var link = iframeDocument.getElementById("uploadedImageLink").innerHTML;
+
+	//находим по 1й вкладке
+	var tabPane = parentDocument.getElementsByClassName("cke_dialog_tabs")[0].firstChild;
+	console.log(tabPane);
+
+	//переходим на 1 вкладку
+	tabPane.click();
+
+	//Получаем инпут с ссылкой
+	var dialogArea = parentDocument.getElementsByClassName("cke_dialog")[0];
+	console.log("d: " + dialogArea);
+	var linkField = dialogArea.getElementsByTagName("input")[0];
+	console.log("l: " + linkField);
+	linkField.value = link;
+
+</script>
+</html>

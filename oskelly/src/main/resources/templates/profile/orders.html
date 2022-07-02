@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html
+	class="no-js" lang="ru_RU"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{profile/profile}" th:with="pageStyle='profilePage'"
+>
+
+<!--/*@thymesVar id="orders" type="java.util.List"*/-->
+<!--/*@thymesVar id="order" type="su.reddot.domain.service.order.view.OrderView"*/-->
+<!--/*@thymesVar id="item" type="su.reddot.domain.service.order.view.OrderItem"*/-->
+
+<body class="profilePage">
+<div role="main" layout:fragment="profileContent">
+	<div class="row align-middle">
+		<div class="column small-6">
+			<h3 class="h5 text-serif">Мои заказы</h3>
+			<p th:text="|${orders.size()}
+                            ${T(su.reddot.presentation.Utils).getRightDeclension(orders.size(), {'заказ', 'заказа', 'заказов'})}|"
+			>3 заказа</p>
+		</div>
+		<div class="column small-6 text-right">
+			<select size="1">
+				<option value="1">Текущие заказы</option>
+                <!--/*-->
+				<option value="2">Завершенные заказы</option>
+				<option value="3">Все заказы</option>
+				<!--*/-->
+			</select>
+		</div>
+	</div>
+
+	<div class="row padding-top">
+		<div class="column accordion small-12" data-accordion data-allow-all-closed="true" data-slide-speed="100"
+			 th:each="order: ${orders}">
+
+			<div class="accordion-item" data-accordion-item>
+				<a href="#" class="accordion-title text-black x-txt-s">
+					Заказ № [[${order.id}]] открыт
+				</a>
+				<div class="accordion-content" data-tab-content>
+
+					<!--/*/ <th:block th:each="item: ${order.items}"> /*/-->
+					<div class="row align-middle padding-bottom">
+						<div class="columns small-4">
+							<a href="#" th:href="@{/products/{id}(id=${item.productId})}">
+								<img alt="Категория Бренд" src="/images/no-photo.jpg"
+									 th:src="${item.imageUrl}?: _"
+									 th:alt="|${item.productName} ${item.brandName}|">
+							</a>
+						</div>
+						<div class="columns small-8 landing-page-slide-text">
+							<p class="bld x-mrg-b" th:text="${item.brandName}">PHILIPP PLEIN</p>
+							<p class="no-mrg-b" th:text="${item.productName}">Платье мини</p>
+							<p class="no-mrg-b" th:text="${item.productSize}">IT: 36</p>
+							<p class="x-mrg-b" th:text="|ID товара: ${item.productId}|">ID товара: 4567</p>
+							<p class="bld no-mrg-b" th:text="|Доставка: ${T(su.reddot.presentation.Utils).prettyRoundToCents(item.deliveryCost)} ₽|">Доставка: 3600</p>
+							<p class="bld x-mrg-b" th:text="|Цена: ${T(su.reddot.presentation.Utils).prettyRoundToCents(item.productPrice)} ₽|">Цена: 3000</p>
+						</div>
+					</div>
+					<div class="row" th:if="${not item.allStates.empty}">
+						<div class="column accordion small-12" data-accordion data-allow-all-closed="true" data-slide-speed="50">
+							<div class="accordion-item" data-accordion-item>
+								<a href="#" class="accordion-title text-black x-txt-s" th:utext="|<span class='text-strong'>Текущий статус:</span> ${item.allStates.get(0).name}|">
+									<span class="text-strong">Текущий статус</span>: Товар отправлен в OSKELLY
+								</a>
+								<div class="accordion-content" data-tab-content>
+									<div class="row landing-page-slide-text" th:each="state: ${item.allStates}">
+										<div class="column small-4">
+											<p class="landing-page-slide-text text-secondary" th:text="${state.at}">12.12.2017 22:30</p>
+										</div>
+										<div class="column small-8">
+											<p class="landing-page-slide-text" th:text="${state.name}">Товар поступил в OSKELLY</p>
+										</div>
+									</div>
+									<!--/*-->
+									<div class="row">
+										<div class="column small-4">
+											<p class="landing-page-slide-text text-secondary">10.12.2017 21:00</p>
+										</div>
+										<div class="column small-8">
+											<p class="landing-page-slide-text">Товар отправлен в OSKELLY</p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="column small-4">
+											<p class="landing-page-slide-text text-secondary">09.12.2017 19:55</p>
+										</div>
+										<div class="column small-8">
+											<p class="landing-page-slide-text">Продажа товара подтверждена</p>
+										</div>
+									</div>
+									<!--*/-->
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/*/ </th:block> /*/-->
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+</html>

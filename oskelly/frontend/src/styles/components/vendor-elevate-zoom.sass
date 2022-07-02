@@ -1,0 +1,18 @@
+.zoomWindow
+	@extend %passiveZoomWindow
+	border: 0 !important
+	z-index: 49 !important
+.zoomContainer
+	z-index: 49
+	pointer-events: none
+	&.passive
+		display: none
+.zoomWindowContainer
+	&.passive
+		display: none
+		%passiveZoomWindow
+			background-position: initial !important
+.zoomLens
+	opacity: 0.3 !important
+	background-color: white !important
+	border: 1px solid hsla(0, 0%, 0%, 0.15) !important

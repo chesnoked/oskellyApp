@@ -1,0 +1,3 @@
+ALTER TABLE image
+	DROP COLUMN thumbnail_path,
+	ADD COLUMN photo_order INTEGER NOT NULL DEFAULT 1

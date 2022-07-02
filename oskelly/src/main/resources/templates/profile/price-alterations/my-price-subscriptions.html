@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html
+	class="no-js" lang="ru_RU"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{profile/profile}" th:with="pageStyle='profilePage'"
+>
+<body class="profilePage">
+<div role="main" layout:fragment="profileContent">
+
+	<div class="row">
+		<div class="column small-12 medium-uncollapse-selfStacked text-center">
+			<div class="profilePage-scroll-menu">
+				<nav class="menu profilePage-styled-menu">
+					<span class="profilePage-styled-menu-item active">
+						<a href="/account/pricesubscriptions">Слежу за ценой</a>
+					</span>
+					<span class="profilePage-styled-menu-item">
+						<a href="/account/offers">Я предложил цену</a>
+					</span>
+					<span class="profilePage-styled-menu-item">
+						<a href="/account/offers-to-me">Мне предложили цену</a>
+					</span>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+	<div data-price-subscriptions>
+
+	<!--/*@thymesVar id="productCards" type="java.util.List<su.reddot.domain.service.product.view.ProductCard>"*/-->
+	<div class="row padding-y" th:each="product: ${productCards}" data-price-subscription>
+		<div class="column small-4">
+			<div class="productCard-image">
+				<a href="#" title="Категория Бренд" th:title="${product.name}" th:href="${product.effectiveUrl}">
+				<img class="thumbnail" src="http://placehold.it/150x150" width="150" height="150" alt="Категория Бренд"
+					 th:alt="${product.name}"
+					 th:src="${product.primaryImageUrl}?: _">
+				</a>
+				<div class="productCard-badge" th:if="${product.isNotUsedYet()}">С биркой</div>
+			</div>
+		</div>
+		<div class="column small-7">
+            <h5 class="h5 productCard-brand" th:text="${product.brand}">ADIDAS</h5>
+			<div class="productCard-kind">
+				<span th:text="${product.name}">Туфли на высоком каблуке</span>
+			</div>
+
+            <!--/* Факт недоступности товара нужно передавать в виде готовой информации,
+            а не вычислять его косвенно по тому, что цена для такого недоступного товара равна null */-->
+			<!--/*/ <th:block th:unless="${product.lowestPrice == null}"> /*/-->
+			<div class="productCard-size"
+				 th:if="${product.sizeSummary}">
+				<span th:text="${product.formattedSize}">INT: 39.5/40.5</span>
+			</div>
+			<div class="profilePage-text padding-top">
+			<span
+					th:if="${product.lowestPrice} < ${product.startPriceForLowestPrice}"
+					th:text="|${T(su.reddot.presentation.Utils).prettyRoundToTens(product.startPriceForLowestPrice)} ₽|"
+					class="productPage-productMeta-price productPage-productMeta-price_discounted"
+			>Начальная цена</span>
+            <span
+                    th:if="${product.lowestPrice}"
+                    th:classappend="${product.lowestPrice} < ${product.startPriceForLowestPrice} ? productPage-productMeta-price-sale-price"
+                    th:text="|${T(su.reddot.presentation.Utils).prettyRoundToTens(product.lowestPrice)} ₽|"
+            >Минимальная цена в рублях
+			</span>
+			</div>
+			<!--/*/ </th:block> /*/-->
+
+			<!--/*/ <th:block th:if="${product.lowestPrice == null}"> /*/-->
+			<p class="text-secondary">Нет в продаже</p>
+			<!--/*/ </th:block> /*/-->
+		</div>
+		<div class="column small-1">
+			<a href="#" title="Удалить подписку" data-remove-sub
+			   th:data-product-id="${product.id}">
+				<i class="fa fa-times"> </i></a>
+		</div>
+	</div>
+
+    <p class="text-center text-secondary" style="margin-top: 2rem" th:if="${productCards.empty}">Список пуст</p>
+	</div>
+
+
+</div>
+</body>
+</html>

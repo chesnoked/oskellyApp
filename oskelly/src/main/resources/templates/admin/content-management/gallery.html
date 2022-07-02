@@ -1,0 +1,55 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{admin/layout}">
+
+<body>
+<main layout:fragment="content">
+
+<header>
+	<div class="row align-center">
+		<div class="columns text-center">
+			<h3 th:text="${gallery}? 'Редактирование фотогалереи'">Добавление фотогалереи</h3>
+		</div>
+	</div>
+</header>
+
+<section>
+	<div class="row align-center">
+		<div class="small-4 columns">
+			<label>
+				https://oskelly.ru
+				<input id="url" placeholder="Введите URL..." type="text" name="url" th:value="${gallery?.url}">
+			</label>
+		</div>
+	</div>
+	<div class="row align-center">
+		<div class="small-4 columns">
+			<label>
+				Укажите, под каким номером по порядку отображать блок:
+				<input id="orderIndex" placeholder="Введите номер..." type="number" name="orderIndex"
+					   th:value="${gallery?.orderIndex}">
+			</label>
+		</div>
+	</div>
+	<div class="row align-center">
+		<div class="small-4 columns">
+			<input type="file" name="image"/>
+		</div>
+	</div>
+	<input type="hidden" name="id" th:value="${gallery?.id}"/>
+	<div class="row align-center">
+		<div class="small-4 columns">
+			<button id="submitButton" class="button small">Сохранить</button>
+		</div>
+	</div>
+</section>
+</main>
+
+<div layout:fragment="custom-scripts">
+	<script src="/admin/scripts/promo/gallery.js"></script>
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,176 @@
+<!doctype html>
+<html
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:th="http://www.thymeleaf.org"
+        layout:decorate="~{admin/layout}">
+<head>
+    <title>Склад  OSKELLY</title>
+    <link rel="stylesheet" href="/admin/styles/warehouse.css"/>
+</head>
+<body>
+
+<main layout:fragment="content">
+    <header>
+        <div class="breadcrumbs">
+            <ul>
+                <li><a href="/admin">Админка</a></li>
+                <li>Склад</li>
+            </ul>
+        </div>
+        <ul class="menu" style="margin-bottom: 2rem;">
+            <li><a href="/admin/warehouse">Ожидаем прибытие</a></li>
+            <li class="active"><a href="#">Реализованные товары на складе</a></li>
+            <li><a href="/admin/warehouse/cleaning">Химчистка</a></li>
+            <li><a href="/admin/warehouse/ready-to-ship">Отправка получателю</a></li>
+        </ul>
+    </header>
+    <div id="warehouseModuleContent">
+        <h3>Проданные товары на складе</h3>
+        <div>
+            <table class="table">
+                <thead>
+                <tr class="table-expand-row">
+                    <th width="150">ID Вещи</th>
+                    <th width="150">ID Товара</th>
+                    <th width="200">Номер Заказа</th>
+                    <th width="200">Дата Получения</th>
+                    <th>Описание товара</th>
+                    <th width="150">Статус</th>
+                </tr>
+                </thead>
+                <tbody th:each="item : ${onStockItems}" th:data-warehouse-item-id="${item.originalProductItem.id}" th:id="${item.originalProductItem.id}">
+                    <tr class="table-expand-row" data-open-details>
+                        <td th:text="${item.originalProductItem.id}">OSK-0001</td>
+                        <td th:text="${item.originalProduct.id}">pr000231</td>
+                        <td th:text="${item.originalOrder.get().id}">3287432</td>
+                        <td>7 авг 2017 19:37:18(Мск)</td>
+                        <td><a href="#" th:data-open="'itemDetails-popup-'+${item.originalProductItem.id}">
+                                <span th:text="${item.originalProduct.category} + ' - (' + ${item.originalProduct.brand} + ') состояние: ' + ${item.originalProduct.condition}">Женское - Блузка (PRADA) размер FR40 состояние "С биркой"</span>
+                            </a>
+                        </td>
+                        <td>
+                            <span class="label primary" th:id="'state-label-1-'+${item.originalProductItem.id}" th:if="${item.itemState == 'HQ_WAREHOUSE' }">Принята на склад</span>
+                            <span class="label warning" th:id="'state-label-1-'+${item.originalProductItem.id}" th:if="${item.itemState == 'ON_VERIFICATION' }">На экспертизе</span>
+                            <span class="label success" th:id="'state-label-1-'+${item.originalProductItem.id}" th:if="${item.itemState == 'VERIFICATION_OK' }">Экспертиза завершена успешно</span>
+                            <span class="label secondary" th:id="'state-label-1-'+${item.originalProductItem.id}" th:if="${item.itemState == 'VERIFICATION_NEED_CLEANING' }">Требуется химчистка</span>
+                            <span class="label alert" th:id="'state-label-1-'+${item.originalProductItem.id}" th:if="${item.itemState == 'REJECTED_AFTER_VERIFICATION' }">Плохое качество. Возврат Продавцу</span>
+                            <span class="label warning" th:id="'state-label-1-'+${item.originalProductItem.id}" th:if="${item.itemState == 'CREATE_WAYBILL_TO_BUYER' }">Ожидаем курьера</span>
+                            <span class="label success" th:id="'state-label-1-'+${item.originalProductItem.id}" th:if="${item.itemState == 'READY_TO_SHIP' }">Готово к отгрузке</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:each="item : ${onStockItems}">
+            <div class="reveal small"  th:id="'itemDetails-popup-'+${item.originalProductItem.id}" data-reveal data-close-on-click="false">
+                <h4>Складские операции</h4>
+                <button class="button" type="button" th:data-open="'verification-popup-'+${item.originalProductItem.id}">Экспертиза</button>
+                <button class="button" type="button"
+                        th:class="${item.itemState == 'ON_VERIFICATION'}? 'disabled' :_"
+                        th:id="'ready-to-ship-button-'+${item.originalProductItem.id}"
+                        th:onclick="|setReadyToShip(${item.originalProductItem.id})|">Готово к отгрузке</button>
+                <div class="row">
+                    <div class="column shrink">
+                        <img src="http://placehold.it/300x400&text=Product"
+                             th:src="${item.originalProduct.primaryImage != null and item.originalProduct.primaryImage.thumbnailUrl != null}? ${item.originalProduct.primaryImage.thumbnailUrl} : _">
+
+                    </div>
+                    <div class="column">
+                        <p>Item ID: <span th:text="${item.originalProductItem.id}">OSK-0001</span></p>
+                        <p><a th:href="'/admin/moderation/'+ ${item.originalProduct.id}" target="_blank">Product ID: <span th:text="${item.originalProduct.id}">pr000231</span></a></p>
+                        <p>Заказ: <span th:text="${item.originalOrder.get().id}">3287432</span></p>
+                        <p>Дата получния на склад: 7 авг 2017 19:37:18(Мск)</p>
+                        <p>
+                            <span class="label primary" th:id="'state-label-2-'+${item.originalProductItem.id}" th:if="${item.itemState == 'HQ_WAREHOUSE' }">Принята на склад</span>
+                            <span class="label warning" th:id="'state-label-2-'+${item.originalProductItem.id}" th:if="${item.itemState == 'ON_VERIFICATION' }">На экспертизе</span>
+                            <span class="label success" th:id="'state-label-2-'+${item.originalProductItem.id}" th:if="${item.itemState == 'VERIFICATION_OK' }">Экспертиза завершена успешно</span>
+                            <span class="label secondary" th:id="'state-label-2-'+${item.originalProductItem.id}" th:if="${item.itemState == 'VERIFICATION_NEED_CLEANING' }">Требуется химчистка</span>
+                            <span class="label alert" th:id="'state-label-2-'+${item.originalProductItem.id}" th:if="${item.itemState == 'REJECTED_AFTER_VERIFICATION' }">Плохое качество. Возврат Продавцу</span>
+                            <span class="label success" th:id="'state-label-2-'+${item.originalProductItem.id}" th:if="${item.itemState == 'READY_TO_SHIP' }">Готово к отгрузке</span>
+                            <span class="label warning" th:id="'state-label-2-'+${item.originalProductItem.id}" th:if="${item.itemState == 'CREATE_WAYBILL_TO_BUYER' }">Ожидаем курьера</span>
+                        </p>
+                        <hr>
+                        <p>Тип товара: <span th:each="cat: ${item.originalProduct.breadcrumbs.categories}" th:text="${cat.name} + ' / '"> Женское / Одежда / </span> <span th:text="${item.originalProduct.breadcrumbs.current}"> Блузка</span> </p>
+                        <p>Бренд: <span th:text="${item.originalProduct.brand}">PRADA</span></p>
+                        <p>Состояние: <span th:text="${item.originalProduct.condition}">ниразу</span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <h5>История операций</h5>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th width="300px">Дата</th>
+                            <th>Событие</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <button class="button" type="button">Ок</button>
+                    </div>
+                    <div class="column">
+                        <button class="button" type="button" data-close>Отмена</button>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal tiny" id="verification-popup" data-reveal data-close-on-click="false"  th:id="'verification-popup-'+${item.originalProductItem.id}">
+                <h5>Экспертиза товара</h5>
+                <button class="button" type="button" th:onclick="|startVreification(${item.originalProductItem.id})|"
+                        th:id="'start-button-'+${item.originalProductItem.id}"
+                        th:classappend="${item.itemState != 'HQ_WAREHOUSE' } ? disabled : ''"
+                        >Начать экспертизу</button>
+                <button class="button" type="button" th:onclick="|stopVerification(${item.originalProductItem.id})|"
+                        th:id="'stop-button-'+${item.originalProductItem.id}"
+                        th:classappend="${item.itemState != 'ON_VERIFICATION' } ? disabled : ''"
+                        >Завершить экспертизу</button>
+                <div class="row">
+                    <p>Экспертиза начата 7 авг 2017 19:37:18(Мск)</p>
+                    <p>Экспертиза завершена 7 авг 2017 19:37:18(Мск)</p>
+                </div>
+                <div class="column" th:classappend="${item.itemState != 'ON_VERIFICATION' } ? hide : ''" th:id="'verificationSwitchGroup-' +${item.originalProductItem.id}">
+                    <p>Состояние подтверждено, химчистка на требуетсяя</p>
+                    <div class="switch small">
+                        <input class="switch-input" value="VERIFICATION_OK" th:id="'VERIFICATION_OK-'+${item.originalProductItem.id}" type="radio" th:name="'verificationGroup-' +${item.originalProductItem.id}">
+                        <label class="switch-paddle" th:for="'VERIFICATION_OK-'+${item.originalProductItem.id}">
+                            <span class="show-for-sr">Состояние подтверждено, химчистка не нужна</span>
+                            <span class="switch-active" aria-hidden="true">Да</span>
+                            <span class="switch-inactive" aria-hidden="true">Нет</span>
+                        </label>
+                    </div>
+                    <p>Состояние подтверждено, <strong>требуется химчистка </strong></p>
+                    <div class="switch small">
+                        <input class="switch-input" value="VERIFICATION_NEED_CLEANING" th:id="'VERIFICATION_NEED_CLEANING-'+${item.originalProductItem.id}" type="radio" th:name="'verificationGroup-' +${item.originalProductItem.id}">
+                        <label class="switch-paddle" th:for="'VERIFICATION_NEED_CLEANING-'+${item.originalProductItem.id}">
+                            <span class="show-for-sr">Сосотяние ОК, нужна химчистка</span>
+                            <span class="switch-active" aria-hidden="true">Да</span>
+                            <span class="switch-inactive" aria-hidden="true">Нет</span>
+                        </label>
+                    </div>
+                    <p>Состояние не подтверждено, <strong>безусловный возврат продавцу</strong></p>
+                    <div class="switch small">
+                        <input class="switch-input" value="REJECTED_AFTER_VERIFICATION" th:id="'REJECTED_AFTER_VERIFICATION-'+${item.originalProductItem.id}" type="radio" th:name="'verificationGroup-' +${item.originalProductItem.id}">
+                        <label class="switch-paddle" th:for="'REJECTED_AFTER_VERIFICATION-'+${item.originalProductItem.id}">
+                            <span class="show-for-sr">Сосотяние ОК, нужна химчистка</span>
+                            <span class="switch-active" aria-hidden="true">Да</span>
+                            <span class="switch-inactive" aria-hidden="true">Нет</span>
+                        </label>
+                    </div>
+                </div>
+                <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+<div layout:fragment="custom-scripts">
+    <script src="/admin/scripts/warehouse.js"></script>
+</div>
+
+</body>
+</html>

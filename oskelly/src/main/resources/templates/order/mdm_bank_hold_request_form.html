@@ -1,0 +1,5 @@
+<form id="send-hold-request"
+      method="POST"
+      th:action="|${endpoint}/hold|">
+    <input type="hidden" name="request" th:value="${request}">
+</form>

@@ -1,0 +1,43 @@
+{
+  "name": "oskelly",
+  "version": "0.0.1",
+  "description": "oskelly-frondend",
+  "author": "Denis Lu <edylcrm@gmail.com>",
+  "scripts": {
+    "dev": "webpack-dev-server --hot --open",
+    "build:prod": "webpack"
+  },
+  "dependencies": {
+    "elevatezoom": "github:grawl/elevatezoom",
+    "font-awesome": "^4.7.0",
+    "foundation-font-awesome-buttons": "^3.3.2",
+    "foundation-sites": "^6.3.1",
+    "hamburgers": "^0.8.1",
+    "ilyabirman-likely": "^2.2.2",
+    "jquery-typeahead": "^2.8.0",
+    "magnific-popup": "^1.1.0",
+    "sidr": "^2.2.1",
+    "sumoselect": "^3.0.3",
+    "swiper": "^3.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.47",
+    "assets-webpack-plugin": "^3.5.1",
+    "autoprefixer": "^6.7.7",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
+    "node-sass": "^4.7.2",
+    "optimize-css-assets-webpack-plugin": "^3.2.0",
+    "postcss-axis": "^0.1.2",
+    "postcss-import": "^9.1.0",
+    "postcss-loader": "^2.0.9",
+    "postcss-position-alt": "^0.6.3",
+    "postcss-short": "^4.1.0",
+    "postcss-will-change": "^2.0.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.10.0"
+  }
+}

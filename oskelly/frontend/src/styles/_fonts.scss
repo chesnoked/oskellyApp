@@ -1,0 +1,29 @@
+@mixin Playfair($file, $weight, $style: normal) {
+	@font-face {
+		font-family: 'Playfair Display';
+		font-weight: $weight;
+		font-style: $style;
+		src: url('../fonts/playfair-display/#{$file}.otf') format('opentype');
+	}
+}
+@include Playfair('PlayfairDisplay-Black', 900);
+@include Playfair('PlayfairDisplay-BlackItalic', 900, italic);
+@include Playfair('PlayfairDisplay-Bold', 700);
+@include Playfair('PlayfairDisplay-BoldItalic', 700, italic);
+@include Playfair('PlayfairDisplay-Italic', 400, italic);
+@include Playfair('PlayfairDisplay-Regular', 400);
+
+@mixin PlayfairSC($file, $weight, $style: normal) {
+	@font-face {
+		font-family: 'Playfair Display SC';
+		font-weight: $weight;
+		font-style: $style;
+		src: url('../fonts/playfair-display/#{$file}.ttf') format('truetype');
+	}
+}
+@include PlayfairSC('PlayfairDisplaySC-Black', 900);
+@include PlayfairSC('PlayfairDisplaySC-BlackItalic', 900, italic);
+@include PlayfairSC('PlayfairDisplaySC-Bold', 700);
+@include PlayfairSC('PlayfairDisplaySC-BoldItalic', 700, italic);
+@include PlayfairSC('PlayfairDisplaySC-Italic', 400, italic);
+@include PlayfairSC('PlayfairDisplaySC-Regular', 400);

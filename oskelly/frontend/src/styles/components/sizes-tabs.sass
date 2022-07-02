@@ -1,0 +1,44 @@
+.sizesTabs
+	.tabs
+		margin-y: 1.5rem
+		border: 0
+		&-content
+			border: 0
+	&-title
+		opacity: 0.4
+		margin-bottom: 0.5rem
+		padding-right: 2rem
+		> a
+			display: inline
+			padding: 0
+			font-size: 1rem
+			background: transparent
+			border-bottom: 2px solid transparent
+			&,
+			&:hover
+				color: black
+			&:hover
+				text-decoration: none
+		&.is-active,
+		&:hover
+			opacity: 1
+		&.is-active
+			> a
+				color: black
+				background: transparent
+				border-bottom-color: black
+	&-panel
+		padding: 0
+		table
+			table-layout: fixed
+			min-width: 100%
+			border: 1px solid hsl(0, 0%, 90%)
+			border-spacing: 0
+			border-collapse: collapse
+		thead
+			background-color: transparent
+		th, td
+			text-align: center
+			border: 1px solid hsl(0, 0%, 90%)
+		th
+			font-weight: normal

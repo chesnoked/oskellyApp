@@ -1,0 +1,225 @@
+$flex: true;
+@if $flex {
+	$global-flexbox: true;
+}
+@include foundation-global-styles;
+@if not $flex {
+	@include foundation-grid;
+}
+@else {
+	@include foundation-flex-grid;
+}
+.column,
+.columns {
+	@include breakpoint(small only) {
+		//max-width: 100%;
+	}
+}
+@each $zf-size in $breakpoint-classes {
+	.shrink-at-#{$zf-size} {
+		@include breakpoint($zf-size only) {
+			@include flex-grid-column(shrink);
+			max-width: 100%;
+		}
+		&-up {
+			@include breakpoint($zf-size) {
+				@include flex-grid-column(shrink);
+				max-width: 100%;
+			}
+		}
+	}
+}
+.medium-uncollapse {
+	margin-x: 0;
+	@include breakpoint(medium up) {
+		margin-x: rem-calc(-zf-get-bp-val($grid-column-gutter, $-zf-size)) / 2 * -1;
+	}
+	> .column,
+	> .columns {
+		padding-x: 0;
+		@include breakpoint(medium up) {
+			@include grid-col-gutter($-zf-size);
+		}
+	}
+	&-selfStacked {
+		@include breakpoint(small only) {
+			padding-x: 0;
+		}
+	}
+}
+@include foundation-typography;
+@each $size, $headers in $header-styles {
+	@include breakpoint($size) {
+		@each $header, $font-size in $headers {
+			#{$header} {
+				margin-bottom: 0;
+				font-size: inherit;
+			}
+			.#{unquote($header)} {
+				@each $prop, $sizee in $font-size {
+					$keys: map_keys($font-size);
+					$values: map_values($font-size);
+					#{$keys}: $values + px;
+				}
+			}
+		}
+	}
+}
+@include foundation-forms;
+.input {
+	&-group {
+		&-field {
+			height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
+		}
+	}
+}
+#{text-inputs()} {
+	&:only-child {
+		margin-bottom: 0;
+	}
+}
+@include foundation-button;
+.button {
+	&:hover {
+		text-decoration: none;
+	}
+	&:only-child {
+		margin-bottom: 0;
+	}
+	&:disabled,
+	&[disabled],
+	&.disabled {
+		opacity: 1;
+		background-color: hsl(0, 0%, 80%);
+	}
+	&.hollow {
+		border-color: black;
+		color: black;
+		&:hover {
+			border-color: rgba(black, 0.4);
+			color: rgba(black, 0.65);
+		}
+	}
+	&.tight {
+		padding: 0.25rem;
+	}
+	&.transparent {
+		border-color: transparent;
+		background-color: transparent;
+		&:hover {
+			border-color: transparent;
+		}
+	}
+	@each $zf-size in $breakpoint-classes {
+		&.expanded-at-#{$zf-size} {
+			@include breakpoint($zf-size only) {
+				@include button-expand;
+			}
+		}
+		@include breakpoint($zf-size only) {
+			@each $size, $value in map-remove($button-sizes, default) {
+				&.#{$size}-at-#{$zf-size} {
+					font-size: $value;
+				}
+			}
+		}
+	}
+}
+@include foundation-accordion;
+// @include foundation-accordion-menu;
+@include foundation-badge;
+@include foundation-breadcrumbs;
+.breadcrumbs {
+	@include breakpoint(small only) {
+		li {
+			font-size: 0.75rem;
+			&:not(:last-child)::after {
+				margin-x: 0.4rem;
+			}
+		}
+	}
+	li {
+		text-transform: none;
+		&:not(:last-child) {
+			&::after {
+				top: -0.1em;
+				color: inherit;
+				font-weight: bold;
+				content: '›';
+			}
+		}
+	}
+}
+// @include foundation-button-group;
+@include foundation-callout;
+// @include foundation-card;
+// @include foundation-close-button;
+@include foundation-menu;
+@include foundation-menu-icon;
+@include foundation-drilldown-menu;
+.js-drilldown-back {
+	> a {
+		position: relative;
+		margin-left: $drilldown-arrow-size;
+		&::before {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			margin-top: -$drilldown-arrow-size;
+		}
+	}
+}
+@include foundation-dropdown;
+.dropdown {
+	&-pane {
+		top: -9999px;
+		@include breakpoint(small only) {
+			max-width: none !important;
+			width: 90vw !important;
+			left: 5vw !important;
+			right: auto !important;
+			margin: 0 !important;
+		}
+	}
+}
+@include foundation-dropdown-menu;
+// @include foundation-responsive-embed;
+@include foundation-label;
+.label {
+	vertical-align: middle;
+	padding-bottom: 0.23em;
+}
+// @include foundation-media-object;
+// @include foundation-off-canvas;
+// @include foundation-orbit;
+// @include foundation-pagination;
+// @include foundation-progress-bar;
+// @include foundation-slider;
+// @include foundation-sticky;
+// @include foundation-reveal;
+// @include foundation-switch;
+@include foundation-table;
+table {
+	margin-bottom: 0;
+	&.unstriped {
+		tbody {
+			&,
+			tr {
+				background-color: transparent;
+			}
+		}
+	}
+}
+@include foundation-tabs;
+// @include foundation-thumbnail;
+// @include foundation-title-bar;
+// @include foundation-tooltip;
+// @include foundation-top-bar;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
+@if $flex {
+	@include foundation-flex-classes;
+}
+:root .golden {
+	color: white;
+}

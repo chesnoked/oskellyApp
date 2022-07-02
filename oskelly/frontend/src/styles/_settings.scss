@@ -1,0 +1,5 @@
+$topBar-breakpoint: 1200px;
+$topBar-range: screen and (max-width: $topBar-breakpoint);
+$font-family-serif-sc: "Playfair Display SC", serif;
+$font-family-serif: "Playfair Display", serif;
+$golden-color: map-get($foundation-palette, golden);

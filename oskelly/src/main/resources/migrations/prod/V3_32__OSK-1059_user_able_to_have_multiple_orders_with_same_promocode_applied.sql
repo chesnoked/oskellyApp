@@ -1,0 +1,1 @@
+ALTER TABLE "order" DROP CONSTRAINT IF EXISTS order_promo_code_id_buyer_id_key;

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="284px" height="80px" viewBox="0 0 284 80" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 10</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-Copy-2" transform="translate(-522.000000, -1350.000000)">
+            <g id="Group-13" transform="translate(20.000000, 1239.000000)">
+                <g id="Group-10" transform="translate(503.000000, 112.000000)">
+                    <g id="Group-8" transform="translate(0.000000, 0.500000)">
+                        <circle id="Oval-4-Copy-2" stroke="#CFA788" stroke-width="1.7" cx="38.5113941" cy="38.5113941" r="38.5113941"></circle>
+                        <g id="Group-4" transform="translate(21.000000, 19.000000)" font-size="28" font-family="PTSans-Regular, PT Sans" letter-spacing="2.10000014" fill="#CFA788" font-weight="normal">
+                            <text id="10">
+                                <tspan x="0.139999857" y="28">10</tspan>
+                            </text>
+                        </g>
+                    </g>
+                    <text id="Минимальное-количест" font-family="PTSans-Bold, PT Sans" font-size="12" font-weight="bold" letter-spacing="0.75" fill="#CFA788">
+                        <tspan x="88" y="43.5">Минимальное количество веще</tspan>
+                        <tspan x="275.71" y="43.5" font-family="LucidaGrande-Bold, Lucida Grande">й</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

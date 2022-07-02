@@ -1,0 +1,78 @@
+<!doctype html>
+<html
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate="~{admin/layout}">
+<head>
+	<title>Управление пользователями</title>
+	<link rel="stylesheet" href="/admin/styles/users.css"/>
+</head>
+<body>
+
+<main layout:fragment="content">
+	<header>
+		<div class="breadcrumbs">
+			<ul>
+				<li><a href="/admin">Админка</a></li>
+				<li>Управление пользователями</li>
+			</ul>
+		</div>
+	</header>
+	<div id="form" class="row fullWidth align-middle">
+		<div class="columns">
+			<button id="filter-pro" type="button" data-filter="pro" data-filter-enable="false"
+					class="button fullWidth filter-button">
+				PRO
+			</button>
+		</div>
+		<div class="columns">
+			<button id="filter-seller" type="button" data-filter="seller" data-filter-enable="false"
+					class="button fullWidth filter-button">Продавцы
+			</button>
+		</div>
+		<div class="columns">
+			<button id="filter-new" type="button" data-filter="new" data-filter-enable="false"
+					class="button fullWidth filter-button">
+				Новые
+			</button>
+		</div>
+		<div class="columns hide-for-small-only">
+
+		</div>
+		<div class="columns text-center">
+			<span id="current-loaded-users" th:text="${users.count}">10</span>
+			<span>/</span>
+			<span id="all-loaded-users" th:text="${allUsersCount}">100</span>
+		</div>
+		<div class="columns">
+			<button type="button" class="button fullWidth">Поиск</button>
+		</div>
+		<div class="columns">
+			<button type="button" class="button fullWidth" onclick="location.href='/admin/users/moderators'">Админы
+			</button>
+		</div>
+	</div>
+	<table id="user-table" class="text-centered-table">
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>email</th>
+			<th>Никнейм</th>
+			<th>ФИО/Название</th>
+			<th>Телефон</th>
+			<th>Статус</th>
+			<th>На продажу</th>
+			<th>Заказы</th>
+			<th>Комментарии</th>
+		</tr>
+		</thead>
+		<tbody th:replace="admin/content-management/users/userlist">
+		</tbody>
+	</table>
+</main>
+
+<div layout:fragment="custom-scripts">
+	<script src="/admin/scripts/users/users.js"></script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'oskelly' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  platform :ios, '9.0'
+  use_frameworks!
+
+  pod 'CryptoSwift', :git => "https://github.com/krzyzanowskim/CryptoSwift", :branch => "swift32"
+
+  pod 'Alamofire', :git => "https://github.com/Alamofire/Alamofire.git", :branch => "master"
+
+  pod 'ImageSlideshow', :git => "https://github.com/zvonicek/ImageSlideshow.git", :branch => "master"
+
+  pod 'AlamofireImage', :git => "https://github.com/Alamofire/AlamofireImage.git", :branch => "master"
+
+  pod 'ImageSlideshow/Alamofire', :git => "https://github.com/zvonicek/ImageSlideshow.git", :branch => "master"
+
+  pod 'SnapKit', :git => "https://github.com/SnapKit/SnapKit.git", :branch => "master"
+
+  pod 'SwiftyJSON', :git => "https://github.com/SwiftyJSON/SwiftyJSON.git", :branch => "master"
+
+  pod 'DWImagePicker-Swift3', :git => 'https://github.com/soeurngsar/DWImagePicker-Swift3.git', :branch => "master"
+
+  pod 'Fabric'
+
+  pod 'Crashlytics'
+
+  # pod 'Realm', :git => "https://github.com/realm/realm-cocoa.git", :branch => "master", :submodules => true
+
+  # pod 'RealmSwift', :git => "https://github.com/realm/realm-cocoa.git", :branch => "master", :submodules => true
+
+  # pod 'ObjectMapper', :git => "https://github.com/Hearst-DD/ObjectMapper.git", :branch => "master"
+  
+  # pod 'AlamofireObjectMapper', :git => "https://github.com/tristanhimmelman/AlamofireObjectMapper.git", :branch => "master"
+  # Pods for oskelly
+
+  target 'oskellyTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'oskellyUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+end

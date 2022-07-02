@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="content (cart)" th:remove="tag">
+
+    <!--/*/ <th:block th:if="${not #lists.isEmpty(cart?.effectiveItems)}"> /*/-->
+    <div class="row column offsetStack-y">
+        <table class="unstriped orderPage-table">
+            <thead>
+            <tr>
+                <th>Позиция</th>
+                <th>Описание</th>
+                <th class="show-for-medium">Размер</th>
+                <th>Цена</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:data-cart-item="${item.itemId}" th:each="item: ${cart.effectiveItems}">
+                <td class="dottedBorder orderPage-table-productPhoto">
+                    <a href="#" th:href="@{'/products/' + ${item.productId}}">
+                        <img alt="Категория Бренд" th:src="${item.imageUrl}?: _" th:alt="|${item.productName} ${item.brandName}|"></a></td>
+
+                <td class="dottedBorder orderPage-table-controlCell">
+                    <div class="offset-y_small">
+                        <div><a th:href="@{'/products/' + ${item.productId}}"><strong class="text-uppercase" th:text="${item.brandName}">Бренд</strong></a></div>
+                        <div><a th:href="@{'/products/' + ${item.productId}}" th:text="${item.productName}">Категория</a></div>
+                        <div class="show-for-small-only nowrap" th:if="${item.productSize}" th:text="${item.productSize}">Размер</div>
+                    </div>
+                    <div class="orderPage-table-controlCell-controls">
+                        <button class="button hollow tight" type="button" th:data-remove-cart-item="${item.itemId}"><span class="fa fa-fw fa-trash"></span></button>
+                    </div>
+                </td>
+
+                <td class="dottedBorder show-for-medium">
+                    <div class="offset-y_small">
+                    <p class="nowrap" th:if="${item.productSize}" th:text="${item.productSize}">Размер не указан</p>
+                    </div>
+                </td>
+                <td class="dottedBorder orderPage-table-price">
+                    <div class="offset-y_small">
+                        <p class="nowrap" th:text="|${T(su.reddot.presentation.Utils).formatPrice(item.productPrice)} ₽|">Текущая цена</p> </div>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row align-right medium-uncollapse">
+        <div class="shrink-at-medium-up column">
+            <!--/* Не реализовано -->
+            <div class="offsetStack-y offset-y row align-right">
+                <div class="shrink column">
+                    <select class="js-select">
+                        <option class="is-placeholder" selected="selected" disabled="disabled">Способ доставки</option>
+                        <option>Самолётом</option>
+                        <option>Пароходом</option>
+                    </select>
+                </div>
+            </div>
+            <!--*/-->
+            <div class="offsetStack-y" style="padding-left:  10px; padding-right:  10px;">
+                <table class="orderPage-summary text-right unstriped text-size-large">
+                    <tr>
+                        <th class="text-secondary">Общая сумма заказа:</th>
+                        <td data-cart-effective-price th:text="|${cart.effectivePrice} ₽|">52 000 ₽</td>
+                    </tr>
+                    <tr>
+                        <th class="text-secondary">Стоимость доставки:</th>
+                        <td th:text="|${cart.deliveryCost} ₽|">0 ₽</td>
+                    </tr>
+                    <tr>
+                        <th class="text-secondary">Итого:</th>
+                        <td th:text="|${cart.effectivePriceWithDeliveryCost} ₽|">52 000 ₽</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="offsetStack-y row align-right medium-unstack offset_tiny-at-small_fill">
+
+                <!--/* OSK-199 не показывать кнопку -->
+                <div class="shrink-at-medium column small-order-2 medium-order-1 offset-y_tiny-at-small"><a class="offsetStack-x button hollow expanded large-at-small nowrap" href="/" title="Вернуться на главную и продолжить покупки">Продолжить шоппинг</a></div>
+                <!--*/-->
+                <div class="shrink-at-medium column small-order-1 medium-order-2"><a class="offsetStack-x button expanded large-at-small nowrap" id="cart-submit-order" href="#" title="Перейти к оформлению заказа">Оформить заказ</a></div>
+            </div>
+        </div>
+    </div>
+    <!--/*/ </th:block> /*/-->
+
+    <!--/*/ <th:block th:unless="${not #lists.isEmpty(cart?.effectiveItems)}"> /*/-->
+    <div class="row column offsetStack-y">
+         <p class="text-center lead" style="margin-top: 2rem">Корзина пуста</p>
+    </div>
+
+    <div class="row align-right medium-uncollapse">
+        <div class="shrink-at-medium-up column">
+            <div class="offsetStack-y row align-right medium-unstack offset_tiny-at-small_fill">
+                <div class="shrink-at-medium column small-order-2 medium-order-1 offset-y_tiny-at-small"><a class="offsetStack-x button hollow expanded large-at-small nowrap" href="/" title="Вернуться на главную и продолжить покупки">Продолжить шоппинг</a></div>
+            </div>
+        </div>
+    </div>
+    <!--/*/ </th:block> /*/-->
+
+    <!--/* Вещи, которые не могут попасть в заказ */-->
+    <!--/*/ <th:block th:unless="${#lists.isEmpty(cart?.noneffectiveItems)}"> /*/-->
+    <h2 class="offset-y_small text-size-x-large text-strong">Нет в продаже</h2>
+
+    <div class="row column offsetStack-y">
+        <table class="unstriped orderPage-table">
+            <thead>
+            <tr>
+                <th>Позиция</th>
+                <th>Описание</th>
+                <th class="show-for-medium">Размер</th>
+                <th>Цена</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="item: ${cart.getNoneffectiveItems()}">
+                <td class="dottedBorder orderPage-table-productPhoto">
+                    <a href="#" th:href="@{'/products/' + ${item.productId}}">
+                        <img alt="Категория Бренд" th:src="${item.imageUrl}?: _" th:alt="|${item.productName} ${item.brandName}|"></a></td>
+
+                <td class="dottedBorder orderPage-table-controlCell">
+                    <div class="offset-y_small">
+                        <div><a th:href="@{'/products/' + ${item.productId}}"><strong class="text-uppercase" th:text="${item.brandName}">Бренд</strong></a></div>
+                        <div><a th:href="@{'/products/' + ${item.productId}}" th:text="${item.productName}">Категория</a></div>
+                        <div class="show-for-small-only nowrap" th:if="${item.productSize}" th:text="${item.productSize}">Размер</div>
+                    </div>
+                    <div class="orderPage-table-controlCell-controls">
+                        <button class="button hollow tight" type="button" th:data-remove-cart-item="${item.itemId}"><span class="fa fa-fw fa-trash"></span></button>
+                    </div>
+                </td>
+
+                <td class="dottedBorder show-for-medium">
+                    <div class="offset-y_small">
+                        <p class="nowrap" th:text="${item.productSize}" th:if="${item.productSize}">Размер не указан</p>
+                    </div>
+                </td>
+                <td class="dottedBorder orderPage-table-price">
+                    <div class="offset-y_small">
+                        <p class="nowrap" th:text="|${T(su.reddot.presentation.Utils).formatPrice(item.productPrice)} ₽|">Текущая цена</p> </div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<!--/*/ </th:block> /*/-->
+</div>
+
+</body>
+</html>

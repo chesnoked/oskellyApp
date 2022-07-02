@@ -1,0 +1,13 @@
+<tbody th:data-page="${users.page}" th:data-size="${users.count}" class="users-tbody">
+<tr th:each="user: ${users.list}" th:object="${user}" class="user-list-row" th:data-id="*{id}">
+	<td th:text="*{id}"></td>
+	<td th:text="*{email}"></td>
+	<td th:text="*{nickname}"></td>
+	<td th:text="*{name}"></td>
+	<td th:text="*{phone}"></td>
+	<td th:text="*{statuses}"></td>
+	<td th:text="|*{publishedProducts}/*{moderatedProducts}|"></td>
+	<td th:text="|*{orders}/*{orderItems}|"></td>
+	<td></td>
+</tr>
+</tbody>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html
+	class="no-js" lang="ru_RU"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{profile/public}" th:with="pageStyle='profilePage'"
+>
+
+<!--/*@thymesVar id="follower" type="su.reddot.domain.service.following.FollowingService.FollowRelated"*/-->
+<!--/*@thymesVar id="observer" type="su.reddot.domain.model.user.User"*/-->
+
+<body class="profilePage">
+<div role="main" layout:fragment="profileContent" class="medium-9 columns">
+	<h3 class="h5 text-serif">Подписчики</h3>
+
+	<div class="row offsetStack-y" th:unless="${followers.empty}">
+
+		<table class="follow-list unstriped column medium-9 js-followers">
+			<tbody>
+
+			<tr class="follow-element js-follower"
+				th:each="follower, i: ${followers}"
+				th:classappend="${not i.last}? 'dottedBorder'"
+				th:data-follower-id="${follower.id}">
+
+				<td class="follow-element__avatar">
+					<a href="#" th:href="@{/profile/{id}(id=${follower.id})}">
+						<img alt="Ник пользователя"
+							 th:src="@{${follower.avatarPath}?: '/images/no-photo.jpg'}"
+							 th:alt="|${follower.nickname}|"></a></td>
+
+				<td>
+					<div class="offset-y_tiny">
+						<div>
+							<a class="text-size-large" th:href="@{/profile/{id}(id=${follower.id})}"><strong
+									th:text="${follower.nickname}">Ник
+								продавца</strong></a></div>
+
+						<div class="text-size-small text-secondary" th:if="${follower.availableProductsCount > 0}"
+							 th:text="|${follower.availableProductsCount}
+                             ${T(su.reddot.presentation.Utils).getRightDeclension(follower.availableProductsCount, {'товар', 'товара', 'товаров'})} на продажу|">
+							42 товара на продажу
+						</div>
+
+						<div class="text-size-small text-secondary" th:if="${follower.followersCount > 0}"
+							 th:text="|${follower.followersCount}
+                            ${T(su.reddot.presentation.Utils).getRightDeclension(follower.followersCount, {'подписчик', 'подписчика', 'подписчиков'})}|">
+						</div>
+
+						<div class="show-for-small-only" style="margin-top: .5rem">
+							<!--/*/ <th:block sec:authorize="isAuthenticated()" th:unless="${follower.id == observer.id}"> /*/-->
+							<button type="button" class="button small js-follow" style="padding: .4rem"
+									th:classappend="${not follower.followingAvailable}? 'hide'">
+								Подписаться
+							</button>
+
+							<button type="button" class="button small hollow js-unfollow" style="padding: .4rem"
+									th:classappend="${not follower.unfollowingAvailable}? 'hide'">
+								Отписаться
+							</button>
+							<!--/*/ </th:block> /*/-->
+
+							<button type="button" class="button small" data-mfp-src="#login-popup" style="padding: .4rem"
+									sec:authorize="isAnonymous()">
+								Подписаться
+							</button>
+						</div>
+					</div>
+				</td>
+
+				<td class="text-right hide-for-small-only">
+					<!--/*/ <th:block sec:authorize="isAuthenticated()" th:unless="${follower.id == observer.id}"> /*/-->
+					<button type="button" class="button small js-follow"
+							th:classappend="${not follower.followingAvailable}? 'hide'">
+						Подписаться
+					</button>
+
+																					<!--/* mad skillz */-->
+					<button type="button" class="button small hollow js-unfollow" style="width: 102px"
+							th:classappend="${not follower.unfollowingAvailable}? 'hide'">
+						Отписаться
+					</button>
+					<!--/*/ </th:block> /*/-->
+
+					<button type="button" class="button small" data-mfp-src="#login-popup"
+							sec:authorize="isAnonymous()">
+						Подписаться
+					</button>
+				</td>
+			</tr>
+
+			</tbody>
+		</table>
+	</div>
+
+	<p class="follow-list empty text-center text-secondary" style="margin-top: 2rem"
+	   th:if="${followers.empty}">Список пуст
+	</p>
+
+</div>
+</body>
+</html>

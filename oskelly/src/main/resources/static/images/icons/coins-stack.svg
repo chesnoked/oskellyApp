@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="110px" height="108px" viewBox="0 0 110 108" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>coins-stack</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Inviting-Page" transform="translate(-188.000000, -828.000000)" stroke="#CFA788">
+            <g id="coins-stack" transform="translate(190.000000, 830.000000)">
+                <g id="Group" stroke-linecap="round" stroke-width="2.70000011">
+                    <g id="Group-4-Copy" transform="translate(92.859726, 10.852174) rotate(10.000000) translate(-92.859726, -10.852174) translate(77.996090, 2.713043)">
+                        <path d="M1.28915787,7.11808491 L0,-2.27373675e-13" id="Line-2"></path>
+                        <path d="M12.6115702,10.5737056 L17.51917,0.904347826" id="Line-2-Copy"></path>
+                        <path d="M22.5206612,16.2521482 L29.211832,13.5652174" id="Line-2-Copy-2"></path>
+                    </g>
+                    <path d="M15.9156872,10.9584151 L15.1343794,6.60847431" id="Line-2-Copy-9" transform="translate(15.525033, 8.783445) scale(-1, 1) rotate(13.000000) translate(-15.525033, -8.783445) "></path>
+                    <path d="M5.37186438,15.4582123 L8.34616728,9.54916031" id="Line-2-Copy-10" transform="translate(6.859016, 12.503686) scale(-1, 1) rotate(13.000000) translate(-6.859016, -12.503686) "></path>
+                    <path d="M0.375811149,20.4113897 L4.43106622,18.7693765" id="Line-2-Copy-11" transform="translate(2.403439, 19.590383) scale(-1, 1) rotate(13.000000) translate(-2.403439, -19.590383) "></path>
+                </g>
+                <g id="Group-5" transform="translate(18.917355, 66.017391)" stroke-width="3.60000014" fill="#FFFFFF">
+                    <path d="M70.2644628,12.0432662 L70.2644628,25.9393363 C70.2644628,32.5906548 54.535227,37.9826087 35.1322314,37.9826087 C15.7292358,37.9826087 1.04777758e-14,32.5906548 5.23470059e-30,25.9393425 L0,12.0432662 C0,5.39195393 15.7292358,0 35.1322314,0 C54.535227,0 70.2644628,5.39195393 70.2644628,12.0432662 Z" id="Combined-Shape-Copy"></path>
+                    <ellipse id="Oval-4-Copy-16" cx="35.1322314" cy="12.0432662" rx="35.1322314" ry="12.0432662"></ellipse>
+                </g>
+                <path d="M89.1818182,65.1130435 L89.1818182,78.6782548 C89.1818182,85.1712085 73.4525824,90.4347826 54.0495868,90.4347826 C34.6465911,90.4347826 18.9173554,85.1712085 18.9173554,78.6782609 L18.9173554,65.1130435 C18.9173554,58.6200958 34.6465911,53.3565217 54.0495868,53.3565217 C73.4525824,53.3565217 89.1818182,58.6200958 89.1818182,65.1130435 Z" id="Combined-Shape-Copy-2" stroke-width="3.60000014" fill="#FFFFFF"></path>
+                <ellipse id="Oval-4-Copy-17" stroke-width="3.60000014" fill="#CFA788" cx="54.0495868" cy="65.1130435" rx="35.1322314" ry="11.7565217"></ellipse>
+                <g id="Group-2" transform="translate(27.024793, 38.886957)" stroke-width="3.60000014">
+                    <path d="M70.2644628,11.7565217 L70.2644628,25.321733 C70.2644628,31.8146868 54.535227,37.0782609 35.1322314,37.0782609 C15.7292358,37.0782609 0,31.8146868 0,25.3217391 L0,11.7565217 C0,5.26357407 15.7292358,0 35.1322314,0 C54.535227,0 70.2644628,5.26357407 70.2644628,11.7565217 Z" id="Combined-Shape-Copy-3" fill="#FFFFFF"></path>
+                    <ellipse id="Oval-4-Copy-18" fill="#CFA788" cx="35.1322314" cy="11.7565217" rx="35.1322314" ry="11.7565217"></ellipse>
+                </g>
+                <g id="Group-9" transform="translate(18.917355, 24.417391)" stroke-width="3.60000014">
+                    <path d="M70.2644628,11.7565217 L70.2644628,25.3217391 C70.2644628,31.8146868 54.535227,37.0782609 35.1322314,37.0782609 C15.7292358,37.0782609 0,31.8146868 0,25.3217391 L0,11.7565217 C0,5.26357407 15.7292358,0 35.1322314,0 C54.535227,0 70.2644628,5.26357407 70.2644628,11.7565217 Z" id="Combined-Shape-Copy-4" fill="#FFFFFF"></path>
+                    <ellipse id="Oval-4-Copy-19" fill="#CFA788" cx="35.1322314" cy="11.7565217" rx="35.1322314" ry="11.7565217"></ellipse>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

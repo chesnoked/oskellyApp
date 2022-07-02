@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:remove="all">Продавец ответил на ваше предложение по снижению цены на товар</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <p>
+      Продавец товара <strong th:text="${productName}">Название товара</strong>
+      <span th:remove="tag" th:text="${resolvedOffer.isAccepted}? 'принял' : _">отклонил</span> ваше предложение цены:
+      <strong th:text="|${resolvedOffer.price.toPlainString()} ₽|">1 ₽</strong>.
+
+      <span th:if="${resolvedOffer.isAccepted}" th:remove="tag">
+        <a href="#" th:href="${resource}">Добавьте товар в корзину </a>по сниженной цене.
+      </span>
+    </p>
+  </body>
+</html>

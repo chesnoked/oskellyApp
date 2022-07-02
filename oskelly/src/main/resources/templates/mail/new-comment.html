@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <p>
+      Пользователь <strong th:text="${comment.publisher.nickname}">ник пользователя</strong> добавил новый комментарий к вашему товару
+      <strong><a href="#" th:href="|${host}/products/${comment.product.id}|"
+         th:text="|${comment.product.brand.name} ${comment.product.displayName}|">
+        Бренд товара Наименование товара</a></strong>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+header {
+	padding-top: 20px;
+	margin-bottom: 30px;
+}
+
+#breadcrumbs ul {
+	margin-left: 0;
+}
+
+#breadcrumbs li {
+	list-style-type: none;
+	display: inline;
+	font-weight: lighter;
+}
+
+#url-container {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	margin-bottom: 30px;
+}
+
+#preview-container{
+	display: flex;
+	justify-content: flex-end;
+}
+
+#page-params-container {
+	margin-bottom: 30px;
+}
+
+#ckeditor-container {
+	margin-bottom: 15px;
+}
+
+#delete-container{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#modified-container{
+    font-size: 0.7em;
+    font-style: italic;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+}

@@ -1,0 +1,217 @@
+<header>
+	<div class="column row margin-top">
+		<h2 class="text-center">Модерация объявлений</h2>
+	</div>
+</header>
+
+<section>
+	<div class="row" th:data-total-pages="${pageWithProducts.totalPages}">
+		<div class="column small-3">
+			<span>Статус товара: </span>
+			<select id="state-select" size="1">
+				<option value="ALL">Все</option>
+				<!--/*/ <th:block th:each="state: ${productStates}"> /*/-->
+				<option
+					th:value="${state.name}" th:text="${state.description}"
+					th:data-current-state="${currentProductState}" th:data-seller-id="${currentUserId}"
+				>
+				</option>
+				<!--/*/ </th:block> /*/-->
+			</select>
+		</div>
+	</div>
+	<div class="row"><p>Всего товаров в выборке:
+		<span id="totalAmount" th:text="${pageWithProducts.productsTotalAmount}">100</span>
+		</p>
+	</div>
+	<div class="row">
+		<div th:style="${!isModerator ? 'display:none' : ''}">
+			<label for="pro">Статус пользователя</label>
+			<select id="pro" name="pro">
+				<option value="ALL" selected="selected">Все</option>
+				<option value="0">Физик</option>
+				<option value="1">PRO</option>
+			</select>
+		</div>
+		<div  th:style="${!isModerator ? 'display:none' : ''}">
+			<input type="checkbox" id="vip" name="vip" value="vip"><label for="vip">VIP</label>
+		</div>
+		<div style="margin-left: 10px">
+			<button data-mfp-src="#filterPanel" class="button edit-page-button">Фильтрация</button>
+		</div>
+		<div style="margin-left: 10px">
+			<label for="sort">Сортировка</label>
+			<select id="sort">
+				<option value="ALL" disabled="disabled" selected="selected">Выберите</option>
+				<option value="price" th:selected="${request?.sort == 'price'}">По возрастанию цены</option>
+				<option value="price_desc" th:selected="${request?.sort == 'price_desc'}">По убыванию цены</option>
+				<option value="id_desc" th:selected="${request?.sort == 'id_desc'}">Сначала новые</option>
+				<option value="id" th:selected="${request?.sort == 'id'}">Сначала старые</option>
+			</select>
+		</div>
+		<div style="margin-left: 30px">
+			<button id="addProductModalButton" data-mfp-src="#addProductModal" class="button edit-page-button">Добавить товар</button>
+		</div>
+	</div>
+
+	<div class="mfp-hide" id="filterPanel">
+		<div class="row align-center">
+			<div class="large-7 columns mfp-content-inner">
+				<div class="whitePopup offset_fill">
+					<div class="row">
+						<button class="mfp-close" type="button" title="Закрыть">×</button>
+					</div>
+					<div>
+						<label>
+							Email пользователя
+							<input type="text" name="emailFilter" id="emailFilter">
+						</label>
+					</div>
+					<div>
+						<label>
+							Цена от
+							<input inputmode="numeric" type="text" name="startPriceFilter" id="startPriceFilter">
+						</label>
+					</div>
+					<div>
+						<label>
+							Цена до
+							<input inputmode="numeric" type="text" name="endPriceFilter" id="endPriceFilter">
+						</label>
+					</div>
+					<div>
+						<h4 class="h5 text-strong">Состояние</h4>
+						<div class="offset-y productAddPage-styledCheck-container"></div>
+						<div class="offset-y productAddPage-styledCheck-container" th:each="condition: ${productConditions}">
+							<input class="styledRadio" type="radio" name="conditionFilter" id="undefined-id" th:value="${condition.id}" th:checked="${condition.checked}" th:id="${#ids.seq('condition')}">
+							<label th:text="${condition.name}" for="undefined-id" th:for="${#ids.prev('condition')}">
+							</label>
+						</div>
+					</div>
+					<div>
+						<label>
+							Категория
+						</label>
+						<select class="js-select" data-search="data-search" name="categoryFilter" id="categorySelectFilter">
+							<option value="ALL" selected="selected">Выберите</option>
+							<option th:each="category: ${leafs}" th:value="${category.id}" th:text="${category.displayName}">title</option>
+						</select>
+					</div>
+					<div>
+						<label>
+							Бренд
+						</label>
+						<select class="js-select" data-search="data-search" name="brandFilter" id="brandFilter">
+							<option value="ALL" selected="selected">Выберите</option>
+							<option th:each="brand: ${brands}" th:value="${brand.id}" th:text="${brand.name}">title</option>
+						</select>
+					</div>
+					<div style="margin-top: 5px">
+						<label for="newCollectionFilter">
+							Новая коллекция
+						</label>
+						<input type="checkbox" name="newCollectionFilter" id="newCollectionFilter">
+					</div>
+					<div style="margin-top: 5px">
+						<label for="descriptionExistsFilter">
+							Описание отсутствует
+						</label>
+						<input type="checkbox" name="descriptionExistsFilter" id="descriptionExistsFilter">
+					</div>
+					<div>
+						<button style="margin: 5px" class="button edit-page-button" id="applyFilters">Применить</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="mfp-hide" id="addProductModal" th:initial-state="${(addMore == true) ? 'open' : 'hidden'}">
+		<div class="row align-center">
+			<div class="large-7 columns mfp-content-inner">
+				<div class="whitePopup offset_fill">
+					<div class="row">
+						<button class="mfp-close" type="button" title="Закрыть">×</button>
+					</div>
+					<div>
+						<h1 class="h5 text-strong">Новый товар</h1>
+					</div>
+					<div>
+						<label>
+							Артикул
+							<input type="text" name="article">
+						</label>
+					</div>
+					<div>
+						<label>
+							Раздел
+						</label>
+						<select class="js-select" data-search="data-search" name="rootCategory" id="rootCategorySelect">
+							<option selected="selected" class="is-placeholder" disabled="disabled">Выберите</option>
+							<option th:each="rootCategory: ${rootCategories}" th:value="${rootCategory.id}" th:text="${rootCategory.displayName}">title</option>
+						</select>
+					</div>
+					<div id="categoryBlock">
+						<label id="categorySelectLabel">
+							Категория
+						</label>
+						<select class="js-select" data-search="data-search" name="category" id="categorySelect">
+							<option selected="selected" class="is-placeholder" disabled="disabled">Выберите</option>
+						</select>
+					</div>
+					<div>
+						<label>
+							Бренд
+						</label>
+						<select class="js-select" data-search="data-search" name="brand">
+							<option selected="selected" class="is-placeholder" disabled="disabled">Выберите</option>
+							<option th:each="brand: ${brands}" th:value="${brand.id}" th:text="${brand.name}">title</option>
+						</select>
+					</div>
+					<div id="attributesBlock">
+
+					</div>
+					<div style="margin-top: 5px">
+						<label for="newCollection">
+							Новая коллекция
+						</label>
+						<input onchange="$('.price').trigger('change');" type="checkbox" name="newCollection" id="newCollection">
+					</div>
+					<div id="sizesBlock" style="display: none">
+						<hr/>
+						<div id="sizesContainer">
+
+						</div>
+						<button style="margin: 5px" class="button edit-page-button" id="addSizeButton">+</button>
+						<hr/>
+					</div>
+					<div>
+						<label>
+							RRP-цена
+						</label>
+						<input type="text" inputmode="numeric" class="input-group-field price" name="rrpPrice">
+					</div>
+					<div style="margin-top: 5px">
+						<label for="vintage">
+							Винтаж
+						</label>
+						<input type="checkbox" name="vintage" id="vintage">
+					</div>
+					<div>
+						<label>
+							Описание
+							<textarea rows="5" name="description"></textarea>
+						</label>
+					</div>
+					<div>
+						<button style="margin: 5px" class="button edit-page-button" id="saveProductButton">Отправить на модерацию</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="products">
+		<div th:replace="admin/moderation/product_card :: product_card (${pageWithProducts})"></div>
+	</div>
+	<!--/*/ </th:block> /*/-->
+</section>

@@ -1,0 +1,379 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--/*@thymesVar id="passwordResetRequest" type="su.reddot.presentation.controller.MasterPageController.PasswordResetRequest"*/-->
+
+<body>
+
+<div class="row headerPanel" th:fragment="headerPanel">
+  <div class="column">
+    <div class="row">
+      <div class="small-6 medium-3 columns text-center" id="mobile-header"><a class="hamburger hamburger--spin js-hamburger" id="responsive-menu-button" href="#sidr-main" tabindex="0" role="button" aria-label="Меню" aria-controls="mobileNav">
+          <div class="hamburger-box">
+            <div class="hamburger-inner"></div>
+          </div></a></div>
+      <div class="column headerContacts show-for-large">
+        <div class="headerContacts-phone">8 (800) 707-53-08</div>
+        <p style="font-size: 9px">по будням: 10.00 - 19.00 по Мск</p>
+      </div>
+      <div class="small-6 columns hide-for-large align-self-middle">
+        <div class="mobileSearchToggle" id="mobileSearch-toggle"><span class="fa fa-search text-size-large text-secondary"></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="headerLogo column"><a href="index.html" title="Oskelly" th:href="@{/}"><img src="images/logo.svg" alt="Oskelly" th:src="@{/images/logo.svg}"></a></div>
+  <div class="headerPanel-nav column show-for-large">
+    <ul class="menu columns" sec:authorize="isAnonymous()" th:class="${'menu columns'}">
+      <li class="is-icon"><a class="headerPanel-cart" href="cart.html" title="Корзина" th:href="@{/cart}">Корзина<span class="badge headerPanel-badge" data-cart-size th:text="${cartSize}?: 0" th:classappend="${cartSize == 0}? 'hide'">10</span></a></li>
+      <li><a href="#" title="Войти" data-mfp-src="#login-popup" onclick="dataLayer.push({'event': 'vhod-click'});">Вход</a>
+        <div class="mfp-hide" id="login-popup">
+          <div class="row align-center">
+            <div class="column medium-uncollapse-selfStacked">
+              <div class="authPopup mfp-content-inner">
+                <div class="authPopup-alternateBackground"></div>
+                <button class="mfp-close" type="button" title="Закрыть">×</button>
+                <div class="row collapse large-unstack">
+                  <div class="large-4 xlarge-7 columns authPopup-backgroundImage" style="background-image: url('images/shutterstock_226987495.jpg');"
+                       th:style="|background-image: url('@{/images/shutterstock_226987495.jpg}')|"></div>
+                  <div class="column text-center">
+                    <div class="row align-center">
+                      <div class="medium-10 columns">
+                        <form class="form authentication-form" action="#">
+                          <div class="offsetStack-y">
+                            <h2 class="text-uppercase h5">
+                              <div class="show-for-small-only row align-center">
+                                <div class="small-10 columns"><img src="images/logo.svg" alt="Oskelly - Luxury Resale Store" th:src="@{/images/logo.svg}"></div>
+                              </div><span class="hide-for-small-only">Вход</span>
+                            </h2>
+                          </div>
+                          <div class="offsetStack-y">
+                            <p>
+                              <input class="styledTextInput" type="email" placeholder="Email" name="email">
+                            </p>
+                            <p>
+                              <input class="styledTextInput" type="password" placeholder="Пароль" name="password">
+                              <div class="row align-justify">
+                                <div class="shrink column"><a class="text-size-small text-secondary" href="#" title="Регистрация" data-mfp-src="#register-popup">Регистрация</a></div>
+                                <div class="shrink column"><a class="text-size-small text-secondary" href="#" title="Восстановить пароль" data-mfp-src="#reset-password-popup">Забыли пароль?</a></div>
+                              </div>
+                            </p>
+                          </div>
+                          <div class="offsetStack-y row align-center">
+                            <div class="medium-8 columns">
+                              <button class="button expanded authentication-button" type="button">Войти</button>
+                            </div>
+                          </div>
+                          <!--*
+                          <div class="offsetStack-y ruledHeading ruledHeading_secondary text-secondary">или</div>
+                          <div class="offsetStack-y">
+                            <button onclick="window.location.replace('/login/facebook');" class="button ffab before bordered fa-facebook primary expanded" type="button">Войти через Facebook</button>
+                          </div>
+                          */-->
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mfp-hide" id="reset-password-popup">
+          <div class="row align-center">
+            <div class="column medium-uncollapse-selfStacked">
+              <div class="authPopup mfp-content-inner">
+                <div class="authPopup-alternateBackground"></div>
+                <button class="mfp-close" type="button" title="Закрыть">×</button>
+                <div class="row collapse large-unstack">
+                  <div class="large-4 xlarge-7 columns authPopup-backgroundImage" style="background-image: url('images/shutterstock_226987495.jpg');"
+                       th:style="|background-image: url('@{/images/shutterstock_226987495.jpg}')|"></div>
+                  <div class="column text-center">
+                    <div class="row align-center">
+                      <div class="medium-10 columns form">
+
+                        <div class="offsetStack-y">
+                          <h2 class="text-uppercase h5">
+                            <div class="show-for-small-only row align-center">
+                              <div class="small-10 columns">
+                                <img src="images/logo.svg" alt="Oskelly - Luxury Resale Store" th:src="@{/images/logo.svg}"></div>
+                            </div>
+                            <span class="hide-for-small-only">Восстановление пароля</span>
+                          </h2>
+                        </div>
+
+                        <div class="row column offsetStack-y hide">
+                          <div class="row align-center">
+                            <div class="small-10 columns text-center text-size-smaller">
+                            <i class="fa fa-check fa-2x"></i><br/>
+                            Ссылка для восстановления пароля отправлена на ваш e-mail. Проверьте почту.</div>
+                          </div>
+                          <div class="row">
+                            <div class="shrink small-offset-1 column align-left">
+                            <a class="text-size-small text-secondary" href="#"  data-mfp-src="#login-popup">Назад</a></div>
+                          </div>
+                        </div>
+
+                        <form id="password-reset" data-abide novalidate>
+                          <div class="row hide-for-small-only align-center offsetStack-y">
+                            <div class="small-10 columns text-center text-size-smaller" style="margin-top: 1rem;">
+                              Введите ваш e-mail. На него мы вышлем ссылку для восстановления пароля.</div>
+                          </div>
+
+                          <div class="offsetStack-y">
+                            <p>
+                              <input class="styledTextInput" type="email" placeholder="E-mail" name="email" data-response-field="email" required>
+                              <span class="form-error">Обязательно для заполнения</span>
+                            </p>
+                            <div class="row align-justify">
+                              <div class="shrink column">
+                                <a class="text-size-small text-secondary" href="#"  data-mfp-src="#login-popup">Помню пароль</a></div>
+                            </div>
+                          </div>
+                          <div class="offsetStack-y row align-center">
+                            <div class="medium-8 columns">
+                              <button class="button expanded authPopup-authButton" type="submit">Получить письмо</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--/* mfp ведет себя по-разному в зависимости от того, является ли токен валидным или нет */-->
+        <div class="mfp-hide" id="new-password-popup" th:if="${passwordResetRequest}"
+             th:data-token-is-valid="${passwordResetRequest.valid}">
+          <div class="row align-center">
+            <div class="column medium-uncollapse-selfStacked">
+              <div class="authPopup mfp-content-inner">
+                <div class="authPopup-alternateBackground"></div>
+                <button class="mfp-close" type="button" title="Закрыть">×</button>
+                <div class="row collapse large-unstack">
+                  <div class="large-4 xlarge-7 columns authPopup-backgroundImage" style="background-image: url('images/shutterstock_226987495.jpg');"
+                       th:style="|background-image: url('@{/images/shutterstock_226987495.jpg}')|"></div>
+                  <div class="column text-center">
+                    <div class="row align-center">
+                      <div class="medium-10 columns form">
+
+                        <div class="offsetStack-y">
+                          <h2 class="text-uppercase h5">
+                            <div class="show-for-small-only row align-center">
+                              <div class="small-10 columns">
+                                <img src="images/logo.svg" alt="Oskelly - Luxury Resale Store" th:src="@{/images/logo.svg}"></div>
+                            </div>
+                            <span class="hide-for-small-only">Восстановление пароля</span>
+                          </h2>
+                        </div>
+
+                        <div class="row align-center offsetStack-y" th:unless="${passwordResetRequest.valid}">
+                          <div class="small-10 columns text-center" style="margin-top: 1rem;" th:text="${passwordResetRequest.reasonIfInvalid}">
+                          Ссылка недействительна</div>
+                        </div>
+
+                        <form data-abide novalidate th:if="${passwordResetRequest.valid}" th:data-reset-token="${#request.getParameter('t')}">
+                          <div class="row align-center offsetStack-y">
+                            <div class="small-10 columns text-center text-size-smaller" style="margin-top: 1rem;">
+                              Задайте новый пароль:</div>
+                          </div>
+
+                          <div class="offsetStack-y">
+                            <p>
+                              <input class="styledTextInput" type="password" pattern="alpha_numeric" placeholder="Новый пароль" data-response-field="password" required>
+                              <span class="form-error">Обязательно для заполнения</span>
+                            </p>
+                            <p>
+                              <input class="styledTextInput" type="password" pattern="alpha_numeric" placeholder="Новый пароль еще раз" data-response-field="passwordOnceMore" required>
+                              <span class="form-error">Обязательно для заполнения</span>
+                            </p>
+                          </div>
+
+                          <div data-global-error class="alert callout offsetStack-y hide">
+                          </div>
+
+                          <div class="offsetStack-y row align-center">
+                            <div class="medium-8 columns">
+                              <button class="button expanded authPopup-authButton" type="submit">Применить</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li><a href="#" title="Зарегистрироваться" data-mfp-src="#register-popup" onclick="dataLayer.push({'event': 'registration-click'});">Регистрация</a>
+        <div class="mfp-hide" id="register-popup">
+          <div class="row align-center">
+            <div class="column medium-uncollapse-selfStacked">
+              <div class="authPopup mfp-content-inner">
+                <div class="authPopup-alternateBackground"></div>
+                <button class="mfp-close" type="button" title="Закрыть">×</button>
+                <div class="row collapse large-unstack align-middle">
+                  <div class="large-4 xlarge-7 columns align-self-stretch authPopup-backgroundImage" style="background-image: url(&quot;images/customers.jpg&quot;);" th:style="|background-image: url('@{/images/customers.jpg}')|"></div>
+                  <div class="column text-center">
+                    <div class="row align-center">
+                      <div class="medium-10 columns">
+                        <form class="form" id="registration-form" action="#">
+                          <div class="offsetStack-y">
+                            <h2 class="text-uppercase h5">
+                              <div class="show-for-small-only row align-center offset-y">
+                                <div class="small-10 columns"><img src="images/logo.svg" alt="Oskelly - Luxury Resale Store" th:src="@{/images/logo.svg}"></div>
+                              </div><span class="hide-for-small-only">Регистрация</span>
+                            </h2>
+                          </div>
+                          <div class="row align-right">
+                            <div class="shrink column"><a class="text-size-small text-secondary" href="#" title="Вход" data-mfp-src="#login-popup">Уже Зарегистрированы?</a></div>
+                          </div>
+                          <div id="registration-form-step-1" data-toggler=".hide">
+                            <div class="offsetStack-y">
+                              <p>
+                                <input class="styledTextInput" id="registration-form-email" type="email" placeholder="Email" name="email">
+                              </p>
+                            </div>
+                            <div class="offsetStack-y row align-center">
+                              <div class="medium-8 columns">
+                                <button class="button expanded" id="registration-form-second-step-button" type="button" data-toggle="registration-form-step-1 registration-form-step-2" disabled="disabled">Регистрация по Email</button>
+                              </div>
+                            </div>
+                            <!--/*
+                            <div class="offsetStack-y ruledHeading ruledHeading_secondary text-secondary">или</div>
+                            <div class="offsetStack-y">
+                              <button onclick="window.location.replace('/login/facebook');" class="button ffab before bordered fa-facebook primary expanded" type="button">Войти через Facebook</button>
+                            </div>
+                            */-->
+                          </div>
+                          <div class="hide" id="registration-form-step-2" data-toggler=".hide">
+                            <div class="offsetStack-y text-left">
+                              <p>
+                                <input class="styledTextInput" id="registration-nickname" type="text" placeholder="Псевдоним" name="nickname" title="Другие пользователи сервиса будут видеть Вас под этим псевдонимом">
+                              </p>
+                              <p>
+                                <input class="styledTextInput" id="registration-phone" type="tel" placeholder="Телефон" name="phone" data-mask="00/00/0000">
+                              </p>
+                              <p>
+                                <input class="styledTextInput" id="registration-password" type="password" placeholder="Пароль" name="password">
+                              </p>
+                              <p>
+                                <input class="styledTextInput" id="registration-confirm-password" type="password" placeholder="Подтвердите пароль" name="confirm-password">
+                              </p>
+                            </div>
+                            <div class="offsetStack-y text-left">
+                              <p><strong>Укажите пол:</strong></p>
+                              <p>
+                                <input class="styledRadio" id="registration-form-gender-male" type="radio" name="gender" value="male">
+                                <label class="text-size-large" for="registration-form-gender-male">Мужчина</label>
+                              </p>
+                              <p>
+                                <input class="styledRadio" id="registration-form-gender-female" type="radio" name="gender" value="female">
+                                <label class="text-size-large" for="registration-form-gender-female">Женщина</label><span class="form-error">Нам важно знать это из-за разного кроя одежды</span>
+                              </p>
+                            </div>
+                            <div class="offsetStack-y row align-left text-left">
+                              <div class="columns">
+                                <input class="styledCheckbox" id="registration-form-agreement" type="checkbox" name="agreement" data-toggle="registration-form-submit-button">
+                                <label class="text-size-large" for="registration-form-agreement" style="line-height: 1;"><span class="text-size-x-small">Заполняя данные, вы принимаете <a class="text-underlined" href="/info/oferta">Условия использования</a></span></label><span class="form-error offset-y_tiny">Примите условия или уходите</span>
+                              </div>
+                            </div>
+                            <div class="offsetStack-y row align-center">
+                              <div class="medium-8 columns">
+                                <button class="button large expanded" id="registration-form-submit-button" type="button">Зарегистрироваться</button>
+                              </div>
+                            </div>
+                            <div class="offsetStack-y row align-center">
+                              <div class="shrink column"><a class="text-underlined" href="javascript://" data-toggle="registration-form-step-1 registration-form-step-2">Назад</a>
+                                <div class="offset-y_tiny text-secondary text-size-x-small" style="display: block;">
+                                  <p>Чтобы проверить E-mail, перейдите к предыдущему шагу</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li><a href="#" title="ПОдписаться" data-mfp-src="#subscribe-popup">Подписка</a>
+        <div class="mfp-hide" id="subscribe-popup">
+          <div class="row align-center">
+            <div class="column medium-uncollapse-selfStacked">
+              <div class="authPopup mfp-content-inner">
+                <div class="authPopup-alternateBackground" style="background-image: url('/images/blurred-clothes.jpg');" th:style="|background-image: url('@{/images/blurred-clothes.jpg}')|"></div>
+                <button class="mfp-close" type="button" title="Закрыть">×</button>
+                <div class="row collapse large-unstack">
+                  <div class="large-4 xlarge-7 columns authPopup-backgroundImage" style="background-image: url('/images/bags-pattern.jpg');" th:style="|background-image: url('@{/images/bags-pattern.jpg}')|"></div>
+                  <div class="column text-center">
+                    <div class="row align-center">
+                      <div class="medium-10 columns">
+                        <form class="form" id="subscription_form" action="#">
+                          <div class="offsetStack-y">
+                            <h1 class="text-uppercase h5">
+                              <div class="show-for-small-only row align-center">
+                                <div class="small-10 columns"><img src="images/logo-white.svg" alt="Oskelly - Luxury Resale Store" th:src="@{/images/logo-white.svg}"></div>
+                              </div><span class="hide-for-small-only">Подписка на новости</span>
+                            </h1>
+                          </div>
+                          <div class="offsetStack-y">
+                            <p>
+                              <input class="styledTextInput" id="subscription-email" type="email" placeholder="Email" name="email">
+                            </p>
+                            <p>
+                              <input class="styledTextInput" id="subscription-name" type="text" placeholder="Имя" name="name">
+                            </p>
+                          </div>
+                          <div class="offsetStack-y row align-center">
+                            <div class="medium-8 columns">
+                              <button class="button expanded authPopup-authButton" id="subscription_button" type="button">Подписаться</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <ul class="menu columns hide" sec:authorize="isAuthenticated()" th:class="${'menu columns'}">
+      <li class="is-icon"><a class="headerPanel-cart" href="cart.html" title="Корзина" th:href="@{/cart}">Корзина<span class="badge headerPanel-badge" data-cart-size th:text="${cartSize}?: 0" th:classappend="${cartSize == 0}? 'hide'">10</span></a></li>
+      <li class="is-icon"><a class="headerPanel-profile" href="profile.html" title="Профиль" th:href="@{/account}">Профиль</a></li>
+      <li class="is-icon"><a class="headerPanel-favorites" href="#" title="Wish List" th:href="@{/account/wishlist}">WishList</a></li>
+      <!--/* FIXME  стили в шаблоне !!! */-->
+      <li class="is-icon" style="width: 21px;">
+        <a class="headerPanel-messages" href="#" title="Уведомления" th:href="@{/account/notifications}">Уведомления
+          <span class="badge headerPanel-badge" th:if="${notifications} > 0" th:text="${notifications}">10</span>
+        </a>
+      </li>
+      <li class="is-icon"><a class="headerPanel-logout" href="/logout" title="Выход">Выход</a></li>
+    </ul>
+  </div>
+  <div class="column hide-for-large">
+    <div class="row" sec:authorize="isAuthenticated()">
+      <ul class="columns menu align-right">
+        <li><a class="headerPanel-cart mobileCart" href="cart.html" title="Корзина" th:href="@{/cart}"><span class="badge headerPanel-badge" data-cart-size th:text="${cartSize}?: 0" th:classappend="${cartSize == 0}? 'hide'">0</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <form action="/products" class="mobileSearch hide-for-middle" id="mobileSearch">
+    <div class="typeahead__container searchHints">
+      <div class="typeahead__field"><span class="typeahead__query">
+          <input id="mobileSearchField" type="search" name="search" placeholder="Поиск" size="10" autocomplete="off"></span><span class="typeahead__button">
+          <button type="submit"><span class="typeahead__search-icon"></span></button></span></div>
+    </div>
+  </form>
+</div>

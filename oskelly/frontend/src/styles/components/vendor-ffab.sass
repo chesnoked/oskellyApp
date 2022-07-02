@@ -1,0 +1,27 @@
+.ffab
+	&::before,
+	&::after
+		font-family: FontAwesome
+		font-weight: normal
+		font-style: normal
+	&.bordered
+		&::after
+			opacity: 0.1
+			border-color: black
+		// &,
+		&.before
+			&::after
+				border-left: 0
+		&.after
+			&::after
+				border-right: 0
+	&:hover
+		&:not(.disabled),
+		&:not(.static)
+			// &,
+			&.before
+				&::after
+					margin-left: -2px
+			&.after
+				&::after
+					margin-right: -2px

@@ -1,0 +1,29 @@
+{
+  "id": 3660,
+  "type": "hold",
+  "order_id": "19",
+  "terminal_id": "00049687",
+  "token": "BA:07:D3:CB:BC:37:82:4C:97:06:93:F3:A5:64:DF:F8",
+  "request_date": "2017-05-14T01:09:20+10:00",
+  "amount": {
+    "value": 3800.00,
+    "currency": "RUB"
+  },
+  "source_card": {
+    "masked_number": "5543XXXXXXXX6654",
+    "payment_system": "unknown"
+  },
+  "status": {
+    "type": "hold_wait",
+    "error_description": "Approved"
+  },
+  "ref_set": {
+    "auth_code": "740407",
+    "ret_ref_number": "713392003056"
+  },
+  "trans_date": "2017-05-13T18:10:07+03:00",
+  "callback_url": "http://oskelly.ml/api/v1/acquiers/mdm/callback",
+  "return_url": "http://localhost:8080/orders/19",
+  "signature": "63CC1457CE3B7CC2085C25AC3824C036F4D0ADC7911625C40231257427D2CDC1",
+  "recurring": false
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html
+		xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="details_photos">
+	<form th:action="@{/publication/photos/upload}" method="post" class="dropzone needsclick dz-clickable"
+		  id="photo-upload">
+		<input type="hidden" name="productId" th:value="${productId}"/>
+		<div class="dz-message needsclick">
+			Drop files here or click to upload.
+		</div>
+	</form>
+	<div id="product-photos">
+	</div>
+	<div>
+		<button class="publication-back">Назад</button>
+		<button class="publication-next">Далее</button>
+	</div>
+</div>
+</body>
+</html>

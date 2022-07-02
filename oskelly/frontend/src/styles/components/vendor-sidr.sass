@@ -1,0 +1,111 @@
+$sidebar-width: 260px
+$sidebar-width-neg: -$sidebar-width
+.sidr
+  -webkit-overflow-scrolling: touch
+  &-open
+    overflow: hidden
+    position: fixed
+  @at-root :root:root:root #{&}
+    @media screen and (min-width: $topBar-breakpoint)
+      display: none
+    display: block
+    position: fixed
+    top: 0
+    bottom: 0
+    z-index: 48
+    border-right: 1px solid hsl(0, 0%, 70%)
+    background-color: hsl(0, 0%, 91%)
+    width: $sidebar-width
+    height: auto
+    overflow-x: hidden
+    overflow-y: auto
+    &.right
+      right: $sidebar-width-neg
+      left: auto
+
+    &.left
+      right: auto
+      left: $sidebar-width-neg
+
+    &,
+    a
+      color: black
+
+    $menu-item-padding: 0.7rem 0.7rem
+    .menu
+      > li
+        position: relative
+        padding: 0 0.5rem
+        > a
+          padding: $menu-item-padding
+          &:hover
+            text-decoration: none
+            > .decorate
+              text-decoration: underline
+          .badge
+            right: 10em
+            margin-top: -0.2em
+            margin-left: auto
+      .additional
+        margin-top: 1rem
+        a
+          position: relative
+          margin-left: 1.5em
+          color: #555555
+          font-size: 0.9em
+          &::before
+            position: absolute
+            left: -1em
+            color: #aeaeae
+            font-size: 0.9em
+            content: '►'
+        + .additional
+          margin-top: 0
+          &:last-of-type
+            margin-bottom: 1rem
+
+    input
+      margin: 0.5rem 0
+      box-shadow: none
+      background: transparent
+      padding: $menu-item-padding
+
+    .sidr-inner > *
+      border-bottom: 1px solid hsl(0, 0%, 90%)
+      background-color: white
+      padding: 0.5rem 0
+
+    &-aside-hide-on-large
+      @media (min-width: 578px)
+        display: none
+  .is-accordion-submenu-parent
+    > a
+      position: relative
+      padding-right: 1em
+      &::after
+        content: '+'
+        absolute: top 50% right
+        size: 1em
+        margin-top: -0.5em
+    &[aria-expanded='true']
+      > a
+        &::after
+          content: '\2013'
+  .is-accordion-submenu
+    &.is-active
+      visibility: visible
+    &-item
+      @at-root :root:root:root:root &
+        padding-right: 0
+
+#mobileNav
+  @media screen and (min-width: $topBar-breakpoint)
+    display: none
+//.mobileNav
+//	&-drilldown
+//		&-wrapper
+//			> .is-drilldown
+				// Sometimes, Foundation Drilldown can't get it's height from hidden Sidr menu. In that case, let's our menu will be so high to show all root items in it. If it will contain more items in deep levels of Drilldown, height will be calculated as it should.
+				//min-height: 450px
+				//overflow: visible !important
+				//max-width: 100% !important

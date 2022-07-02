@@ -1,0 +1,130 @@
+.is-active
+  %cataloguePage-widget-title-toggle
+    @include breakpoint(medium down)
+      content: '—'
+    content: attr(data-l10n-collapse)
+
+\:last-child > %accordion-last-child:last-child,
+\:last-child:not(.is-active) > %accordion-last-child-title
+  border-bottom: 0
+
+.cataloguePage
+  .siteSlogan
+    +breakpoint(small only)
+      @at-root :root:root:root &
+        margin-bottom: 0
+  &-toggleFilterButtons
+    display: flex
+    flex-flow: row
+    width: 100%
+    margin-bottom: 1rem
+  &-toggleFilterButton
+    @at-root :root:root &
+      border-color: $medium-gray
+    flex-basis: 50%
+    border: 1px solid
+    border-x-width: 0
+    font-weight: 600
+    text-transform: uppercase
+    font-size: 0.6rem
+    & + &
+      border-left-width: 1px
+    &,
+    select
+      text-align: center
+    select
+      width: auto
+      border: 0
+      margin-x: auto
+      margin-bottom: 0
+      &:focus
+        box-shadow: none
+    .SumoSelect
+      .CaptionCont
+        padding-y: 0.6rem
+        @at-root :root:root:root &
+          height: 100%
+          margin: 0
+          &,
+          &:focus,
+          &:hover
+            border: 0 !important
+            box-shadow: none
+        > span
+          white-space: initial
+          line-height: 1.2
+          padding-right: 0.3em
+      .optWrapper
+        top: 100%
+        margin-left: -1px
+        width: calc(100% + 2px)
+        > .options
+          li
+            label
+              white-space: initial
+  .widget
+    position: relative
+    margin-bottom: 1.5rem
+    border-bottom: 1px solid hsl(0, 0%, 80%)
+    padding-bottom: 1rem
+    &.is-active
+      %widgetResetButton_hidden
+        display: block
+    &-title
+      @extend %accordion-last-child-title
+      border: 0
+      padding-top: 0
+      padding-bottom: 0
+      &:hover
+        background: transparent
+        text-decoration: none
+      &::before
+        @extend %cataloguePage-widget-title-toggle
+        @include breakpoint(medium down)
+          content: '+'
+        color: black
+        content: attr(data-l10n-expand)
+      &-heading
+        text-transform: uppercase
+        color: black
+        font-size: 1.1rem
+        font-weight: bold
+    &-resetButton
+      @extend %widgetResetButton_hidden
+      display: none
+      position: absolute
+      top: 1.7rem
+      right: 1rem
+      z-index: 1
+      color: hsl(0, 0%, 53.3%)
+      font-size: 0.75rem
+    &-content
+      @extend %accordion-last-child
+      border: 0
+      max-height: 300px
+      overflow: auto
+  &-title
+    margin-bottom: 1.5rem
+    &-category
+      line-height: 1.2
+      font-family: $font-family-serif-sc
+      font-size: 1.8rem
+      text-transform: uppercase
+  &-titleRow
+    margin-top: -0.5rem
+    select
+      border-color: transparent
+      text-transform: uppercase
+
+.featuredBox
+  &-title
+    margin-top: 0.5em
+    text-align: center
+    font-size: 1.4rem
+    font-weight: bold
+  img
+    width: 100%
+
+.goodsGrid
+  max-width: 100vw
+  margin-bottom: 5rem

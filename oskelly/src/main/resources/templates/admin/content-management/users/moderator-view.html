@@ -1,0 +1,58 @@
+<div th:fragment="moderator-view (moderator)">
+	<div th:fragment="moderator-reveal" class="reveal" th:object="${moderator}" th:id="'moderator-view-'+*{id}"
+		 th:data-user-id="*{id}"
+		 data-animation-in="slide-in-right fast"
+		 data-multiple-opened="true"
+		 data-reveal data-close-on-click="false"
+		 data-reset-on-close="true">
+		<div class="row offsetStack-y">
+			<div class="columns small-12 user-info-block">
+				<img id="avatar-img" src="http://placehold.it/200x200&text=Profile"/>
+				<div>
+					<div>
+						<span class="bold">USER ID: </span>
+						<span class="modal-user-id" th:text="*{id}">xxxxxx</span>
+					</div>
+					<div>
+						<span class="bold">Ник: </span>
+						<span class="modal-nickname" th:text="*{nickname}">xxxxxx</span>
+					</div>
+					<div>
+						<span class="bold">ФИО: </span>
+						<span class="modal-name" th:text="*{name}"></span>
+					</div>
+					<div>
+						<span class="bold">email: </span>
+						<span class="modal-email" th:text="*{email}"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="authorities-block">
+			<div class="row offsetStack-y" th:each="authority: *{authorities}" th:object="${authority}">
+				<div class="columns switch-container">
+					<div class="switch">
+						<input th:id="'user_'+${moderator.id}+'_'+${#ids.seq('authority_')}" class="switch-input"
+							   th:data-authority-id="*{id}"
+							   type="checkbox"
+							   th:checked="*{checked} ?: _"
+							   th:name="*{name}"/>
+						<label class="switch-paddle"
+							   th:for="'user_'+${moderator.id}+'_'+${#ids.prev('authority_')}"> </label>
+					</div>
+					<span class="authority-label" th:text="*{description}">{authority.description}</span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="column">
+				<button class="button fullWidth reveal-save" type="button"
+						th:disabled="${canEditPermissions != null && !canEditPermissions}">Сохранить
+				</button>
+			</div>
+			<div class="column">
+				<button class="button fullWidth reveal-cancel" type="button">Отмена</button>
+			</div>
+		</div>
+	</div>
+</div>

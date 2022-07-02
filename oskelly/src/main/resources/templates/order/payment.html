@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{new/layout}"
+      th:with="pageStyle='orderPage'">
+
+<!--/*@thymesVar id="order" type="su.reddot.domain.service.order.view.OrderView"*/-->
+
+  <body>
+    <main role="main" layout:fragment="content">
+      <div class="row large-unstack">
+        <main class="column">
+          <div class="offsetStack-y row column">
+            <ul class="progressBar">
+              <li class="progressBar-item">Корзина</li>
+              <li class="progressBar-item">Заказ</li>
+              <li class="progressBar-item is-active">Оплата</li>
+              <li class="progressBar-item">Статус заказа</li>
+            </ul>
+          </div>
+          <div class="row align-center align-middle offset-y_large text-center" th:data-order="${order.id}">
+            <div class="shrink column">
+              <div class="fa fa-pulse fa-spinner fa-4x text-medium-gray"></div>
+              <p class="text-size-small text-secondary" th:text="${order.state}">Платеж выполняется</p>
+              <p class="text-size-small text-secondary">
+                <a href="#" title="Перейти к оплате" class="text-underlined" data-submit-payment>
+                  Повторно перейти к оплате
+                </a>
+              </p>
+            </div>
+          </div>
+        </main>
+        <aside class="large-4 xlarge-3 columns">
+          <div class="bg-light-gray text-center offset-y_small_fill offsetStack-y">
+            <div class="text-size-small">Свяжитесь с нами</div>
+            <div class="text-size-large"><strong class="nowrap">8 (800) 707-53-08</strong></div>
+            <div class="text-size-small"><a href="mailto:info@oskelly.ru" title="Написать письмо на адрес info@oskelly.ru">info@oskelly.ru</a></div>
+          </div>
+          <section class="offsetStack-y">
+            <h5 class="text-strong text-uppercase">Доставка</h5>
+            <div class="text-size-smaller">
+              <p>Доставка заказов OSKELLY осуществляется в рабочие дни. Срок доставки рассчитывается автоматически при оформлении заказа и составляет до 5 рабочих дней с момента подтверждения заказа продавцом.  <a class="text-underlined" href="/info/dostavka-i-vozvrat" title="Узнать подробнее о доставке товаров Oskelly">Узнать подробнее</a></p>
+            </div>
+          </section>
+          <section class="offsetStack-y">
+            <h5 class="text-strong text-uppercase">Оплата</h5>
+            <div class="text-size-smaller">
+              <p>Оплата производится при оформлении заказа. Расчет осуществляется банковскими картами Visa и MasterCard. Безопасность сделки и доставки покупок гарантируем мы, страховая компания и наш банк-партнер. <a class="text-underlined" href="/info/oplata" title="Условия Оплаты Oskelly">Узнать подробнее</a></p>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </main>
+  </body>
+
+  <div layout:fragment="custom-scripts">
+    <script src="/js/order/client.js"></script>
+    <script src="/js/order/page.js"></script>
+  </div>
+</html>

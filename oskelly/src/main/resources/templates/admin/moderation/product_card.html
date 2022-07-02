@@ -1,0 +1,79 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="product_card (products)">
+<div class="row" style="border-bottom: 02px dotted #ececec; margin-top: 5px"
+	 th:each="product : ${pageWithProducts.products}"
+	 th:object="${product}">
+
+	<div class="columns large-2 text-center">
+		<a href="#" th:href="@{'/products/' + *{product.id}}" th:target="_blank">
+			<img src="http://placehold.it/300x400&text=Product"
+				 th:src="*{primaryImage != null and primaryImage.thumbnailUrl != null}? *{primaryImage.thumbnailUrl} : _">
+		</a>
+	</div>
+	<div class="columns">
+		<div class="row small-up-2">
+			<div class="columns" th:text="*{'#PID: ' + product.id}"></div>
+		</div>
+		<div class="row">
+			<div class="columns" th:text="*{'Артикул: ' + ((product.vendorCode != null) ? product.vendorCode : 'Не указан')}"></div>
+		</div>
+		<div class="row">
+			<div class="columns">
+				Продавец: <a target="_blank" th:text="*{product.seller.email}" th:href="*{'/admin/users/' + product.seller.id}"></a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="columns">
+				<span><u>Дата отправки на модерацию:</u> <span th:text="*{product.sendToModeratorTime}"></span></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="columns" th:text="*{'Раздел: ' + fullPath}"></div>
+		</div>
+		<div class="row">
+			<div class="columns" th:text="*{'Бренд: ' + product.brand.name}"></div>
+		</div>
+		<div class="row">
+			<div class="columns">Формат продажи: Standart</div>
+		</div>
+		<div class="row">
+			<div class="columns" th:text="*{'Тип размера: ' + ((product.sizeType != null) ? product.sizeType.description : 'Не указан')}"></div>
+		</div>
+		<div class="row">
+			<div class="columns" th:text="*{'Статус: ' + product.productState.description}"></div>
+		</div>
+		<div class="row">
+			<div class="columns">
+				<a class="button edit-page-button" target="_blank" th:href="*{'/admin/moderation/' + product.id}">Редактировать</a>
+			</div>
+		</div>
+	</div>
+	<div class="column small-6">
+		<table>
+			<thead>
+			<tr>
+				<th>Размер</th>
+				<th>Кол-во</th>
+				<th>Цена</th>
+				<th>С комиссией</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="productSizeMapping : *{productSizeMappings}">
+				<td th:text="${productSizeMapping.size != null && product.product.sizeType != null ? productSizeMapping.size.getBySizeType(product.product.sizeType) : 'Не указан'}">IT-43</td>
+				<td th:text="${productSizeMapping.count}">1</td>
+				<td th:if="${productSizeMapping.price != null}" th:text="${productSizeMapping.price + ' ₽'}">127 000 р</td>
+				<td th:if="${productSizeMapping.price == null}">Не указана</td>
+				<td th:if="${productSizeMapping.priceWithCommission != null}" th:text="${productSizeMapping.priceWithCommission + ' ₽'}">127 000 р</td>
+				<td th:if="${productSizeMapping.priceWithCommission == null}">Не указана</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>
+
+</body>
+</html>

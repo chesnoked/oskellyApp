@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:remove="all">Запрос на снижение цены товара</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <p>
+      Пользователь хочет купить ваш товар <strong th:text="${productName}">Название товара</strong>
+      и предлагает снизить на него цену до <strong th:text="${offeredPrice}">1</strong> ₽.
+      <a href="#" th:href="${resource}">Подтвердите или отклоните</a> предложение.
+    </p>
+  </body>
+</html>

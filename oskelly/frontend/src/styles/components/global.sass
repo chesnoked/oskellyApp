@@ -1,0 +1,56 @@
+.show-for-touch
+	display: none
+	@at-root .touch &
+		display: initial
+	@at-root .no-touch &
+		display: none
+.hide-for-touch
+	display: none
+	@at-root .touch &
+		display: none
+	@at-root .no-touch &
+		display: initial
+.siteWrapper
+	max-width: 100vw
+	overflow-x: hidden
+	-webkit-overflow-scrolling: touch
+a
+	&:hover
+		text-decoration: underline
+.icon
+	margin-top: -0.15em
+	&,
+	> svg
+		width: 1em
+		height: 1em
+	> svg
+		position: relative
+		top: 0.1em
+.hr
+	&_black
+		border-color: black
+	&_no
+		&-top
+			margin-top: 0
+		&-bottom
+			margin-bottom: 0
+.dottedBorder
+	$color: #888888
+	background:
+		image: linear-gradient(to right, $color 33%, rgba($color, 0) 0%)
+		position: bottom
+		size: 7px 1px
+		repeat: repeat-x
+.boldLabel
+	font-weight: bold
+	text-transform: uppercase
+	white-space: nowrap
+	&::before,
+	&::after
+		white-space: nowrap
+	&::before
+		content: ' ['
+		margin-right: 0.25em
+	&::after
+		content: '] '
+		margin-left: 0.25em

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="/scripts/index.js" defer></script>
+</head>
+
+<body>
+<ul class="menu columns">
+    <li class="is-icon" th:fragment="cart">
+        <a class="header_panel_cart" href="#" data-toggle="cart-dropdown" title="Корзина">Корзина
+            <span id="cart-size" class="badge header_panel_badge"
+                  th:text="${cart}? ${#lists.size(cart.items)} : _">0</span>
+        </a>
+
+        <div class="dropdown-pane" id="cart-dropdown" data-dropdown data-auto-focus="true">
+
+            <!--/*/ <th:block th:if="${cart}"> /*/-->
+
+            <!--/*/ <th:block th:each="item : ${cart.items}"> /*/-->
+            <div class="row align-middle">
+                <div class="shrink columns">
+                    <img class="thumbnail" src="http://placehold.it/40x40" th:src="${item.imageUrl}?: _" width="40" height="40">
+                </div>
+                <div class="small-6 columns">
+                    <strong th:if="${item.brandName}" th:text="${item.brandName}">Бренд товара</strong>
+                    <em th:text="${item.productName}">Название товара</em>
+                </div>
+                <div class="small-1 columns">
+                    <p th:text="${item.productPrice}">Цена</p>
+                </div>
+                <div class="columns text-right">
+                    <a href="#" th:data-cart-item="${item.itemId}">X</a>
+                </div>
+            </div>
+            <hr>
+            <!--/*/ </th:block> /*/-->
+
+            <div class="row align-justify">
+                <div class="small-3 columns">
+                    <p>Итого</p>
+                </div>
+                <div class="small-3 columns">
+                    <strong th:text="${cart.totalPrice}">Итого</strong>
+                </div>
+            </div>
+
+            <div class="row column">
+                <a href="/cart" class="button">Оформить заказ</a>
+            </div>
+            <!--/*/ </th:block> /*/-->
+
+            <p th:unless="${cart}">Нет товаров</p>
+        </div>
+    </li>
+</ul>
+
+</body>
+</html>

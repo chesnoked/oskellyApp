@@ -1,0 +1,14 @@
+<div th:each="attribute: ${publicationGridInfo.attributes}">
+	<label th:text="${attribute.name}"></label>
+	<select class="js-select" data-search="data-search" name="attribute">
+		<option selected="selected" class="is-placeholder" disabled="disabled">Выберите</option>
+		<option th:each="value: ${attribute.values}" th:value="${value.id}" th:text="${value.value}">title</option>
+	</select>
+</div>
+<div th:style="${publicationGridInfo.sizeTypes.size() == 1 and publicationGridInfo.sizeTypes[0].name == 'NO_SIZE'}? 'display: none'">
+	<label>Тип размера</label>
+	<select class="js-select" data-search="data-search" name="sizeType" id="sizeTypeSelect">
+		<option th:selected="${publicationGridInfo.sizeTypes.size() != 1}" selected="selected" class="is-placeholder" disabled="disabled">Выберите</option>
+		<option th:selected="${publicationGridInfo.sizeTypes.size() == 1}" th:each="sizeType: ${publicationGridInfo.sizeTypes}" th:value="${sizeType.name}" th:text="${sizeType.displayName}">title</option>
+	</select>
+</div>

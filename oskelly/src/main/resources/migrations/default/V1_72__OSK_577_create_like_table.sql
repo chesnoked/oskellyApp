@@ -1,0 +1,7 @@
+CREATE TABLE "like"(
+	id BIGSERIAL PRIMARY KEY,
+	user_id BIGINT REFERENCES "user"(id) NOT NULL,
+	product_id BIGINT REFERENCES product(id) NOT NULL,
+	create_time TIMESTAMPTZ NOT NULL,
+	dtype TEXT NOT NULL
+)

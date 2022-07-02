@@ -1,0 +1,194 @@
+$productAddHint-width: 200px
+$productAddTabsContentOffsetX: 2rem
+.productAddPage
+	.siteSlogan
+		border: 0
+		padding: 0
+		height: 0
+		overflow: hidden
+		font-size: 0
+		+breakpoint(medium down)
+			@at-root :root:root &
+				margin-bottom: 0
+	&-unsaved
+		+breakpoint(small only)
+			background-color: $light-gray
+			border-y: 1px solid $dark-gray
+			padding-y: 1.25rem 1rem
+	&-styledCheck
+		&-container
+			&_large
+				+breakpoint(small only)
+					font-size: 1.5rem
+			label
+				color: $secondary-color
+				transition: color 0.3s
+				will-change: transition
+				&:hover
+					color: black
+				+breakpoint(small only)
+					font-size: 1.2rem
+					line-height: 1.3
+					margin-bottom: 0.5em
+			input
+				&:checked
+					+ label
+						color: black
+	&-formHeader
+	&-definedProduct
+		+breakpoint(medium down)
+			padding-top: 1rem
+			font-size: 2rem
+		p
+			+breakpoint(medium down)
+				font-size: 1.1rem
+	&-tabsTitles
+		$bp: medium down
+		+breakpoint($bp)
+			display: flex
+			flex-flow: row
+			background: transparent
+		&-title
+			+breakpoint($bp)
+				position: relative
+				flex: 1
+				margin-bottom: 2rem
+			&:not(:last-of-type)
+				@extend %tabsCounter-notLast
+			&:not(:first-of-type)
+				@extend %tabsCounter-notFirst
+			> a
+				+breakpoint($bp)
+					@at-root :root:root &
+						color: black
+						border-bottom: none
+				&:hover
+					+breakpoint($bp)
+						@at-root :root:root &
+							background: transparent
+			&.is-active
+				> a
+					+breakpoint($bp)
+						@at-root :root:root &
+							background: transparent
+				%tabsCounter-active
+					+breakpoint($bp)
+						background: black
+						color: white
+				%tabsTitle-active
+					+breakpoint($bp)
+						opacity: 1
+						visibility: visible
+		&-counter
+			@extend %tabsCounter-active
+			+breakpoint($bp)
+				@at-root :root:root &
+					display: block
+					margin-x: auto
+				@media (max-width: 350px)
+					size: 2.5rem
+					line-height: 2.5rem
+				size: 3rem
+				line-height: 3rem
+				font-size: 1.2rem
+				text-align: center
+				border-radius: 100%
+				background: white
+			%tabsCounter-notLast &,
+			%tabsCounter-notFirst &
+				&::before,
+				&::after
+					@media (max-width: 650px)
+						width: 20%
+					@media (max-width: 550px)
+						width: 16%
+					@media (max-width: 450px)
+						width: 12%
+					@media (max-width: 350px)
+						width: 10%
+					absolute: top 50%
+					height: 1px
+					background-color: white
+					display: block
+			%tabsCounter-notLast &
+				&::before
+					+breakpoint($bp)
+						content: ''
+						right: 0
+			%tabsCounter-notFirst &
+				&::after
+					+breakpoint($bp)
+						content: ''
+						left: 0
+		&-caption
+			@extend %tabsTitle-active
+			+breakpoint($bp)
+				absolute: top 100% left 50%
+				transform: translateX(-50%)
+				opacity: 0
+				visibility: hidden
+				transition: opacity 0.3s
+				will-change: opacity
+				color: black
+				font-weight: normal
+				text-align: center
+			+breakpoint(small only)
+				font-size: 0.8rem
+				font-weight: light
+	.tabs
+		$gray: hsl(0, 0%, 59.6%)
+		border: 0
+		&-title
+			> a
+				display: flex
+				flex-flow: row
+				border: 0
+				color: $gray
+				background: transparent
+				font-weight: bold
+				font-size: 0.9rem
+				padding: 0.65rem
+					bottom: 0.5rem
+				border-bottom: 1px solid $gray
+				&:hover
+					text-decoration: none
+					background: rgba(black, 0.05)
+			&.is-active
+				> a
+					color: white
+					background: $gray
+			&-counter
+				display: inline-block
+				margin-right: 2em
+		&-content
+			+breakpoint(medium down)
+				border-x: 0
+			+breakpoint(xlarge up)
+				margin-right: calc(#{$productAddHint-width} + 2rem)
+				border-color: $gray
+				padding-x: $productAddTabsContentOffsetX
+			border-y: 0
+			.styledRadio,
+			.styledCheckbox
+				+ label
+					margin-left: 0
+			hr
+				border-color: $gray
+			h1, h2, h3, h4, h5, h6
+				margin-bottom: 0.65rem
+	// &-required
+	&-optional
+		font-weight: normal
+.productAddHint
+	@extend %productAddHint-visible
+	$offset: $tab-content-padding + $productAddTabsContentOffsetX*2
+	absolute: top -55px left calc(100% + #{$offset})
+	width: $productAddHint-width
+	opacity: 0
+	visibility: hidden
+	&-spot
+		position: relative
+		&:hover
+			%productAddHint-visible
+				opacity: 1
+				visibility: visible

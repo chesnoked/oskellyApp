@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{new/layout}"
+      th:with="pageStyle='orderPage'">
+<body>
+
+<main role="main" layout:fragment="content">
+    <div class="row large-unstack margin-from-header">
+        <main class="shrink column">
+            <div class="row column offsetStack-y">
+                <ul class="progressBar">
+                    <li class="progressBar-item is-active">Корзина</li>
+                    <li class="progressBar-item">Заказ</li>
+                    <li class="progressBar-item">Оплата</li>
+                    <li class="progressBar-item">Статус заказа</li>
+                </ul>
+            </div>
+
+            <div id="cart-container" class="offsetStack-y">
+                <div th:replace="cart/content :: content (${cart})"></div>
+            </div>
+
+            <!--/* на бэкенде такая функциональность пока еще не реализована-->
+            <div class="offsetStack-y_large row column">
+                <h3 class="h3 text-serif offset-y_fill">Wish List</h3>
+                <table class="unstriped orderPage-table">
+                    <thead>
+                    <tr>
+                        <th>Позиция</th>
+                        <th>Описание</th>
+                        <th class="show-for-medium">Размер</th>
+                        <th>Цена</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="orderPage-table-productPhoto"><img src="thumbnail" alt="kind brand"></td>
+                        <td class="orderPage-table-controlCell">
+                            <div class="offset-y_small">
+                                <div><strong class="text-uppercase">brand</strong></div>
+                                <div>kind</div>
+                                <div class="show-for-small-only nowrap">size</div>
+                            </div>
+                            <div class="orderPage-table-controlCell-controls">
+                                <button class="button hollow tight" type="button"><img class="icon" src="images/icons/cart.svg" th:src="@{/images/icons/cart.svg}" alt="Корзина"> Добавить в корзину
+                                </button>
+                            </div>
+                        </td>
+                        <td class="show-for-medium">
+                            <div class="offset-y_small">
+                                <p class="nowrap">size</p>
+                            </div>
+                        </td>
+                        <td class="orderPage-table-price">
+                            <div class="offset-y_small">
+                                <p class="nowrap">price</p>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="offsetStack-y_large offset-y_large row column">
+                <h3 class="h3 text-serif offset-y_fill">Недавно просмотренные</h3>
+                <table class="unstriped orderPage-table">
+                    <thead>
+                    <tr>
+                        <th>Позиция</th>
+                        <th>Описание</th>
+                        <th class="show-for-medium">Размер</th>
+                        <th>Цена</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="orderPage-table-productPhoto"><img src="thumbnail" alt="kind brand"></td>
+                        <td class="orderPage-table-controlCell">
+                            <div class="offset-y_small">
+                                <div><strong class="text-uppercase">brand</strong></div>
+                                <div>kind</div>
+                                <div class="show-for-small-only nowrap">size</div>
+                            </div>
+                            <div class="orderPage-table-controlCell-controls">
+                                <button class="button hollow tight" type="button"><img class="icon" src="images/icons/cart.svg" th:src="@{/images/icons/cart.svg}" alt="Корзина"> Добавить в корзину
+                                </button>
+                            </div>
+                        </td>
+                        <td class="show-for-medium">
+                            <div class="offset-y_small">
+                                <p class="nowrap">size</p>
+                            </div>
+                        </td>
+                        <td class="orderPage-table-price">
+                            <div class="offset-y_small">
+                                <p class="nowrap">price</p>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--*/-->
+        </main>
+        <aside class="large-4 xlarge-3 columns">
+            <div class="bg-light-gray text-center offset-y_small_fill offsetStack-y">
+                <div class="text-size-small">Свяжитесь с нами</div>
+                <div class="text-size-large"><strong class="nowrap">8 (800) 707-53-08</strong></div>
+                <div class="text-size-small"><a href="mailto:info@oskelly.ru" title="Написать письмо на адрес info@oskelly.ru">info@oskelly.ru</a></div>
+            </div>
+            <section class="offsetStack-y">
+                <h5 class="text-strong text-uppercase">Доставка</h5>
+                <div class="text-size-smaller">
+                    <p>Процесс доставки состоит из двух этапов: от продавца до офиса OSKELLY и от офиса OSKELLY до покупателя. Расчет стоимости и сроков доставки проходит индивидуально и зависит от того, насколько далеко продавец находится от покупателя.  <a class="text-underlined" href="/info/dostavka-i-vozvrat" title="Узнать подробнее о доставке товаров Oskelly">Узнать подробнее</a></p>
+                </div>
+            </section>
+            <section class="offsetStack-y">
+                <h5 class="text-strong text-uppercase">Оплата</h5>
+                <div class="text-size-smaller">
+                    <p>Оплата производится при оформлении заказа. Расчет осуществляется банковскими картами Visa и MasterCard. Безопасность сделки и доставки покупок гарантируем мы, страховая компания и наш банк-партнер. <a class="text-underlined" href="/info/oplata" title="Условия Оплаты Oskelly">Узнать подробнее</a></p>
+                </div>
+            </section>
+        </aside>
+    </div>
+
+</main>
+
+<div layout:fragment="custom-scripts">
+    <script th:src="|/js/cart/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+    <script th:src="|/js/cart/page.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+.topBarMenu
+  background-color: hsl(0, 0%, 91.8%)
+  font-size: 14px
+  &-size
+    height: 2.5rem
+  @media #{$topBar-range}
+    display: none
+    justify-content: space-between
+  .menu-text
+    padding: 0 .7rem 0 1rem
+    text-transform: uppercase
+    cursor: default
+    letter-spacing: .5px
+  &-guarantee
+    img
+      width: 16px
+      height: 11px
+  &-quality
+    img
+      width: 14px
+      height: 13px
+  &-payment
+    img
+      width: 20px
+      height: 14px
+  &-support
+    img
+      width: 13px
+      height: 13px
+  &-dropdown
+    font-size: 14px
+    padding: 0.5rem
+    top: 2rem!important
+    left: 0!important
+
+.siteSlogan
+  @at-root :root:root &
+    margin-bottom: 1rem
+    border: 0
+    padding: 0
+    height: 0
+    overflow: hidden
+    font-size: 0

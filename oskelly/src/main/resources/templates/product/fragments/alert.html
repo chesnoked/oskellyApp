@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!--/*@thymesVar id="template" type="su.reddot.domain.service.subscription.AlertTemplate"*/-->
+<!--/*@thymesVar id="size" type="su.reddot.domain.service.catalog.size.CatalogSize"*/-->
+<!--/*@thymesVar id="value" type="su.reddot.domain.service.catalog.size.SizeView"*/-->
+
+<div th:fragment="alert(template)">
+  <div class="row">
+    <div class="column small-12" data-alert>
+      <div class="row">
+        <div class="column small-12">
+          <button class="mfp-close" type="button" title="Закрыть">×</button>
+        </div>
+        <div class="column small-12">
+          <h4 class="h5 text-serif">Сообщить о наличии</h4>
+          <hr class="hr_black hr_no-top">
+        </div>
+      </div>
+      <div class="row">
+        <div class="column small-12 large-6">
+          <div class="row">
+            <div class="column small-12">
+              <label class="label-over" for="defineNotification-section">Раздел</label>
+              <select id="defineNotification-section" disabled>
+                <option value="woman" th:value="null" th:text="${template.parentCategories[0]}">Женское</option>
+                <!--/*-->
+                <option value="man">Мужское</option>
+                <!--*/-->
+              </select>
+            </div>
+            <div class="column small-12" th:data-category="${template.categoryId}">
+              <label class="label-over" for="defineNotification-category">Категория</label>
+              <select id="defineNotification-category" disabled>
+                <option value="1" th:value="null"
+                        th:text="${template.path}">
+                  Категория 1</option>
+                <!--/*-->
+                <option value="2">Категория 2</option>
+                <!--*/-->
+              </select>
+            </div>
+            <div class="column small-12" th:if="${template.parentCategories.size() > 2}">
+              <label class="label-over" for="defineNotification-subcategory">Подкатегория</label>
+              <select id="defineNotification-subcategory" disabled>
+                <option value="1" th:value="null" th:text="${template.categoryName}">Подкатегория 1</option>
+                <!--/*-->
+                <option value="2">Подкатегория 2</option>
+                <!--*/-->
+              </select>
+            </div>
+            <div class="column small-12">
+              <label class="label-over" for="defineNotification-brand">Бренд</label>
+              <select id="defineNotification-brand" data-brand disabled>
+                <option selected value="1"
+                        th:with="brand = ${template.brands[0]}"
+                        th:value="${brand.id}"
+                        th:text="${brand.name}">Бренд 1</option>
+                <!--/*-->
+                <option value="2">Бренд 2</option>
+                <!--*/-->
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="column small-12 large-6">
+          <div class="row">
+            <div class="column small-7">
+              <label class="label-over" for="defineNotification-size-type">Тип размера</label>
+              <select id="defineNotification-size-type" data-size-type th:disabled="${template.sizes == null}">
+                <option selected disabled th:text="${template.sizes}? _ : '―'">Любой</option>
+
+                <!--/*/<th:block th:if="${template.sizes}">/*/-->
+                <option value="1"
+                        th:each="size: ${template.sizes}"
+                        th:value="${size.sizeType.ordinal()}"
+                        th:text="|${size.sizeType.abbreviation}-${size.sizeType.description}|"
+                >
+                  RUS - Российский</option>
+                <!--/*/</th:block>/*/-->
+
+                <!--/*-->
+                <option value="2">INT - Международный</option>
+                <!--*/-->
+              </select>
+            </div>
+            <div class="column small-5">
+              <label class="label-over" for="defineNotification-size">Размер</label>
+              <select id="defineNotification-size" data-size th:disabled="${template.sizes == null}">
+                <option selected disabled th:text="${template.sizes}? _ : '―'">Любой</option>
+
+                <!--/*/<th:block th:if="${template.sizes}">/*/-->
+                <!--/* Внешний цикл - по типу размера, внутрений - по размерам внутри выбранного типа */-->
+
+                <!--/*/<th:block th:each="size: ${template.sizes}">/*/-->
+                <option value="1"
+                        th:each="value: ${size.values}"
+                        th:value="${value.id}"
+                        th:text="${value.name}"
+                        th:data-size-type="${size.sizeType.ordinal()}"
+                        th:class="hide"
+                >
+                Размер 1</option>
+                <!--/*/</th:block>/*/-->
+
+                <!--/*/</th:block>/*/-->
+
+                <!--/*-->
+                <option value="2">Размер 2</option>
+                <!--*/-->
+              </select>
+            </div>
+          </div>
+          <div class="row" th:each="attribute: ${template.attributes}">
+            <div class="column small-12">
+              <label class="label-over" for="defineNotification-material"
+                     th:for="|alert-attr-${attribute.id}|"
+                     th:text="${attribute.name}"
+              >Материал</label>
+              <select id="defineNotification-material" th:id="|alert-attr-${attribute.id}|" data-attr>
+                <option selected disabled >Неважно</option>
+                <option value="fabric"
+                        th:each="value: ${attribute.values}"
+                        th:value="${value.id}"
+                        th:text="${value.name}">
+                  Ткань</option>
+                <!--/*-->
+                <option value="cotton">Хлопок</option>
+                <option value="exotic-leather">Экзотическая кожа</option>
+                <option value="fur">Мех</option>
+                <option value="leather">Кожа</option>
+                <option value="patent-leather">Лакированная кожа</option>
+                <option value="polyester">Полиэстер</option>
+                <option value="silk">Шелк</option>
+                <option value="velvet">Бархат</option>
+                <option value="wool">Шерсть</option>
+                <option value="tweed">Твид</option>
+                <option value="other">Другое</option>
+                <!--*/-->
+              </select>
+            </div>
+          </div>
+          <!--/*-->
+          <div class="row">
+            <div class="column small-12">
+              <label class="label-over" for="defineNotification-color">Цвет</label>
+              <select id="defineNotification-color">
+                <option value="anthracite">Антрацит</option>
+                <option value="beige">Бежевый</option>
+                <option value="grey">Серый</option>
+                <option value="khaki">Хаки</option>
+                <option value="black">Черный</option>
+                <option value="blue">Синий</option>
+                <option value="red">Красный</option>
+                <option value="silver">Серебряный</option>
+                <option value="brown">Коричневый</option>
+                <option value="golden">Золото</option>
+                <option value="turquoise">Бирюзовый</option>
+                <option value="other">Другое</option>
+              </select>
+            </div>
+          </div>
+          <!--*/-->
+          <div class="row">
+            <div class="column small-12">
+              <label class="label-over" for="defineNotification-state">Состояние товара</label>
+              <select id="defineNotification-state" data-condition>
+                <option selected disabled>Любое</option>
+                <option value="1" th:each="c: ${template.conditions}" th:value="${c.id}" th:text="${c.name}">Состояние товара 1</option>
+                <!--/*-->
+                <option value="2">Состояние товара 2</option>
+                <!--*/-->
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row align-right">
+        <div class="column small-5 large-3">
+          <button class="button expanded" type="button" data-submit>Создать</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

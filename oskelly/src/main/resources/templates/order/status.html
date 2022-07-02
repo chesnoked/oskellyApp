@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{new/layout}"
+      th:with="pageStyle='orderPage'">
+<!--/*@thymesVar id="order" type="su.reddot.domain.service.order.view.OrderView"*/-->
+<!--/*@thymesVar id="item" type="su.reddot.domain.service.order.view.OrderItem"*/-->
+  <body>
+    <main role="main" layout:fragment="content">
+
+      <div class="row large-unstack">
+        <main class="column">
+          <div class="offsetStack-y row column">
+            <ul class="progressBar">
+              <li class="progressBar-item">Корзина</li>
+              <li class="progressBar-item">Заказ</li>
+              <li class="progressBar-item">Оплата</li>
+              <li class="progressBar-item is-active">Статус заказа</li>
+            </ul>
+          </div>
+          <div class="row align-justify offset-y align-middle medium-unstack">
+            <div class="column">
+                  <h2 class="offset-y_small text-size-x-large text-strong" th:text="|Заказ ${order.id}: ${order.state}|">Заказ 123456: оплачен</h2>
+            </div>
+          </div>
+              <h2 class="offset-y_small text-size-x-large text-strong">Товары в заказе:</h2>
+          <div class="offsetStack-y row column">
+            <table class="unstriped orderPage-table">
+              <thead>
+                <tr>
+                  <th>Позиция</th>
+                  <th>Описание</th>
+                  <th class="show-for-medium">Размер</th>
+                  <th>Цена</th>
+                </tr>
+              </thead>
+              <tbody>
+                          <tr th:each="item : ${order.items}" th:data-order-product="${item.productId}">
+                            <td class="dottedBorder orderPage-table-productPhoto"><a href="#" th:href="@{'/products/' + ${item.productId}}"><img alt="Категория Бренд" th:src="${item.imageUrl}?: _" th:alt="|${item.productName} ${item.brandName}|"></a></td>
+                            <td class="dottedBorder orderPage-table-controlCell">
+                              <div class="offset-y_small">
+                                <div><a href="#" th:href="@{'/products/' + ${item.productId}}"><strong class="text-uppercase" th:text="${item.brandName}">Бренд</strong></a></div>
+                                <div th:text="${item.productName}">Категория</div>
+                                <div class="show-for-small-only nowrap" th:text="${item.productSize}">Размер</div>
+                              </div>
+                              <div class="orderPage-table-controlCell-controls"></div>
+                            </td>
+                            <td class="dottedBorder show-for-medium">
+                              <div class="offset-y_small">
+                                <p class="nowrap" th:text="${item.productSize}">Размер</p>
+                              </div>
+                            </td>
+                            <td class="dottedBorder orderPage-table-price">
+                              <div class="offset-y_small">
+                                <p class="nowrap" th:text="|${T(su.reddot.presentation.Utils).prettyRoundToCents(item.productPrice)} ₽|">Текущая цена</p>
+                              </div>
+                            </td>
+                          </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row align-justify medium-uncollapse large-unstack">
+
+            <div class="shrink-at-medium-up columns" th:if="${order.appliedDiscount}">
+
+              <h5 class="text-strong offset-y_small">
+                  <span class="fa fa-check"> </span>Скидка применена
+              </h5>
+
+                <div class="input-group">
+                  <input class="input-group-field" type="text"
+                         style="margin-right: 10px;"
+                         th:value="${order.appliedDiscount.code}" disabled>
+                </div>
+
+                <dl class="inlineDescriptions">
+                  <div th:if="${order.appliedDiscount.optionalText}">
+                    <dd class="inlineDescriptions-description text-strong" th:text="${order.appliedDiscount.optionalText}"></dd>
+                  </div>
+                  <div>
+                    <dt class="inlineDescriptions-term text-secondary">Скидка</dt>
+                    <dd class="inlineDescriptions-description" th:text="${order.appliedDiscount.discountValue}"></dd>
+                  </div>
+                  <div th:if="${order.appliedDiscount.savingsValue}"> <!--/* необязательное значение */-->
+                    <dt class="inlineDescriptions-term text-secondary">Вы экономите</dt>
+                    <dd class="inlineDescriptions-description" th:text="|${order.appliedDiscount.savingsValue} ₽|">100 ₽</dd>
+                  </div>
+                </dl>
+            </div>
+
+            <div class="shrink-at-medium-up column">
+              <!--/* Не реализовано -->
+              <div class="offsetStack-y offset-x_tiny-at-small offset-y row align-right">
+                <div class="shrink column"><span>Способ доставки:</span> <strong>Самолётом</strong>
+                </div>
+              </div>
+              <!--*/-->
+              <div class="offsetStack-y">
+                <table class="orderPage-summary text-right unstriped text-size-large">
+                  <tr>
+                                <th class="text-secondary">Общая сумма заказа:</th>
+                                <td th:if="${order.appliedDiscount}">
+                                  <span class='productPage-productMeta-price_discounted' th:text="|${T(su.reddot.presentation.Utils).prettyRoundToCents(order.price)} ₽|">100 ₽</span> [[${order.appliedDiscount.updatedOrderAmount}]] ₽</td>
+                                <td th:unless="${order.appliedDiscount}" th:text="|${T(su.reddot.presentation.Utils).prettyRoundToCents(order.price)} ₽|">52 000 ₽</td>
+                  </tr>
+                  <tr>
+                                <th class="text-secondary">Стоимость доставки:</th>
+                                <td th:text="|${T(su.reddot.presentation.Utils).prettyRoundToCents(order.deliveryCost)} ₽|">0 ₽</td>
+                  </tr>
+                  <tr>
+                                <th class="text-secondary">Итого:</th>
+                                <td th:if="${order.appliedDiscount}">
+                                  <span class='productPage-productMeta-price_discounted' th:text="|${T(su.reddot.presentation.Utils).prettyRoundToCents(order.price.add(order.deliveryCost))} ₽|">100 ₽</span> [[${order.appliedDiscount.finalOrderAmount}]] ₽</td>
+                                <td th:unless="${order.appliedDiscount}" th:text="|${T(su.reddot.presentation.Utils).prettyRoundToCents(order.price.add(order.deliveryCost))} ₽|">52 000 ₽</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+              <h2 class="offset-y_small text-size-x-large text-strong">Доставка:</h2>
+          <div class="row bg-light-gray offset_tiny-at-small_fill offset-at-medium-up_fill offsetStack-y_large">
+            <div class="column">
+              <div class="row align-bottom align-justify medium-uncollapse">
+                <div class="column">
+                  <table class="unstriped">
+                    <tbody th:object="${order.deliveryRequisite}">
+                      <tr>
+                                    <th>Имя:</th>
+                                    <td th:text="*{deliveryName}">Ольга Иванова</td>
+                      </tr>
+                      <tr>
+                                    <th>Телефон:</th>
+                                    <td th:text="*{deliveryPhone}">8 (987) 654 32 10</td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                      </tr>
+                      <tr>
+                                    <th>Страна:</th>
+                                    <td th:text="*{deliveryCountry}">Россия</td>
+                      </tr>
+                      <tr>
+                                    <th>Город:</th>
+                                    <td th:text="*{deliveryCity}">Москва</td>
+                      </tr>
+                      <tr>
+                                    <th>Адрес:</th>
+                                    <td th:text="*{deliveryAddress}">Ватутина 14, 6</td>
+                      </tr>
+                      <tr>
+                                    <th>Индекс:</th>
+                                    <td th:text="*{deliveryZipCode}">121357</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <aside class="large-4 xlarge-3 columns">
+          <div class="bg-light-gray text-center offset-y_small_fill offsetStack-y">
+            <div class="text-size-small">Свяжитесь с нами</div>
+            <div class="text-size-large"><strong class="nowrap">8 (800) 707-53-08</strong></div>
+            <div class="text-size-small"><a href="mailto:info@oskelly.ru" title="Написать письмо на адрес info@oskelly.ru">info@oskelly.ru</a></div>
+          </div>
+          <section class="offsetStack-y">
+            <h5 class="text-strong text-uppercase">Доставка</h5>
+            <div class="text-size-smaller">
+              <p>Доставка заказов OSKELLY осуществляется в рабочие дни. Срок доставки рассчитывается автоматически при оформлении заказа и составляет до 5 рабочих дней с момента подтверждения заказа продавцом.  <a class="text-underlined" href="/info/dostavka-i-vozvrat" title="Узнать подробнее о доставке товаров Oskelly">Узнать подробнее</a></p>
+            </div>
+          </section>
+          <section class="offsetStack-y">
+            <h5 class="text-strong text-uppercase">Оплата</h5>
+            <div class="text-size-smaller">
+              <p>Оплата производится при оформлении заказа. Расчет осуществляется банковскими картами Visa и MasterCard. Безопасность сделки и доставки покупок гарантируем мы, страховая компания и наш банк-партнер. <a class="text-underlined" href="/info/oplata" title="Условия Оплаты Oskelly">Узнать подробнее</a></p>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </main>
+    <div layout:fragment="custom-scripts">
+      <script th:src="|/scripts/ga_events.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+      <script th:inline="javascript">
+        window.onload = function(){
+            var data = /*[[${orderInfoForGTM}]]*/ null;
+            ga_order_done(data);
+        }
+      </script>
+      <script th:inline="javascript" th:if="${#request.getParameter('stage') == 'done'}">
+          window.onload = function(){
+              fb_orderPayed();
+          }
+      </script>
+    </div>
+  </body>
+</html>

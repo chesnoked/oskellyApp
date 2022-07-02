@@ -1,0 +1,1584 @@
+[
+    {
+        "displayName": "Женское",
+        "urlName": "woman",
+        "attributes": ["Цвет"],
+        "singularName": "Женское",
+        "children": [
+            {
+                "displayName": "Сумки",
+                "urlName": "woman-bags",
+                "attributes": [ "Материал сумок"],
+                "singularName": "Сумка",
+                "children": [
+                    {
+                        "displayName": "Рюкзаки",
+                        "urlName": "woman-bags-backpacks",
+                        "singularName": "Рюкзак"
+                    },
+                    {
+                        "displayName": "Клатчи",
+                        "urlName": "woman-bags-clutchbags",
+                        "singularName": "Клатч"
+                    },
+                    {
+                        "displayName": "Сумки",
+                        "urlName": "woman-bags-bags",
+                        "singularName": "Сумка"
+                    },
+                    {
+                        "displayName": "Дорожные сумки",
+                        "urlName": "woman-bags-travelbags",
+                        "singularName": "Дорожная сумка"
+                    },
+                    {
+                        "displayName": "Косметички",
+                        "urlName": "woman-bags-cosmeticbags",
+                        "singularName": "Косметичка"
+                    },
+                    {
+                        "displayName": "Пляжные сумки",
+                        "urlName": "woman-bags-beachbags",
+                        "singularName": "Пляжная сумка"
+                    }
+                ]
+            },
+            {
+                "displayName": "Обувь",
+                "urlName": "woman-shoes",
+                "attributes": ["Материал обуви"],
+                "singularName": "Обувь",
+                "children": [
+                    {
+                        "displayName": "Ботильоны",
+                        "urlName": "woman-shoes-ankleboots",
+                        "singularName": "Ботильоны"
+                    },
+                    {
+                        "displayName": "Ботинки",
+                        "urlName": "woman-shoes-boots",
+                        "singularName": "Ботинки"
+                    },
+                    {
+                        "displayName": "Брогги и оксфорды",
+                        "urlName": "woman-shoes-brogues",
+                        "singularName": "Брогги / Оксфорды"
+                    },
+                    {
+                        "displayName": "Балетки",
+                        "urlName": "woman-shoes-balletflats",
+                        "singularName": "Балетки"
+                    },
+                    {
+                        "displayName": "Лоферы и слиперы",
+                        "urlName": "woman-shoes-loafers",
+                        "singularName": "Лоферы / слиперы"
+                    },
+                    {
+                        "displayName": "Сапоги",
+                        "urlName": "woman-shoes-highboots",
+                        "singularName": "Сапоги"
+                    },
+                    {
+                        "displayName": "Ботфорты",
+                        "urlName": "woman-shoes-jackboots",
+                        "singularName": "Ботфорты"
+                    },
+                    {
+                        "displayName": "Мокасины",
+                        "urlName": "woman-shoes-moccasins",
+                        "singularName": "Мокасины"
+                    },
+                    {
+                        "displayName": "Эспадрильи",
+                        "urlName": "woman-shoes-espadrilles",
+                        "singularName": "Эспадрильи"
+                    },
+                    {
+                        "displayName": "Слипоны",
+                        "urlName": "woman-shoes-sliponshoes",
+                        "singularName": "Слипоны"
+                    },
+                    {
+                        "displayName": "Туфли",
+                        "urlName": "shoes",
+                        "singularName": "Туфли",
+                        "children": [
+                            {
+                                "displayName": "Туфли на высоком каблуке",
+                                "urlName": "high-heeled-shoes",
+                                "singularName": "Туфли на высоком каблуке"
+                            },
+                            {
+                                "displayName": "Туфли на среднем каблуке",
+                                "urlName": "average-heeled-shoes",
+                                "singularName": "Туфли на среднем каблуке"
+                            },
+                            {
+                                "displayName": "Туфли на низком каблуке",
+                                "urlName": "low-heeled-shoes",
+                                "singularName": "Туфли на низком каблуке"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Свадебные туфли",
+                        "urlName": "wedding-shoes",
+                        "singularName": "Свадебные туфли",
+                        "children": [
+                            {
+                                "displayName": "Свадебные туфли на высоком каблуке",
+                                "urlName": "high-heeled-wedding-shoes",
+                                "singularName": "Свадебные туфли на высоком каблуке"
+                            },
+                            {
+                                "displayName": "Свадебные туфли на среднем каблуке",
+                                "urlName": "average-heeled-wedding-shoes",
+                                "singularName": "Свадебные туфли на среднем каблуке"
+                            },
+                            {
+                                "displayName": "Свадебные туфли на низком каблуке",
+                                "urlName": "low-heeled-wedding-shoes",
+                                "singularName": "Свадебные туфли на низком каблуке"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Босоножки",
+                        "urlName": "sandals",
+                        "singularName": "Босоножки",
+                        "children": [
+                            {
+                                "displayName": "Босоножки на высоком каблуке",
+                                "urlName": "high-heeled-sandals",
+                                "singularName": "Босоножки на высоком каблуке"
+                            },
+                            {
+                                "displayName": "Босоножки на низком каблуке",
+                                "urlName": "low-heeled-sandals",
+                                "singularName": "Босоножки на низком каблуке"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Мюли",
+                        "urlName": "woman-shoes-mules",
+                        "singularName": "Мюли"
+                    },
+                    {
+                        "displayName": "Сандалии",
+                        "urlName": "woman-shoes-sandals",
+                        "singularName": "Сандалии"
+                    },
+                    {
+                        "displayName": "Шлепанцы",
+                        "urlName": "woman-shoes-flipflops",
+                        "singularName": "Шлепанцы"
+                    },
+                    {
+                        "displayName": "Кроссовки",
+                        "urlName": "woman-shoes-sneakers",
+                        "singularName": "Кроссовки"
+                    }
+                ]
+            },
+            {
+                "displayName": "Одежда",
+                "urlName": "clothes",
+                "attributes": ["Материал одежды"],
+                "singularName": "Одежда",
+                "children": [
+                    {
+			            "displayName": "Верхняя одежда",
+                	    "urlName": "woman-outwear",
+               		    "singularName": "Верхняя одежда",
+                		"children": [
+				            {
+                        		"displayName": "Пальто",
+                       			 "urlName": "woman-outwear-coats",
+                       			 "singularName": "Пальто"
+                    		},
+                   		    {
+                       			"displayName": "Куртки",
+                       			"urlName": "woman-outwear-jackets",
+                        		"singularName": "Куртка"
+                   		    },
+                    		{
+                     		   	"displayName": "Тренчи и плащи",
+                     		   	"urlName": "woman-outwear-cloaks",
+                      		  	"singularName": "Тренч / Плащ"
+                    		},
+                    		{
+                    	    		"displayName": "Парки",
+                       			    "urlName": "woman-outwear-parkajackets",
+                    	    		"singularName": "Парка"
+                    		},
+                    		{
+                        		"displayName": "Пуховики",
+                        		"urlName": "woman-outwear-sneakers",
+                        		"singularName": "Пуховик"
+                    		},
+                    		{
+                        		"displayName": "Шубы",
+                        		"urlName": "woman-outwear-furcoats",
+                        		"singularName": "Шуба"
+                    		},
+                    		{
+                        		"displayName": "Жилеты",
+                        		"urlName": "woman-outwear-vests",
+                        		"singularName": "Жилет"
+                    		},
+                    		{
+                        		"displayName": "Накидки и пончо",
+                        		"urlName": "woman-outwear-capes",
+                        		"singularName": "Накидка / Пончо"
+                   		    },
+                    		{
+                       			"displayName": "Другое",
+                        		"urlName": "woman-outwear-other",
+                        		"singularName": "Другое"
+                    		}
+                	]
+                    },
+                    {
+                        "displayName": "Платья",
+                        "urlName": "dresses",
+                        "singularName": "Платье",
+                        "children": [
+                            {
+                                "displayName": "Платья макси",
+                                "urlName": "dresses-maxi",
+                                "singularName": "Платье макси"
+                            },
+                            {
+                                "displayName": "Платья миди",
+                                "urlName": "dresses-midi",
+                                "singularName": "Платье миди"
+                            },
+                            {
+                                "displayName": "Платья мини",
+                                "urlName": "dresses-mini",
+                                "singularName": "Платье мини"
+                            },
+                            {
+                                "displayName": "Вечерние платья",
+                                "urlName": "evening-dresses",
+                                "singularName": "Вечернее платье"
+                            },
+                            {
+                                "displayName": "Коктейльные платья",
+                                "urlName": "cocktail-dresses",
+                                "singularName": "Коктейльное платье"
+                            },
+                            {
+                                "displayName": "Свадебные платья",
+                                "urlName": "wedding-dresses",
+                                "singularName": "Свадебное платье"
+                            },
+                            {
+                                "displayName": "Другие платья",
+                                "urlName": "other-dresses",
+                                "singularName": "Платье"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Жакеты и пиджаки",
+                        "urlName": "woman-clothes-blazers",
+                        "singularName": "Жакет / Пиджак"
+                    },
+                    {
+                        "displayName": "Джинсы",
+                        "urlName": "woman-clothes-jeans",
+                        "singularName": "Джинсы",
+                        "attributes": ["Посадка"],
+                        "children": [
+                            {
+                                "displayName": "Расклешенные джинсы",
+                                "urlName": "flared-jeans",
+                                "singularName": "Джинсы клеш"
+                            },
+                            {
+                                "displayName": "Зауженные джинсы",
+                                "urlName": "skinny-jeans",
+                                "singularName": "Джинсы скинни"
+                            },
+                            {
+                                "displayName": "Прямые джинсы",
+                                "urlName": "straight-jeans",
+                                "singularName": "Прямые джинсы"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Комбинезон",
+                        "urlName": "woman-clothes-jumpsuits",
+                        "singularName": "Комбинезон"
+                    },
+                    {
+                        "displayName": "Трикотаж",
+                        "urlName": "woman-clothes-knitwear",
+                        "singularName": "Трикотаж",
+                        "children": [
+                            {
+                                "displayName": "Кардиганы",
+                                "urlName": "cardigans",
+                                "singularName": "Кардиган"
+                            },
+                            {
+                                "displayName": "Джемперы и свитеры",
+                                "urlName": "jumpers",
+                                "singularName": "Джемпер / свитер"
+                            },
+                            {
+                                "displayName": "Свитшоты",
+                                "urlName": "sweatshirts",
+                                "singularName": "Свитшот"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Шорты",
+                        "urlName": "woman-clothes-shorts",
+                        "singularName": "Шорты"
+                    },
+                    {
+                        "displayName": "Юбки",
+                        "urlName": "woman-clothes-skirts",
+                        "singularName": "Юбка",
+                        "children": [
+                            {
+                                "displayName": "Юбки макси",
+                                "urlName": "maxi-skirts",
+                                "singularName": "Юбка макси"
+                            },
+                            {
+                                "displayName": "Юбки миди",
+                                "urlName": "midi-skirts",
+                                "singularName": "Юбка миди"
+                            },
+                            {
+                                "displayName": "Юбки мини",
+                                "urlName": "mini-skirts",
+                                "singularName": "Юбка мини"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Топы",
+                        "urlName": "woman-clothes-tops",
+                        "singularName": "Топ",
+                        "children": [
+                            {
+                                "displayName": "Топы без рукавов",
+                                "urlName": "sleeveless-tops",
+                                "singularName": "Топ без рукавов"
+                            },
+                            {
+                                "displayName": "Топы с длинным рукавом",
+                                "urlName": "long-sleeve-tops",
+                                "singularName": "Топ с длинным рукавом"
+                            },
+                            {
+                                "displayName": "Топы с коротким  рукавом",
+                                "urlName": "short-sleeve-tops",
+                                "singularName": "Топ с коротким рукавом"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Рубашки и блузки",
+                        "urlName": "woman-clothes-shirts",
+                        "singularName": "Рубашка / Блузка"
+                    },
+                    {
+                        "displayName": "Костюмы",
+                        "urlName": "woman-clothes-suits",
+                        "singularName": "Костюм"
+                    },
+                    {
+                        "displayName": "Брюки",
+                        "urlName": "woman-clothes-trousers",
+                        "singularName": "Брюки",
+                        "attributes": ["Посадка"],
+                        "children": [
+                             {
+                                 "displayName": "Брюки клеш",
+                                 "urlName": "flared-trousers",
+                                 "singularName": "Брюки клеш"
+                             },
+                             {
+                                 "displayName": "Брюки скинни",
+                                 "urlName": "skinny-trousers",
+                                 "singularName": "Брюки скинни"
+                             },
+                             {
+                                 "displayName": "Прямые брюки",
+                                 "urlName": "straight-trousers",
+                                 "singularName": "Прямые брюки"
+                             }
+                         ]
+                    },
+                    {
+                        "displayName": "Пижамы",
+                        "urlName": "woman-clothes-pajamas",
+                        "singularName": "Пижама"
+                    },
+		            {
+                	"displayName": "Спортивная одежда",
+                	"urlName": "woman-sportswear",
+                	"singularName": "Спортивная одежда"
+            	    },
+      		        {
+                	"displayName": "Пляжная одежда",
+                	"urlName": "woman-beachwear",
+                	"singularName": "Пляжная одежда",
+                	"children": [
+                    	{
+                        	"displayName": "Купальники",
+                        	"urlName": "woman-beachwear-swimsuits",
+                        	"singularName": "Купальник"
+			            },
+                    	{
+                       		"displayName": "Туники",
+                        	"urlName": "woman-beachwear-tunics",
+                        	"singularName": "Туника"
+                    	}
+                	]
+                    }]
+                    },
+                {
+                "displayName": "Аксессуары",
+                "urlName": "woman-accessories",
+                "singularName": "Аксессуары",
+
+                "children": [
+                    {
+                        "displayName": "Ремни",
+                        "urlName": "woman-accessories-belts",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Ремень"
+                    },
+                    {
+                        "displayName": "Перчатки",
+                        "urlName": "woman-accessories-gloves",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Перчатки"
+                    },
+                    {
+                        "displayName": "Головные уборы",
+                        "urlName": "woman-accessories-hats",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Головной убор",
+                        "children": [
+                            {
+                                "displayName": "Шляпы",
+                                "urlName": "hats",
+                                "singularName": "Шляпа"
+                            },
+                            {
+                                "displayName": "Кепки",
+                                "urlName": "caps",
+                                "singularName": "Кепка"
+                            },
+                            {
+                                "displayName": "Шапки",
+                                "urlName": "hats",
+                                "singularName": "Шапка"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Украшения",
+                        "urlName": "woman-jewellery",
+                        "attributes": ["Материал украшений"],
+                        "singularName": "Украшения",
+                        "children": [
+                            {
+                                "displayName": "Браслеты",
+                                "urlName": "woman-jewellery-bracelets",
+                                "singularName": "Браслет"
+                            },
+                            {
+                                "displayName": "Серьги",
+                                "urlName": "woman-jewellery-earrings",
+                                "singularName": "Серьги"
+                            },
+                            {
+                                "displayName": "Украшения для волос",
+                                "urlName": "woman-jewellery-hairaccessories",
+                                "singularName": "Украшение для волос"
+                            },
+                            {
+                                "displayName": "Колье",
+                                "urlName": "woman-jewellery-necklaces",
+                                "singularName": "Колье"
+                            },
+                            {
+                                "displayName": "Броши",
+                                "urlName": "woman-jewellery-pins",
+                                "singularName": "Брошь"
+                            },
+                            {
+                                "displayName": "Кольца",
+                                "urlName": "woman-jewellery-rings",
+                                "singularName": "Кольцо"
+                            },
+                            {
+                                "displayName": "Другое",
+                                "urlName": "woman-jewellery-other",
+                                "singularName": "Другое"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Кошельки",
+                        "urlName": "woman-accessories-wallets",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Кошелек"
+                    },
+                    {
+                        "displayName": "Визитницы",
+                        "urlName": "woman-accessories-cardholders",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Визитница"
+                    },
+                    {
+                        "displayName": "Шарфы и Платки",
+                        "urlName": "woman-accessories-scarfs",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Шарф / Платок"
+                    },
+                    {
+                        "displayName": "Очки",
+                        "urlName": "woman-accessories-sunglasses",
+                        "attributes": ["Материал очков"],
+                        "singularName": "Очки"
+                    },
+                    {
+                        "displayName": "Часы",
+                        "urlName": "woman-accessories-watches",
+                        "attributes": ["Материал часов", "Браслет часов", "Механизм"],
+                        "singularName": "Часы"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "displayName": "Мужское",
+        "urlName": "man",
+        "attributes": ["Цвет"],
+        "singularName": "Мужское",
+        "children": [
+            {
+               	"displayName": "Одежда",
+                "urlName": "man-clothes",
+                "attributes": ["Материал одежды"],
+                "singularName": "Одежда",
+                "children": [
+                    {
+               	 	"displayName": "Верхняя одежда",
+                	"urlName": "man-outwear",
+                	"singularName": "Верхняя одежда",
+                	"children": [
+                        {
+                        	"displayName": "Пальто",
+                       	 	"urlName": "man-outwear-coats",
+                        	"singularName": "Пальто"
+                    	},
+                    	{
+                        	"displayName": "Куртки",
+                        	"urlName": "man-outwear-jackets",
+                        	"singularName": "Куртка"
+                    	},
+                    	{
+                        	"displayName": "Тренчи и Плащи",
+                        	"urlName": "man-outwear-cloaks",
+                        	"singularName": "Тренч / Плащ"
+                    	},
+                    	{
+                        	"displayName": "Парки",
+                        	"urlName": "man-outwear-parka",
+                        	"singularName": "Парки"
+                    	},
+                    	{
+                        	"displayName": "Пуховики",
+                        	"urlName": "man-outwear-downjackets",
+                        	"singularName": "Пуховик"
+                    	},
+                    	{
+                        	"displayName": "Жилеты",
+                        	"urlName": "man-outwear-vests",
+                        	"singularName": "Жилет"
+                    	},
+                    	{
+                        	"displayName": "Другое",
+                        	"urlName": "man-outwear-other",
+                        	"singularName": "Другое"
+                    }
+                ]
+            },
+            {
+                "displayName": "Пиджаки",
+                "urlName": "man-clothes-jackets",
+                "singularName": "Пиджак",
+                "children": [
+                    {
+                        "displayName": "Пиджаки casual",
+                        "urlName": "casual-jackets",
+                        "singularName": "Пиджак casual"
+                    },
+                    {
+                        "displayName": "Пиджаки classic",
+                        "urlName": "classic-jackets",
+                        "singularName": "Пиджак classic"
+                    }
+                ]
+            },
+            {
+                        "displayName": "Джинсы",
+                        "urlName": "man-clothes-jeans",
+                        "attributes": ["Посадка"],
+                        "singularName": "Джинсы",
+                        "children": [
+                            {
+                                "displayName": "Зауженные джинсы",
+                                "urlName": "skinny-jeans",
+                                "singularName": "Джинсы скинни"
+                            },
+                            {
+                                "displayName": "Прямые джинсы",
+                                "urlName": "straight-jeans",
+                                "singularName": "Прямые джинсы"
+                            },
+                            {
+                                "displayName": "Другие джинсы",
+                                "urlName": "other-jeans",
+                                "singularName": "Джинсы"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Свитеры и свитшоты",
+                        "urlName": "man-clothes-pullovers",
+                        "singularName": "Свитеры и свитшоты",
+                        "children": [
+                            {
+                                "displayName": "Джемперы",
+                                "urlName": "man-clothes-pullovers-cardigans",
+                                "singularName": "Джемпер"
+                            },
+                            {
+                                "displayName": "Свитшоты",
+                                "urlName": "man-clothes-pullovers-sweatshirts",
+                                "singularName": "Свитшот"
+                            },
+                            {
+                                "displayName": "Жилетки",
+                                "urlName": "man-clothes-pullovers-vests",
+                                "singularName": "Жилетка"
+                            },
+                            {
+                                "displayName": "Другое",
+                                "urlName": "man-clothes-pullovers-other",
+                                "singularName": "Другое"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Поло",
+                        "urlName": "man-clothes-polo",
+                        "singularName": "Поло",
+                        "children": [
+                            {
+                                "displayName": "Поло с длинным рукавом",
+                                "urlName": "long-sleeve-polo",
+                                "singularName": "Поло с длинным рукавом"
+                            },
+                            {
+                                "displayName": "Поло с коротким рукавом",
+                                "urlName": "short-sleeve-polo",
+                                "singularName": "Поло с коротким рукавом"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Рубашки",
+                        "urlName": "man-clothes-shirts",
+                        "singularName": "Рубашка",
+                        "children": [
+                            {
+                                "displayName": "Рубашки casual",
+                                "urlName": "casual-shirts",
+                                "singularName": "Рубашка casual"
+                            },
+                            {
+                                "displayName": "Рубашки classic",
+                                "urlName": "classic-shirts",
+                                "singularName": "Рубашка classic"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Шорты",
+                        "urlName": "man-clothes-shorts",
+                        "singularName": "Шорты"
+                    },
+                    {
+                        "displayName": "Костюмы",
+                        "urlName": "man-clothes-suits",
+                        "singularName": "Костюм",
+                        "children": [
+                            {
+                                "displayName": "Однобортные костюмы",
+                                "urlName": "single-breasted-suits",
+                                "singularName": "Однобортный костюм"
+                            },
+                            {
+                                "displayName": "Двубортные костюмы",
+                                "urlName": "double-breasted-suits",
+                                "singularName": "Двубортный костюм"
+                            },
+                            {
+                                "displayName": "Костюмы-тройки",
+                                "urlName": "three-piece-suits",
+                                "singularName": "Костюм-тройка"
+                            },
+                            {
+                                "displayName": "Смокинги",
+                                "urlName": "tuxedos",
+                                "singularName": "Смокинг"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Футболки",
+                        "urlName": "man-clothes-tshirts",
+                        "singularName": "Футболка",
+                        "children": [
+                            {
+                                "displayName": "Футболки с длинным рукавом",
+                                "urlName": "long-sleeve-shirts",
+                                "singularName": "Футболка с длинным рукавом"
+                            },
+                            {
+                                "displayName": "Футболки с коротким  рукавом",
+                                "urlName": "short-sleeve-shirts",
+                                "singularName": "Футболка с коротким рукавом"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Брюки",
+                        "urlName": "man-clothes-trousers",
+                        "singularName": "Брюки",
+                        "attributes": ["Посадка"],
+                        "children": [
+                            {
+                                "displayName": "Брюки casual",
+                                "urlName": "casual-trousers",
+                                "singularName": "Брюки casual"
+                            },
+                            {
+                                "displayName": "Брюки classic",
+                                "urlName": "classic-trousers",
+                                "singularName": "Брюки classic"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Пижамы",
+                        "urlName": "man-clothes-pajamas",
+                        "singularName": "Пижама"
+                    },
+		            {
+               		"displayName": "Пляжная одежда",
+                	"urlName": "man-beachwear",
+                	"singularName": "Пляжная одежда"
+                    },
+            	    {
+			            "displayName": "Спортивная одежда",
+                	    "urlName": "man-sportswear",
+                	    "singularName": "Спортивная одежда"
+		            }
+                ]
+             },
+             {
+                "displayName": "Обувь",
+                "urlName": "man-shoes",
+                "attributes": ["Материал обуви"],
+                "singularName": "Обувь",
+                "children": [
+                    {
+                        "displayName": "Ботинки",
+                        "urlName": "man-shoes-boots",
+                        "singularName": "Ботинки",
+                        "children": [
+                            {
+                                "displayName": "Высокие ботинки",
+                                "urlName": "tall-boots",
+                                "singularName": "Высокие ботинки"
+                            },
+                            {
+                                "displayName": "Низкие ботинки",
+                                "urlName": "short-boots",
+                                "singularName": "Низкие ботинки"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Кроссовки и кеды",
+                        "urlName": "man-shoes-sneakers",
+                        "singularName": "Кроссовки и кеды",
+                        "children": [
+                            {
+                                "displayName": "Высокие кроссовки / кеды",
+                                "urlName": "tall-sneakers",
+                                "singularName": "Высокие кроссовки / кеды"
+                            },
+                            {
+                                "displayName": "Низкие кроссовки / кеды",
+                                "urlName": "short-sneakers",
+                                "singularName": "Низкие кроссовки / кеды"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Лоферы и мокасины",
+                        "urlName": "man-shoes-moccasins",
+                        "singularName": "Лоферы / Мокасины"
+                    },
+                    {
+                        "displayName": "Сандалии",
+                        "urlName": "man-shoes-sandals",
+                        "singularName": "Сандалии"
+                    },
+                    {
+                        "displayName": "Слипоны",
+                        "urlName": "man-shoes-slipon",
+                        "singularName": "Слипоны"
+                    },
+                    {
+                        "displayName": "Туфли",
+                        "urlName": "man-shoes-shoes",
+                        "singularName": "Туфли"
+                    }
+                ]
+            },
+            {
+                "displayName": "Мужские сумки",
+                "urlName": "man-bags",
+                "attributes": ["Материал сумок"],
+                "singularName": "Мужская сумка",
+                "children": [
+                    {
+                        "displayName": "Рюкзаки",
+                        "urlName": "man-bags-backpacks",
+                        "singularName": "Рюкзак"
+                    },
+                    {
+                        "displayName": "Дорожные сумки",
+                        "urlName": "man-bags-travelbags",
+                        "singularName": "Дорожная сумка"
+                    },
+                    {
+                        "displayName": "Портфели",
+                        "urlName": "man-bags-briefcases",
+                        "singularName": "Портфель"
+                    },
+                    {
+                        "displayName": "Спортивные сумки",
+                        "urlName": "man-bags-sportsbags",
+                        "singularName": "Спортивная сумка"
+                    },
+                    {
+                        "displayName": "Барсетки",
+                        "urlName": "man-bags-purses",
+                        "singularName": "Барсетка"
+                    },
+                    {
+                        "displayName": "Для документов",
+                        "urlName": "man-bags-cases",
+                        "singularName": "Сумка для документов"
+                    },
+                    {
+                        "displayName": "Сумки на плечо",
+                        "urlName": "man-bags-shoulderbags",
+                        "singularName": "Сумка на плечо"
+                    }
+                    ]},
+            {
+                "displayName": "Аксессуары",
+                "urlName": "man-accessories",
+                "singularName": "Аксессуар",
+                "children": [
+                    {
+                        "displayName": "Ремни",
+                        "urlName": "man-accessories-belts",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Ремень"
+                    },
+                    {
+                        "displayName": "Кошельки",
+                        "urlName": "man-accessories-wallets",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Кошелек"
+                    },
+                    {
+                        "displayName": "Визитницы",
+                        "urlName": "man-accessories-cardholders",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Визитница"
+                    },
+                    {
+                        "displayName": "Запонки",
+                        "urlName": "man-accessories-cufflinks",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Запонки"
+                    },
+                    {
+                        "displayName": "Перчатки",
+                        "urlName": "man-accessories-gloves",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Перчатки"
+                    },
+                    {
+                        "displayName": "Головные уборы",
+                        "urlName": "man-accessories-hats",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Головной убор",
+                        "children": [
+                            {
+                                "displayName": "Кепки",
+                                "urlName": "caps",
+                                "singularName": "Кепка"
+                            },
+                            {
+                                "displayName": "Шляпы",
+                                "urlName": "hats",
+                                "singularName": "Шляпа"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Украшения",
+                        "urlName": "man-accessories-jewellery",
+                        "singularName": "Украшения",
+                        "attributes": ["Материал украшений"],
+                        "children": [
+                            {
+                                "displayName": "Браслеты",
+                                "urlName": "bracelets",
+                                "singularName": "Браслет"
+                            },
+                            {
+                                "displayName": "Перстни",
+                                "urlName": "rings",
+                                "singularName": "Перстень"
+                            },
+                            {
+                                "displayName": "Другое",
+                                "urlName": "other-accessories",
+                                "singularName": "Украшение"
+                            }
+                        ]
+                    },
+                    {
+                        "displayName": "Шарфы и платки",
+                        "urlName": "man-accessories-scarfs",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Шарф / Платок"
+                    },
+                    {
+                        "displayName": "Очки",
+                        "urlName": "man-accessories-sunglasses",
+                        "attributes": ["Материал очков"],
+                        "singularName": "Очки"
+                    },
+                    {
+                        "displayName": "Галстуки и бабочки",
+                        "urlName": "man-accessories-ties",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Галстук / Бабочка"
+                    },
+                    {
+                        "displayName": "Часы",
+                        "urlName": "man-accessories-watches",
+                        "attributes": ["Материал часов", "Браслет часов", "Механизм"],
+                        "singularName": "Часы"
+                    },
+		            {
+                        "displayName": "Ручки",
+                        "urlName": "man-accessories-pens",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Ручка",
+			            "children": [
+			    {
+                                "displayName": "Перьевые ручки",
+                                "urlName": "dip-pen",
+                                "singularName": "Перьевая ручка"
+                            },
+			    {
+                                "displayName": "Чернильные ручки",
+                                "urlName": "ink-pen",
+                                "singularName": "Чернильная ручка"
+                            },
+			    {
+                                "displayName": "Шариковые ручки",
+                                "urlName": "ball-pen",
+                                "singularName": "Шариковая ручка"
+                            }
+                        ]
+
+                    }
+                ]
+            }]
+        },
+
+    {
+        "displayName": "Детское",
+        "urlName": "kids",
+        "singularName": "Детское",
+        "attributes": ["Цвет"],
+        "children": [
+            {
+                "displayName": "Девочки 0-3",
+                "urlName": "girls-babies",
+                "singularName": "Девочки 0-3",
+                "children": [
+                    {
+                        "displayName": "Белье и пижамы",
+                        "urlName": "girls-babies-pajamas",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Белье / пижама"
+                    },
+                    {
+                        "displayName": "Боди и песочники",
+                        "urlName": "girls-babies-bodysuits",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Боди / песочник"
+                    },
+                    {
+                        "displayName": "Верхняя одежда",
+                        "urlName": "girls-babies-outwear",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Верхняя одежда"
+                    },
+                    {
+                        "displayName": "Жакеты и жилеты",
+                        "urlName": "girls-babies-jackets",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Жакет / жилет"
+                    },
+                    {
+                        "displayName": "Платья",
+                        "urlName": "girls-babies-dresses",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Платье"
+                    },
+                    {
+                        "displayName": "Блузки",
+                        "urlName": "girls-babies-shirts",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Блузка"
+                    },
+                    {
+                        "displayName": "Футболки и топы",
+                        "urlName": "girls-babies-tshirts",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Футболка / топ"
+                    },
+                    {
+                        "displayName": "Трикотаж",
+                        "attributes": ["Материал детской одежды"],
+                        "urlName": "girls-babies-knitwear",
+                        "singularName": "Трикотаж"
+                    },
+                    {
+                        "displayName": "Джинсы",
+                        "urlName": "girls-babies-jeans",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Джинсы"
+                    },
+                    {
+                        "displayName": "Брюки",
+                        "urlName": "girls-babies-trousers",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Брюки"
+                    },
+                    {
+                        "displayName": "Юбки и шорты",
+                        "urlName": "girls-babies-skirts",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Юбка / шорты"
+                    },
+                    {
+                        "displayName": "Комплекты",
+                        "urlName": "girls-babies-sets",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Комплект"
+                    },
+                    {
+                        "displayName": "Комбинезоны",
+                        "urlName": "girls-babies-jumpsuits",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Комбинезон"
+                    },
+                    {
+                        "displayName": "Пляжная одежда",
+                        "urlName": "girls-babies-beachwear",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Пляжная одежда"
+                    },
+                    {
+                        "displayName": "Обувь",
+                        "urlName": "girls-babies-shoes",
+                        "attributes": ["Материал обуви"],
+                        "singularName": "Обувь"
+                    },
+                    {
+                        "displayName": "Аксессуары",
+                        "urlName": "girls-babies-accessories",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Аксессуар"
+                    }
+                ]
+            },
+            {
+                "displayName": "Мальчики 0-3",
+                "urlName": "boys-babies",
+                "singularName": "Мальчики 0-3",
+                "children": [
+                    {
+                        "displayName": "Белье и пижамы",
+                        "urlName": "boys-babies-pajamas",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Белье / пижама"
+                    },
+                    {
+                        "displayName": "Боди и песочники",
+                        "urlName": "boys-babies-bodysuits",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Боди / песочник"
+                    },
+                    {
+                        "displayName": "Верхняя одежда",
+                        "urlName": "boys-babies-outwear",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Верхняя одежда"
+                    },
+                    {
+                        "displayName": "Жакеты и жилеты",
+                        "urlName": "boys-babies-jackets",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Жакет / жилет"
+                    },
+                    {
+                        "displayName": "Рубашки",
+                        "urlName": "boys-babies-shirts",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Рубашка"
+                    },
+                    {
+                        "displayName": "Футболки",
+                        "urlName": "boys-babies-tshirts",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Футболка"
+                    },
+                    {
+                        "displayName": "Трикотаж",
+                        "urlName": "boys-babies-knitwear",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Трикотаж"
+                    },
+                    {
+                        "displayName": "Джинсы",
+                        "urlName": "boys-babies-jeans",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Джинсы"
+                    },
+                    {
+                        "displayName": "Брюки",
+                        "urlName": "boys-babies-trousers",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Брюки"
+                    },
+                    {
+                        "displayName": "Шорты",
+                        "urlName": "boys-babies-shorts",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Шорты"
+                    },
+                    {
+                        "displayName": "Комплекты",
+                        "urlName": "boys-babies-sets",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Комплект"
+                    },
+                    {
+                        "displayName": "Комбинезоны",
+                        "urlName": "boys-babies-jumpsuits",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Комбинезон"
+                    },
+                    {
+                        "displayName": "Пляжная одежда",
+                        "urlName": "boys-babies-beachwear",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Пляжная одежда"
+                    },
+                    {
+                        "displayName": "Обувь",
+                        "urlName": "boys-babies-shoes",
+                        "attributes": ["Материал обуви"],
+                        "singularName": "Обувь"
+                    },
+                    {
+                        "displayName": "Аксессуары",
+                        "urlName": "boys-babies-accessories",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Аксессуар"
+                    }
+                    ]},
+            {
+                "displayName": "Девочки 4-14",
+                "urlName": "girls-teen",
+                "singularName": "Девочки 4-14",
+                "children": [
+                   {
+                        "displayName": "Пижамы",
+                        "urlName": "girls-teen-pajamas",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Пижама"
+                    },
+                    {
+                        "displayName": "Верхняя одежда",
+                        "urlName": "girls-teen-outwear",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Верхняя одежда"
+                    },
+                    {
+                        "displayName": "Жакеты и жилеты",
+                        "urlName": "girls-teen-jackets",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Жакет / жилет"
+                    },
+                    {
+                        "displayName": "Платья",
+                        "urlName": "girls-teen-dresses",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Платье"
+                    },
+                    {
+                        "displayName": "Блузки",
+                        "urlName": "girls-teen-shirts",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Блузка"
+                    },
+                    {
+                        "displayName": "Футболки и топы",
+                        "attributes": ["Материал детской одежды"],
+                        "urlName": "girls-teen-tshirts",
+                        "singularName": "Футболка / топ"
+                    },
+                    {
+                        "displayName": "Трикотаж",
+                        "attributes": ["Материал детской одежды"],
+                        "urlName": "girls-teen-knitwear",
+                        "singularName": "Трикотаж"
+                    },
+                    {
+                        "displayName": "Джинсы",
+                        "urlName": "girls-teen-jeans",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Джинсы"
+                    },
+                    {
+                        "displayName": "Брюки",
+                        "urlName": "girls-teen-trousers",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Брюки"
+                    },
+                    {
+                        "displayName": "Юбки и шорты",
+                        "urlName": "girls-teen-skirts",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Юбка / шорты"
+                    },
+                    {
+                        "displayName": "Комплекты",
+                        "urlName": "girls-teen-sets",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Комплект"
+                    },
+                    {
+                        "displayName": "Комбинезоны",
+                        "urlName": "girls-teen-jumpsuits",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Комбинезон"
+                    },
+                    {
+                        "displayName": "Пляжная одежда",
+                        "urlName": "girls-teen-beachwear",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Пляжная одежда"
+                    },
+                    {
+                        "displayName": "Обувь",
+                        "urlName": "girls-teen-shoes",
+                        "attributes": ["Материал обуви"],
+                        "singularName": "Обувь"
+                    },
+                    {
+                        "displayName": "Аксессуары",
+                        "urlName": "girls-teen-accessories",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Аксессуар"
+                    }
+                ]
+            },
+            {
+                "displayName": "Мальчики 4-14",
+                "urlName": "boys-teen",
+                "singularName": "Мальчики 4-14",
+                "children": [
+                    {
+                        "displayName": "Пижамы",
+                        "urlName": "boys-teen-pajamas",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Пижама"
+                    },
+                    {
+                        "displayName": "Верхняя одежда",
+                        "urlName": "boys-teen-outwear",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Верхняя одежда"
+                    },
+                    {
+                        "displayName": "Жакеты и жилеты",
+                        "urlName": "boys-teen-jackets",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Жакет / жилет"
+                    },
+                    {
+                        "displayName": "Рубашки",
+                        "urlName": "boys-teen-shirts",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Рубашка"
+                    },
+                    {
+                        "displayName": "Футболки",
+                        "urlName": "boys-teen-tshirts",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Футболка"
+                    },
+                    {
+                        "displayName": "Трикотаж",
+                        "attributes": ["Материал детской одежды"],
+                        "urlName": "boys-teen-knitwear",
+                        "singularName": "Трикотаж"
+                    },
+                    {
+                        "displayName": "Джинсы",
+                        "urlName": "boys-teen-jeans",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Джинсы"
+                    },
+                    {
+                        "displayName": "Брюки",
+                        "urlName": "boys-teen-trousers",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Брюки"
+                    },
+                    {
+                        "displayName": "Шорты",
+                        "urlName": "boys-teen-shorts",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Шорты"
+                    },
+                    {
+                        "displayName": "Комплекты",
+                        "urlName": "boys-teen-sets",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Комплект"
+                    },
+                    {
+                        "displayName": "Комбинезоны",
+                        "urlName": "boys-teen-jumpsuits",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Комбинезон"
+                    },
+                    {
+                        "displayName": "Пляжная одежда",
+                        "urlName": "boys-teen-beachwear",
+                        "attributes": ["Материал детской одежды"],
+                        "singularName": "Пляжная одежда"
+                    },
+                    {
+                        "displayName": "Обувь",
+                        "urlName": "boys-teen-shoes",
+                        "attributes": ["Материал обуви"],
+                        "singularName": "Обувь"
+                    },
+                    {
+                        "displayName": "Аксессуары",
+                        "urlName": "boys-teen-accessories",
+                        "attributes": ["Материал аксессуаров"],
+                        "singularName": "Аксессуар"
+                    }
+                ]
+            }
+        ]
+    },
+
+    {
+        "displayName": "Стиль жизни",
+        "urlName": "lifestyle",
+        "singularName": "Стиль жизни",
+        "attributes": ["Цвет"],
+        "children": [
+            {
+                "displayName": "Дизайн и декор",
+                "urlName": "lifestyle-decoration",
+                "singularName": "Дизайн и декор",
+                "children": [
+                    {
+                        "displayName": "Домашний декор",
+                        "urlName": "lifestyle-decoration-home",
+                        "singularName": "Домашний декор",
+                        "children": [
+                            {
+                                "displayName": "Пепельницы",
+                                "urlName": "lifestyle-decoration-home-ashtrays",
+                                "singularName": "Пепельница",
+                                "attributes": ["Материал посуды"]
+                            },
+                            {
+                                "displayName": "Посуда",
+                                "urlName": "lifestyle-decoration-home-tableware",
+                                "attributes": ["Материал посуды"],
+                                "singularName": "Посуда"
+                            },
+                            {
+                                "displayName": "Вазы",
+                                "attributes": ["Материал посуды"],
+                                "urlName": "lifestyle-decoration-home-vases",
+                                "singularName": "Ваза"
+                            },
+                            {
+                                "displayName": "Столовые приборы",
+                                "attributes": ["Материал посуды"],
+                                "urlName": "lifestyle-decoration-home-cutlery",
+                                "singularName": "Столовые приборы"
+                            },
+                            {
+                                "displayName": "Свечи",
+                                "urlName": "lifestyle-decoration-home-candles",
+                                "attributes": ["Материал предметов декора"],
+                                "singularName": "Свечи"
+                            },
+                            {
+                                "displayName": "Часы",
+                                "attributes": ["Материал часов"],
+                                "urlName": "lifestyle-decoration-home-clocks",
+                                "singularName": "Часы"
+                            },
+
+                            {
+                                "displayName": "Сундуки",
+                                "urlName": "lifestyle-decoration-home-chests",
+                                "attributes": ["Материал предметов декора"],
+                                "singularName": "Сундук"
+                            },
+                            {
+                                "displayName": "Картины",
+                                "urlName": "lifestyle-decoration-home-paintings",
+                                "attributes": ["Материал предметов декора"],
+                                "singularName": "Картина"
+                            },
+                            {
+                                "displayName": "Книги",
+                                "urlName": "lifestyle-decoration-home-books",
+                                "attributes": ["Материал предметов декора"],
+                                "singularName": "Книга"
+                            },
+			                {
+                                "displayName": "Шкатулки",
+                                "urlName": "lifestyle-decoration-home-casket",
+                                "attributes": ["Материал предметов декора"],
+                                "singularName": "Шкатулка"
+                            },
+			                {
+                                "displayName": "Мебель",
+                                "urlName": "lifestyle-decoration-home-furniture",
+                                "attributes": ["Материал предметов декора"],
+                                "singularName": "Мебель"
+                            },
+			                {
+                                "displayName": "Статуэтки",
+                                "urlName": "lifestyle-decoration-home-statues",
+                                "attributes": ["Материал предметов декора"],
+                                "singularName": "Статуэтка"
+                            },
+			                {
+                                "displayName": "Люстры",
+                                "urlName": "lifestyle-decoration-home-chandeliers",
+                                "attributes": ["Материал предметов декора"],
+                                "singularName": "Люстра"
+                            },
+                            {
+                                "displayName": "Другое",
+                                "urlName": "lifestyle-decoration-home-other",
+                                "attributes": ["Материал предметов декора"],
+                                "singularName": "Другое"
+                            }
+
+                        ]
+                    },
+                    {
+                        "displayName": "Текстиль",
+                        "urlName": "lifestyle-decoration-textiles",
+                        "attributes": ["Материал текстиля"],
+                        "singularName": "Текстиль",
+                        "children": [
+                            {
+                                "displayName": "Покрывала и пледы",
+                                "urlName": "lifestyle-decoration-textiles-covers",
+                                "singularName": "Покрывало / Плед"
+                            },
+                            {
+                                "displayName": "Подушки",
+                                "urlName": "lifestyle-decoration-textiles-pillows",
+                                "singularName": "Подушки"
+                            },
+                            {
+                                "displayName": "Постельное белье",
+                                "urlName": "lifestyle-decoration-textiles-linens",
+                                "singularName": "Подушки"
+                            },
+                            {
+                                "displayName": "Ткани",
+                                "urlName": "lifestyle-decoration-textiles-cloth",
+                                "singularName": "Ткани"
+                            },
+                            {
+                                "displayName": "Ковры",
+                                "urlName": "lifestyle-decoration-textiles-carpets",
+                                "singularName": "Ковры"
+                            },
+                            {
+                                "displayName": "Другое",
+                                "urlName": "lifestyle-decoration-textiles-other",
+                                "singularName": "Другое"
+                            }
+
+                        ]
+                    }
+
+                ]
+            }
+
+        ]
+    }
+]

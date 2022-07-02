@@ -1,0 +1,26 @@
+$s2height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1))
+\:root:root .select2
+	&-container
+		margin-bottom: $form-spacing
+	&-selection
+		&--single
+			border: $input-border
+			border-radius: 0
+			height: $s2height
+			%s2arrow
+				margin-top: -2px
+				height: $s2height
+		&__rendered
+			padding-right: ($form-spacing * 1.5)
+			line-height: $s2height
+			color: $input-color
+		&__arrow
+			@extend %s2arrow
+			width: ($form-spacing * 1.5)
+	&-search
+		&__field
+			margin-bottom: 0
+	&-results
+		&__option
+			&[aria-disabled="true"]:first-child
+				display: none

@@ -1,0 +1,5 @@
+<form id="send-payment-request"
+      method="POST"
+      th:action="|${endpoint}/payment|">
+    <input type="hidden" name="request" th:value="${request}">
+</form>

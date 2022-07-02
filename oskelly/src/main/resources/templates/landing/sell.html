@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{new/layout}" th:with="pageStyle='profilePage'">
+<head></head>
+<body>
+<main role="main" layout:fragment="content">
+  <div class="sell-page-container row">
+    <div class="column">
+      <div class="sell-page-header row">
+        <div class="column">
+          <div class="row align-center">
+            <div class="column small-12">
+              <aside class="landing-page-nav">
+                <ul>
+                  <li><a href="/welcome" class="landing-page-nav-link">OSKELLY</a></li>
+                  <li><a href="/buy" class="landing-page-nav-link">Покупайте</a></li>
+                  <li><a href="#" class="landing-page-nav-link landing-page-nav-link-active">Продавайте</a></li>
+                </ul>
+              </aside>
+            </div>
+          </div>
+          <div class="row align-center">
+            <div class="column small-12 large-8 text-center">
+              <h1 class="landing-page-header-title landing-page-header-space">Продавайте на OSKELLY</h1>
+            </div>
+          </div>
+          <div class="row align-center">
+
+            <div class="column small-12-large-7 text-center">
+              <h2 class="landing-page-subtitle landing-page-header-grey-color">OSKELLY – это миллионы выгодных и быстрых продаж.</h2>
+              <h2 class="landing-page-subtitle landing-page-header-grey-color landing-page-header-space">Откройте свой гардероб для истинных любителей моды.</h2>
+            </div>
+          </div>
+          <div class="row align-center">
+            <div class="column small-12 large-9 text-center">
+              <h2 class="landing-page-subtitle landing-page-header-space">
+                Мы принимаем тысячи известных мировых брендов от Sandro, Maje и Acne Studios до
+                Chanel, Céline и Prada. С полным списком брендов вы можете ознакомиться <a href="/brands">здесь</a>.
+                Обновлять гардероб и зарабатывать на продаже вещей еще никогда не было так просто.
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column text-center landing-page-header-space">
+          <a href="/publication" class="landing-page-slide-action-button"
+             th:data-mfp-src="${#authorization.expression('isAnonymous()')}? '#login-popup'"
+          >
+            Продать
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="landing-page-slide column">
+          <div class="row aling-center">
+            <div class="column small-12 text-center">
+              <h4 class="landing-page-slide-title">Как продавать на OSKELLY?</h4>
+            </div>
+          </div>
+          <div class="row align-middle landing-page-space">
+            <div class="column small-12 large-2">
+              <div class="landing-page-slide-icon text-center">
+                <img src="images/icons/1.svg">
+              </div>
+            </div>
+            <div class="column small-12 large-6">
+              <p class="landing-page-slide-text">
+                Добавляйте товары на продажу в два клика через сайт или мобильное приложение.
+                 Все остальное сделаем мы.
+              </p>
+            </div>
+          </div>
+          <div class="row align-middle landing-page-space">
+            <div class="column small-12 large-2">
+              <div class="landing-page-slide-icon text-center">
+                <img src="images/icons/2.svg">
+              </div>
+            </div>
+            <div class="column small-12 large-6">
+              <p class="landing-page-slide-text">
+                Покупатель найден! Подтвердите сделку в личном кабинете.
+                После подтверждения наш курьер заберет вещь и привезет на экспертизу в наш офис.
+                Вам ничего не нужно платить!
+              </p>
+            </div>
+          </div>
+          <div class="row align-middle landing-page-space">
+            <div class="column small-12 large-2">
+              <div class="landing-page-slide-icon text-center">
+                <img src="images/icons/3.svg">
+              </div>
+            </div>
+            <div class="column small-12 large-6">
+              <p class="landing-page-slide-text">
+                Проверено! Сразу после экспертизы подлинности и проверки заявленных характеристик
+                товар отправится к покупателю, а вы получите оплату на свой банковский счет.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="landing-page-slide column">
+          <div class="row align-center landing-page-space">
+            <div class="column small-12 large-8 text-center">
+              <h4 class="landing-page-slide-title">Консьерж-сервис</h4>
+              <p class="landing-page-subtitle">
+                Вы хотите продать брендовые предметы своего гардероба, но боитесь,
+                 что продажа отнимет много времени? Для наших самых требовательных клиентов мы создали
+                «Консьерж-сервис», который максимально упрощает процесс онлайн-продажи на сайте.
+              </p>
+            </div>
+          </div>
+          <div class="row landing-page-space">
+            <div class="column small-12 large-4">
+              <div class="landing-page-slide-icon text-center">
+                <img src="images/icons/1.svg">
+              </div>
+              <p class="landing-page-slide-text text-center">
+                Оставьте запрос на сайте, и мы приедем к вам на помощь.
+                Наша команда позаботится о бережном вывозе вещей в удобное для вас время
+                и доставит их в наш офис.
+              </p>
+            </div>
+            <div class="column small-12 large-4">
+              <div class="landing-page-slide-icon  text-center">
+                <img src="images/icons/2.svg">
+              </div>
+              <p class="landing-page-slide-text text-center">
+                Мы создадим персональную карточку товара с подробным описанием вещи и
+                профессиональными фото и опубликуем ее на сайте.
+              </p>
+            </div>
+            <div class="column small-12 large-4">
+              <div class="landing-page-slide-icon  text-center">
+                <img src="images/icons/3.svg">
+              </div>
+              <p class="landing-page-slide-text text-center">
+                Мы будем управлять вашими продажами, а вы – получать прибыль от них!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="landing-page-slide column">
+          <div class="row align-center landing-page-space">
+            <div class="column small-12 large-7 text-center">
+              <h4 class="landing-page-slide-title">Наши эксклюзивные услуги</h4>
+            </div>
+          </div>
+          <div class="row align-center">
+            <div class="column small-12 large-4 text-center">
+              <div class="row">
+                <div class="column">
+                  <div class="landing-page-slide-icon">
+                    <img src="images/icons/s3-1.svg">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column landing-page-min-size-12">
+                  <p class="landing-page-slide-text landing-page-space">
+                    <strong>Приложение OSKELLY</strong>
+                  </p>
+                  <p class="landing-page-slide-text landing-page-space">
+                    Где бы вы ни находились – бренды всегда  с вами!
+                    Совершайте покупки и продажи в мобильном приложении OSKELLY.
+                    Доступно в AppStore и Google Play.
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column landing-page-space">
+                  <a href="/app" class="landing-page-slide-action-button">Подробнее</a>
+                </div>
+              </div>
+            </div>
+            <div class="column small-12 large-4 text-center">
+              <div class="row">
+                <div class="column">
+                  <div class="landing-page-slide-icon">
+                    <img src="images/icons/s3-3.svg">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column landing-page-min-size-12">
+                  <p class="landing-page-slide-text landing-page-space"><strong>Сделайте предложение</strong></p>
+                  <p class="landing-page-slide-text landing-page-space">
+                    Вы можете предложить свою цену продавцу.
+                    Покупайте любимые бренды по самым приятным ценам.
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column landing-page-space"><a href="/makeoffer" class="landing-page-slide-action-button">Подробнее</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row align-center">
+            <div class="column small-12 large-4 text-center">
+              <div class="row">
+                <div class="column">
+                  <div class="landing-page-slide-icon"><img src="images/icons/sell-s3-cons.svg"></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column landing-page-min-size-9">
+                  <p class="landing-page-slide-text landing-page-space"><strong>Консьерж</strong></p>
+                  <p class="landing-page-slide-text landing-page-space">Доверьте продажи профессионалам.</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column landing-page-space">
+                  <a href="/concierge-service" class="landing-page-slide-action-button">Подробнее</a>
+                </div>
+              </div>
+            </div>
+            <div class="column small-12 large-4 text-center">
+              <div class="row">
+                <div class="column">
+                  <div class="landing-page-slide-icon">
+                    <img src="images/icons/s3-5.svg">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column landing-page-min-size-9">
+                  <p class="landing-page-slide-text landing-page-space"><strong>Баллы и рейтинги</strong></p>
+                  <p class="landing-page-slide-text landing-page-space">
+                    Зарабатывайте баллы на покупках и продажах и оплачивайте
+                    ими новые приобретения на OSKELLY.
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="column landing-page-space"><a href="#" class="landing-page-slide-action-button">Подробнее</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column small-12 text-center">
+          <p class="landing-page-help-text">Остались вопросы? Обратитесь в
+            <a href="/info/pomosch-i-podderzhka">службу поддержки</a>
+          </p>
+          <hr>
+          <aside class="landing-page-nav">
+            <ul>
+              <li><a href="/welcome" class="landing-page-nav-link">OSKELLY</a></li>
+              <li><a href="/buy" class="landing-page-nav-link">Покупайте</a></li>
+              <li><a href="#" class="landing-page-nav-link landing-page-nav-link-active">Продавайте</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>
+

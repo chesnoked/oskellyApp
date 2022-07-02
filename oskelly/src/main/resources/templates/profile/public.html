@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{new/layout}" th:with="pageStyle='profilePage'">
+<head>
+</head>
+<body>
+<main role="main" layout:fragment="content">
+  <div class="row large-unstack margin-from-header">
+    <div class="column">
+      <div class="row">
+        <div class="small-4 medium-3 large-4 xlarge-3 columns">
+          <img class="offsetStack-y_small profilePage-avatara"
+            src="images/tmp/users/userpic-1.jpg" alt="Ольга"
+            th:src="${userProfile.avatarUrl}?: '/images/no-photo.jpg'"
+            th:alt="${userProfile.nickname}">
+          <button class="button hollow expanded offsetStack-y_small hide-for-large-only hide-for-small-only"
+                  type="button"
+                  id="follow-action-1"
+                  sec:authorize="isAuthenticated()"
+                  th:onclick="${followed}? |unFollow(${userProfile.user.id})| : |follow(${userProfile.user.id})|"
+                  th:text="${followed}? 'Отписаться' : 'Подписаться'"
+                  th:classappend="${followed}? 'hollow'"
+          >
+          Подписаться
+          </button>
+          <button type="button" class="button hollow expanded offsetStack-y_small hide-for-large-only hide-for-small-only" data-mfp-src="#login-popup" style="padding: .4rem"
+                  sec:authorize="isAnonymous()">
+            Подписаться
+          </button>
+        </div>
+        <div class="column profilePage-userInfo">
+          <h2 class="h3"><strong th:text="${userProfile.nickname}">Ольга</strong> <span class="label golden"
+                                                                                        th:if="${userProfile.isVip}">VIP</span><span
+              class="label black" th:if="${userProfile.isPro}">PRO</span>
+          </h2>
+          <!--/*
+          <div class="show-for-small-only text-secondary">Город <span class="text-black" th:text="${userProfile.city}">Москва</span></div>
+          */-->
+          <div class="show-for-medium">
+            <ul class="text-secondary">
+              <li>День рождения <span class="text-black" th:text="${userProfile.birthDate}">15 января</span></li>
+              <li>Присоединилась к Oskelly <span class="text-black nowrap" th:text="${userProfile.registrationTime}">21 февраля 2017</span>
+              </li>
+              <li>На продажу <span class="text-black" th:text="${userProfile.publishedProductsCount}">17 товаров</span> товаров</li>
+              <li class="show-for-medium" th:if="${userProfile.isTrusted}">Профиль <span
+                  class="text-black">Trusted</span> <img class="icon" src="images/icons/trusted.svg" alt="Trusted"></li>
+            </ul>
+          </div>
+          <div class="hide-for-medium"><a class="text-underlined" data-toggle="mobile-info"
+                                          title="Показать дополнительную информацию">Инфо</a></div>
+          <button class="button hollow show-for-large-only" type="button"
+                  id="follow-action-2"
+                  th:onclick="${followed}? |unFollow(${userProfile.user.id})| : |follow(${userProfile.user.id})|"
+                  th:text="${followed}? 'Отписаться' : 'Подписаться'"
+          >Подписаться
+          </button>
+        </div>
+        <div class="shrink column align-self-middle show-for-small-only" th:if="${userProfile.isTrusted}">
+          <span class="text-black">Trusted</span>
+          <img class="icon" src="images/icons/trusted.svg" alt="Trusted">
+        </div>
+        <div class="small-4 columns show-for-small-only"></div>
+        <div class="small-8 columns show-for-small-only">
+          <div class="hide no-bullet text-size-small offsetStack-y" id="mobile-info" data-toggler=".hide">
+            <ul class="text-secondary">
+              <li>День рождения <span class="text-black" th:text="${userProfile.birthDate}">15 января</span></li>
+              <li>Присоединилась к Oskelly <span class="text-black nowrap" th:text="${userProfile.registrationTime}">21 февраля 2017</span>
+              </li>
+              <li>На продажу <span class="text-black" th:text="${userProfile.publishedProductsCount}">17 товаров</span> товаров</li>
+              <li class="show-for-medium" th:if="${userProfile.isTrusted}">Профиль <span
+                  class="text-black">Trusted</span> <img class="icon" src="/images/icons/trusted.svg" alt="Trusted">
+              </li>
+            </ul>
+            <fieldset class="ratingInput ratingInput_inline offsetStack-x_small" title="4 звезды" disabled="">
+              <div class="ratingInput-inner">
+                <input type="radio" id="user-stars-sm-10" name="user-stars-sm" value="10" disabled="">
+                <label class="full" for="user-stars-sm-10"></label>
+                <input type="radio" id="user-stars-sm-9" name="user-stars-sm" value="9" disabled="">
+                <label class="half" for="user-stars-sm-9"></label>
+                <input type="radio" id="user-stars-sm-8" name="user-stars-sm" value="8" checked="" disabled="">
+                <label class="full" for="user-stars-sm-8"></label>
+                <input type="radio" id="user-stars-sm-7" name="user-stars-sm" value="7" disabled="">
+                <label class="half" for="user-stars-sm-7"></label>
+                <input type="radio" id="user-stars-sm-6" name="user-stars-sm" value="6" disabled="">
+                <label class="full" for="user-stars-sm-6"></label>
+                <input type="radio" id="user-stars-sm-5" name="user-stars-sm" value="5" disabled="">
+                <label class="half" for="user-stars-sm-5"></label>
+                <input type="radio" id="user-stars-sm-4" name="user-stars-sm" value="4" disabled="">
+                <label class="full" for="user-stars-sm-4"></label>
+                <input type="radio" id="user-stars-sm-3" name="user-stars-sm" value="3" disabled="">
+                <label class="half" for="user-stars-sm-3"></label>
+                <input type="radio" id="user-stars-sm-2" name="user-stars-sm" value="2" disabled="">
+                <label class="full" for="user-stars-sm-2"></label>
+                <input type="radio" id="user-stars-sm-1" name="user-stars-sm" value="1" disabled="">
+                <label class="half" for="user-stars-sm-1"></label>
+              </div>
+            </fieldset>
+          </div>
+          <div class="offsetStack-y"></div>
+        </div>
+      </div>
+    </div>
+    <div class="offsetStack-y_small xlarge-5 columns">
+      <div class="row align-right show-for-medium" th:if="${false}">
+        <div class="shrink column"><strong class="text-secondary offsetStack-x_small">Рейтинг:</strong>
+          <fieldset class="ratingInput ratingInput_inline offsetStack-x_small" title="4 звезды" disabled="">
+            <div class="ratingInput-inner">
+              <input type="radio" id="user-stars-10" name="user-stars" value="10" disabled="">
+              <label class="full" for="user-stars-10"></label>
+              <input type="radio" id="user-stars-9" name="user-stars" value="9" disabled="">
+              <label class="half" for="user-stars-9"></label>
+              <input type="radio" id="user-stars-8" name="user-stars" value="8" checked="" disabled="">
+              <label class="full" for="user-stars-8"></label>
+              <input type="radio" id="user-stars-7" name="user-stars" value="7" disabled="">
+              <label class="half" for="user-stars-7"></label>
+              <input type="radio" id="user-stars-6" name="user-stars" value="6" disabled="">
+              <label class="full" for="user-stars-6"></label>
+              <input type="radio" id="user-stars-5" name="user-stars" value="5" disabled="">
+              <label class="half" for="user-stars-5"></label>
+              <input type="radio" id="user-stars-4" name="user-stars" value="4" disabled="">
+              <label class="full" for="user-stars-4"></label>
+              <input type="radio" id="user-stars-3" name="user-stars" value="3" disabled="">
+              <label class="half" for="user-stars-3"></label>
+              <input type="radio" id="user-stars-2" name="user-stars" value="2" disabled="">
+              <label class="full" for="user-stars-2"></label>
+              <input type="radio" id="user-stars-1" name="user-stars" value="1" disabled="">
+              <label class="half" for="user-stars-1"></label>
+            </div>
+          </fieldset>
+          <span class="text-secondary offsetStack-x_small">21 отзыв</span>
+        </div>
+      </div>
+      <hr class="show-for-medium">
+      <div class="row small-collapse large-uncollapse">
+        <div class="medium-3 columns userCard-statItem">
+          <div class="text-center profilePage-subscribe" th:classappend="${#request.getRequestURI() == '/profile/' + userProfile.user.id + '/followers'}? 'active'">
+            <span class="userCard-statItem-caption text-size-smaller">
+                <a href="" th:href="@{/profile/{id}/followers(id=${userProfile.user.id})}" title="Подписчики пользователя">Подписчики</a>
+            </span>
+          </div>
+          <div><strong class="text-size-x-large" th:text="${followersCount}">15</strong></div>
+        </div>
+        <div class="medium-3 columns userCard-statItem">
+          <div class="text-center profilePage-subscribe" th:classappend="${#request.getRequestURI() == '/profile/' + userProfile.user.id + '/followees'}? 'active'">
+            <span class="userCard-statItem-caption text-size-smaller">
+                <a href="" th:href="@{/profile/{id}/followees(id=${userProfile.user.id})}" title="Подписки пользователя">Подписки</a>
+            </span>
+          </div>
+          <div><strong class="text-size-x-large" data-followee-aware th:text="${followeesCount}">5</strong></div>
+        </div>
+        <div class="medium-3 columns userCard-statItem">
+          <div><span class="userCard-statItem-caption text-size-smaller">Лайки</span></div>
+          <div><strong class="text-size-x-large">135</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="offsetStack-y_small small-12 columns show-for-small-only">
+      <button class="button hollow large expanded" type="button"
+              id="follow-action-3"
+              th:onclick="${followed}? |unFollow(${userProfile.user.id})| : |follow(${userProfile.user.id})|"
+              th:text="${followed}? 'Отписаться' : 'Подписаться'"
+      >Подписаться
+      </button>
+    </div>
+  </div>
+  <div class="row column show-for-medium">
+    <hr>
+  </div>
+  <div class="row medium-unstack">
+    <div class="column small-12 large-3 medium-3 medium-uncollapse-selfStacked small-margin-y">
+      <div class="profilePage-scroll-menu">
+        <div class="profilePage-scroll-menu-arrowLeft hide">
+          <i class="fa fa-angle-left"></i>
+        </div>
+        <div class="profilePage-scroll-menu-arrowRight hide-for-medium">
+          <i class="fa fa-angle-right"></i>
+        </div>
+        <nav class="menu medium-vertical profilePage-styled-menu">
+          <span class="profilePage-styled-menu-item" th:classappend="${#request.getRequestURI() == '/profile/' + {userProfile.user.getId()}}? 'active'">
+            <a th:href="'/profile/' + ${userProfile.user.getId()}" title="Товары на продажу">Товары на продажу</a>
+          </span>
+          <span class="profilePage-styled-menu-item" th:classappend="${#request.getRequestURI() == '/profile/' + {userProfile.user.getId()} + '/news'}? 'active'">
+            <a th:href="'/profile/' + ${userProfile.user.getId()} + '/news'" title="Новости">Новости</a>
+          </span>
+          <span class="profilePage-styled-menu-item">
+            <a href="#" title="Луки">Луки</a>
+          </span>
+          <span class="profilePage-styled-menu-item" th:classappend="${#request.getRequestURI() == '/profile/' + {userProfile.user.getId()} + '/favorites'}? 'active'">
+            <a th:href="'/profile/' + ${userProfile.user.getId()} + '/favorites'" title="фавориты">Фавориты</a>
+          </span>
+          <span class="profilePage-styled-menu-item" th:classappend="${#request.getRequestURI() == '/profile/' + {userProfile.user.getId()} + '/wishlist'}? 'active'">
+            <a th:href="'/profile/' + ${userProfile.user.getId()} + '/wishlist'" title="Wish List">Wish List</a>
+          </span>
+        </nav>
+      </div>
+    </div>
+    <div layout:fragment="profileContent"></div>
+  </div>
+</main>
+<div layout:fragment="custom-scripts">
+  <script th:src="|/js/product/filter.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+  <script th:src="|/js/product/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+  <script src="/scripts/follow.js" th:src="|/scripts/follow.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+
+
+  <!--/* Отображение стрелок в навигационном меню в адаптивной версии */-->
+  <script src="/scripts/profile/responsiveNavMenuArrows.js"></script>
+
+  <!--/* Подписка на пользователя */-->
+  <script src="/scripts/profile/client.js" th:src="|/scripts/profile/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+
+  <script src="/scripts/public-profile.js" th:src="|/scripts/public-profile.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+</div>
+</body>
+</html>

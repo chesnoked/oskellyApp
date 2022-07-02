@@ -1,0 +1,70 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{admin/layout}">
+
+<head>
+	<title>Управление информационными страницами</title>
+	<link rel="stylesheet" href="/admin/styles/static-pages.css"/>
+</head>
+
+<body>
+<main layout:fragment="content">
+	<div class="row column">
+		<header>
+			<h3>Страницы блога</h3>
+			<ul class="menu" style="margin-bottom: 2rem;">
+				<li><a href="#">Промоблоки</a></li>
+				<li><a href="/admin/static/info">Инфостраницы</a></li>
+				<li class="active"><a href="#">Страницы блога</a></li>
+			</ul>
+			<button type="submit" class="button" onclick="location.href='/admin/static/blog/editor'">
+				Добавить страницу
+			</button>
+		</header>
+		<main>
+			<div class="row">
+				<div class="columns small-12">
+					<div th:each="page: ${pages}" th:object="${page}" class="page-preview">
+						<div class="preview-header">
+							<div>
+								<h4 class="page-name" th:text="*{name}">Заголовок страницы</h4>
+								<a class="page-url" th:href="*{url}" target="_blank">URL: <span th:text="*{url}">fuohsdijgsijf</span></a>
+								<div th:if="*{tag != null}" th:text="*{'Тэг: ' + tag}">
+								</div>
+								<div>
+									<img
+											style="max-width: 300px"
+											src="http://placehold.it/400x300&text=Blog"
+											th:src="*{imagePath != null ? imagePath : 'http://placehold.it/400x300&text=Blog'}"
+									/>
+								</div>
+							</div>
+							<div>
+								<button type="button" class="button edit-page-button"
+										th:onclick="|location.href='/admin/static/info/editor/*{id}'|">Edit
+								</button>
+								<div th:if="*{status != null}" th:text="*{'Статус: ' + status}">
+								</div>
+								<div th:if="*{modifiedBy != null}">
+									Создал: <span th:text="*{modifiedBy.email}"></span>
+								</div>
+								<div th:if="*{modifiedAt != null}" th:text="*{modifiedAt}">
+								</div>
+							</div>
+						</div>
+						<div class="preview-content" th:utext="*{text}">
+							Дшщпощывк
+							ылпоыолвп
+							лоаповап
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer></footer>
+	</div>
+</main>
+
+</body>
+</html>

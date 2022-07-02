@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="70px" viewBox="0 0 70 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>3</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Product-page-1(sold_out)" transform="translate(-750.000000, -1610.000000)">
+            <g id="About-Product" transform="translate(720.000000, 940.000000)">
+                <g id="Наши-привилегии" transform="translate(30.000000, 430.000000)">
+                    <g id="Упаковка" transform="translate(0.000000, 240.000000)">
+                        <g id="3">
+                            <g id="noun_1523967_cc" transform="translate(20.000000, 19.000000)">
+                                <path d="M28.9535452,33 L28.9535452,14.784292 L31,14.784292 L31,5.98672566 L23.8753056,5.98672566 C24.7198926,5.35868775 25.2107037,4.38612871 25.2017115,3.35840708 C25.2017115,1.50361007 23.6407287,1.29689769e-15 21.7151589,1.29689769e-15 C19.7066015,1.29689769e-15 17.9254279,1.09513274 16.5611247,3.17588496 C16.1395269,3.82259402 15.7841496,4.50722546 15.5,5.22013274 C15.2158504,4.50722546 14.8604731,3.82259402 14.4388753,3.17588496 C13.0745721,1.09513274 11.2933985,0 9.28484108,0 C8.36014984,-6.48448846e-16 7.47333155,0.353831159 6.81947611,0.98365466 C6.16562067,1.61347816 5.79828851,2.46770214 5.79828851,3.35840708 C5.78929631,4.38612871 6.28010745,5.35868775 7.12469438,5.98672566 L0,5.98672566 L0,14.784292 L2.04645477,14.784292 L2.04645477,33 L28.9535452,33 Z" id="Shape" stroke="#090909" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill-rule="nonzero"></path>
+                                <rect id="Rectangle" fill="#090909" x="0" y="14" width="31" height="1.5"></rect>
+                                <rect id="Rectangle-Copy" fill="#090909" x="0" y="5.30004883" width="31" height="1.5"></rect>
+                                <rect id="Rectangle-2" fill="#090909" x="9" y="6" width="1.5" height="27"></rect>
+                                <rect id="Rectangle-2-Copy" fill="#090909" x="21" y="6" width="1.5" height="27"></rect>
+                            </g>
+                            <circle id="Oval-4" stroke="#B5B5B5" cx="35" cy="35" r="34.5"></circle>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

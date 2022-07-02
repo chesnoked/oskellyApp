@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{new/layout}" th:with ="pageStyle='brandIndex'">
+<head>
+    <title>Представленные Бренды - OSKELLY.RU</title>
+</head>
+<body>
+<main role="main" layout:fragment="content" class="row column">
+    <h1 class="ruledHeading text-serif margin-from-header"> БРЕНДЫ</h1>
+    <div class="brands">
+        <ul>
+            <li th:each="group : ${groupsWithBrands}">
+                <h2 class="brandGroup"  th:text="${group.key}">A</h2>
+                <ul>
+                    <li class="brandTitle" th:each="brand : ${group.value}">
+                        <a th:text="${brand.name}" th:title="${brand.name}" th:href="@{/brands/{url}(url=${brand.url})}">A.W.A.K.E.</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</main>
+</body>
+</html>

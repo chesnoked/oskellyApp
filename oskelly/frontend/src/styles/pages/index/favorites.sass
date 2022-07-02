@@ -1,0 +1,30 @@
+.frontPage
+	.favorites
+		margin-top: 4rem
+		margin-bottom: 3rem
+.favoritesSlider
+	+breakpoint(medium up)
+		margin-x: 50px
+	&-wrapper
+		position: relative
+		margin-bottom: 1.5rem
+	.swiper
+		&-slide
+			+breakpoint(small only)
+				max-width: 40vw
+			display: flex
+			align-items: center
+			justify-content: center
+			background: white
+			text-align: center
+			font-size: 18px
+	&-next,
+	&-prev
+		+breakpoint(small only)
+			display: none
+	&-next
+		top: 50%
+		right: 25px
+	&-prev
+		top: 50%
+		left: 25px

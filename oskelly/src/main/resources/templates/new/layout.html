@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html class="no-js" lang=""
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="" th:unless="${noMetaDescriptionTag}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>OSKELLY</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700,900&subset=cyrillic"
+		  rel="stylesheet">
+	<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+	<link rel="stylesheet" th:href="${@staticFilesConfiguration['main']['css']}">
+	<link rel="stylesheet" th:href="|/styles/custom.css?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/fav/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/fav/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/fav/favicon-16x16.png">
+	<link rel="manifest" href="/images/fav/manifest.json">
+	<link rel="mask-icon" href="/images/fav/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="theme-color" content="#ffffff">
+
+
+	<!-- Google Tag Manager -->
+	<script>
+        dataLayer=[];
+	</script>
+	<script th:if="${@environment.acceptsProfiles('prod')}">
+		(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    	})(window,document,'script','dataLayer','GTM-PNJ99WJ');
+	</script>
+	<!-- End Google Tag Manager -->
+
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript" th:if="${@environment.acceptsProfiles('prod')}">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter44496388 = new Ya.Metrika({
+                        id:44496388,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true,
+                        webvisor:true,
+                        trackHash:true
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+	</script>
+	<!-- /Yandex.Metrika counter -->
+
+	<!-- Facebook Pixel Code -->
+	<script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '111829052687605');
+        fbq('track', 'PageView');
+	</script>
+	<!-- End Facebook Pixel Code -->
+
+</head>
+
+<body th:class="${pageStyle}">
+
+	<!-- Google Tag Manager -->
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNJ99WJ"
+		  height="0" width="0" style="display:none;visibility:hidden">
+		</iframe>
+	</noscript>
+
+	<!-- Facebook Pixel Code -->
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=111829052687605&ev=PageView&noscript=1"/>
+    </noscript>
+
+<div class="siteWrapper">
+<!--[if lt IE 10]>
+	<p class="browserupgrade">Пожалуйста, <a href="http://browsehappy.com/">обновите свой браузер</a>.</p>
+<![endif]-->
+
+	<header th:replace="new/header/header :: header"></header>
+
+	<div id="content">
+		<div layout:fragment="content"></div>
+	</div>
+
+	<div th:replace="new/footer"></div>
+</div>
+
+<script th:src="|/scripts/index.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+<script th:src="|/scripts/fb_events.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+<script src="/scripts/jquery.maskedinput.min.js"></script>
+<script th:src="|/scripts/security/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+<script th:src="|/scripts/security/component.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+<script th:src="|/scripts/subscription/esputniksubscription.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+
+<div layout:fragment="custom-scripts"></div>
+
+<noscript th:if="${@environment.acceptsProfiles('prod')}"><div><img src="https://mc.yandex.ru/watch/44496388" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+<script th:if="${@environment.acceptsProfiles('prod')}">
+    (function(w, d, s, h, id) {
+        w.roistatProjectId = id; w.roistatHost = h;
+        var p = d.location.protocol == "https:" ? "https://" : "http://";
+        var u = /^.*roistat_visit=[^;]+(.*)?$/.test(d.cookie) ? "/dist/module.js" : "/api/site/1.0/"+id+"/init";
+        var js = d.createElement(s); js.async = 1; js.src = p+h+u; var js2 = d.getElementsByTagName(s)[0]; js2.parentNode.insertBefore(js, js2);
+    })(window, document, 'script', 'cloud.roistat.com', 'bc274558f2c1e857d9f7067b30650745');
+</script>
+
+<script id="rhlpscrtg" type="text/javascript" charset="utf-8" async="async"
+		src="https://web.redhelper.ru/service/main.js?c=oskelly"
+		th:if="${@environment.acceptsProfiles('prod')}">
+</script>
+
+</body>
+</html>

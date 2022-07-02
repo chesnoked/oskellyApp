@@ -1,0 +1,161 @@
+<!doctype html>
+<html class="no-js" lang=""
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{admin/layout}">
+
+<head>
+	<title th:text="${page?.name}?: _">Создание страницы</title>
+	<link rel="stylesheet" href="/admin/styles/static-page.css"/>
+</head>
+
+<body>
+<main layout:fragment="content">
+	<a href="/admin">АДМИНКА</a>
+	&nbsp; > &nbsp;
+	<a href="/admin/static/info" th:if="${group.name() == 'INFO'}">Информационные страницы</a>
+	<a href="/admin/static/blog" th:if="${group.name() == 'BLOG'}">Страницы блога</a>
+	<div class="row expanded">
+		<header class="small-12 columns">
+			<h4>Редактирование: <span th:text="${page?.name}"></span></h4>
+			<input type="hidden" id="page-id" th:value="${page?.id}"/>
+			<input type="hidden" id="page-type" th:data-group-name="${group.name()}" th:data-group-url="${group.url}"/>
+		</header>
+
+		<div class="small-8 columns" id="page-params-container">
+			<div class="row">
+				<div class="small-6 columns">
+					<label>
+						Название страницы (в системе)
+						<input id="page-name"
+							   type="text" th:value="${page?.name}"
+							   th:onchange="${page == null && group.name() == 'BLOG' ? 'translitUrl();' : 'return false;'}"
+							   onkeyup="this.onchange();"
+							   oninput="this.onchange();"
+						/>
+					</label>
+				</div>
+			</div>
+
+			<div class="row" id="url-container">
+				<div class="small-6 columns">
+					<label>
+						URL: (/info/page)
+						<input
+								id="page-url"
+								type="text"
+								th:data-url="${page?.url}"
+								th:value="${page?.url}"
+								th:disabled="${group.name() == 'BLOG'}"
+						/>
+					</label>
+				</div>
+				<div class="small-4 columns" id="preview-container">
+					<button type="button" id="preview" class="button" onclick="previewPage()"
+							th:disabled="not ${page}?: _">Предпросмотр
+					</button>
+				</div>
+			</div>
+			<div class="row" th:if="${group.name() == 'BLOG'}">
+				<div class="small-6 columns">
+					<div style="margin-bottom: 10px; margin-top: 10px" th:if="${page != null && page.status != null}" th:text="${'Статус: ' + page.status.description}">
+					</div>
+						<label>
+							Тэг:
+							<select id="tags">
+								<option selected="selected" disabled="disabled">Выберите</option>
+								<option value="value"
+										th:each="tag: ${tags}"
+										th:value="${tag.id}"
+										th:text="${tag.name}"
+										th:selected="${page != null && page.tag != null && tag.id == page.tag.id}"
+								>title</option>
+							</select>
+						</label>
+				</div>
+			</div>
+
+			<div class="row" th:if="${group.name() == 'BLOG'}">
+				<div class="small-6 columns">
+					<div style="width: 300px">
+						<img
+								id="mainImage"
+								style="margin: 10px; width: 100%; height: auto; display: block"
+								src="http://placehold.it/400x300&text=Blog"
+								th:src="*{(page != null && page.imagePath != null) ? (imageUrlPrefix + page.imagePath) : 'http://placehold.it/400x300&text=Blog'}"
+						/>
+					</div>
+				</div>
+
+			</div>
+			<div class="row" th:if="${group.name() == 'BLOG'}">
+				<div class="small-6 columns">
+					<input type="file" name="image" id="mainImageInput">
+				</div>
+			</div>
+
+			<div class="row column">
+				<ul class="accordion" data-accordion data-allow-all-closed="true">
+					<li class="accordion-item" data-accordion-item>
+						<a href="#" class="accordion-title">SEO</a>
+						<div class="accordion-content" data-tab-content>
+							<div class="row">
+								<div class="small-7 columns">
+									<label>
+										Meta-Description
+										<input id="page-meta-description" type="text"
+											   th:value="${page?.metaDescription}"/>
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="small-7 columns">
+									<label>
+										Meta-Keywords
+										<input id="page-meta-keywords" type="text" th:value="${page?.metaKeywords}"/>
+									</label>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="row column expanded" id="ckeditor-container">
+		<form action="javascript:savePageAndStayOnThePage();void(0);">
+			<textarea name="ckeditor" id="ckeditor" rows="10" cols="80"
+					  th:text="${page?.content}"></textarea>
+		</form>
+	</div>
+	<div class="row">
+		<div class="columns small-6 stack">
+			<div class="button-group">
+				<button type="button" class="button" onclick="savePageAndReturnToPageList()">Сохранить</button>
+				<button type="button" class="button" onclick="cancelPage()">Отменить</button>
+				<button th:if="${page != null}" type="button" class="button" onclick="savePageAndStayOnThePage()">Применить</button>
+				<button th:if="${page != null && group.name() == 'BLOG'}" type="button" class="button" onclick="publish()">Опубликовать</button>
+			</div>
+		</div>
+		<div class="columns small-4" id="modified-container">
+			<div th:if="${modified}">
+				<span>Последнее изменение: <span th:text="${modified.at}">20.06.2017 12:57:23 (GMT+3)</span></span>
+				<br/>
+				<span>Изменил: <span th:text="${modified.by}">ИмяПользователя</span></span>
+			</div>
+		</div>
+
+		<div class="columns small-2" id="delete-container">
+			<button type="button" class="button" onclick="deletePage()">Удалить</button>
+		</div>
+	</div>
+</main>
+
+<div layout:fragment="custom-scripts">
+	<script src="/admin/ckeditor/ckeditor.js"></script>
+	<script src="/admin/scripts/static-pages/edit.js"></script>
+</div>
+
+</body>
+</html>

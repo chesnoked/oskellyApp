@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{new/layout}" th:with="pageStyle='cataloguePage'">
+
+      <!--/*@thymesVar id="productsList" type="su.reddot.domain.service.product.view.ProductsList"*/-->
+
+      <!--/*@thymesVar id="parentCategories" type="java.util.List<su.reddot.domain.service.catalog.CatalogCategory>"*/-->
+      <!--/*@thymesVar id="subcategories" type="java.util.List<su.reddot.domain.service.catalog.CatalogCategory>"*/-->
+      <!--/*@thymesVar id="thisCategory" type="su.reddot.domain.service.catalog.CatalogCategory"*/-->
+
+      <!--/*@thymesVar id="thisCategoryAttributes" type="java.util.Map<su.reddot.domain.model.attribute.Attribute,java.util.List<su.reddot.domain.model.attribute.AttributeValue>>"*/-->
+
+      <!--/*@thymesVar id="brands" type="java.util.List<su.reddot.domain.model.Brand>"*/-->
+
+      <!--/*@thymesVar id="thisCategorySizes" type="java.util.List<su.reddot.domain.service.catalog.size.CatalogSize>"*/-->
+      <!--/*@thymesVar id="size" type="su.reddot.domain.service.catalog.size.CatalogSize"*/-->
+
+      <!--/*@thymesVar id="productConditions" type="java.util.List<su.reddot.domain.model.product.ProductCondition>"*/-->
+      <!--/*@thymesVar id="productCondition" type="su.reddot.domain.model.product.ProductCondition"*/-->
+<body>
+
+<main role="main" layout:fragment="content">
+
+    <div class="row margin-from-header hide-for-small-only">
+        <div class="column">
+            <nav>
+                <ul class="breadcrumbs">
+                    <li><a href="/" title="Вернуться на главную">Главная</a></li>
+
+                    <li th:if="${thisCategory}"><a href="/catalog/sale" title="Sale">Sale</a></li>
+                    <li th:unless="${thisCategory}">Sale</li>
+
+                    <li th:each="parentCategory : ${parentCategories}" th:if="${parentCategories}">
+                        <a href="#" th:href="@{/catalog/new?category={id}(id=${parentCategory.id})}" th:text="${parentCategory.displayName}">
+                            Название родительской категории</a></li>
+
+                    <li th:text="${thisCategory.displayName}" th:if="${thisCategory}">Женское</li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <hr class="hide-for-small-only"/>
+
+    <div class="row large-unstack">
+
+        <div class="cataloguePage-toggleFilterButtons show-for-small-only">
+            <button class="cataloguePage-toggleFilterButton" type="button" data-toggle="widgets-accordion">Фильтры</button>
+            <form class="cataloguePage-toggleFilterButton" action="#" data-product-sort>
+                <select class="js-select">
+                    <option disabled="disabled" selected="selected">Сортировать</option>
+                    <option value="publishtime_desc" th:selected="${request?.sort == 'publishtime_desc'}">Сначала новые</option>
+                    <option value="price" th:selected="${request?.sort == 'price'}">По возрастанию цены</option>
+                    <option value="price_desc" th:selected="${request?.sort == 'price_desc'}">По убыванию цены</option>
+                    <!--/*-->
+                    <option value="size" th:selected="${request?.sort == 'size'}">По размеру</option>
+                    <option value="likes" th:selected="${request?.sort == 'likes'}">По лайкам</option>
+                    <option value="brand" th:selected="${request?.sort == 'brand'}">По бренду</option>
+                    <!--*/-->
+                </select>
+            </form>
+        </div>
+
+        <aside class="large-5 xlarge-3 columns">
+            <div class="hide-for-small-only" id="widgets-accordion" data-toggler=".hide-for-small-only">
+            <ul class="accordion js-zf-accordion-media-uncollapse" data-accordion="data-accordion" data-multi-expand="true" data-allow-all-closed="true" data-zf-accordion-media-uncollapse="large">
+                <li class="widget is-active" data-accordion-item="data-accordion-item" th:unless="${subcategories?.isEmpty()}">
+                    <a class="accordion-title widget-title" title="" data-l10n-expand="➕" data-l10n-collapse="➖">
+                        <h4 class="h4 widget-title-heading">Категории</h4></a>
+
+                    <div class="accordion-content widget-content" data-tab-content="data-tab-content">
+                        <div th:each="subcategory: ${subcategories}">
+                            <a href="#" data-location-aware th:href="@{/catalog/sale(category=${subcategory.id})}" th:text="${subcategory.displayName}">Название категории</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="widget is-active" data-accordion-item="data-accordion-item" th:each="attribute: ${thisCategoryAttributes}"><a class="accordion-title widget-title" title="" data-l10n-expand="➕" data-l10n-collapse="➖">
+                    <h4 class="h4 widget-title-heading" th:text="${attribute.key.name}">Динамический атрибут фильтрации</h4></a>
+                    <button class="widget-resetButton" type="button" data-reset-form="#catalogue-widget-dynamic-attribute" th:data-reset-form="|#catalogue-widget-${attribute.key.id}|">× Сброс</button>
+                    <div class="accordion-content widget-content" data-tab-content="data-tab-content" th:data-filter-attribute="${attribute.key.id}">
+                        <form id="catalogue-widget-dynamic-attribute" th:id="|catalogue-widget-${attribute.key.id}|">
+                            <div th:each="attributeValue: ${attribute.value}">
+                                <input class="styledCheckbox" type="checkbox" id="checkbox-83wywgenk2gpy32z9f6r"
+                                       th:value="${attributeValue.id}"
+                                       th:checked="${request?.filter}? ${#lists.contains(request.filter, attributeValue.id)}"
+                                       th:id="${#ids.seq(attribute.key.id)}"/>
+                                <label for="checkbox-83wywgenk2gpy32z9f6r" th:for="${#ids.prev(attribute.key.id)}" th:text="${attributeValue.value}">Значение атрибута</label>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+
+                <li class="widget is-active" data-accordion-item="data-accordion-item" th:if="${brands}">
+                    <a class="accordion-title widget-title" title="" data-l10n-expand="➕" data-l10n-collapse="➖">
+                        <h4 class="h4 widget-title-heading">Бренд</h4>
+                    </a>
+
+                    <button class="widget-resetButton" type="button" data-reset-form="#catalogue-widget-brand">× Сброс</button>
+
+                    <div class="accordion-content" style="border: 0" data-tab-content="data-tab-content" data-filter-brand>
+
+                        <div class="input-group" style="border: 1px solid #cacaca; margin-top: 0.5em; margin-bottom: 0.5em">
+                            <input class="input-group-field" type="text" placeholder="Найти" style="border:0; box-shadow: none;">
+                            <span class="input-group-label" style="background: none; border: 0;">
+                                <i class="fa fa-search" style="color: #9a9a9a"></i>
+                            </span>
+                            <span class="input-group-label hide" style="background: none; border: 0; cursor: pointer">
+                                <i class="fa fa-times" style="color: #9a9a9a"></i>
+                            </span>
+                        </div>
+
+                        <div class="widget-content">
+                            <form id="catalogue-widget-brand">
+                                <div th:each="brand: ${brands}">
+                                    <input class="styledCheckbox"
+                                           type="checkbox"
+                                           id="checkbox-fhiv8r0ue8ljza9ssjor"
+                                           th:value="${brand.id}"
+                                           th:checked="${request?.brand}? ${#lists.contains(request.brand, brand.id)}"
+                                           th:id="${#ids.seq('brand')}"/>
+                                    <label for="checkbox-fhiv8r0ue8ljza9ssjor"
+                                           th:for="${#ids.prev('brand')}"
+                                           data-brand-filter-checkbox-label
+                                           th:text="${brand.name}">Значение
+                                        атрибута</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="widget is-active" data-accordion-item="" th:if="${sizeTypes}">
+                    <a class="accordion-title widget-title" title="" data-l10n-expand="➕" data-l10n-collapse="➖">
+                        <h4 class="h4 widget-title-heading">Размер</h4></a>
+                    <button class="widget-resetButton" type="button" data-reset-form="#widget-sizes-form">× Сброс</button>
+                    <div class="accordion-content widget-content" data-tab-content="" data-l10n-scope="" data-filter-size>
+                        <!--/* Пока неясно, какое значение использовать здесь-->
+                        <label class="styledSelect-label text-size-x-small" for="widget-sizes-l10n">Верхняя одежда</label>
+                        <!--*/-->
+                        <select class="styledSelect text-size-small" id="widget-sizes-l10n" data-l10n-model="">
+                            <option value="INT"
+                                    th:each="sizeType: ${sizeTypes}"
+                                    th:value="${sizeType}"
+                                    th:text="|${sizeType.abbreviation} - ${sizeType.description}|"
+                                    th:selected="${requestedSizeType == sizeType}? true">
+                                INT - Международный
+                            </option>
+                        </select>
+                        <form id="widget-sizes-form" style="-webkit-column-count: 2;column-count: 2;">
+
+                            <div th:each="sizeValue: ${sizesBySizeType}">
+                                <input class="styledCheckbox" value="42" type="checkbox" id="checkbox-83wywgenk2gpy32z9f6a"
+                                       th:id="${#ids.seq('size')}"
+                                       th:value="${sizeValue.id}"
+                                       th:checked="${request?.size}? ${#lists.contains(request.size, sizeValue.id)}"/>
+                                <label for="checkbox-83wywgenk2gpy32z9f6a"
+                                       th:for="${#ids.prev('size')}"
+                                       th:text="${sizeValue.name}"
+                                       th:data-l10n-strings="${sizeValue.optionalValuesForAllSizeTypes}"
+                                >42</label>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+
+                <li class="widget is-active" data-accordion-item="data-accordion-item" th:if="${productConditions}">
+                    <a class="accordion-title widget-title" title="" data-l10n-expand="➕" data-l10n-collapse="➖">
+                        <h4 class="h4 widget-title-heading">Состояние</h4></a>
+                    <button class="widget-resetButton" type="button" data-reset-form="#catalogue-widget-product-condition">× Сброс</button>
+                    <div class="accordion-content widget-content" data-tab-content="data-tab-content" data-filter-product-condition>
+                        <form id="catalogue-widget-product-condition">
+                            <div th:each="condition: ${productConditions}">
+                                <input class="styledCheckbox" type="checkbox" id="checkbox-83wywgenk2gpy32z9f6s"
+                                       th:value="${condition.id}"
+                                       th:checked="${request?.productCondition}? ${#lists.contains(request.productCondition, condition.id)}"
+                                       th:id="${#ids.seq('condition')}"/>
+                                <label for="checkbox-83wywgenk2gpy32z9f6s" th:for="${#ids.prev('condition')}" th:text="${condition.name}">Новое</label>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+
+                <li class="widget is-active" data-accordion-item="data-accordion-item" th:if="${tags}">
+                    <a class="accordion-title widget-title" title="" data-l10n-expand="➕" data-l10n-collapse="➖">
+                        <h4 class="h4 widget-title-heading">Отметки</h4></a>
+
+                    <button class="widget-resetButton" type="button" data-reset-form="#catalogue-widget-tag">× Сброс</button>
+
+                    <div class="accordion-content widget-content" data-tab-content="data-tab-content" data-filter-tag>
+                        <form id="catalogue-widget-tag">
+                            <div th:if="${ourChoiceTag}">
+                                <input class="styledCheckbox" type="checkbox" id="ourChoiceTag" name="ourChoice"
+                                       th:checked="${request?.ourChoice}"/>
+                                <label for="ourChoiceTag">Наш выбор</label>
+                            </div>
+                            <div th:if="${vintageTag}">
+                                <input class="styledCheckbox" type="checkbox" id="vintageTag" name="vintage"
+                                       th:checked="${request?.vintage}"/>
+                                <label for="vintageTag">Винтаж</label>
+                            </div>
+                            <div th:if="${newCollectionTag}">
+                                <input class="styledCheckbox" type="checkbox" id="newCollectionTag" name="newCollection"
+                                       th:checked="${request?.newCollection}"/>
+                                <label for="newCollectionTag">Новая коллекция</label>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+            </div>
+        </aside>
+
+        <main class="column">
+            <div class="row show-for-small-only">
+                <div class="column">
+                    <nav>
+                        <ul class="breadcrumbs">
+                            <li><a href="/" title="Вернуться на главную">Главная</a></li>
+
+                            <li th:if="${thisCategory}"><a href="/catalog/sale" title="Sale">Sale</a></li>
+                            <li th:unless="${thisCategory}">Sale</li>
+
+                            <li th:each="parentCategory : ${parentCategories}" th:if="${parentCategories}">
+                                <a href="#" th:href="@{/catalog/new?category={id}(id=${parentCategory.id})}" th:text="${parentCategory.displayName}">
+                                    Название родительской категории</a></li>
+
+                            <li th:text="${thisCategory.displayName}" th:if="${thisCategory}">Женское</li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="row cataloguePage-titleRow"
+                 th:data-total-pages="${productsList.totalPages}"
+                 th:data-category-id="${thisCategory?.id}" >
+                <div class="column cataloguePage-title">
+                    <!--/*
+                    .h4 добавляет дополнительное поле после название категории,
+                    из-за чего число товаров отображается как-бы в отрыве от самой категории.
+                    Style атрибут исправляет ситуацию, хоть и выглядит отвратительно.
+                    */-->
+                    <h1 class="cataloguePage-title-category h4" style="margin-bottom: 0"
+                        th:if="${thisCategory?.fullName}"
+                        th:text="${thisCategory.fullName}">
+                        Блузы и рубашки
+                    </h1>
+                    <h1 class="cataloguePage-title-category h4" style="margin-bottom: 0"
+                        th:unless="${thisCategory?.fullName}"
+                        th:text="${thisCategory?.displayName}?: _">
+                        Sale
+                    </h1>
+
+                    <!--/* Число товаров заворачивается в span для того,
+                    чтобы потом на стороне js это число можно было бы обновлять, не трогая основной текст. */-->
+                    <div class="text-secondary">Всего товаров: <span data-total-amount th:text="${productsList.productsTotalAmount}">42</span></div>
+                </div>
+                <div class="shrink column hide-for-small-only">
+                    <form action="#" data-product-sort>
+                        <select class="js-select">
+                            <option disabled="disabled" selected="selected">Сортировать</option>
+                            <option value="publishtime_desc" th:selected="${request?.sort == 'publishtime_desc'}">Сначала новые</option>
+                            <option value="price" th:selected="${request?.sort == 'price'}">По возрастанию цены</option>
+                            <option value="price_desc" th:selected="${request?.sort == 'price_desc'}">По убыванию цены</option>
+                            <!--/*-->
+                            <option value="size" th:selected="${request?.sort == 'size'}">По размеру</option>
+                            <option value="likes" th:selected="${request?.sort == 'likes'}">По лайкам</option>
+                            <option value="brand" th:selected="${request?.sort == 'brand'}">По бренду</option>
+                            <!--*/-->
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <!--/* Перечень найденных товаров */-->
+            <div id="scrollContainer">
+                <div id="products" class="row goodsGrid" th:unless="${#lists.isEmpty(productsList.products)}">
+                    <div th:replace="catalog/product_card :: product_card (${productsList.products}, _)"></div>
+                </div>
+                <div class="column small-6" th:if="${#lists.isEmpty(productsList.products)}"><h4>Нет товаров в выбранном разделе</h4></div>
+            </div>
+        </main>
+    </div>
+</main>
+
+<div layout:fragment="custom-scripts">
+    <script th:src="|/js/product/filter.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+    <script th:src="|/js/product/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+    <script th:src="|/js/catalog/sale.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+</div>
+
+</body>
+</html>

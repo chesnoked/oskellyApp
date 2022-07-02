@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--/*@thymesVar id="cart" type="su.reddot.domain.service.cart.impl.dto.Cart"*/-->
+<!--/*@thymesVar id="item" type="su.reddot.domain.service.cart.impl.dto.Item"*/-->
+
+  <body>
+    <div th:fragment="content (cart)" th:remove="tag">
+
+      <!--/*/ <th:block th:if="${cart?.size}"> /*/-->
+        <div class="column small-12 large-7 small-order-2 large-order-1 offset-y_small">
+          <div class="checkout_details">
+
+            <div class="checkout_detail" th:if="${#authorization.expression('isAnonymous()')}">
+              <div class="checkout_detail_heading">Оформление заказа</div>
+              <div class="checkout_detail_content">
+
+                <div class="row align-middle">
+                  <div class="column small-12 medium-3 small-order-2 medium-order-1">
+                    <a data-mfp-src="#login-popup" class="button hollow expanded text-uppercase text-strong">Войти</a>
+                  </div>
+                  <div class="column small-12 medium-9 small-order-1 medium-order-2 offset-y_small">У меня уже есть личный кабинет</div>
+                </div>
+
+                <div class="checkout_info">
+                  <div class="row align-middle">
+                    <div class="columns small-2 large-1">
+                      <img class="checkout_info_icon" src="/images/icons/info.svg">
+                    </div>
+                    <div class="columns text-size-smaller">
+                      Если вы не войдете в ваш личный кабинет, мы зарегистрируем новый и
+                      отправим доступы по почте
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="checkout_detail">
+              <div class="checkout_detail_heading">Контактные данные</div>
+              <div class="checkout_detail_content">
+
+                <form>
+                  <div>
+                    <label><span class="text-strong">Телефон*</span>
+                      <input id="checkout-phone" class="ios-position-fix" type="text" th:value="${cart.address?.deliveryPhone}" required>
+                      <span class="form-error checkout_error">Поле обязательно для заполнения</span>
+                    </label>
+                  </div>
+                  <div>
+                    <label><span class="text-strong">Имя*</span>
+                      <input id="checkout-name" class="ios-position-fix" type="text" th:value="${cart.address?.deliveryName}" required>
+                      <span class="form-error">Поле обязательно для заполнения</span>
+                    </label>
+                  </div>
+                  <div th:if="${#authorization.expression('isAnonymous()')}">
+                    <label><span class="text-strong">Псевдоним (никнейм)*</span>
+                      <input id="checkout-nickname" class="ios-position-fix" type="text" required>
+                      <span class="form-error">Поле обязательно для заполнения</span>
+                    </label>
+                  </div>
+                  <div th:if="${#authorization.expression('isAnonymous()')}">
+                    <label><span class="text-strong">Email*</span>
+                      <input id="checkout-email" class="ios-position-fix" type="text" required>
+                      <span class="form-error">Поле обязательно для заполнения</span>
+                    </label>
+                  </div>
+                  <div class="row">
+                    <div class="columns small-12 medium-6">
+                        <label><span class="text-strong">Город*</span>
+                          <input id="checkout-city" class="ios-position-fix" type="text" th:value="${cart.address?.deliveryCity}" required>
+                          <span class="form-error">Поле обязательно для заполнения</span>
+                        </label>
+                    </div>
+                      <div class="columns small-12 medium-6">
+                        <label><span class="text-strong">Почтовый индекс*</span>
+                          <input id="checkout-zipcode" disabled placeholder="Заполняется автоматически" class="ios-position-fix" type="text" th:value="${cart.address?.deliveryZipCode}" required>
+                          <span class="form-error">Поле обязательно для заполнения</span>
+                        </label>
+                      </div>
+                  </div>
+                  <div class="offsetStack-y_small">
+                    <label><span class="text-strong">Адрес*</span>
+                      <input id="checkout-address" class="ios-position-fix" type="text" th:value="${cart.address?.deliveryAddress}" required>
+                      <span class="form-error">Поле обязательно для заполнения</span>
+                    </label>
+                  </div>
+                  <input id="checkout-extensive-address" type="hidden" th:value="${cart.address?.deliveryExtensiveAddress}">
+                  <div class="offsetStack-y_small checkout_user_agreement">
+                    <input id="user-agreement" class="ios-position-fix styledCheckbox" type="checkbox">
+                    <label for="user-agreement">Я согласен с условиями <a href="/info/oferta" class="user_agreement">оферты</a></label>
+                    <span class="form-error">Для продолжения необходимо согласиться с условиями оферты</span>
+                  </div>
+
+                  <div class="offsetStack-y_small">
+                    <label><span class="text-strong">Комментарий</span>
+                      <textarea id="checkout-comment" class="ios-position-fix" type="text" rows="3" th:text="${cart.comment}?: _"></textarea>
+                    </label>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+
+            <div class="checkout_detail">
+              <div class="checkout_detail_heading">Способ доставки</div>
+              <div class="checkout_detail_content">
+
+                  <div class="row align-justify align-middle offsetStack-y_small">
+                    <div class="columns text-strong">Стандартная доставка</div>
+                    <div class="columns text-uppercase text-strong text-right">Бесплатно</div>
+                  </div>
+
+                  <div class="row align-justify offsetStack-y_small">
+                    <div class="columns text-strong">Срок доставки</div>
+                    <div class="columns text-right hide-for-small-only">Доставка до 7 дней по всей России</div>
+                    <div class="columns hide-for-medium small-12">Доставка до 7 дней по всей России</div>
+                  </div>
+
+                  <div class="checkout_info">
+                    <div class="row align-middle">
+                      <div class="columns small-2 large-1">
+                        <img class="checkout_info_icon" src="/images/icons/info.svg">
+                      </div>
+                      <div class="columns text-size-smaller">
+                        Когда мы подтвердим подлинность и качество вещи, мы отправим ее вам. Вы
+                        можете отслеживать статус доставки в личом кабинете.
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+            <div class="checkout_detail">
+              <div class="checkout_detail_heading">Способ оплаты</div>
+              <div class="checkout_detail_content">
+
+                <div class="row align-justify align-middle">
+                  <div class="columns text-strong">Оплата банковской картой</div>
+                  <div class="columns text-right">
+                    <img class="checkout_payment_icon" src="/images/payments/visa-mastercard.svg">
+                  </div>
+                </div>
+
+                <div class="checkout_info">
+                  <div class="row align-middle">
+                    <div class="columns small-2 large-1">
+                      <img class="checkout_info_icon" src="/images/icons/info.svg">
+                    </div>
+                    <div class="columns text-size-smaller">
+                      Безопасность сделки и доставки покупок гарантируем мы, страховая
+                      компания и наш банк-партнер. Мы пользуемся услугами ПАО "БИНБАНК" –
+                      одной из крупнейших частных финансовых организаций России.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row columns checkout_complete">
+                  <a class="button expanded text-uppercase text-strong js-complete">Подтвердить и перейти к оплате</a>
+                </div>
+                <div class="checkout_callout hide-for-medium">
+                  <div class="offsetStack-y_tiny text-center">
+                    <p>Есть вопросы или трудности с оформлением</p>
+                    <strong>Свяжитесь с нами:</strong>
+                  </div>
+                  <div class="row text-center offsetStack-y_tiny">
+                    <div class="column small-12"><i class="fa fa-phone checkout_callout_icon"></i>8 (800) 707-53-08</div>
+                    <div class="column small-12"><i class="fa fa-envelope checkout_callout_icon"></i>info@oskelly.ru</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="column small-12 large-5 small-order-1 large-order-2 offset-y_small">
+          <div class="checkout_summary">
+            <div class="checkout_details">
+              <div class="checkout_detail">
+                <div class="checkout_detail_heading">Итого</div>
+                <div class="checkout_detail_content">
+                <div class="hide-for-small-only">
+                <div class="checkout_positions">
+
+                  <div class="row checkout_position js-item" th:each="item: ${cart.items.?[available]}" th:data-id="${item.id}">
+                      <div class="columns small-5">
+                        <a href="#" th:href="@{/products/{id}(id=${item.productId})}">
+                          <img alt="Категория Бренд" src="/images/tmp/products/product-1.jpg"
+                               th:src="${item.imageUrl}?: _" th:alt="|${item.productName} ${item.brandName}|">
+                        </a>
+                      </div>
+                      <div class="columns">
+                          <div class="text-uppercase h5">
+                            <a th:href="@{/products/{id}(id=${item.productId})}"
+                               th:text="${item.brandName}">
+                              PHILOSOPHY DI ALBERTA FERRETTI
+                            </a>
+                          </div>
+                        <div class="checkout_cart_notation">
+                          <a href="#"
+                             th:href="@{/products/{id}(id=${item.productId})}"
+                             th:text="${item.productName}">Сапоги</a>
+                        </div>
+                        <div class="offset-y_tiny checkout_cart_notation">
+                          <span class="text-strong">Состояние:</span>
+                          <span th:text="${item.productCondition}">С биркой</span>
+                        </div>
+                        <div class="offset-y_tiny checkout_cart_notation" th:if="${item.size}">
+                          <span class="text-strong">Размер:</span>
+                          <span th:text="${item.size.value}">EU 35</span>
+                        </div>
+                        <div class="offset-y_tiny text-strong"
+                             th:text="|${item.productPrice.formatted} руб.|">27 180 руб.
+                        </div>
+                    </div>
+                      <div class="column shrink">
+                          <div class="checkout_info_icon_border h3 js-remove" style="cursor: pointer">×</div>
+                      </div>
+                  </div>
+
+                </div>
+
+                <hr class="checkout_separator"/>
+                </div>
+
+                <div class="row align-justify offset-y_small">
+                  <div class="column shrink">Общая сумма заказа:</div>
+                  <div class="column text-right" th:text="|${cart.finalPrice} руб.|">27 880 руб.</div>
+                </div>
+
+                <div class="js-discount" th:data-discount-is-set="${cart.discount}? true : null">
+
+                  <form data-abide novalidate>
+                    <div class="input-group checkout_discount_input">
+                      <input id="discount-input" class="input-group-field ios-position-fix js-discount-input" type="text" placeholder="Использовать промокод/сертификат"
+                             th:value="${cart.discount?.code}?: ''"
+                             th:disabled="${cart?.discount}">
+                      <span class="input-group-label">
+                      <i class="js-input-state fa" th:if="${cart.discount}" th:classappend="${cart.discount.valid}? 'fa-check success' : 'fa-times failed'"></i>
+                    <i class="fa fa-angle-right js-input-prompt" th:classappend="${cart.discount}? 'hide'"></i>
+                </span>
+                    </div>
+                    <span class="form-error checkout_error" data-form-error-for="#discount-input"></span>
+                  </form>
+                  <div class="row align-justify text-size-small" th:if="${cart.discount}">
+                    <div class="columns shrink" th:text="${cart.discount.valid}? _ : 'Скидка недоступна'">
+                      Активирован</div>
+                    <div class="columns text-right checkout_discount_change js-discount-change">Отменить / Изменить</div>
+                  </div>
+                </div>
+
+                <div class="row checkout_total align-justify align-middle">
+                  <div class="column shrink text-strong">Всего:</div>
+                  <div class="column text-right text-strong text-size-larger" th:text="|${cart.finalPrice} руб.|">27 880 руб.</div>
+                </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout_callout hide-for-small-only">
+            <div class="text-strong offsetStack-y_small">Есть вопросы или трудности с оформлением,
+              свяжитесь с нами:</div>
+
+            <div class="row offsetStack-y_small small-up-1 medium-up-2 text-center">
+              <div class="column"><i class="fa fa-phone checkout_callout_icon"></i>8 (800) 707-53-08</div>
+              <div class="column"><i class="fa fa-envelope checkout_callout_icon"></i>info@oskelly.ru</div>
+            </div>
+
+          </div>
+
+        </div>
+      <!--/*/ </th:block> /*/-->
+
+      <!--/*/ <th:block th:if="${cart == null or cart.size == 0}"> /*/-->
+      <div class="checkout-empty">
+        <div class="row column offsetStack-y">
+          <p class="text-center lead" style="margin-top: 2rem">Корзина пуста</p>
+        </div>
+
+        <div class="row align-right medium-uncollapse">
+          <div class="shrink-at-medium-up column">
+            <div class="offsetStack-y row align-right medium-unstack offset_tiny-at-small_fill">
+              <div class="shrink-at-medium column small-order-2 medium-order-1 offset-y_tiny-at-small"><a class="offsetStack-x button hollow expanded large-at-small nowrap" href="/" title="Вернуться на главную и продолжить покупки">Продолжить шоппинг</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/*/ </th:block> /*/-->
+      </div>
+  </body>
+</html>

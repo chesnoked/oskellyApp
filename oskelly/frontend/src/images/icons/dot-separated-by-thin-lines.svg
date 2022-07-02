@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="301px" height="10px" viewBox="0 0 301 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>dot-separated-by-thin-lines</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Inviting-Page" transform="translate(-362.000000, -378.000000)" fill="#000000">
+            <g id="dot-separated-by-thin-lines" transform="translate(362.000000, 378.000000)">
+                <path d="M134.507664,5 L0,5 L0,6 L134.507664,6 C134.502567,5.83395773 134.5,5.66727865 134.5,5.5 C134.5,5.33272135 134.502567,5.16604227 134.507664,5 Z M166.492336,5 L301,5 L301,6 L166.492336,6 C166.497433,5.83395773 166.5,5.66727865 166.5,5.5 C166.5,5.33272135 166.497433,5.16604227 166.492336,5 Z" id="Combined-Shape" fill-rule="nonzero"></path>
+                <circle id="Oval-3" cx="150" cy="5" r="5"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

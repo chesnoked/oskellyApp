@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{new/layout}" th:with="pageStyle='productAddPage'">
+<head>
+	<style>
+		.styledTextInput { background-color: #fff !important; }
+	</style>
+	<!--/* правильнее упаковывать стили плагина подсказок в main.css */-->
+	<link rel="stylesheet" href="/css/suggestions.min.css"/>
+</head>
+<body class="productPage">
+
+<!--/*@thymesVar id="itemToSell" type="su.reddot.domain.service.product.item.view.ProductItemToSell" */-->
+<main role="main" layout:fragment="content">
+
+
+	<h1 class="h3 text-center" th:if="not ${itemToSell.confirmationResult}" th:text="|Подтвердите продажу товара в заказе ${itemToSell.orderId}|">
+		Подтвердите продажу товара в заказе 123456</h1>
+
+	<h1 class="h3 text-center" th:if="${itemToSell.confirmationResult == T(su.reddot.domain.service.product.item.view.ConfirmationResult).CONFIRMED}"
+		th:text="|Вы подтвердили продажу товара в заказе ${itemToSell.orderId}|">
+		Вы подтвердили продажу товара в заказе 123456</h1>
+
+	<h1 class="h3 text-center" th:if="${itemToSell.confirmationResult == T(su.reddot.domain.service.product.item.view.ConfirmationResult).REJECTED}"
+		th:text="|Вы отклонили продажу товара в заказе ${itemToSell.orderId}|">
+		Вы отклонили продажу товара в заказе 123456</h1>
+
+	<div class="row">
+		<div class="column">
+
+			<h2 class="offset-y_small text-size-x-large text-strong">1. Информация о товаре</h2>
+
+			<div class="row">
+				<div class="small-12 large-4 xlarge-3 columns">
+					<img src="//placehold.it/200x200&text=X" th:src="${itemToSell.primaryImage?.url}?:_" alt="Название вещи" th:alt="${itemToSell.brand}">
+				</div>
+
+				<div class="column">
+
+                    <h2 class="h2 text-uppercase" th:text="${itemToSell.brand}">Бренд</h2>
+                    <p th:text="${itemToSell.category}">Категория</p>
+					<p th:text="|Состояние: ${itemToSell.condition}|">Состояние: новый</p>
+					<p th:if="${itemToSell.size}" th:text="|Размер: ${itemToSell.size}|">Размер: RUS:48</p>
+
+					<dl class="inlineDescriptions">
+						<div th:each="attribute: ${itemToSell.attributes}">
+							<dt class="inlineDescriptions-term" th:text="|${attribute.name}:|">Атрибут</dt>
+							<dd class="inlineDescriptions-description" th:text="${attribute.value}">Значение</dd>
+						</div>
+					</dl>
+
+					<p class="text-size-larger"
+					   th:utext="|Цена: <strong>${itemToSell.priceWithoutCommission} ₽</strong>|">
+						Цена: <strong>123.00 ₽</strong>
+					</p>
+                    <p class="text-size-larger"
+					    th:utext="|Покупатель оплачивает: <strong>${itemToSell.priceWithCommission} ₽</strong>|">
+						Покупатель оплачивает <strong>165.00 ₽</strong></p>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="row column show-for-medium">
+		<hr>
+	</div>
+
+    <div class="row column" th:unless="${itemToSell.confirmationResult ==
+    T(su.reddot.domain.service.product.item.view.ConfirmationResult).REJECTED}">
+    	<h2 class="text-size-x-large text-strong">2. Адрес, куда курьер подъедет за товаром</h2>
+	</div>
+
+    <div class="row column" th:unless="${itemToSell.confirmationResult ==
+    T(su.reddot.domain.service.product.item.view.ConfirmationResult).REJECTED}">
+
+        <form id="sale-confirmation" class="offset-y" data-abide novalidate th:data-item-id="${itemToSell.itemId}">
+
+            <div class="row align-center">
+                <div class="small-6 medium-2 columns">
+                    <label class="middle" for="pickup-first-name">Имя:</label>
+                </div>
+
+                <div class="small-6 columns">
+					<!--/* Ввести значение можно только если продавец еще не разрешил статус продажи и если продавец не заполнил свое имя в профиле */-->
+                    <input id="pickup-first-name" type="text" name="firstName" class="styledTextInput styledTextInput_secondary ios-position-fix" required
+						   th:value="${itemToSell.pickupRequisite.firstName}"
+						   th:disabled="${itemToSell.confirmationResult != null or itemToSell.pickupRequisite.firstName != null}">
+                    <span class="form-error">Поле обязательно для заполнения</span>
+                </div>
+			</div>
+
+			<div class="row align-center">
+				<div class="small-6 medium-2 columns">
+					<label class="middle" for="pickup-last-name">Фамилия:</label>
+				</div>
+
+				<div class="small-6 columns">
+					<!--/* Поведение элемента управления аналогично тому, который отвечает за заполнение имени продавца */-->
+					<input id="pickup-last-name" type="text" name="lastName" class="styledTextInput styledTextInput_secondary ios-position-fix" required
+						   th:value="${itemToSell.pickupRequisite.lastName}"
+						   th:disabled="${itemToSell.confirmationResult != null or itemToSell.pickupRequisite.lastName != null}">
+					<span class="form-error">Поле обязательно для заполнения</span>
+				</div>
+			</div>
+
+			<div class="row align-center">
+				<div class="small-6 medium-2 columns">
+					<label class="middle" for="pickup-city">Город:</label>
+				</div>
+
+				<div class="small-6 columns">
+					<!--/* ... и поведение этого элемента - тоже */-->
+					<input id="pickup-city" type="text" name="city" class="styledTextInput styledTextInput_secondary ios-position-fix" required
+						   th:value="${itemToSell.pickupRequisite.city}"
+						   th:disabled="${itemToSell.confirmationResult != null}">
+					<span class="form-error">Поле обязательно для заполнения</span>
+				</div>
+			</div>
+
+			<div class="row align-center">
+				<div class="small-6 medium-2 columns">
+					<label class="middle" for="pickup-zip-code">Почтовый индекс:</label>
+				</div>
+
+				<div class="small-6 columns">
+					<!--/* ... и этого */-->
+					<input id="pickup-zip-code" type="text" name="zipCode" class="styledTextInput styledTextInput_secondary ios-position-fix" required
+						   th:value="${itemToSell.pickupRequisite.zipCode}"
+						   th:disabled="${itemToSell.confirmationResult != null or itemToSell.pickupRequisite.zipCode != null}">
+					<span class="form-error">Поле обязательно для заполнения</span>
+				</div>
+			</div>
+
+			<div class="row align-center">
+				<div class="small-6 medium-2 columns">
+					<label class="middle" for="pickup-address">Адрес:</label>
+				</div>
+
+				<div class="small-6 columns">
+					<!--/* Продавец всегда может указать особенный адрес получения товара курьером. Иначе в кач-ве адреса будет использоваться тот, что указан в профиле */-->
+					<input id="pickup-address" type="text" name="address" class="styledTextInput styledTextInput_secondary ios-position-fix" required
+						   th:value="${itemToSell.pickupRequisite.address}?: ''"
+						   th:disabled="${itemToSell.confirmationResult}">
+					<span class="form-error">Поле обязательно для заполнения</span>
+				</div>
+			</div>
+
+			<div class="row align-center">
+				<div class="small-6 medium-2 columns">
+					<label class="middle" for="pickup-address">Номер телефона:</label>
+				</div>
+
+				<div class="small-6 columns">
+					<!--/* Поведение аналогично полю адреса: продавец может его переопределить значением, отличным от того, что в профиле */-->
+					<input id="pickup-phone" type="text" name="phone" class="styledTextInput styledTextInput_secondary ios-position-fix" required
+						   th:value="${itemToSell.pickupRequisite.phone}?: ''"
+						   th:disabled="${itemToSell.confirmationResult}">
+					<span class="form-error">Поле обязательно для заполнения</span>
+				</div>
+			</div>
+
+			<div class="row column show-for-medium">
+				<hr>
+			</div>
+
+			<div class="row align-center" th:if="not ${itemToSell.confirmationResult}">
+				<fieldset class="small-12 medium-5 xlarge-3 column">
+					<button type="submit" class="button expanded offset-y_tiny nowrap" value="confirm">Подтвердить продажу</button>
+				</fieldset>
+				<fieldset class="small-12 medium-5 xlarge-3 column">
+					<button type="submit" class="button hollow expanded offset-y_tiny nowrap" value="reject">Отказаться</button>
+				</fieldset>
+			</div>
+        </form>
+	</div>
+</main>
+
+<div layout:fragment="custom-scripts">
+	<!--/* правильнее упаковывать плагин подсказок в index.js */-->
+	<script type="text/javascript" src="/js/jquery.suggestions.min.js"></script>
+	<script th:src="|/js/product/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+	<script th:src="|/js/product/sale-confirmation.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+</div>
+
+</body>
+</html>

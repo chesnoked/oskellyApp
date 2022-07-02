@@ -1,0 +1,114 @@
+.invitingPage
+	&-container
+		margin-top: -2rem
+	&-title
+		font-size: 3.3rem
+		font-family: $font-family-serif
+		text-align: center
+		position: absolute
+		left: 0
+		right: 0
+		top: calc((100% - 146px)/2)
+		font-weight: bold
+		@media screen and (max-width: 620px)
+			font-size: 2.3rem
+		@media screen and (max-width: 320px)
+			font-size: 1.9rem
+			top: calc((100% - 80px)/2)
+	&-blockMain
+		max-height: 535px
+		overflow: hidden
+		position: relative
+		border-bottom: 5px solid #cfa788
+		box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2)
+	&-line-icon
+		margin: 0 auto
+		display: block
+		left: 0
+		right: 0
+		top: calc(100% / 1.8 )
+		position: absolute
+	&-backgroundBlock
+		background-image: linear-gradient(to top, #ffffff, rgba(255, 255, 255, 0.89) 32%, rgba(255, 255, 255, 0.75) 55%, rgba(255, 255, 255, 0))
+
+	&-backgroundImage
+		width: 100%
+		position: relative
+		z-index: -1
+	&-iconBlock
+		> img
+			display: block
+			margin: 0 auto
+			position: relative
+			top: -60px
+			box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2)
+			border-radius: 50%
+
+	&-invite
+		&-title
+			font-size: 2.3rem
+			line-height: 1.3
+			letter-spacing: 0.6px
+			text-align: center
+			font-weight: bold
+		&-subtitle
+			font-size: 1.5rem
+			line-height: 1.43
+			text-align: center
+			opacity: 0.9
+			margin-top: 0.7rem
+		&-block
+			margin-top: 3rem
+	&-inviteResult
+		&-item
+			text-align: center
+			box-shadow: 0 1px 4.5px 0 rgba(0,0,0,0.15)
+			margin-top: 1.9rem
+			padding: 2rem 0 3rem
+			> img
+				display: block
+				margin: 0 auto
+		&-title
+			font-size: 2.3rem
+			font-weight: 500
+			letter-spacing: 0.4px
+			width: 70%
+			margin: 0 auto
+		&-subtitle
+			font-size: 0.9rem
+			line-height: 1.62rem
+			opacity: 0.9
+		&-text
+			font-size: 0.9rem
+			color: #9b9b9b
+			width: 80%
+			margin: 0 auto
+	&-invitingButton
+			text-decoration: none
+			display: block
+			margin: 0 auto
+			background:  #cfa788
+			border-radius: 1px
+			border: solid 0.5px rgba(207, 167, 136, 0.25)
+			color: #ffffff
+			font-size: 1rem
+			font-weight: 500
+			letter-spacing: 0.2px
+			text-align: center
+			max-width: 180px
+			padding: 8px 20px
+			margin-top: 4rem
+			margin-bottom: 8rem
+			&:hover
+				text-decoration: none
+				color: #ffffff
+				background: #9e8069
+
+	&-ampersand
+		padding: 0
+		> img
+			height: 100%
+			display: block
+			margin: 0 auto
+
+

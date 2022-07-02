@@ -1,0 +1,70 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--/*@thymesVar id="category" type="su.reddot.domain.service.catalog.CatalogCategory"*/-->
+<!--/*@thymesVar id="brand" type="su.reddot.domain.model.Brand"*/-->
+
+<div class="row align-center margin-top">
+  <div class="large-6 columns">
+    <div class="row align-center">
+      <div class="medium-7 columns"><img class="offset-y" src="images/products-figure.png" alt="Туфли, сумочка и браслет"></div>
+    </div>
+    <h2 class="h2 text-serif text-center">Продать товар</h2>
+    <p class="text-center">Продавайте дизайнерские вещи другим любителям моды</p>
+    <hr class="hide-for-small-only" th:if="${hasDrafts}">
+    <div class="productAddPage-unsaved row" th:if="${hasDrafts}">
+      <div class="column medium-uncollapse-selfStacked text-center">
+        <p>У вас есть незавершенные публикации товара</p>
+        <p><a class="text-underlined" href="/account/products?state=DRAFT" title="Закончить оформление формы">Закончить оформление</a></p>
+      </div>
+    </div>
+    <hr class="hide-for-small-only">
+    <form id="first-step-add-product">
+      <div class="row column offset-y">
+        <h5 class="h5">Категория</h5>
+        <div class="row medium-unstack offset-y_small productAddPage-styledCheck-container productAddPage-styledCheck-container_large">
+          <!--/* Временно на проде выпилить категорию "стиль жизни" из списка категорий, в которые можно опубликовать товар */-->
+          <div class="column"
+               th:each="category: ${catalog}"
+               th:if="${category.displayName != 'Стиль жизни' or not @environment.acceptsProfiles('prod')}">
+            <input class="styledRadio" type="radio" id="5iqg0v3gqygly8fwp14i" name="top-category" th:value="${category.id}" th:id="${#ids.seq('category')}">
+            <label for="5iqg0v3gqygly8fwp14i" th:text="${category.displayName}" th:for="${#ids.prev('category')}">title</label>
+          </div>
+        </div>
+        <h5 class="h5">Продукт</h5>
+        <select class="js-select" id="childCategory">
+          <option class="is-placeholder" selected="selected" disabled="disabled">Выберите</option>
+        </select>
+          <!--/* Бренд можно выбрать в любое время,
+          для этого необязательно предварительно выбирать категорию публикуемого товара. */-->
+        <h5 class="h5">Бренд</h5>
+        <select class="js-select" id="brand" data-search="data-search">
+          <option class="is-placeholder" selected="selected">Выберите</option>
+                  <option value="value" th:each="brand: ${brands}" th:value="${brand.id}" th:text="${brand.name}">Название бренда</option>
+        </select>
+      </div>
+      <div class="row text-center">
+        <div class="column"><a class="button expanded-at-small large-at-small large-at-medium" href="product-add-properties.html" th:attr="href=''" title="Продолжить" id="button-submit">Продолжить</a></div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row text-center offset-y_large xlarge-unstack align-center">
+  <div class="large-8 columns offset-y">
+    <h4 class="h4 text-size-x-large">Как это работает?</h4>
+    <p>OSKELLY - для тех кто любит бренды. Шопинг по-другому.</p>
+    <p><a class="text-underlined" href="/welcome" title="Узнать подробнее о том, как это работает">Узнать подробнее</a></p>
+  </div>
+  <div class="large-8 columns offset-y">
+    <h4 class="h4 text-size-x-large">Мало времени?</h4>
+    <p>Доверьте Ваш гардероб нашей команде профессионалов и мы обо всём позаботимся.</p>
+    <p><a class="text-underlined" href="/concierge-service" title="Узнать подробнее про “Консьерж-сервис”">Подробнее про “Консьерж-сервис”</a></p>
+  </div>
+  <div class="large-8 columns offset-y">
+    <h4 class="h4 text-size-x-large">Вы — профессиональный продавец?</h4>
+    <p>Мы подготовили для Вас специальные условия.</p>
+    <p><a class="text-underlined" href="mailto:pro@oskelly.ru" title="Написать нам письмо">Свяжитесь с нами</a></p>
+  </div>
+</div>
+<div class="row column">
+  <hr>
+</div>

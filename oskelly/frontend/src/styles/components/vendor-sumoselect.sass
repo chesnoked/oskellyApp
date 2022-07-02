@@ -1,0 +1,33 @@
+\:root:root .SumoSelect
+	$height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1))
+	width: 100%
+	&:focus,
+	&:hover,
+	&.open
+		%suso-cap-open
+			outline: none
+			border: $input-border-focus
+			box-shadow: $input-shadow-focus
+			background-color: $input-background-focus
+			@if has-value($input-transition)
+				transition: $input-transition
+	.CaptionCont
+		@extend %suso-cap-open
+		margin: 0 0 $form-spacing
+		border: $input-border
+		border-radius: 0
+		height: $height
+		> label
+			width: ($form-spacing * 1.5)
+			> i
+				+background-triangle($select-triangle-color)
+				background:
+					size: 9px 6px
+		> .placeholder
+			font-style: normal
+	.SumoClass,
+	.SumoUnder
+		height: $height
+	.opt
+		&.is-placeholder
+			display: none

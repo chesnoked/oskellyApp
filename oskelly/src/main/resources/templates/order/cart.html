@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{new/layout}"
+      th:with="pageStyle='orderPage'">
+
+  <body>
+    <main role="main" layout:fragment="content">
+
+    <div class="row checkout js-checkout" th:classappend="${cart == null or cart.size == 0}? 'align-center'">
+      <div th:replace="order/cart-content :: content (${cart})"></div>
+    </div>
+
+    </main>
+
+    <div layout:fragment="custom-scripts">
+      <script th:src="|/scripts/checkout/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+      <script th:src="|/scripts/checkout/component.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+    </div>
+
+  </body>
+</html>

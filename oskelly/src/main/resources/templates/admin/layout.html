@@ -1,0 +1,123 @@
+<!doctype html>
+<html class="no-js" lang=""
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Oskelly Administration</title>
+
+    <link rel="stylesheet" href="/admin/styles/vendor/foundation.min.css" />
+    <link rel="stylesheet" href="/admin/styles/vendor/font-awesome.min.css" />
+    <link rel="stylesheet" href="/admin/styles/vendor/magnific-popup.css" />
+
+    <link rel="stylesheet" href="/admin/styles/dashboard/main.css" />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/fav/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/fav/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/fav/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/fav/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/fav/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/fav/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/fav/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/fav/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/fav/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/fav/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/fav/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/fav/favicon-16x16.png">
+</head>
+
+<body>
+<div class="app-dashboard shrink-medium">
+  <div class="row expanded app-dashboard-top-nav-bar">
+
+    <div class="columns medium-2 large-8">
+      <button data-toggle="app-dashboard-sidebar" class="menu-icon hide-for-medium"></button>
+      <a class="app-dashboard-logo" href="/">Oskelly</a>
+    </div>
+
+    <div class="columns shrink app-dashboard-logo" th:text="${user.email}">Текущий пользователь</div>
+    <div class="columns shrink app-dashboard-top-bar-actions">
+      <button id="logout" class="button hollow">Выйти</button>
+    </div>
+  </div>
+
+  <div class="app-dashboard-body off-canvas-wrapper">
+    <div id="app-dashboard-sidebar" class="app-dashboard-sidebar position-left off-canvas off-canvas-absolute reveal-for-medium" data-off-canvas>
+      <div class="app-dashboard-sidebar-title-area">
+        <div class="app-dashboard-close-sidebar">
+
+          <button id="close-sidebar" data-app-dashboard-toggle-shrink class="app-dashboard-sidebar-close-button show-for-medium" aria-label="Close menu" type="button">
+            <span aria-hidden="true"><a href="#"><i class="large fa fa-angle-double-left"></i></a></span>
+          </button>
+
+        </div>
+
+        <div class="app-dashboard-open-sidebar">
+          <button id="open-sidebar" data-app-dashboard-toggle-shrink class="app-dashboard-open-sidebar-button show-for-medium" aria-label="open menu" type="button">
+            <span aria-hidden="true"><a href="#"><i class="large fa fa-angle-double-right"></i></a></span>
+          </button>
+        </div>
+      </div>
+      <div class="app-dashboard-sidebar-inner">
+        <ul class="menu vertical">
+          <li th:class="${activeTab == 'users'}? 'active'"><a href="/admin/users" title="Пользователи">
+            <i class="large fa fa-users"></i><span class="app-dashboard-sidebar-text">Пользователи</span>
+          </a></li>
+
+          <li><hr/></li>
+
+          <li th:class="${activeTab == 'products moderation'}? 'active'"><a href="/admin/moderation" title="Товары">
+            <i class="large fa fa-shopping-bag"></i><span class="app-dashboard-sidebar-text">Товары</span>
+          </a></li>
+          <li th:class="${activeTab == 'payments'}? 'active'"><a href="/admin/orders" title="Продажи и платежи">
+            <i class="large fa fa-rub"></i><span class="app-dashboard-sidebar-text">Продажи и платежи</span>
+          </a></li>
+          <li th:class="${activeTab == 'delivery'}? 'active'"><a href="/admin/warehouse" title="Склад и доставка">
+            <i class="large fa fa-truck"></i><span class="app-dashboard-sidebar-text">Склад и доставка</span>
+          </a></li>
+          <li><hr/></li>
+          <li th:class="${activeTab == 'static content management'}? 'active'"><a href="/admin/static/info" title="Информационные страницы">
+            <i class="large fa fa-edit"></i><span class="app-dashboard-sidebar-text">Информационные страницы</span>
+          </a></li>
+          <li th:class="${activeTab == 'promo content management'}? 'active'"><a href="/admin/promo" title="Промо-блоки">
+            <i class="large fa fa-edit"></i><span class="app-dashboard-sidebar-text">Промо-блоки</span>
+          </a></li>
+          <li><hr/></li>
+          <li th:class="${activeTab == 'logs'}? 'active'"><a href="#" title="Журналы">
+            <i class="large fa fa-file-text"></i><span class="app-dashboard-sidebar-text">Журналы</span>
+          </a></li>
+          <li th:class="${activeTab == 'reports'}? 'active'"><a href="#" title="Отчеты">
+            <i class="large fa fa-bar-chart"></i><span class="app-dashboard-sidebar-text">Отчеты</span>
+          </a></li>
+          <li><hr/></li>
+          <li th:class="${activeTab == 'comments moderation'}? 'active'"><a>
+            <i class="large fa fa-comments"></i><span class="app-dashboard-sidebar-text">Модерация комментариев</span>
+          </a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="scrollable app-dashboard-body-content off-canvas-content" data-off-canvas-content layout:fragment="content">
+    </div>
+  </div>
+</div>
+
+
+<script src="/admin/scripts/vendor/jquery.min.js"></script>
+<script src="/admin/scripts/vendor/what-input.js"></script>
+<script src="/admin/scripts/vendor/foundation.min.js"></script>
+<script src="/admin/scripts/vendor/jquery.magnific-popup.min.js"></script>
+
+<script src="/admin/scripts/vendor/init.js"></script>
+
+<script src="/admin/scripts/dashboard/main.js"></script>
+
+<div layout:fragment="custom-scripts"></div>
+
+</body>
+</html>

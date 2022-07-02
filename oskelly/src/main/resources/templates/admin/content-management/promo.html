@@ -1,0 +1,106 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{admin/layout}">
+
+<body>
+
+<main layout:fragment="content">
+
+<header>
+	<div class="column row">
+		<h2 class="text-center">Модерация промоблоков</h2>
+	</div>
+</header>
+
+<section>
+	<div class="row" style="border-bottom: 1px dotted black;">
+		<div class="small-6 columns">
+			<h3>Модерация галереи </h3>
+			<button id="add-gallery" class="button tiny" onclick="openGalleryCreation()">Добавить</button>
+		</div>
+		<div class="small-6">
+			<h3>Модерация подборок товаров</h3>
+			<button id="add-selection" class="button tiny" onclick="openSelectionCreation()">Добавить</button>
+		</div>
+	</div>
+	<div class="row">
+		<section class="small-6 columns" style="border-right: 1px dotted black;">
+			<div th:each="item: ${galleryItems}"
+				 style="padding: 20px 0; border-bottom:1px dotted black; min-height: 270px;">
+				<div><img th:src="${item.img}" width="200px" height="200px"/></div>
+				<span>URL: </span><span th:text="${item.url}"></span><br/>
+				<span>Порядок отображения: </span><span th:text="${item.orderIndex}"></span>
+				<div>
+					<button class="button tiny" th:data-item-id="${item.id}"
+							th:onclick="|openGalleryUpdate(${item.id})|">Редактировать
+					</button>
+					<button class="button tiny" th:data-item-id="${item.id}"
+							th:onclick="|deleteGalleryItem(${item.id})|">Удалить
+					</button>
+				</div>
+			</div>
+		</section>
+		<section class="small-6 columns">
+			<div th:each="selection: ${selections}"
+				 style="padding: 20px 0; border-bottom:1px dotted black; min-height: 270px;">
+				<div class="row">
+					<div class="small-6 columns">
+						<img th:src="${selection.img}" width="200px" height="200px">
+					</div>
+					<div class="small-6 columns">
+						<div class="top_section_title" th:text="${selection.firstLine}"></div>
+						<div class="top_section_brand" th:text="${selection.secondLine}"></div>
+						<span class="top_section_link" th:text="${selection.thirdLine}"></span>
+					</div>
+				</div>
+				<span>Порядок отображения: </span><span th:text="${selection.orderIndex}"></span>
+				<div>
+					<button class="button tiny" th:data-item-id="${selection.id}"
+							th:onclick="|openSelectionUpdate(${selection.id})|">Редактировать
+					</button>
+					<button class="button tiny" th:data-item-id="${selection.id}"
+							th:onclick="|deleteSelectionItem(${selection.id})|">Удалить
+					</button>
+				</div>
+			</div>
+		</section>
+		<section class="small-6 columns">
+			<h3>Фавориты</h3>
+			<div th:each="item : ${favorites}"
+				 style="padding: 20px 0; border-bottom:1px dotted black; min-height: 270px;">
+				<div class="row">
+					<div class="small-6 columns">
+						<img th:src="${item.img}" width="200px" height="200px">
+						<p>Alt <span th:text="${item.alt}">подпись</span></p>
+					</div>
+					<div class="small-6 columns">
+						<div class="top_section_title" th:text="${item.firstLine}"></div>
+						<div class="top_section_brand" th:text="${item.secondLine}"></div>
+						<div class="top_section_link" th:text="${item.thirdLine}"></div>
+						<div th:text="${item.url}"></div>
+					</div>
+				</div>
+				<span>Порядок отображения: </span><span th:text="${item.orderIndex}"></span>
+				<div>
+					<button class="button tiny" th:data-item-id="${item.id}"
+							th:onclick="|openSelectionUpdate(${item.id})|">Редактировать
+					</button>
+					<button class="button tiny" th:data-item-id="${item.id}"
+							th:onclick="|deleteSelectionItem(${item.id})|">Удалить
+					</button>
+				</div>
+			</div>
+		</section>
+
+	</div>
+</section>
+</main>
+
+<div layout:fragment="custom-scripts">
+	<script src="/admin/scripts/promo/main.js"></script>
+</div>
+
+</body>
+</html>
+

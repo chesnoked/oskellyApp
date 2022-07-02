@@ -1,0 +1,78 @@
+<!doctype html>
+<html
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml"
+		layout:decorate="~{admin/layout}">
+<head>
+	<title>Управление модераторами</title>
+	<link rel="stylesheet" href="/admin/styles/users.css"/>
+</head>
+<body>
+
+<main layout:fragment="content">
+	<div class="breadcrumbs">
+		<ul>
+			<li><a href="/admin">Админка</a></li>
+			<li><a href="/admin/users">Управление пользователями</a></li>
+			<li>Управление модераторами</li>
+		</ul>
+	</div>
+	<div class="row empty-left-margin">
+		<div class="columns small-2">
+			<button type="button" class="button fullWidth" id="add-moderator-button"
+					th:disabled="${canEditPermissions != null && !canEditPermissions}">Добавить
+			</button>
+		</div>
+	</div>
+	<table th:object="${moderators}" class="text-centered-table scroll">
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>email</th>
+			<th>Никнейм</th>
+			<th>ФИО/Название</th>
+			<th th:each="authority: *{authorities}" th:text="${authority}"></th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr th:each="moderator: *{list}" th:object="${moderator}" th:data-id="*{id}"
+			class="moderator-row user-list-row">
+			<td th:text="*{id}"></td>
+			<td th:text="*{email}"></td>
+			<td th:text="*{nickname}"></td>
+			<td th:text="*{name}"></td>
+			<td th:each="authorityValue: *{authorities}" th:text="${authorityValue.checked}?'ДА':'НЕТ'"></td>
+		</tr>
+		</tbody>
+	</table>
+	<div th:each="moderator: ${moderators.list}"
+		 th:include="admin/content-management/users/moderator-view :: moderator-view (${moderator})"
+		 th:remove="tag"></div>
+	<div class="reveal" id="search-users-reveal"
+		 data-reveal style="min-height: 500px"
+		 data-animation-in="slide-in-right fast"
+		 data-multiple-opened="true">
+		<div class="row column">
+			<h3>Добавление модератора</h3>
+		</div>
+		<div class="row column">
+			<input id="find-user-input" type="text" placeholder="Начните вводить email сотрудника"/>
+		</div>
+		<div class="row">
+			<div class="columns small-6">Email</div>
+			<div class="columns small-6">ФИО</div>
+		</div>
+		<div id="search-users-container">
+
+		</div>
+	</div>
+	<div id="add-moderator-reveal-container">
+
+	</div>
+</main>
+
+<div layout:fragment="custom-scripts">
+	<script src="/admin/scripts/users/moderators.js"></script>
+</div>
+
+</body>
+</html>

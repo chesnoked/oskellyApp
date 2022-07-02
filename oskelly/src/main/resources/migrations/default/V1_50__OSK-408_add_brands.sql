@@ -1,0 +1,2 @@
+INSERT INTO brand(name) VALUES
+	('HELEN YARMAK');

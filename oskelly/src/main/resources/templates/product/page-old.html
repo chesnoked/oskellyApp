@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{new/layout}" th:with="pageStyle='productPage'">
+  <head>
+      <title th:text="|${product.breadcrumbs.current} купить в интернет-магазине OSKELLY|">(название товара)  (бренд) (id товара) купить  за  (цена товара) в интернет-магазине OSKELLY</title>
+  </head>
+
+  <body>
+
+  <!--/*@thymesVar id="alertTemplate" type="su.reddot.domain.service.subscription.AlertTemplate"*/-->
+  <!--/*@thymesVar id="product" type="su.reddot.presentation.view.product.ProductView"*/-->
+  <!--/*@thymesVar id="cartability" type="su.reddot.domain.service.cart.ProductCartability"*/-->
+
+  <main role="main" layout:fragment="content" th:data-product-id="${product.id}" th:data-product-state="${product.getState()}" id="main" itemscope itemtype="http://schema.org/Product">
+    <!--/*Nav bar*/-->
+    <div class="row hide-for-small-only margin-from-header">
+      <div class="column">
+        <nav aria-label="Вы находитесь здесь:">
+          <ul class="breadcrumbs">
+            <li><a href="/" title="Вернуться на главную">Главная</a></li>
+            <li th:each="category : ${product.breadcrumbs.categories}">
+              <a href="/" th:href="${category.link}" th:text="${category.name}" title="title"
+                 th:title="${category.name}">name</a></li>
+            <li>
+              <h1 th:text="${product.breadcrumbs.current}" itemprop="name"></h1>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!--/*Product*/-->
+    <div class="row">
+      <!--/*Gallery*/-->
+      <div class="column small-12 large-6">
+        <div id="symmetryLeft" data-equalizer-watch>
+          <div class="productPage-productGallery-wrapper">
+            <div class="productPage-productGallery-meta">
+              <a
+                  id="like"
+                  class="productPage-productGallery-meta-likes"
+                  title="Лайкнуть"
+                  sec:authorize="isAuthenticated()"
+                  th:classappend="${product.liked}? 'active'"
+                  th:text="${product.likesCount > 0}? ${product.likesCount} : _"
+              >
+              </a>
+              <a
+                      class="productPage-productGallery-meta-likes"
+                      title="Лайкнуть"
+                      sec:authorize="isAnonymous()"
+                      th:text="${product.likesCount > 0}? ${product.likesCount} : _"
+                      data-mfp-src="#login-popup"
+              >
+              </a>
+              <p class="productPage-productGallery-meta-badge" title="" th:each="badge: ${product.badges}">
+                <span th:text="${badge}"></span>
+              </p>
+            </div>
+            <div class="productPage-productGallery-inner">
+              <div
+                  class="productPage-productGallery-thumbnails swiper-container hide-for-small-only"
+                  id="product-gallery-thumbnails"
+              >
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <img th:src="${product.primaryImage?.smallImageUrl}"
+                         th:alt="${product.breadcrumbs.current}"
+                         th:title="|Фото ${product.breadcrumbs.current}|"
+                         onclick="ga_product_imgClick()"
+                         itemprop="image"
+                    >
+                  </div>
+                  <div class="swiper-slide" th:each="image: ${product.additionalImages}">
+                    <img th:src="${image.smallImageUrl}"
+                         th:alt="${product.breadcrumbs.current}"
+                         th:title="|Фото ${product.breadcrumbs.current}|"
+                         onclick="ga_product_imgClick()"
+                         itemprop="image"
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="productPage-productGallery-gallery swiper-container" id="product-gallery">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="swiper-zoom-container" id="productImage">
+                      <img th:src="${product.primaryImage?.largeImageUrl}"
+                           th:data-zoom-image="${product.primaryImage?.largeImageUrl}"
+                           th:title="|Фото ${product.breadcrumbs.current}|"
+                           th:alt="${product.breadcrumbs.current}">
+                    </div>
+                  </div>
+                  <div class="swiper-slide" th:each="image: ${product.additionalImages}">
+                    <div class="swiper-zoom-container">
+                      <img src="url" th:src="${image.largeImageUrl}"
+                           th:data-zoom-image="${image.largeImageUrl}" alt="Valentino Платье"
+                           th:title="|Фото ${product.breadcrumbs.current}|"
+                           th:alt="${product.breadcrumbs.current}">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                  class="swiper-pagination productPage-productGallery-gallery-pagination show-for-small-only"
+                  id="product-gallery-pagination"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/*Information about product*/-->
+      <div class="column small-12 large-6">
+        <!--/*Product brand name and condition*/-->
+        <div class="row">
+          <div class="column">
+            <!--/*Product brand name and condition for desktop*/-->
+            <div class="row hide-for-small-only">
+              <div class="column">
+                <a th:href="@{/brands/{brandUrl}(brandUrl=${product.brandUrl})}">
+                  <h2 class="h2 text-uppercase" th:text="${product.brand}"></h2>
+                </a>
+                <p th:text="${product.name}"></p>
+                <p th:text="|Состояние: ${product.condition}|"></p>
+                <p th:text="|ID товара: ${product.id}|"></p>
+              </div>
+            </div>
+
+            <!--/*Product brand name and condition for mobile*/-->
+            <div class="row show-for-small-only">
+              <div class="column">
+                <div class="row">
+                  <div class="column">
+                    <a th:href="@{/brands/{brandUrl}(brandUrl=${product.brandUrl})}">
+                      <h2 class="h2 text-uppercase text-strong" th:text="${product.brand}"></h2>
+                    </a>
+                    <span class="boldLabel text-size-smaller" th:if="${product.vintage}">Vintage</span>
+                  </div>
+                </div>
+                <div class="row text-size-small-at-small">
+                  <div class="column small-5">
+                    <p th:text="${product.name}"></p>
+                    <p class="text-secondary" th:if="${product.rrp}" th:text="|RRP: ${product.rrp} руб.|"></p>
+                  </div>
+                  <div class="column text-right">
+                    <p>
+                      <span class="offsetStack-x_tiny" th:text="|Состояние: ${product.condition}|"></span>
+                      <a class="offsetStack-x_tiny" href="/info/faq">
+                        <img class="icon" src="images/icons/info-fill.svg" th:src="@{/images/icons/info-fill.svg}">
+                      </a>
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--/*Product size*/-->
+        <div class="row">
+          <div class="column">
+            <!--/*Only one product size for desktop*/-->
+            <div class="row hide-for-small-only" th:if="${product.sizes.size() == 1}">
+              <div class="column">
+                <p>
+              <span
+                  id="onlyOneSizeAvailable"
+                  th:with="onlySizeAvailable=${product.sizes[0]}"
+                  th:data-only-size-available="${onlySizeAvailable.size.id}"
+                  th:data-price-by-size-formatted="${product.offerRelated?.negotiatedPrice}?
+                      ${product.offerRelated.negotiatedPrice} + 'руб.'
+                      : |${onlySizeAvailable.withDistinctPrices? 'От ' : ''}
+                      ${T(su.reddot.presentation.Utils).prettyRoundToTens(onlySizeAvailable.lowestPrice)} руб.|"
+                  th:data-price-by-size="${onlySizeAvailable.lowestPrice}"
+                  th:data-start-price-by-size="${onlySizeAvailable.startPrice}"
+                  th:data-start-price-by-size-formatted="${T(su.reddot.presentation.Utils).prettyRoundToTens(onlySizeAvailable.startPrice)}"
+                  th:text="${not product.hasNoSize()}? |Размер: ${onlySizeAvailable.size.getBySizeType(product.sizeType)} ${product.sizeType.abbreviation}|">
+              </span>
+                  <span class="productPage-sizeSelect-popupLink" data-mfp-src="#sizes-popup" th:if="${not product.hasNoSize()}" onclick="ga_product_sizeTableClick()">
+                  Размеры
+              </span>
+                </p>
+              </div>
+            </div>
+            <!--/*More that one size for desktop*/-->
+            <div class="row hide-for-small-only productPage-sizeSelect align-middle" th:if="${product.sizes.size() > 1}">
+              <div class="column large-5 js-hoverList padding-bottom">
+                <select class="js-select" data-size-selector id="product-size-select">
+                  <option class="is-placeholder" disabled="disabled" selected="selected" th:text="|Выберите размер (${product.sizeType.abbreviation}):|">Выберите размер (RUS):</option>
+                  <option
+                      class="js-hoverList-item js-hoverList-item-fr38-last" value="fr38-last"
+                      th:each="itemSummaryBySize: ${product.sizes}"
+                      th:class="|js-hoverList-item js-hoverList-item-${itemSummaryBySize.size.id}|"
+                      th:data-size-id="${itemSummaryBySize.size.id}"
+                      th:data-price-by-size-formatted="|${itemSummaryBySize.withDistinctPrices? 'От ' : ''}
+                    ${T(su.reddot.presentation.Utils).prettyRoundToTens(itemSummaryBySize.lowestPrice)} руб.|"
+                      th:data-price-by-size="${itemSummaryBySize.lowestPrice}"
+                      th:data-start-price-by-size="${itemSummaryBySize.startPrice}"
+                      th:data-start-price-by-size-formatted="${T(su.reddot.presentation.Utils).prettyRoundToTens(itemSummaryBySize.startPrice)}"
+                      th:data-on-popup-size="|${itemSummaryBySize.size.getBySizeType(product.sizeType)} ${product.sizeType.abbreviation}|"
+                      th:text="|${itemSummaryBySize.size.getBySizeType(product.sizeType)} ${product.sizeType.abbreviation}|">
+                    FR 38 – последний
+                  </option>
+                </select>
+              </div>
+              <div class="column large-6">
+                <p class="productPage-sizeSelect-popupLink" data-mfp-src="#sizes-popup" onclick="ga_product_sizeTableClick()">
+                  Размеры
+                </p>
+              </div>
+              <div
+                  class="js-hoverList-target productPage-sizeSelect-pane"
+                  data-hover-list-trigger="js-hoverList-item-fr38-last"
+                  th:each="itemSummaryBySize: ${product.sizes}"
+                  th:data-hover-list-trigger="|js-hoverList-item-${itemSummaryBySize.size.id}|">
+                <div class="row">
+                  <div class="column">
+                    <table>
+                      <thead>
+                      <tr>
+                        <th th:each="chart : ${itemSummaryBySize.size.chart}"
+                            th:text="${chart.key}">INT
+                        </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <td th:each="chart : ${itemSummaryBySize.size.chart}"
+                            th:text="${chart.value}">S
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--/*Only one product size for mobile*/-->
+            <div class="row show-for-small-only" th:if="${product.sizes.size() == 1}">
+              <div class="column">
+                <!--/*/ <th:block th:if="${product.sizes.size() == 1}" th:with="onlySizeAvailable=${product.sizes[0]}"> /*/-->
+                <p
+                    th:data-only-size-available="${onlySizeAvailable.size.id}"
+                    th:data-price-by-size-formatted="|${onlySizeAvailable.withDistinctPrices? 'От ' : ''}
+                             ${T(su.reddot.presentation.Utils).prettyRoundToTens(onlySizeAvailable.lowestPrice)} руб.|"
+                    th:data-price-by-size="${onlySizeAvailable.lowestPrice}">
+
+                  <!--/*/ <th:block th:if="${not product.hasNoSize()}"> /*/-->
+                  <span class="offsetStack-x_tiny"
+                        th:text="|${onlySizeAvailable.size.getBySizeType(product.sizeType)} ${product.sizeType.abbreviation}|">Размер: 42 RUS </span>
+                  <a class="offsetStack-x_tiny" href data-mfp-src="#sizes-popup">
+                    <img class="icon" src="images/icons/info-fill.svg"
+                         th:src="@{/images/icons/info-fill.svg}" alt="info">
+                  </a>
+                  <!--/*/ </th:block> /*/-->
+
+                </p>
+                <!--/*/ </th:block> /*/-->
+              </div>
+            </div>
+            <!--/*More that one size form mobile*/-->
+            <div class="row show-for-small-only align-cetner" th:if="${product.sizes.size() > 1}">
+              <div class="column text-center padding-bottom">
+                <div class="small button-group text-center" data-group-classname-toggle="hollow"
+                     data-size-selector>
+                  <button class="button small hollow offset-x_tiny product-size-button" type="button"
+                          data-group-classname-toggle-target="data-group-classname-toggle-target"
+                          th:each="itemSummaryBySize: ${product.sizes}"
+                          th:data-size-id="${itemSummaryBySize.size.id}"
+                          th:data-price-by-size-formatted="|${itemSummaryBySize.withDistinctPrices? 'От ' : ''}
+                                      ${T(su.reddot.presentation.Utils).prettyRoundToTens(itemSummaryBySize.lowestPrice)} руб.|"
+                          th:data-price-by-size="${itemSummaryBySize.lowestPrice}"
+                          th:data-start-price-by-size="${itemSummaryBySize.startPrice}"
+                          th:data-start-price-by-size-formatted="${T(su.reddot.presentation.Utils).prettyRoundToTens(itemSummaryBySize.startPrice)}"
+                          th:data-on-popup-size="|${itemSummaryBySize.size.getBySizeType(product.sizeType)} ${product.sizeType.abbreviation}|"
+                          th:text="|${product.sizeType.abbreviation} ${itemSummaryBySize.size.getBySizeType(product.sizeType)}|"
+                  >
+                  </button>
+                </div>
+                <div class="text-center">
+                  <p class="text-secondary" th:text="${product.sizeType.description}"></p>
+                  <p class="productPage-sizeSelect-popupLink" data-mfp-src="#sizes-popup" th:if="${not product.hasNoSize()}" onclick="ga_product_sizeTableClick()">Размеры</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--/*Show and change product price*/-->
+        <div class="row" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+          <meta itemprop="price" th:content="${product.currentPrice}">
+          <meta itemprop="priceCurrency" content="RUB">
+          <div class="column">
+            <!--/*Show product price*/-->
+            <div class="row align-middle" id="show-current-product-price" th:if="${product.currentPrice}">
+              <div class="column small-12 small-text-center large-7">
+                <strong class="hide-for-small-only text-size-x-large">Цена: </strong>
+                <span
+                    class="text-size-x-large productPage-productMeta-price productPage-productMeta-price_discounted"
+                    data-updatable-start-price>
+                </span>
+                <span
+                    id="current-product-price"
+                    class="text-size-x-large"
+                    data-updatable-price
+                    th:text="|${product.currentPrice} руб.|">
+                </span>
+                <span class="boldLabel desktop-vintage text-size-x-large"
+                    th:if="${product.vintage}">Vintage</span>
+                <span
+                    th:if="${canUserEditProduct}"
+                    class="productPage-sizeSelect-popupLink"
+                    id="change-product-price">
+                Изменить
+                </span>
+                <p class="text-size-larger" th:if="${product.offerRelated?.negotiatedPrice}">
+                  <strong>Цена c учетом торга:</strong>
+                  <span class="productPage-productMeta-price"
+                    th:text="|${product.offerRelated.negotiatedPrice} руб.|">7800 руб.</span>
+                  <span class="boldLabel desktop-vintage" th:if="${product.vintage}">Vintage</span>
+                </p>
+                <p class="text-secondary" th:if="${product.rrp}" th:text="|RRP: ${product.rrp} руб.|">RRP: 7800 руб. </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!--/*Add product to cart*/-->
+        <div class="row">
+          <div class="column padding-top">
+            <div class="row">
+              <div class="column small-12 medium-10 xlarge-7" th:if="${canUserEditProduct}">
+                <span>
+                  Это Ваш товар
+                </span>
+                <button
+                    id="withdraw-from-sale"
+                    class="button large expanded"
+                    data-toggle="pull-of-from-sale"
+                    th:text="${product.getState() == 'DELETED'} ? 'Товар снят с продажи': _"
+                    th:disabled="${product.getState() == 'DELETED'}"
+                >
+                  Снять с продажи
+                </button>
+                <div
+                    id="pull-of-from-sale"
+                    class="dropdown-pane"
+                    data-dropdown data-auto-focus="true"
+                    data-position="bottom"
+                    data-alignment="center">
+                  <div class="row">
+                    <div class="column small-12">
+                      <p>
+                        Снять товар с продажи без возможности восстановления?
+                      </p>
+                    </div>
+                    <div class="column small-6 text-center">
+                      <button id="delete-product">ОК</button>
+                    </div>
+                    <div class="column small-6 text-center">
+                      <button id="close-pull-of-from-sale">Отмена</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div th:unless="${canUserEditProduct}" class="medium-10 xlarge-7 columns">
+                <button
+                    id="add-to-cart"
+                    class="button large expanded productPage-buyButton"
+                    type="button"
+                    title="Добавить в корзину"
+                    data-mfp-src="#addProductToCart-popup"
+                    onclick="ga_product_addToCartSuccess()"
+                    data-on-success-mfp-src="#addProductToCart-popup"
+                    th:data-mfp-src="null"
+                    th:disabled="${not cartability.productIsCartable}?: _"
+                    th:text="${cartability.nonCartabilityReason}?: _"
+                    th:data-cart-product="${product.id}">
+                  Добавить в корзину
+                </button>
+              </div>
+            </div>
+            <div class="mfp-hide" id="addProductToCart-popup">
+              <div class="row align-center">
+                <div class="large-8 columns mfp-content-inner">
+                  <div class="whitePopup offset_fill">
+                    <button class="mfp-close" type="button" title="Закрыть">×</button>
+                    <h4 class="h4">Товар в корзине</h4>
+                    <div class="offset-at-medium-up offset-y_tiny">
+                      <div class="row">
+                        <div class="medium-4 columns"><img src="//placehold.it/500x750?text=X"
+                                                           alt="Valentino Платье"
+                                                           th:src="${product.primaryImage?.url}?: _"
+                                                           th:alt="${product.name}?:_"></div>
+                        <div class="column">
+                          <h4 class="text-strong text-uppercase" th:text="${product.brand}">
+                            Valentino</h4>
+                          <div th:text="${product.category}">Платье</div>
+
+                          <!--/* Если у товара есть только один доступный размер, сразу отображать его на страинце */-->
+                          <!--/*/ <th:block th:if="${product.sizes.size() == 1}" th:with="size=${product.sizes[0].size}"> /*/-->
+                          <div th:text="${not product.hasNoSize()}? |Размер: ${size.getBySizeType(product.sizeType)} ${product.sizeType.abbreviation}|"></div>
+
+                          <div class="text-size-larger">
+                                                <span class="offsetStack-x_small text-strong nowrap productPage-productMeta-price_discounted"
+                                                      th:if="${product.hasDiscount}"
+                                                      th:text="|${product.currentPrice} руб.|">7800 руб.</span>
+
+                            <span class="offsetStack-x_small text-strong nowrap"
+                                  th:text="${product.offerRelated?.negotiatedPrice}?:
+                                                      ${product.currentPrice} + 'руб.'">7800 руб.</span></div>
+                          <!--/*/ </th:block> /*/-->
+
+                          <!--/* Если у товара есть несколько разных размеров, то поле размера во всплывающем окне обновляется при выборе пользователем размера */-->
+                          <!--/*/ <th:block th:if="${product.sizes.size() > 1}"> /*/-->
+                          <div data-updatable-size></div>
+                          <div class="text-size-larger">
+                                                <span class="offsetStack-x_small text-strong nowrap productPage-productMeta-price_discounted"
+                                                      th:if="${product.hasDiscount}"
+                                                      th:text="|${product.currentPrice} руб.|">7800 руб.</span>
+                            <span class="offsetStack-x_small text-strong nowrap" data-updatable-price>7800 руб.</span></div>
+                          <!--/*/ </th:block> /*/-->
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row medium-unstack">
+                      <div class="column"><a class="offset-y_tiny nowrap button hollow expanded"
+                                             href="catalogue.html" title="Продолжить покупки"
+                                             th:attr="href=''" th:id="addProductToCart-popup-close">Продолжить
+                        покупки</a></div>
+                      <div class="column"><a class="offset-y_tiny nowrap button expanded" href="/cart"
+                                             title="Оформить заказ">Оформить заказ</a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--/*Wish List*/-->
+        <div class="row">
+          <div class="column">
+            <div class="productPage-productActions">
+              <!--/*/ <th:block th:if="${product.offerRelated}"> /*/-->
+              <div class="hide-for-small-only">
+                <p th:if="${product.offerRelated}">
+                  <a class="productPage-productAction" href="#sendOffer-popup"
+                     title="Поторговаться с продавцом" data-mfp-src="#sendOffer-popup"
+                     th:data-mfp-src="${#authorization.expression('isAnonymous()')}? '#login-popup' : '#sendOffer-popup'"
+                     th:onclick="${#authorization.expression('isAnonymous()')}? 'ga_product_anonymousOfferError()':'ga_product_offerOpenSuccess()'"
+                  >
+                  <span class="icon" title="Деньги">
+                    <svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                      <defs>
+                        <style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:3px;}</style>
+                      </defs>
+                      <title></title>
+                      <path class="cls-1" d="M24.79,6.44C15.55,6.44,8,13.38,8,22.07a14.48,14.48,0,0,0,2.77,8.6c-.23,2.87-.92,6.86-2.77,8.77,0,0,5.78-.87,9.63-3.3a17.41,17.41,0,0,0,7.09,1.48C34,37.61,41.5,30.66,41.5,22S34,6.44,24.79,6.44Z"/>
+                      <path class="cls-1" d="M43.12,33.44a11.93,11.93,0,0,0-1.69-7.9v.09C39,33.7,32.11,38.39,24.48,37.69c-.31.09-.54.09-.85.17a10.24,10.24,0,0,0,7.7,5.64A8.83,8.83,0,0,0,35.88,43a17,17,0,0,0,5.7,3.3c-1-1.65-1.08-4.6-.92-6.77A11.6,11.6,0,0,0,43.12,33.44Z"/>
+                    </svg>
+                  </span>
+                  <span th:remove="tag" th:text="${product.offerRelated.negotiationControlText}">
+                    Предложить свою цену
+                  </span>
+                  </a>
+                </p>
+              </div>
+
+              <button
+                  class="show-for-small-only button large hollow expanded"
+                  type="button"
+                  data-mfp-src="#sendOffer-popup" th:data-mfp-src="${#authorization.expression('isAnonymous()')}? '#login-popup' : '#sendOffer-popup'"
+                  th:onclick="${#authorization.expression('isAnonymous()')}? 'ga_product_anonymousOfferError()':'ga_product_offerOpenSuccess()'"
+                  th:text="${product.offerRelated.negotiationControlText}"
+              >
+                Предложить свою цену
+              </button>
+
+              <div class="mfp-hide" id="sendOffer-popup" th:if="${product.offerRelated}">
+                <div class="row align-center">
+                  <div class="large-7 columns mfp-content-inner">
+                    <div class="whitePopup offset_fill">
+                      <button class="mfp-close" type="button" title="Закрыть">×</button>
+                      <h4 class="h5 text-serif">Переговорная площадка</h4>
+                      <hr class="hr_black hr_no-top hr_no-bottom">
+                      <p class="offsetStack-y offset-y_small"
+                         th:text="${product.offerRelated.reasonIfNotNegotiable}?: _">Предложить продавцу
+                        снизить цену на этот
+                        товар</p>
+                      <div class="offsetStack-y">
+                        <div class="row medium-unstack">
+                          <div class="medium-3 columns offset-y_tiny-at-small">
+                            <img th:src="${product.primaryImage?.smallImageUrl}"
+                                 th:alt="${product.name}"
+                                 alt="Valentino Платье">
+                          </div>
+                          <div class="column">
+                            <h4 class="text-strong text-uppercase" th:text="${product.brand}"></h4>
+
+                            <div th:text="${product.category}"></div>
+
+                            <div class="offsetStack-y"><span class="offsetStack-x_small">Начальная цена:</span>
+                              <span class="offsetStack-x_small text-strong nowrap productPage-productMeta-price"
+                                    th:classappend="${product.offerRelated.negotiatedPrice}? 'productPage-productMeta-price_discounted'"
+                                    th:text="|${T(su.reddot.presentation.Utils).prettyRoundToCents(product.sizes[0].lowestPrice)} руб.|">7800 руб.</span>
+                              <span class="offsetStack-x_small text-strong nowrap productPage-productMeta-price"
+                                    th:if="${product.offerRelated.negotiatedPrice}"
+                                    th:text="|${product.offerRelated.negotiatedPrice} руб.|">
+                                                          7800 руб.</span>
+                            </div>
+                            <div class="offsetStack-y"
+                                 th:if="${product.offerRelated.allowsNegotiation}">
+                              <label class="text-strong offset-y_small">Ваше предложение</label>
+                              <form data-abide novalidate data-offer>
+                                <div class="row">
+                                  <div class="column">
+                                    <input type="number" min="1" step="0.01"
+                                           placeholder="Цена" name="offerPrice">
+                                    <span class="form-error"></span>
+                                  </div>
+                                  <div class="shrink column">
+                                    <button class="button expanded" type="submit">Предложить
+                                    </button>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+
+                            <div class="offsetStack-y"
+                                 th:if="not ${#lists.isEmpty(product.offerRelated.offersHistory)}">
+                              <h5>История</h5>
+                              <table class="unstriped orderPage-table uncollapse">
+                                <thead>
+                                <tr>
+                                  <th>Отправлено</th>
+                                  <th>Ваша цена</th>
+                                  <th>Решение продавца</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="offer: ${product.offerRelated.offersHistory}"
+                                    th:switch="${offer.accepted}">
+                                  <td class="dottedBorder" th:text="${offer.offeredAt}">
+                                    31/01/2000 13:14:15
+                                  </td>
+                                  <td class="dottedBorder" th:text="|${offer.price} руб.|">1000
+                                    руб.
+                                  </td>
+
+                                  <td class="dottedBorder" th:case="${true}">Продавец
+                                    подтвердил предложение
+                                  </td>
+                                  <td class="dottedBorder" th:case="${false}">Продавец
+                                    отклонил предложение
+                                  </td>
+                                  <td class="dottedBorder" th:case="${null}">Ожидаем ответа
+                                    продавца
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--/*/ </th:block>/*/-->
+              <div sec:authorize="isAuthenticated()">
+                <p>
+                  <a
+                      id="wish-list-action"
+                      class="productPage-productAction"
+                      title="Добавить в Wish List"
+                      th:onclick="${product.inWishList}? 'removeFromWishList()' : 'addToWishList()'"
+                  >
+                  <span class="icon" title="Звезда">
+                    <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewbox="0 0 21.3 20.3" style="enable-background:new 0 0 21.3 20.3;" xml:space="preserve">
+                  <style type="text/css">
+                  .st0 {
+                    fill: #D0A889;
+                  }
+                  </style>
+                  <title>star</title>
+                  <path id="wish-star-off" class="st0" th:display="${product.inWishList}? 'none': ' '" d="M4.5,20.3c-0.1,0-0.3,0-0.4-0.1c-0.2-0.2-0.3-0.4-0.3-0.7L4.9,13L0.2,8.4C0,8.2,0,8,0,7.7
+                  c0.1-0.3,0.3-0.4,0.6-0.5l6.5-0.9L10,0.4C10.2,0.2,10.4,0,10.7,0h0c0.3,0,0.5,0.2,0.6,0.4l2.9,5.9l6.5,0.9c0.3,0,0.5,0.2,0.6,0.5
+                  c0.1,0.3,0,0.5-0.2,0.7L16.4,13l1.1,6.5c0,0.3-0.1,0.5-0.3,0.7s-0.5,0.2-0.7,0.1l-5.8-3.1l-5.8,3.1C4.7,20.3,4.6,20.3,4.5,20.3z
+                   M2.2,8.4l4,3.9c0.2,0.2,0.2,0.4,0.2,0.6l-0.9,5.5l4.9-2.6c0.2-0.1,0.4-0.1,0.7,0l4.9,2.6l-0.9-5.5c0-0.2,0-0.5,0.2-0.6l4-3.9
+                  l-5.5-0.8c-0.2,0-0.4-0.2-0.5-0.4l-2.4-5l-2.5,5C8.1,7.4,7.9,7.6,7.7,7.6L2.2,8.4z"></path>
+                  <path id="wish-star-on" class="st0" th:display="${product.inWishList}? '': 'none'" d="M4.5,20.3c-0.1,0-0.3,0-0.4-0.1c-0.2-0.2-0.3-0.4-0.3-0.7L4.9,13L0.2,8.4C0,8.2,0,8,0,7.7
+                  c0.1-0.3,0.3-0.4,0.6-0.5l6.5-0.9L10,0.4C10.2,0.2,10.4,0,10.7,0h0c0.3,0,0.5,0.2,0.6,0.4l2.9,5.9l6.5,0.9c0.3,0,0.5,0.2,0.6,0.5
+                  c0.1,0.3,0,0.5-0.2,0.7L16.4,13l1.1,6.5c0,0.3-0.1,0.5-0.3,0.7s-0.5,0.2-0.7,0.1l-5.8-3.1l-5.8,3.1C4.7,20.3,4.6,20.3,4.5,20.3z"></path>
+                  </svg>
+                  </span>
+                    <span
+                        id="wish-list-label"
+                        th:text="${product.inWishList}?'Добавлено в Wish List': 'Добавить в Wish List'"
+                    >
+                    Добавить в Wish List
+                  </span>
+                  </a>
+                </p>
+
+                <p>
+                  <a
+                      id="price-subscription-action"
+                      class="productPage-productAction"
+                      title="Следить за ценой"
+                      th:onclick="${product.priceSubscription}? 'deletePriceSubscription();':'addPriceSubscription(); ga_product_priceFollowAddSuccess();'"
+                  >
+                  <span class="icon" title="График">
+                    <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewbox="0 0 19.4 14.7" style="enable-background:new 0 0 19.4 14.7;" xml:space="preserve">
+  <path d="M18.8,14.7C18.8,14.7,18.8,14.7,18.8,14.7L0.6,14.6C0.3,14.6,0,14.3,0,14V0.6C0,0.3,0.3,0,0.6,0s0.6,0.3,0.6,0.6v12.8
+      l17.6,0.1c0.3,0,0.6,0.3,0.6,0.6C19.4,14.4,19.1,14.7,18.8,14.7z"></path>
+  <path d="M3.4,9.4C3.2,9.4,3,9.3,2.9,9.2C2.7,8.9,2.8,8.5,3,8.3l4-3.2C7.2,5,7.5,5,7.7,5.1l4.7,2.7l4.3-3.5C17,4,17.4,4.1,17.6,4.3
+      c0.2,0.3,0.2,0.6-0.1,0.8L12.9,9c-0.2,0.2-0.5,0.2-0.7,0.1L7.5,6.3L3.8,9.3C3.7,9.4,3.5,9.4,3.4,9.4z"></path>
+  </svg>
+                  </span>
+                    <span
+                        id="price-subscription-label"
+                        th:text="${product.priceSubscription}? 'Вы следите за ценой' : 'Следить за ценой'"
+                    >
+                  Следить за ценой
+                </span>
+                  </a>
+                </p>
+                <p>
+                  <a
+                      class="productPage-productAction"
+                      href="#defineNotification-popup"
+                      title="Сообщить о наличии"
+                      data-mfp-src="#defineNotification-popup"
+                  >
+                  <span class="icon" title="Колокольчик">
+                    <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewbox="0 0 19.5 21.4" style="enable-background:new 0 0 19.5 21.4;" xml:space="preserve">
+                  <title>notifications</title>
+                  <path d="M19.3,16.1c-0.1-0.7-0.5-1.2-1-1.6c-0.5-0.4-1.2-0.5-1.8-0.4L3,14.1c-0.3,0-0.5,0-0.8,0c-0.7,0.1-1.2,0.5-1.6,1
+                  c-0.4,0.5-0.5,1.2-0.4,1.8C0.4,18.2,1.4,19,2.6,19c0.1,0,0.3,0,0.4,0h13.5c0.3,0,0.5,0,0.8,0C18.6,18.8,19.5,17.5,19.3,16.1z
+                   M16.5,17.7H3c-0.3,0-1.6-0.1-1.6-1.2s1.3-1.2,1.6-1.2h13.5c0.5,0,1.6,0.1,1.6,1.2S17,17.7,16.5,17.7z"></path>
+                  <path d="M9.8,21.3L9.8,21.3c-1.4,0-2.5-1.1-2.5-2.5v-1.1h5v1.1c0,0.7-0.2,1.3-0.7,1.8C11,21,10.4,21.3,9.8,21.3L9.8,21.3z"></path>
+                  <path d="M16.3,8.9c0-3-2-5.6-4.8-6.4L8,2.5L8,2.5C5.1,3.3,3.1,5.9,3.1,8.9v6.4h13.2L16.3,8.9z M15.1,14H4.3V8.9
+                  c0-2.4,1.6-4.5,3.9-5.1h3c2.3,0.7,3.8,2.8,3.8,5.1V14z"></path>
+                  <path d="M11.9,1.9c-0.2-1.2-1.4-2-2.6-1.8c-1.2,0.2-2,1.4-1.8,2.5v1.1h4.4l0-1C12,2.5,12,2.2,11.9,1.9z M8.8,2.5
+                  c0-0.4,0.2-1.1,0.9-1.1c0.7,0,0.9,0.6,0.9,1.1H8.8z"></path>
+                  </svg>
+                  </span>Сообщить о наличии
+                  </a>
+                </p>
+                <div class="mfp-hide" id="defineNotification-popup">
+                  <div class="row align-center">
+                    <div class="large-7 columns mfp-content-inner">
+                      <div class="whitePopup offset_fill">
+                        <div th:replace="product/fragments/alert :: alert(${alertTemplate})"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--/* Блок далее показываем, если страницу смотрит анонимный пользователь*/-->
+              <div sec:authorize="isAnonymous()">
+                <p>
+                  <a
+                    class="productPage-productAction"
+                    href="#defineNotification-popup"
+                    title="Сообщить о наличии"
+                    data-mfp-src="#login-popup">
+                    <span class="icon" title="Колокольчик">
+                      <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewbox="0 0 19.5 21.4" style="enable-background:new 0 0 19.5 21.4;" xml:space="preserve">
+                  <title>notifications</title>
+                  <path d="M19.3,16.1c-0.1-0.7-0.5-1.2-1-1.6c-0.5-0.4-1.2-0.5-1.8-0.4L3,14.1c-0.3,0-0.5,0-0.8,0c-0.7,0.1-1.2,0.5-1.6,1
+                  c-0.4,0.5-0.5,1.2-0.4,1.8C0.4,18.2,1.4,19,2.6,19c0.1,0,0.3,0,0.4,0h13.5c0.3,0,0.5,0,0.8,0C18.6,18.8,19.5,17.5,19.3,16.1z
+                   M16.5,17.7H3c-0.3,0-1.6-0.1-1.6-1.2s1.3-1.2,1.6-1.2h13.5c0.5,0,1.6,0.1,1.6,1.2S17,17.7,16.5,17.7z"></path>
+                  <path d="M9.8,21.3L9.8,21.3c-1.4,0-2.5-1.1-2.5-2.5v-1.1h5v1.1c0,0.7-0.2,1.3-0.7,1.8C11,21,10.4,21.3,9.8,21.3L9.8,21.3z"></path>
+                  <path d="M16.3,8.9c0-3-2-5.6-4.8-6.4L8,2.5L8,2.5C5.1,3.3,3.1,5.9,3.1,8.9v6.4h13.2L16.3,8.9z M15.1,14H4.3V8.9
+                  c0-2.4,1.6-4.5,3.9-5.1h3c2.3,0.7,3.8,2.8,3.8,5.1V14z"></path>
+                  <path d="M11.9,1.9c-0.2-1.2-1.4-2-2.6-1.8c-1.2,0.2-2,1.4-1.8,2.5v1.1h4.4l0-1C12,2.5,12,2.2,11.9,1.9z M8.8,2.5
+                  c0-0.4,0.2-1.1,0.9-1.1c0.7,0,0.9,0.6,0.9,1.1H8.8z"></path>
+                  </svg>
+                    </span>Сообщить о наличии
+                  </a>
+                </p>
+                <p>
+                  <a
+                      id="wish-list-action"
+                      class="productPage-productAction"
+                      title="Добавить в Wish List"
+                      onclick="ga_product_anonymousWishlistAddError()"
+                      data-mfp-src="#login-popup"
+                  >
+                  <span class="icon" title="Звезда">
+                    <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewbox="0 0 21.3 20.3" style="enable-background:new 0 0 21.3 20.3;" xml:space="preserve">
+                          <style type="text/css">
+                              .st0 {
+                                fill: #D0A889;
+                              }
+                          </style>
+                          <title>star</title>
+                          <path id="wish-star-off" class="st0" th:display="${product.inWishList}? 'none': ' '" d="M4.5,20.3c-0.1,0-0.3,0-0.4-0.1c-0.2-0.2-0.3-0.4-0.3-0.7L4.9,13L0.2,8.4C0,8.2,0,8,0,7.7
+                              c0.1-0.3,0.3-0.4,0.6-0.5l6.5-0.9L10,0.4C10.2,0.2,10.4,0,10.7,0h0c0.3,0,0.5,0.2,0.6,0.4l2.9,5.9l6.5,0.9c0.3,0,0.5,0.2,0.6,0.5
+                              c0.1,0.3,0,0.5-0.2,0.7L16.4,13l1.1,6.5c0,0.3-0.1,0.5-0.3,0.7s-0.5,0.2-0.7,0.1l-5.8-3.1l-5.8,3.1C4.7,20.3,4.6,20.3,4.5,20.3z
+                               M2.2,8.4l4,3.9c0.2,0.2,0.2,0.4,0.2,0.6l-0.9,5.5l4.9-2.6c0.2-0.1,0.4-0.1,0.7,0l4.9,2.6l-0.9-5.5c0-0.2,0-0.5,0.2-0.6l4-3.9
+                              l-5.5-0.8c-0.2,0-0.4-0.2-0.5-0.4l-2.4-5l-2.5,5C8.1,7.4,7.9,7.6,7.7,7.6L2.2,8.4z"></path>
+                          <path id="wish-star-on" class="st0" th:display="${product.inWishList}? '': 'none'" d="M4.5,20.3c-0.1,0-0.3,0-0.4-0.1c-0.2-0.2-0.3-0.4-0.3-0.7L4.9,13L0.2,8.4C0,8.2,0,8,0,7.7
+                              c0.1-0.3,0.3-0.4,0.6-0.5l6.5-0.9L10,0.4C10.2,0.2,10.4,0,10.7,0h0c0.3,0,0.5,0.2,0.6,0.4l2.9,5.9l6.5,0.9c0.3,0,0.5,0.2,0.6,0.5
+                              c0.1,0.3,0,0.5-0.2,0.7L16.4,13l1.1,6.5c0,0.3-0.1,0.5-0.3,0.7s-0.5,0.2-0.7,0.1l-5.8-3.1l-5.8,3.1C4.7,20.3,4.6,20.3,4.5,20.3z"></path>
+                      </svg>
+                  </span>
+                    <span id="wish-list-label">Добавить в Wish List</span>
+                  </a>
+                </p>
+                <p>
+                  <a
+                      id="price-subscription-action"
+                      class="productPage-productAction"
+                      title="Следить за ценой"
+                      data-mfp-src="#login-popup"
+                      onclick="ga_product_anonymousPriceFollowAddError()"
+                  >
+                  <span class="icon" title="График">
+                      <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewbox="0 0 19.4 14.7" style="enable-background:new 0 0 19.4 14.7;" xml:space="preserve">
+                          <path d="M18.8,14.7C18.8,14.7,18.8,14.7,18.8,14.7L0.6,14.6C0.3,14.6,0,14.3,0,14V0.6C0,0.3,0.3,0,0.6,0s0.6,0.3,0.6,0.6v12.8
+                              l17.6,0.1c0.3,0,0.6,0.3,0.6,0.6C19.4,14.4,19.1,14.7,18.8,14.7z"></path>
+                          <path d="M3.4,9.4C3.2,9.4,3,9.3,2.9,9.2C2.7,8.9,2.8,8.5,3,8.3l4-3.2C7.2,5,7.5,5,7.7,5.1l4.7,2.7l4.3-3.5C17,4,17.4,4.1,17.6,4.3
+                              c0.2,0.3,0.2,0.6-0.1,0.8L12.9,9c-0.2,0.2-0.5,0.2-0.7,0.1L7.5,6.3L3.8,9.3C3.7,9.4,3.5,9.4,3.4,9.4z"></path>
+                      </svg>
+                  </span>
+                    <span id="price-subscription-label">Следить за ценой</span>
+                  </a>
+                </p>
+
+              </div>
+
+              <div class="hide-for-small-only">
+                <p><a class="productPage-productAction" title="Опубликовать в социальной сети"
+                      data-toggle="likely-dropdown" onclick="ga_product_share()">
+                              <span class="icon" title="Связи">
+
+                                  <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewbox="0 0 15.8 19.4" style="enable-background:new 0 0 15.8 19.4;" xml:space="preserve">
+                                      <style type="text/css">
+                                          .st0 {
+                                            fill: #080909;
+                                          }
+                                      </style>
+                                      <title>share</title>
+                                      <path class="st0" d="M15,14.5c-0.5-0.6-1.3-0.9-2.1-0.9c0,0,0,0,0,0c-0.8,0-1.5,0.3-2.1,0.9l-5.2-3.8c0.2-0.6,0.2-1.3,0-1.9L10.8,5
+                                          c0.5,0.5,1.3,0.8,2,0.8c0,0,0,0,0,0c1.6,0,2.9-1.3,2.9-2.9S14.5,0,12.9,0S10,1.3,10,2.9c0,0.3,0.1,0.7,0.2,1L5,7.7
+                                          C3.9,6.6,2.1,6.5,1,7.5C0.4,8,0.1,8.7,0,9.5c-0.1,0.8,0.2,1.5,0.7,2.1s1.2,0.9,2,1c0.8,0,1.5-0.2,2.1-0.7c0.1,0,0.1-0.1,0.2-0.2
+                                          l5.2,3.8c-0.1,0.3-0.2,0.6-0.2,1c0,1.6,1.3,2.9,2.9,2.9c0,0,0,0,0,0c0.8,0,1.5-0.3,2-0.8c0.6-0.5,0.9-1.3,0.9-2.1S15.5,15,15,14.5z
+                                           M12.9,1.1c1,0,1.8,0.8,1.8,1.8c0,1-0.8,1.8-1.8,1.8c-1,0-1.8-0.8-1.8-1.8C11.1,1.9,11.9,1.1,12.9,1.1z M2.9,11.5
+                                          c-1,0-1.8-0.8-1.8-1.8c0-1,0.8-1.8,1.8-1.8c1,0,1.8,0.8,1.8,1.8C4.7,10.7,3.9,11.5,2.9,11.5z M12.9,18.3c-1,0-1.8-0.8-1.8-1.8
+                                          c0-1,0.8-1.8,1.8-1.8c1,0,1.8,0.8,1.8,1.8C14.7,17.5,13.9,18.3,12.9,18.3z"></path>
+                                      </svg>
+                                  </span> Опубликовать в социальной сети</a>
+                </p>
+              </div>
+
+
+              <div class="likely dropdown-pane" id="likely-dropdown" data-dropdown="data-dropdown">
+                <div class="facebook"></div>
+                <div class="twitter"></div>
+                <div class="pinterest"></div>
+                <div class="gplus"></div>
+                <div class="vkontakte"></div>
+                <div class="odnoklassniki"></div>
+                <div class="telegram"></div>
+              </div>
+              <div class="likely show-for-small-only">
+                <div class="facebook"></div>
+                <div class="twitter"></div>
+                <div class="pinterest"></div>
+                <div class="gplus"></div>
+                <div class="vkontakte"></div>
+                <div class="odnoklassniki"></div>
+                <div class="telegram"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--/*About product and seller profile*/-->
+    <div class="row">
+
+      <!--/*Seller profile*/-->
+      <div class="column small-12 large-6">
+        <!--/*Seller profile for mobile*/-->
+        <div class="row show-for-small-only bg-dark-gray offset-y_small_fill offset-y">
+          <a class="small-2 columns" title="Ольга" th:title="${product.seller.nick}"
+             th:href="@{/profile/{profId}(profId=${product.seller.id})}">
+            <img class="round" src="images/tmp/users/userpic-1.jpg"
+                 th:src="${product.seller.photo}?: '/images/no-photo.jpg'"
+                 alt="Ольга" th:alt="${product.seller.nick}"
+            >
+          </a>
+          <div class="column">
+            <div>
+              <a title="Ольга" th:title="${product.seller.nick}"
+                 th:href="@{/profile/{profId}(profId=${product.seller.id})}"
+              >
+                <strong th:text="${product.seller.nick}">Продавец Ольга</strong>
+              </a>
+            </div>
+            <div class="text-light-gray text-size-small" th:text="${product.seller.registered}">На сайте с 21
+              февраля 2017, Москва
+            </div>
+            <p th:if="${product.seller.proState}">Профессиональный продавец</p>
+            <p th:unless="${product.seller.proState}">Индивидуальный продавец</p>
+          </div>
+        </div>
+
+        <!--/*Seller profile for desktop*/-->
+        <div class="offsetStack-y userCard productPage-userCard hide-for-small-only">
+          <div class="row xlarge-unstack">
+            <div class="large-3 columns"><a href="profile-public.html" title="Ольга"
+                                            th:href="@{/profile/{profId}(profId=${product.seller.id})}"
+                                            th:title="${product.seller.nick}">
+              <img src="images/tmp/users/userpic-1.jpg"
+                   th:src="${product.seller.photo}?: '/images/no-photo.jpg'"
+                   alt="Ольга" th:alt="${product.seller.nick}"></a>
+            </div>
+            <div class="column">
+              <h4 class="h4 userCard-username"><a href="profile.html"
+                                                  th:href="@{/profile/{profId}(profId=${product.seller.id})}"
+                                                  title="Ольга" th:title="${product.seller.nick}">
+                <strong th:text="${product.seller.nick}">Ольга</strong></a>
+                <small th:text="|(${product.seller.country})|">(Россия)</small>
+              </h4>
+              <p th:if="${product.seller.proState}">Профессиональный продавец</p>
+              <p class="text-secondary" th:text="${product.seller.registered}">
+                Присоединилась к Oskelly 21
+                февраля 2017
+              </p>
+            </div>
+          </div>
+          <div class="userCard-cite">
+            <div class="row column">
+              <div class="row collapse medium-unstack">
+                <div class="userCard-statItem column offset-y_small">
+                  <p><em>Подписчики</em></p>
+                  <p><strong th:text="${product.seller.subscribers}">15</strong></p>
+                </div>
+                <div class="userCard-statItem column offset-y_small">
+                  <p><em>Подписки</em></p>
+                  <p><strong th:text="${product.seller.subscriptions}">5</strong></p>
+                </div>
+                <div class="userCard-statItem column offset-y_small">
+                  <p><em>Лайки</em></p>
+                  <p><strong th:text="${product.seller.likes}">135</strong></p>
+                </div>
+                <div class="column offset-y_small">
+                  <button class="userCard-followButton button small" type="button"
+                          id="follow-action-1"
+                          sec:authorize="isAuthenticated()"
+                          th:onclick="${product.seller.Followed}? |unFollow(${product.seller.id})| : |follow(${product.seller.id})|"
+                          th:text="${product.seller.Followed}? 'Отписаться' : 'Подписаться'"
+                  >Подписаться
+                  </button>
+                </div>
+              </div>
+              <h5 class="h5 userCard-cite-title">Об этом товаре</h5>
+              <p class="product-description" th:text="${product.description}" itemprop="description">Розовое платье с юбкой-карандаш
+                средней длины. Строгое и
+                элегантное, оно станет идеальным выбором для создания яркого делового образа. Состояние
+                нового.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--/*About product*/-->
+      <div class="column small-12 large-6">
+        <div class="productPage-tabs-wrapper">
+          <ul class="productPage-tabs tabs" id="product-tabs" data-tabs="data-tabs">
+            <li class="productPage-tabs-title tabs-title is-active text-center">
+              <a href="#tab-product-description" aria-selected="true" title="Описание">Описание</a>
+            </li>
+            <li class="productPage-tabs-title tabs-title text-center">
+              <a href="#tab-product-payment" title="Оплата">Оплата</a></li>
+            <li class="productPage-tabs-title tabs-title text-center">
+              <a href="#tab-product-delivery" title="Доставка">Доставка</a>
+            </li>
+          </ul>
+          <div class="productPage-tabs-content tabs-content" data-tabs-content="product-tabs">
+            <div class="productPage-tabs-panel tabs-panel is-active" id="tab-product-description">
+              <dl class="inlineDescriptions">
+                <div th:each="attribute: ${product.attributes}">
+                  <dt class="inlineDescriptions-term" th:text="|${attribute.title}:|">dt</dt>
+                  <dd class="inlineDescriptions-description" th:text="${attribute.value}">dd</dd>
+                </div>
+                <div th:if="${product.NewCollection}">
+                  <dt class="inlineDescriptions-term">Коллекция:</dt>
+                  <dd class="inlineDescriptions-description">Новая коллекция</dd>
+                </div>
+                <div>
+                  <dt class="inlineDescriptions-term">ID товара:</dt>
+                  <dd class="inlineDescriptions-description" th:text="${product.id}"></dd>
+                </div>
+                <div class="show-for-small-only">
+                  <h5 class="h5 userCard-cite-title">Об этом товаре</h5>
+                  <p class="product-description" th:text="${product.description}">Розовое платье с
+                    юбкой-карандаш средней длины. Строгое и
+                    элегантное, оно станет идеальным выбором для создания яркого делового образа.
+                    Состояние
+                    нового.</p>
+                </div>
+              </dl>
+              <h3><strong>Контроль качества</strong></h3>
+              <p>Наши специалисты не только проверяют вещь на подлинность, но и оценивают, насколько она
+                соответствует описанию продавца. На экспертизе уделяется внимание каждой детали: размеру,
+                цвету, модели и общему состоянию вещи.</p>
+            </div>
+            <div class="productPage-tabs-panel tabs-panel" id="tab-product-payment">
+              <p>При совершении покупки деньги на банковском счете покупателя замораживаются. Они не спишутся
+                до тех пор, пока изделие не пройдет аутентификацию. </p>
+              <p>Перевод денег продавцу осуществляется после доставки товара клиенту. Это является гарантией
+                качества сделки и, в частности, гарантией добросовестности продавца.</p>
+                <img class="productPage-tabs-paymentlogo" src="images/payments/visa-mastercard.svg" th:src="@{/images/payments/visa-mastercard.svg}" alt="Visa, MasterCard">
+            </div>
+            <div class="productPage-tabs-panel tabs-panel" id="tab-product-delivery">
+              <p>После оформления вашего заказа, продавец подтверждает сделку и отправляет товар на экспертизу
+                OSKELLY. После подтверждения подлинности и качества товара, товар будет отправлен вам. Вы
+                можете отслеживать статусы доставки в личном кабинете.</p>
+              <p>Процесс доставки состоит из двух этапов: от продавца до офиса OSKELLY и от офиса OSKELLY до
+                покупателя. Расчет стоимости и сроков доставки проходит индивидуально и зависит от того,
+                насколько далеко продавец находится от покупателя.</p>
+              <p>Доставка товара покупателю осуществляется бесплатно.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row align-right">
+      <div class="column large-6">
+        <div class="productPage-productStats">
+          <p th:if="${product.likesCount > 0}">
+            <span class="small-padding-right icon" title="Сердце">
+              <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewbox="0 0 17.8 16.2" style="enable-background:new 0 0 17.8 16.2;" xml:space="preserve">
+                <path d="M8.9,16c-0.3,0-0.7-0.1-0.9-0.4L2.1,9.8C1,8.7,0.4,7.4,0.3,6C0,3.1,1.7,0.7,4.4,0.2c1.6-0.3,3.1,0,4.4,1c0,0,0,0,0,0
+                  C9.2,1,9.6,0.8,10,0.6c1.9-0.8,3.6-0.7,5.2,0.3c1.4,0.9,2.2,2.2,2.4,3.9c0.2,1.9-0.4,3.5-1.9,5c-1.4,1.5-2.9,2.9-4.4,4.4l-1.5,1.5
+                  C9.5,15.9,9.2,16,8.9,16z M5.5,1.6c-0.3,0-0.5,0-0.8,0.1c-2,0.4-3.2,2-3,4.1c0.1,1.1,0.6,2.1,1.4,2.9l5.7,5.7l1.3-1.3
+                  c1.5-1.5,2.9-2.9,4.4-4.4C15.7,7.6,16.1,6.4,16,5c-0.1-1.2-0.7-2.1-1.7-2.7c-1.2-0.7-2.4-0.8-3.8-0.2C10.3,2.1,10,2.3,9.7,2.5
+                  c-0.1,0-0.1,0.1-0.2,0.1c0,0,0,0,0,0C9.2,2.9,8.9,3,8.6,2.8c-0.1,0-0.1-0.1-0.2-0.1h0c0,0-0.1-0.1-0.1-0.1C7.4,2,6.5,1.6,5.5,1.6z">
+                </path>
+              </svg>
+            </span>
+            <span th:text="${product.likesCount}">150</span> людям нравится этот товар
+          </p>
+          <p th:if="${product.countUsersAddedToWishList > 0}">
+            <span class="small-padding-right icon" title="Звезда">
+              <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewbox="0 0 21.3 20.3" style="enable-background:new 0 0 21.3 20.3;" xml:space="preserve">
+                <style type="text/css">.st0 {fill: #231F20;}</style>
+                <title>star</title>
+                <path class="st0" d="M4.5,20.3c-0.1,0-0.3,0-0.4-0.1c-0.2-0.2-0.3-0.4-0.3-0.7L4.9,13L0.2,8.4C0,8.2,0,8,0,7.7
+                  c0.1-0.3,0.3-0.4,0.6-0.5l6.5-0.9L10,0.4C10.2,0.2,10.4,0,10.7,0h0c0.3,0,0.5,0.2,0.6,0.4l2.9,5.9l6.5,0.9c0.3,0,0.5,0.2,0.6,0.5
+                  c0.1,0.3,0,0.5-0.2,0.7L16.4,13l1.1,6.5c0,0.3-0.1,0.5-0.3,0.7s-0.5,0.2-0.7,0.1l-5.8-3.1l-5.8,3.1C4.7,20.3,4.6,20.3,4.5,20.3z
+                   M2.2,8.4l4,3.9c0.2,0.2,0.2,0.4,0.2,0.6l-0.9,5.5l4.9-2.6c0.2-0.1,0.4-0.1,0.7,0l4.9,2.6l-0.9-5.5c0-0.2,0-0.5,0.2-0.6l4-3.9
+                  l-5.5-0.8c-0.2,0-0.4-0.2-0.5-0.4l-2.4-5l-2.5,5C8.1,7.4,7.9,7.6,7.7,7.6L2.2,8.4z"
+                >
+                </path>
+              </svg>
+            </span>
+            <span th:text="${product.countUsersAddedToWishList}">10</span> человек добавили этот товар в Wish List
+          </p>
+          <p th:if="${product.countUsersSubscribedOnPrice > 0}">
+            <span class="small-padding-right icon" title="График" alt="График">
+              <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewbox="0 0 19.4 14.7" style="enable-background:new 0 0 19.4 14.7;" xml:space="preserve">
+                <path d="M18.8,14.7C18.8,14.7,18.8,14.7,18.8,14.7L0.6,14.6C0.3,14.6,0,14.3,0,14V0.6C0,0.3,0.3,0,0.6,0s0.6,0.3,0.6,0.6v12.8
+                  l17.6,0.1c0.3,0,0.6,0.3,0.6,0.6C19.4,14.4,19.1,14.7,18.8,14.7z"
+                >
+                </path>
+                <path d="M3.4,9.4C3.2,9.4,3,9.3,2.9,9.2C2.7,8.9,2.8,8.5,3,8.3l4-3.2C7.2,5,7.5,5,7.7,5.1l4.7,2.7l4.3-3.5C17,4,17.4,4.1,17.6,4.3
+                  c0.2,0.3,0.2,0.6-0.1,0.8L12.9,9c-0.2,0.2-0.5,0.2-0.7,0.1L7.5,6.3L3.8,9.3C3.7,9.4,3.5,9.4,3.4,9.4z"
+                >
+                </path>
+              </svg>
+            </span>
+            <span th:text="${product.countUsersSubscribedOnPrice}">10</span> человек следят за ценой
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!--/*Comments and Likes*/-->
+    <div class="row padding-bottom">
+      <!--Comments-->
+      <div class="column small-12 large-6">
+        <div class="offsetStack-y" id="commentsWrapper">
+        </div>
+      </div>
+      <!--Likes-->
+      <div class="column small-12 large-6">
+          <h4 class="productPage-productSuggestions-title">Возможно, вам понравится</h4>
+        <div class="swiper_wrap">
+          <div class="slider-wrapper" id="you-like-it">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-container" id="product-suggestions">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide" th:each="suggestion : ${searchResult}">
+                  <a th:href="${suggestion.getUrl()}">
+                    <img
+                      class="productPage-img-size"
+                      src="images/tmp/product/product-suggestion-1.jpg"
+                      th:src="${suggestion.getImage()}"
+                      th:alt="|${suggestion.getTitle()} - ${suggestion.getDescription()}|"
+                    >
+                  </a>
+                  <a th:href="${suggestion.getUrl()}">
+                    <b>
+                      <span class="x-txt-s" th:text="${suggestion.getTitle()}"></span>
+                    </b>
+                  </a>
+                  <p class="no-mrg-b x-txt-s" th:text="${suggestion.getDescription()}"></p>
+                  <p class="no-mrg-b x-txt-s" th:text="|${T(su.reddot.presentation.Utils).prettyRoundToTens(suggestion.getPrice())} руб.|"></p>
+                </div>
+              </div>
+              <!-- Add Pagination -->
+              <div class="swiper-scrollbar"></div>
+            </div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/*Pop-up table of sizes*/-->
+    <div class="mfp-hide" id="sizes-popup">
+      <div class="row align-center">
+        <div class="large-10 columns mfp-content-inner">
+          <div class="whitePopup offset_fill" style="height: 90vh; overflow: auto;">
+            <button class="mfp-close" type="button" title="Закрыть">×</button>
+            <h4 class="h5 text-serif">Таблица размеров - <span th:text="${product.name}">платье</span></h4>
+            <table class="unstriped">
+              <thead>
+              <tr>
+                <th th:each="size : ${sizeChart[0].chart}"
+                    th:text="${size.key}">INT
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="sizeRow : ${sizeChart}">
+                <td th:each="size : ${sizeRow.chart}"
+                    th:text="${size.value}">44
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div layout:fragment="custom-scripts">
+    <script th:src="|/scripts/ga_events.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+    <script th:src="|/js/product/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+    <script th:src="|/scripts/subscription/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+    <script th:src="|/js/product/main.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+    <script th:src="|/scripts/comments.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+    <script th:src="|/js/cart/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+    <script th:src="|/scripts/wishlist.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+    <script th:src="|/scripts/follow.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+    <script th:src="|/scripts/subscription.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+  </div>
+  </body>
+</html>

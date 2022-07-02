@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html
+		xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="details_condition">
+	<div class="product-conditions">
+		<h4>Состояние товара</h4>
+		<label th:each="productCondition: ${productConditions}">
+			<input type="radio" name="product-condition" th:value="${productCondition.id}"/>
+			<span th:text="${productCondition.name}"></span>
+		</label>
+	</div>
+	<label>
+		<h4>Цена</h4>
+		<input type="text" name="product-price">
+	</label>
+	<div>
+		<button class="publication-back">Назад</button>
+		<button id="moderation">Завершить</button>
+	</div>
+</div>
+</body>
+</html>

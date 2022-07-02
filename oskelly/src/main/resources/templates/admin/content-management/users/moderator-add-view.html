@@ -1,0 +1,8 @@
+<div class="row user-list-row add-moderator-row" th:each="user: ${users}" th:data-id="${user.id}">
+	<div class="columns small-6">
+		<input type="text" class="disabled-pointer" disabled th:value="${user.email}"/>
+	</div>
+	<div class="columns small-6">
+		<input type="text" class="disabled-pointer" disabled th:value="${user.name}"/>
+	</div>
+</div>

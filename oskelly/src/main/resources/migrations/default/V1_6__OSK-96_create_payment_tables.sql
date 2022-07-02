@@ -1,0 +1,19 @@
+CREATE TABLE "order"(
+	id BIGSERIAL PRIMARY KEY,
+	uuid UUID UNIQUE NOT NULL,
+	transaction_id TEXT NULL,
+	amount NUMERIC NOT NULL,
+	state TEXT NOT NULL,
+	buyer_id BIGINT NOT NULL REFERENCES "user"(id),
+	state_time TIMESTAMPTZ NOT NULL,
+	create_time TIMESTAMPTZ NOT NULL
+);
+
+CREATE TABLE order_position(
+	id BIGSERIAL PRIMARY KEY,
+	order_id BIGINT NOT NULL REFERENCES "order"(id),
+	product_id BIGINT NOT NULL REFERENCES product(id),
+	amount NUMERIC NOT NULL,
+	state TEXT NOT NULL,
+	state_time TIMESTAMPTZ NOT NULL
+);

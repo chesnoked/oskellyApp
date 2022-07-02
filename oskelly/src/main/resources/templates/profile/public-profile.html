@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{profile/public}" th:with="pageStyle='profilePage'">
+<body class="profilePage">
+<div role="main" layout:fragment="profileContent" class="large-9 medium-9 columns">
+    <div class="row large-unstack" th:if="${productsList}">
+        <div class="column">
+            <div class="row cataloguePage-titleRow" th:data-total-pages="${productsList.totalPages}">
+                <div class="column">
+                    <h3 class="h4 text-serif show-for-medium" th:data-profile-id="${userProfile.user.id}">Товары от <strong th:text="${userProfile.nickname}">Ольги</strong> на продажу</h3>
+                </div>
+                <div class="shrink column hide-for-small-only">
+                    <form action="#" data-product-sort>
+                        <select class="js-select">
+                            <option disabled="disabled" selected="selected">Сортировать</option>
+                            <option value="price" th:selected="${request?.sort == 'price'}">По возрастанию цены</option>
+                            <option value="price_desc" th:selected="${request?.sort == 'price_desc'}">По убыванию цены</option>
+                            <option value="publishtime_desc" th:selected="${request?.sort == 'publishtime_desc'}">Сначала новые</option>
+                            <option value="likes" th:selected="${request?.sort == 'likes'}">По лайкам</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+
+            <!--/* Перечень найденных товаров */-->
+            <div id="scrollContainer">
+                <div id="products" class="row goodsGrid">
+                    <div th:replace="catalog/product_card :: product_card (${productsList.products}, _)"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+PODS:
+  - Alamofire (4.4.0)
+  - AlamofireImage (3.2.0):
+    - Alamofire (~> 4.1)
+  - Crashlytics (3.9.3):
+    - Fabric (~> 1.7.2)
+  - CryptoSwift (0.7.0)
+  - DWImagePicker-Swift3 (1.0)
+  - Fabric (1.7.2)
+  - ImageSlideshow (1.2.0):
+    - ImageSlideshow/Core (= 1.2.0)
+  - ImageSlideshow/Alamofire (1.2.0):
+    - AlamofireImage (~> 3.0)
+    - ImageSlideshow/Core
+  - ImageSlideshow/Core (1.2.0)
+  - SnapKit (3.2.0)
+  - SwiftyJSON (4.0.0-alpha.1)
+
+DEPENDENCIES:
+  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `master`)
+  - AlamofireImage (from `https://github.com/Alamofire/AlamofireImage.git`, branch `master`)
+  - Crashlytics
+  - CryptoSwift (from `https://github.com/krzyzanowskim/CryptoSwift`, branch `swift32`)
+  - DWImagePicker-Swift3 (from `https://github.com/soeurngsar/DWImagePicker-Swift3.git`, branch `master`)
+  - Fabric
+  - ImageSlideshow (from `https://github.com/zvonicek/ImageSlideshow.git`, branch `master`)
+  - ImageSlideshow/Alamofire (from `https://github.com/zvonicek/ImageSlideshow.git`, branch `master`)
+  - SnapKit (from `https://github.com/SnapKit/SnapKit.git`, branch `master`)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`, branch `master`)
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :branch: master
+    :git: https://github.com/Alamofire/Alamofire.git
+  AlamofireImage:
+    :branch: master
+    :git: https://github.com/Alamofire/AlamofireImage.git
+  CryptoSwift:
+    :branch: swift32
+    :git: https://github.com/krzyzanowskim/CryptoSwift
+  DWImagePicker-Swift3:
+    :branch: master
+    :git: https://github.com/soeurngsar/DWImagePicker-Swift3.git
+  ImageSlideshow:
+    :branch: master
+    :git: https://github.com/zvonicek/ImageSlideshow.git
+  SnapKit:
+    :branch: master
+    :git: https://github.com/SnapKit/SnapKit.git
+  SwiftyJSON:
+    :branch: master
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: f0d23a7a8477e3d2c9f03afcc097d0bef4448208
+    :git: https://github.com/Alamofire/Alamofire.git
+  AlamofireImage:
+    :commit: 1d87e57f5ac91c84d98e1d541599c47d2175003d
+    :git: https://github.com/Alamofire/AlamofireImage.git
+  CryptoSwift:
+    :commit: 4cbe4f3a74235ae7f9131c6e9e8a683fa9dba9bc
+    :git: https://github.com/krzyzanowskim/CryptoSwift
+  DWImagePicker-Swift3:
+    :commit: 14dd6581c440bd1b9ed1b5d6e3d96f33a389cbe2
+    :git: https://github.com/soeurngsar/DWImagePicker-Swift3.git
+  ImageSlideshow:
+    :commit: 9f32103baa8ca0d95ec364f5c543064f018c0321
+    :git: https://github.com/zvonicek/ImageSlideshow.git
+  SnapKit:
+    :commit: 9430a3dcd93f40d247d9f388c3f98f27dc7b7768
+    :git: https://github.com/SnapKit/SnapKit.git
+  SwiftyJSON:
+    :commit: e1b9090415109b61b6f16b97c75399ed1bec5e62
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+SPEC CHECKSUMS:
+  Alamofire: 4c2bf7fa03c4a626163606de0a417568c270575e
+  AlamofireImage: 0ff319da83d6abb78a661d7296e742e7f65e15f5
+  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
+  CryptoSwift: 47c539f7f73369cdd623942bfe4e4eeb56dfc3e7
+  DWImagePicker-Swift3: 4eaf63b87a80899fa0249b16a1eec559882fc560
+  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
+  ImageSlideshow: a335db967a121fafa869c676c99e5665dfa0ea8b
+  SnapKit: c71c530b73cedd2a8b998098687001baff265086
+  SwiftyJSON: c4d27c2ca659d5c91460cd17cc60fd212b26074d
+
+PODFILE CHECKSUM: a84535a68633f422b5bb407f39fcfd000a720814
+
+COCOAPODS: 1.2.1

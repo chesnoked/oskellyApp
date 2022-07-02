@@ -1,0 +1,411 @@
+<div class="row" id="productInfoBlock" th:data-product-id="${product.product.id}">
+	<a href="/admin">АДМИНКА</a>
+	&nbsp; > &nbsp;
+	<a href="/admin/moderation">Управление товарами</a>
+	&nbsp; > &nbsp;
+	PID:&nbsp;<span th:text="${product.product.id}">XXXXX</span>
+</div>
+<div class="row">
+	<div class="column large-3">
+		<div class="row">
+			<div class="column" th:style="${!isModerator ? 'width: 300px' : ''}">
+				<div class="slider-for">
+					<div style="margin: 5px"><img th:style="${!isModerator ? 'width: 300px' : ''}" src="images/tmp/product/product-main.jpg" th:src="${product.primaryImage.isPresent() && product.primaryImage.get().largeImageUrl != null} ? ${product.primaryImage.get().largeImageUrl} : 'http://placehold.it/270x320'" alt="Valentino Платье"></div>
+					<div style="margin: 5px" class="swiper-slide" th:each="image: ${product.additionalImages}"><img th:style="${!isModerator ? 'width: 300px' : ''}" src="url" th:src="${product.primaryImage.isPresent() && image.largeImageUrl != null} ? ${image.largeImageUrl} : 'http://placehold.it/270x320'" alt="Valentino Платье"></div>
+				</div>
+				<div class="slider-nav" th:style="${!isModerator ? 'max-width: 300px' : ''}">
+					<div style="margin: 3px"><img src="images/tmp/product/product-main.jpg" th:src="${product.primaryImage.isPresent() && product.primaryImage.get().smallImageUrl != null} ? ${product.primaryImage.get().smallImageUrl} : 'http://placehold.it/270x320'" alt="Valentino Платье"></div>
+					<div style="margin: 3px" class="swiper-slide" th:each="image: ${product.additionalImages}"><img src="url" th:src="${image.smallImageUrl} ? ${image.smallImageUrl} : 'http://placehold.it/270x320'" alt="Valentino Платье"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="column text-center">
+				<a style="margin-top: 5px;" class="button edit-page-button edit" th:text="Изменить" href="#" data-mfp-src="#photoModal" th:if="${canEdit}"></a>
+			</div>
+		</div>
+	</div>
+	<div class="column">
+		<div class="row">
+			<span><u>#PID:</u> <span th:text="${product.product.id}"></span></span>
+		</div>
+		<div class="row">
+			<span><u>Раздел:</u> <span th:text="${product.fullPath}"></span></span>
+		</div>
+		<div class="row">
+			<span><u>Бренд:</u> <span th:text="${product.product.brand.name}"></span></span>
+		</div>
+		<div class="row">
+			<span><u>Формат продажи:</u> <span>Стандарт</span></span>
+		</div>
+		<div class="row">
+			<span><u>Статус:</u> <span th:text="${product.product.productState.description}"></span></span>
+		</div>
+		<div class="row">
+				<span>
+					<u>Продавец:</u>
+					<span>
+						<a th:text="*{product.product.seller.email}" href="#" data-mfp-src="#userModal"></a>
+					</span>
+				</span>
+		</div>
+		<div class="mfp-hide" id="userModal">
+			<div class="row align-center">
+				<div class="large-7 columns mfp-content-inner">
+					<div class="whitePopup offset_fill">
+						<div class="row">
+							<button class="mfp-close" type="button" title="Закрыть">×</button>
+							<div class="column large-4">
+								<img src="/images/tmp/users/userpic-1.jpg" alt="Ольга">
+							</div>
+							<div class="column" th:object="${product}">
+								<div class="row"></div>
+								<div class="row" th:if="*{product.seller.proStatusTime}">PRO пользователь</div>
+								<div class="row" th:if="*{product.seller.vipStatusTime}">VIP пользователь</div>
+								<div class="row" th:if="*{product.seller.proStatusTime == null && product.seller.vipStatusTime == null}">Обычный пользователь</div>
+								<div class="row" th:text="|Фамилия: *{product.seller.sellerRequisite?.lastName?: 'Не указана'}|"></div>
+								<div class="row" th:text="|Имя: *{product.seller.sellerRequisite?.firstName?: 'Не указано'}|"></div>
+								<div class="row" th:text="|Email: *{product.seller.email}|"></div>
+								<div class="row" th:text="|Город: *{product.seller.sellerRequisite?.city?: 'Не указан'}|"></div>
+								<div class="row" th:text="|Адрес: *{product.seller.sellerRequisite?.address?: 'Не указан'}|"></div>
+								<div class="row" th:text="|Телефон: *{product.seller.sellerRequisite?.phone?: 'Не указан'}|"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<span><u>Артикул:</u> <span th:text="${publicationInfo.vendorCode != null ? publicationInfo.vendorCode : 'Отсутствует'}">XXXXXXXXXXXX</span></span>
+		</div>
+		<div class="row">
+			<span><u>Модель:</u> <span th:text="${publicationInfo.model != null ? publicationInfo.model : 'Отсутствует'}">XXXXXXXXXXXX</span></span>
+		</div>
+		<div class="row">
+			<span><u>Описание:</u> <span th:text="${product.product.description}"></span></span>
+		</div>
+		<div class="row">
+			<span><u>Дата публикации:</u> <span th:text="${publicationInfo.publishTime}"></span></span>
+		</div>
+		<div class="row">
+				<span><u>Дата отправки на модерацию:</u> <span th:text="${product.product.sendToModeratorTime}"></span></span>
+		</div>
+		<div class="row">
+			<div class="column large-6">
+				<div class="row">
+					<table data-mfp-src="#itemsModal" style="cursor: pointer">
+						<thead>
+						<tr>
+							<th>Размер</th>
+							<th>Кол-во</th>
+							<th>Цена</th>
+							<th>С комиссией</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="productSizeMapping : *{product.productSizeMappings}">
+							<td th:text="${productSizeMapping.size != null && product.product.sizeType != null ? productSizeMapping.size.getBySizeType(product.product.sizeType) : 'Не указан'}">IT-43</td>
+							<td th:text="${productSizeMapping.count}">1</td>
+							<td th:if="${productSizeMapping.price != null}" th:text="${productSizeMapping.price + ' ₽'}">127 000 р</td>
+							<td th:if="${productSizeMapping.price == null}">Не указана</td>
+							<td th:if="${productSizeMapping.price != null}" th:text="${productSizeMapping.priceWithCommission + ' ₽'}">127 000 р</td>
+							<td th:if="${productSizeMapping.priceWithCommission == null}">Не указана</td>
+						</tr>
+						</tbody>
+					</table>
+					<div class="mfp-hide" id="itemsModal">
+						<div class="row align-center">
+							<div class="large-7 columns mfp-content-inner">
+								<div class="whitePopup offset_fill">
+									<div class="row">
+										<button class="mfp-close" type="button" title="Закрыть">×</button>
+										<table style="display: none">
+											<tbody id="itemTemplateContainer">
+											<tr>
+												<td>
+													<div class="input-group">
+														<span class="input-group-label" th:if="${product.product.sizeType != null}" th:text="${product.product.sizeType.abbreviation}">₽</span>
+														<select class="input-group-field size">
+															<option class="is-placeholder" selected="selected" disabled="disabled">Выберите</option>
+															<option th:if="*{publicationInfo.avalaibleSizes != null}" th:each="size : *{publicationInfo.avalaibleSizes}" th:value="${size.id}" th:text="${size.name}"></option>
+														</select>
+													</div>
+												</td>
+												<td>
+													<div class="input-group">
+														<input class="input-group-field count" type="text" inputmode="numeric" th:value="${0}">
+													</div>
+												</td>
+												<td>
+													<div class="input-group">
+														<input type="text" inputmode="numeric" class="input-group-field price" th:value="${0}"/>
+														<span class="input-group-label">₽</span>
+													</div>
+												</td>
+											</tr>
+											</tbody>
+										</table>
+										<table id="itemsTable">
+											<thead>
+											<tr>
+												<th>Размер</th>
+												<th>Кол-во</th>
+												<th>Цена</th>
+											</tr>
+											</thead>
+											<tbody>
+											<tr th:each="productSizeMapping : *{product.productSizeMappings}">
+												<td>
+													<div class="input-group">
+														<span class="input-group-label" th:if="${product.product.sizeType != null}" th:text="${product.product.sizeType.abbreviation}">₽</span>
+														<select class="input-group-field size">
+															<option class="is-placeholder" selected="selected" disabled="disabled">Выберите</option>
+															<option th:if="*{publicationInfo.avalaibleSizes != null}" th:each="size : *{publicationInfo.avalaibleSizes}" th:value="${size.id}" th:text="${size.name}" th:selected="${(productSizeMapping.size != null && size != null) ? size.id.equals(productSizeMapping.size.id) : false}"></option>
+														</select>
+													</div>
+												</td>
+												<td>
+													<div class="input-group">
+														<input class="input-group-field count" type="text" inputmode="numeric" th:value="${productSizeMapping.count}">
+													</div>
+												</td>
+												<td>
+													<div class="input-group">
+														<input type="text" inputmode="numeric" class="input-group-field price" th:value="${productSizeMapping.price == null ? 0 : productSizeMapping.price}"/>
+														<span class="input-group-label">₽</span>
+													</div>
+												</td>
+											</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="row">
+										<button class="button" id="saveItemsButton">Сохранить</button> &nbsp;
+										<button class="button" id="addItemsButton">Добавить</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="column large-6">
+				<span><u>RRP:</u> <span th:text="${publicationInfo.rrpPrice != null ? publicationInfo.rrpPrice + ' ₽' : 'Не указана'}">Не указана</span></span>
+			</div>
+		</div>
+	</div>
+</div>
+<hr>
+<div class="mfp-hide" id="photoModal">
+
+
+	<div class="row align-center">
+		<div class="large-7 columns mfp-content-inner">
+			<div class="whitePopup offset_fill">
+				<div class="row">
+					<button class="mfp-close" type="button" title="Закрыть">×</button>
+					<div id="tab-form-photos">
+						<div class="offsetStack-y" th:object="${publicationInfo.images}">
+							<button class="button edit-page-button save">Сохратить фото</button>
+							<h4 class="h5 text-strong">Фотографии<span class="productAddPage-optional" title="Обязательно">*</span>
+							</h4>
+							<p class="text-secondary">В качестве первого загрузите фото на белом фоне, чтобы товар было хорошо видно.</p>
+							<h4 class="h5 text-strong">Основная фотография<span class="productAddPage-optional" title="Обязательно">*</span>
+							</h4>
+							<input class="productPhoto" type="file" name="photo-main" data-photo-order="1">
+							<div class="photo-preview">
+								<img th:if="*{first}" th:src="*{first}">
+								<p><span th:if="${product.images.size() > 0}">
+									<a th:href="${product.images[0].originalImageUrl}">Скачать оригинал</a>
+								</span></p>
+							</div>
+							<h4 class="h5 text-strong">2я фотография<span class="productAddPage-optional" title="Обязательно">*</span>
+							</h4>
+							<input class="productPhoto" type="file" name="photo-second" data-photo-order="2">
+							<div class="photo-preview">
+								<img th:if="*{second}" th:src="*{second}">
+								<p><span th:if="${product.images.size() > 1}">
+									<a th:href="${product.images[1].originalImageUrl}">Скачать оригинал</a>
+								</span></p>
+							</div>
+							<h4 class="h5 text-strong">3я фотография <em class="text-secondary text-size-small text-super productAddPage-optional">Не обязательно</em>
+							</h4>
+							<input class="productPhoto" type="file" name="photo-third" data-photo-order="3">
+							<div class="photo-preview">
+								<img th:if="*{third}" th:src="*{third}">
+								<p><span th:if="${product.images.size() > 2}">
+									<a th:href="${product.images[2].originalImageUrl}">Скачать оригинал</a>
+								</span></p>
+							</div>
+							<h4 class="h5 text-strong">4я фотография <em class="text-secondary text-size-small text-super productAddPage-optional">Не обязательно</em>
+							</h4>
+							<input class="productPhoto" type="file" name="photo-fourth" data-photo-order="4">
+							<div class="photo-preview">
+								<img th:if="*{fourth}" th:src="*{fourth}">
+								<p><span th:if="${product.images.size() > 3}">
+									<a th:href="${product.images[3].originalImageUrl}">Скачать оригинал</a>
+								</span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="column" id="brandBlock">
+		<div class="offsetStack-y">
+			<button class="button edit-page-button edit" th:if="${canEdit}">Редактировать бренд</button>
+			<button style="display: none" class="button edit-page-button save" th:if="${canEdit}">Сохратить бренд</button>
+			<h4 class="h5">Бренд</h4>
+			<select disabled="disabled" id="brand">
+				<option th:selected="${product.product.brand == null}" class="is-placeholder" disabled="disabled">Выберите</option>
+				<option th:selected="${brand.id == product.product.brand.id}" value="value" th:each="brand: ${brands}" th:value="${brand.id}" th:text="${brand.name}">title</option>
+			</select>
+		</div>
+	</div>
+	<div class="column" id="sizeTypeBlock">
+		<div class="offsetStack-y">
+			<button class="button edit-page-button edit" th:if="${canEdit}">Редактировать тип размера</button>
+			<button style="display: none" class="button edit-page-button save" th:if="${canEdit}">Сохратить тип размера</button>
+			<h4 class="h5">Тип размера</h4>
+			<select disabled="disabled" id="size-type">
+				<option class="is-placeholder" selected="selected" disabled="disabled">Выберите</option>
+				<option th:each="st: *{publicationInfo.avalaibleSizeTypes}" th:value="${st.getId()}" th:selected="${st.getId()} == *{publicationInfo.sizeType} ? 'selected' : _" th:text="${st.getName()}"></option>
+			</select>
+		</div>
+	</div>
+</div>
+<hr/>
+<div class="row" id="attributeBlock">
+	<form id="attributesForm" th:data-product-id="${product.product.id}">
+		<button class="button edit-page-button edit" th:if="${canEdit}">Редактировать атрибуты</button>
+		<button style="display: none" class="button edit-page-button save" th:if="${canEdit}">Сохратить атрибуты</button>
+		<div class="offsetStack-y productAddHint-spot attributeBlock" th:each="avalaibleAttribute: ${publicationInfo.avalaibleAttributes}" th:object="${avalaibleAttribute}" th:data-name="*{name}">
+			<h4 class="h5 text-strong" th:text="*{displayName}">title <span class="productAddPage-optional" title="Обязательно">*</span>
+			</h4>
+			<div class="row collapse">
+				<div class="small-12 medium-4 columns productAddPage-styledCheck-container" th:each="item: *{items}">
+					<input disabled="disabled" class="styledRadio" th:value="${item.value}" th:checked="${item.checked}" th:name="*{name}" th:id="${#ids.seq(avalaibleAttribute.name)}" type="radio" name="unique-name" id="unique-name-value">
+					<label for="unique-name-value" th:for="${#ids.prev(avalaibleAttribute.name)}" th:text="${item.title}">title</label>
+				</div>
+			</div>
+			<hr>
+		</div>
+	</form>
+</div>
+<div class="row">
+	<div class="column" id="conditionBlock">
+		<div class="offsetStack-y">
+			<button class="button edit-page-button edit" th:if="${canEdit}">Редактировать состояние</button>
+			<button style="display: none" class="button edit-page-button save" th:if="${canEdit}">Сохратить состояние</button>
+			<h4 class="h5 text-strong">Состояние</h4>
+			<div class="offset-y productAddPage-styledCheck-container"></div>
+			<div class="offset-y productAddPage-styledCheck-container" th:each="condition: ${publicationInfo.productConditions}">
+				<input disabled="disabled" class="styledRadio" type="radio" name="condition" id="undefined-id" th:value="${condition.id}" th:checked="${condition.checked}" th:id="${#ids.seq('condition')}">
+				<label th:text="${condition.name}" for="undefined-id" th:for="${#ids.prev('condition')}">
+				</label>
+			</div>
+		</div>
+	</div>
+	<div class="column" id="marksBlock">
+		<button class="button edit-page-button edit" th:if="${canEdit}">Редактировать отметки</button>
+		<button style="display: none" class="button edit-page-button save" th:if="${canEdit}">Сохратить отметки</button>
+		<h4 class="h5 text-strong">Отметки</h4>
+		<div class="row">
+			<input disabled="disabled" class="styledCheckbox" id="vintage" type="checkbox" name="vintage" th:checked="${publicationInfo.vintage}">
+			<label for="vintage">Винтажная вещь</label>
+		</div>
+		<div class="row" th:style="${!sellerIsPro ? 'display:none' : ''}">
+			<input disabled="disabled" class="styledCheckbox" id="newCollection" type="checkbox" name="newCollection" th:checked="${publicationInfo.newCollection}">
+			<label for="newCollection">Новая коллекция</label>
+		</div>
+		<div class="row" th:style="${!isModerator ? 'display:none' : ''}">
+			<input disabled="disabled" class="styledCheckbox" id="ourChoice" type="checkbox" name="ourChoice" th:checked="${publicationInfo.ourChoice}">
+			<label for="ourChoice">Наш выбор</label>
+		</div>
+	</div>
+</div>
+<hr>
+<div class="row" id="descriptionBlock">
+	<div class="column large-4">
+		<button class="button edit-page-button edit" th:if="${canEdit}">Редактировать описание</button>
+		<button style="display: none" class="button edit-page-button save" th:if="${canEdit}">Сохратить описание</button>
+		<h4 class="h5 text-strong">Описание<span class="productAddPage-optional" title="Обязательно">*</span></h4>
+		<textarea disabled="disabled" id="description" name="description" rows="4" th:text="${publicationInfo.description}"></textarea>
+		<div class="row">
+			<div class="column">
+				<label class="label-over" for="vendorCode">Артикул</label>
+				<div class="input-group">
+					<input type="text" class="input-group-field" disabled="disabled" id="vendorCode" th:value="${publicationInfo.vendorCode}"/>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="column">
+				<label class="label-over" for="model">Модель</label>
+				<div class="input-group">
+					<input type="text" class="input-group-field" disabled="disabled" id="model" th:value="${publicationInfo.model}"/>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="column">
+				<label class="label-over" for="rrp">RRP-цена</label>
+				<div class="input-group">
+					<input type="text" inputmode="numeric" class="input-group-field" disabled="disabled" id="rrp" th:value="${publicationInfo.rrpPrice}"/><span class="input-group-label">₽</span>
+				</div>
+			</div>
+		</div>
+		<div th:style="${!isModerator ? 'display:none' : ''}">
+			<h4 class="h5 text-strong">Происхождение</h4>
+			<div class="row">
+				<div class="column">
+					<label class="label-over" for="origin">Место приобретения</label>
+					<textarea disabled="disabled" id="origin" rows="2" th:text="${publicationInfo.origin}"></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="column">
+					<label class="label-over" for="purchase-price">Стоимость приобретения</label>
+					<div class="input-group">
+						<input disabled="disabled" class="input-group-field" id="purchase-price" type="text" inputmode="numeric" th:value="${publicationInfo.purchasePrice}"><span class="input-group-label">₽</span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="column">
+					<label class="label-over" for="purchase-year">Год приобретения</label>
+					<input disabled="disabled" id="purchase-year" type="text" maxlength="4" minlength="4" min="1900" max="2017" inputmode="numeric" th:value="${publicationInfo.purchaseYear}">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<hr th:if="${isModerator}">
+<div class="row" th:if="${isModerator}">
+	<div class="column large-2" th:if="*{product.product.productState.name == 'NEED_MODERATION'}">
+		<button  class="button success" id="publish-button" th:data-product-id="${product.product.id}">Опубликовать</button>
+	</div>
+	<div class="column large-2" th:if="*{product.product.productState.name == 'NEED_MODERATION'}">
+		<button  class="button alert" id="reject-button" th:data-product-id="${product.product.id}">Отклонить</button>
+	</div>
+	<div class="column large-2" th:if="*{product.product.productState.name == 'PUBLISHED'}">
+		<button  class="button warning" id="hide-button" th:data-product-id="${product.product.id}">Скрыть</button>
+	</div>
+	<div class="column large-2" th:if="*{product.product.productState.name == 'HIDDEN'}">
+		<button  class="button success" id="publish-button" th:data-product-id="${product.product.id}">Опубликовать</button>
+	</div>
+	<div class="column large-6">
+	</div>
+	<div class="column large-2">
+		<button class="button edit-page-button cancel">Отменить</button>
+	</div>
+</div>
+<hr th:if="${(isModerator == null || isModerator == false) && canEdit}">
+<div class="row" th:if="${(isModerator == null || isModerator == false) && canEdit}">
+	<div class="column large-2">
+		<button class="button edit-page-button" id="sendToModerationButton" th:data-product-id="${product.product.id}">Опубликовать</button>
+	</div>
+</div>

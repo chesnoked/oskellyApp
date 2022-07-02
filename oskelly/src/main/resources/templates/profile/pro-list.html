@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{new/pro-layout}" th:with="pageStyle='proList'">
+<head>
+
+</head>
+<body class="">
+
+<main role="main" layout:fragment="content" id="scrollContainer">
+		<div th:replace="admin/moderation/list-body"></div>
+</main>
+<div layout:fragment="custom-scripts">
+	<script src="/scripts/index.js"></script>
+	<script src="/admin/scripts/vendor/what-input.js"></script>
+
+	<script th:src="|/scripts/security/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+	<script th:src="|/scripts/security/component.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+
+	<script src="/scripts/pro-list.js"></script>
+	<script src="/admin/scripts/moderation-add-product.js"></script>
+	<script src="/admin/scripts/moderation.js"></script>
+</div>
+</body>
+</html>

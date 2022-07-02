@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{new/layout}" th:with ="pageStyle='blog'">
+<head>
+	<title>Блог о стиле и моде - OSKELLY.RU</title>
+</head>
+<body>
+<main role="main" layout:fragment="content">
+	<!--tags-->
+	<nav class="row hide-for-small-only">
+		<div class="blog-tags">
+			<a href="/blog">Все</a>
+			<a th:each="tag : ${tags}" th:text="${tag.name}" th:href="@{blog(tagId=${tag.id})}">Мода</a>
+			<!--/*-->
+			<a>Мода</a><a>Иконы стиля</a><a>Образы</a><a>Видео</a><a>События</a>
+			<!--*/-->
+		</div>
+	</nav>
+	<!-- list of content-->
+	<div class="row">
+		<div class="row blog-content small-up-1 medium-up-1 large-up-2">
+			<article class="column column-block blog-content-section" th:each="blogArticle : ${blogArticles}"><a href="blog-article-page.html" th:href="${blogArticle.url}">
+				<figure><img src="https://placehold.it/460x325" alt="At work with Marguerite Bartherotte" th:src="${blogArticle.imagePath}" th:alt="${blogArticle.name}"></figure>
+				<p class="articleMeta"><span th:text="${blogArticle.tag}+' | '+${blogArticle.formattedModifiedAt}">Иконы стиля | 21 июля 2017</span></p>
+				<h2 th:text="${blogArticle.name}">At work with Marguerite Bartherotte</h2>
+				<p th:utext="${blogArticle.text}">When not in her Cap Ferret studio, the G.Kero designer is on stage, lending her voice to the band Polo &amp; Pan. We chat...</p></a>
+			</article>
+		</div>
+	</div>
+</main>
+</body>
+</html>

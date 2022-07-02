@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{new/layout}"  th:with ="pageStyle=${page.pageStyle}">
+<head>
+	<meta name="description" th:if="${page.metaDescription}" th:content="${page.metaDescription}"/>
+	<meta name="keywords" th:if="${page.metaKeywords}" th:content="${page.metaKeywords}"/>
+	<title th:text="${page.name}+' - OSKELLY.RU'"></title>
+</head>
+<body>
+<main role="main" layout:fragment="content">
+	<div class="row column">
+		<div th:remove="tag" th:utext="${page.content}"></div>
+	</div>
+</main>
+</body>
+</html>

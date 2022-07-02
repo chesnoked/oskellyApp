@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{new/layout}" th:with="pageStyle='productAddPage'">
+<body class="productPage">
+
+<main role="main" layout:fragment="content">
+	<div th:replace="publication/page-product-add"></div>
+</main>
+</body>
+
+<div layout:fragment="custom-scripts">
+	<script src="/scripts/publication/product-add.js"></script>
+</div>
+
+</html>

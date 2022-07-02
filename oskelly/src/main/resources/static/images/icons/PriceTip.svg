@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="70px" viewBox="0 0 70 70" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Product-page-1(sold_out)" transform="translate(-750.000000, -1490.000000)">
+            <g id="About-Product" transform="translate(720.000000, 940.000000)">
+                <g id="Наши-привилегии" transform="translate(30.000000, 430.000000)">
+                    <g id="Оригинал" transform="translate(0.000000, 120.000000)">
+                        <g id="2">
+                            <circle id="Oval-4" stroke="#B5B5B5" cx="35" cy="35" r="34.5"></circle>
+                            <g id="noun_1153331_cc" transform="translate(17.000000, 15.000000)" stroke="#000000" stroke-width="1.5">
+                                <g id="ico" transform="translate(0.000000, 2.000000)">
+                                    <path d="M31.0744936,6.70586503 C30.9669794,5.83198482 30.1670375,5.03239311 29.293093,4.92525215 L19.8362852,3.76593881 C19.0115594,3.66439896 17.8835143,4.05376359 17.2965783,4.64103411 L1.23869428,20.6994931 C0.922738212,21.0151385 0.75,21.4334473 0.75,21.8842097 C0.75,22.3345744 0.92289889,22.7530008 1.23896017,23.0687511 L12.9314145,34.7614235 C13.2480722,35.0774644 13.6660527,35.25 14.116501,35.25 C14.5669851,35.25 14.9848084,35.0774499 15.3010681,34.7615015 L31.3590008,18.7034348 C31.9458758,18.1172607 32.3353056,16.9869108 32.2342059,16.1632917 L31.0744936,6.70586503 Z" id="Shape" fill-rule="nonzero"></path>
+                                    <circle id="Oval" cx="25" cy="11" r="3.25"></circle>
+                                    <polyline id="Path-2" stroke-linecap="round" points="25 11 34.2047233 1.79527672 36 -1.77635684e-15"></polyline>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,27 @@
+<div class="comments" th:fragment="comments">
+	<h4 hidden="true" class="h4 comments-heading" id="comments-counter" th:text="|Комментарии (${total?: 0})|" th:datа-comments-count="${total?: 0}">Комментарии (2)</h4>
+	<div class="productPage-comments" id="commentContainer" th:classappend="${total == 0}? 'hide'">
+		<div th:replace="product/comment::comments"></div>
+	</div>
+	<div class="comments-createComment productPage-comments-create" th:if="${profile}">
+		<div class="offsetStack-y_small row">
+			<div class="shrink column"><img class="productPage-comments-userPic" src="images/no-photo.jpg"
+											th:src="${profile.avatarUrl}?: '/images/no-photo.jpg'" th:alt="${profile.nickname}" alt="Гость"></div>
+			<div class="column">
+				<textarea placeholder="Ваш комментарий" rows="3" id="commentText-bottom"></textarea>
+                <div>
+                    <div class="offset-y_small row align-justify align-middle">
+                        <div class="column">
+                            <input class="styledCheckbox" id="checkbox-comments-subscribe" type="checkbox"
+                                   name="subscribe">
+                            <label class="offset-x_small_fill" for="checkbox-comments-subscribe">Подписаться</label>
+                        </div>
+                        <div class="column shrink">
+                            <button class="button text-uppercase" type="button" id="postFromBottom" data-comment-src="commentText-bottom" onclick="postComment.call(this,event)">Отправить</button>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>

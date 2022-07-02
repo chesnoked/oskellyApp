@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{new/layout}" th:with="pageStyle='productAddPage'">
+<head>
+	<!--/* правильнее упаковывать стили плагина подсказок в main.css */-->
+	<link rel="stylesheet" href="/css/suggestions.min.css"/>
+</head>
+<body class="productAddPage">
+
+<main role="main" layout:fragment="content">
+	<div th:replace="publication/page-product-add-properties"></div>
+</main>
+</body>
+
+<div layout:fragment="custom-scripts">
+	<script src="/scripts/publication/product-add-properties-global.js"></script>
+	<script src="/scripts/publication/product-add-properties-info.js"></script>
+	<script src="/scripts/publication/product-add-properties-description.js"></script>
+	<script src="/scripts/publication/product-add-properties-condition.js"></script>
+	<script src="/scripts/publication/product-add-properties-photos.js"></script>
+	<script src="/scripts/publication/product-add-properties-seller.js"></script>
+	<script src="/scripts/publication/product-add-properties-main.js"></script>
+	<script src="/scripts/load-image.all.min.js"></script>
+	<script src="/js/dropzone.js"></script>
+	<script src="/scripts/publication/photouploader.js"></script>
+
+	<!--/* правильнее упаковывать плагин подсказок в index.js */-->
+	<script type="text/javascript" src="/js/jquery.suggestions.min.js"></script>
+</div>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html
+	class="no-js" lang="ru_RU"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{profile/profile}" th:with="pageStyle='profilePage'"
+>
+
+<body class="profilePage">
+<div role="main" layout:fragment="profileContent">
+	<div class="row align-middle">
+		<div class="column small-6">
+			<h3 class="h5 text-serif">Мои продажи</h3>
+			<p
+					th:text="|${products.size()}
+                            ${T(su.reddot.presentation.Utils).getRightDeclension(products.size(), {'продажа', 'продажи', 'продаж'})}|"
+			>3 продажи</p>
+		</div>
+		<div class="column small-6 text-right">
+			<!--/*@thymesVar id="type" type="su.reddot.presentation.controller.ProfileController.SalesStrategy"*/-->
+			<!--/*@thymesVar id="types" type="java.util.List"*/-->
+			<select size="1" data-sales-type-selector>
+				<option value="newly"
+						th:each="type: ${types}"
+						th:selected="${type == currentType}"
+						th:value="${type}"
+						th:text="${type.humanFriendly}">Текущие продажи</option>
+				<!--/*-->
+				<option value="2">Новые продажи</option>
+				<option value="3">Закрытые продажи</option>
+				<!--*/-->
+			</select>
+		</div>
+	</div>
+	<div class="row padding-top">
+		<!--/*@thymesVar id="product" type="su.reddot.domain.service.profile.view.SoldProduct"*/-->
+		<!--/*@thymesVar id="currentType" type="su.reddot.presentation.controller.ProfileController.SalesStrategy"*/-->
+		<!--/*@thymesVar id="products" type="java.util.List"*/-->
+		<div class="column accordion small-12" data-accordion data-allow-all-closed="true"
+			 th:each="product: ${products}">
+			<div class="accordion-item" data-accordion-item>
+				<a href="#" class="accordion-title text-black x-txt-s">
+					<span class="profilePage-order-heading">Продажа по заказу [[${product.orderId}]]</span>
+					<span class="label alert offset-y_small-at-small profilePage-order-label"
+						  th:if="${currentType == T(su.reddot.presentation.controller.ProfileController.SalesStrategy).newly}"> Подтвердите продажу
+					</span>
+				</a>
+				<div class="accordion-content" data-tab-content>
+					<div class="row align-middle">
+						<div class="columns small-4">
+							<a href="#" th:href="@{/products/{id}(id=${product.id})}">
+							<img src="/images/no-photo.jpg" th:src="@{{url}(url=${product.primaryImage})}">
+							</a>
+						</div>
+						<div class="columns small-8 landing-page-slide-text">
+							<p class="bld x-mrg-b" th:text="${product.brand}">PHILIPP PLEIN</p>
+							<p class="no-mrg-b" th:text="${product.description}">Платье мини</p>
+							<p class="no-mrg-b" th:text="${product.size}">IT: 36</p>
+							<p class="x-mrg-b" th:text="|ID товара: ${product.itemId}|">ID товара: 4567</p>
+							<p class="bld no-mrg-b" th:text="|Цена: ${product.priceWithCommission} ₽|">Цена: 3600</p>
+							<p class="bld x-mrg-b" th:text="|Без комиссии: ${product.priceWithoutCommission} ₽|">Без комиссии: 3000</p>
+							<a class="hollow small button" href="#"
+							   th:href="@{/account/products/items/{id}/sale-confirmation(id=${product.itemId})}"
+							   th:if="${currentType == T(su.reddot.presentation.controller.ProfileController.SalesStrategy).newly}">Перейти к подтверждению</a>
+						</div>
+					</div>
+					<div class="row" th:if="${product.states != null and not product.states.empty}">
+						<div class="column accordion small-12" data-accordion data-allow-all-closed="true">
+							<div class="accordion-item" data-accordion-item>
+								<a href="#" class="accordion-title text-black x-txt-s" th:utext="|<span class='text-strong'>Текущий статус:</span> ${product.states.get(0).name}|">
+									<span class="text-strong">Текущий статус</span>: Товар проходит экспертизу OSKELLY
+								</a>
+								<div class="accordion-content" data-tab-content>
+									<div class="row landing-page-slide-text" th:each="state: ${product.states}">
+										<div class="column small-4">
+											<p class="landing-page-slide-text text-secondary" th:text="${state.formattedAt}">12.12.2017 22:30</p>
+										</div>
+										<div class="column small-8">
+											<p class="landing-page-slide-text" th:text="${state.name}">Товар поступил в OSKELLY</p>
+										</div>
+									</div>
+									<!--/*-->
+									<div class="row">
+										<div class="column small-4">
+											<p class="landing-page-slide-text text-secondary">10.12.2017 21:00</p>
+										</div>
+										<div class="column small-8">
+											<p class="landing-page-slide-text">Товар отправлен в OSKELLY</p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="column small-4">
+											<p class="landing-page-slide-text text-secondary">09.12.2017 19:55</p>
+										</div>
+										<div class="column small-8">
+											<p class="landing-page-slide-text">Продажа товара подтверждена</p>
+										</div>
+									</div>
+									<!--*/-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<div  th:fragment="photo-sample (sourceUrl)" th:remove="tag">
+    <div class="row small-align-center">
+        <div class="column small-10 large-6 text-center no-pdng-x publication-border">
+            <div>
+                <img th:src="${sourceUrl}">
+            </div>
+            <div class="gainsboro">
+                <p class="no-mrg-b">Пример фото</p>
+            </div>
+        </div>
+    </div>
+</div>

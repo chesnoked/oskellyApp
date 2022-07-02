@@ -1,0 +1,89 @@
+.ruledHeading
+	display: flex
+	align-items: center
+	margin-bottom: 2.5rem
+	width: 100%
+	+breakpoint(small only)
+		font-size: 1.8rem
+	&::before,
+	&::after
+		flex: 1
+		background-color: black
+		height: 1px
+		content: ''
+		+breakpoint(medium down)
+			height: 0
+	&::before
+		margin-right: 2.5%
+	&::after
+		margin-left: 2.5%
+	&_secondary
+		&::before,
+		&::after
+			background-color: mix(map-get($foundation-palette, secondary), white, 25%)
+$font-sizes: xx-small, x-small, small, medium, large, x-large, xx-large, larger, smaller
+.text
+	&-serif
+		font-family: $font-family-serif-sc
+	&-uppercase
+		text-transform: uppercase
+	&-strong
+		font-weight: bold
+	&-em
+		font-style: italic
+	&-underlined
+		text-decoration: underline
+	&-super
+		vertical-align: super
+	&-sub
+		vertical-align: sub
+	@each $name, $color in map-merge($foundation-palette, $foundation-gray-palette)
+		&-#{$name}
+			color: $color
+	@each $size in $font-sizes
+		&-size-#{$size}
+			font-size: $size
+			@each $zf-size in $breakpoint-classes
+				&-at-#{$zf-size}
+					+breakpoint($zf-size)
+						font-size: $size
+	@each $direction in (left, right, center)
+		&-#{$direction}
+			text-align: $direction
+			@each $zf-size in $breakpoint-classes
+				&-at-#{$zf-size}
+					+breakpoint($zf-size)
+						text-align: $direction
+.bg
+	@mixin bg($color)
+		background-color: $color
+		&, a
+			color: color-pick-contrast($color, (white, black), 10)
+	@each $name, $color in map-merge($foundation-palette, $foundation-gray-palette)
+		&-#{$name}
+			+bg($color)
+		@each $zf-size in $breakpoint-classes
+			&-#{$name}-at-#{$zf-size}
+				+breakpoint($zf-size only)
+					+bg($color)
+.inlineDescriptions
+	&-term
+		display: inline
+	&-description
+		display: inline
+		&::after
+			display: block
+			content: ''
+.underlinedLink
+	&:hover
+		text-decoration: none
+		.no-underline
+			text-decoration: none
+	.underline
+		text-decoration: underline
+	.no-underline
+		text-decoration: none
+.nowrap
+	white-space: nowrap
+.round
+	border-radius: 99999px

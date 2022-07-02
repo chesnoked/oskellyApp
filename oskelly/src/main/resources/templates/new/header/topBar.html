@@ -1,0 +1,386 @@
+<html
+	class="no-js" lang=""
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{new/layout}" th:with="pageStyle='frontPage'"
+>
+<!--/*@thymesVar id="catalog" type="java.util.List<su.reddot.domain.service.catalog.CatalogCategory>"*/-->
+<body>
+<div class="topBar" th:fragment="topBar">
+	<div class="row">
+		<div class="topBar-wrap column">
+			<div class="topBar-left">
+				<ul class="topBar-menu dropdown menu" data-dropdown-menu="data-dropdown-menu">
+					<li class="topBar-menu-item">
+						<a href="/catalog/sale" title="Скидки" style="color: #ed2024">SALE</a>
+					</li>
+					<li class="topBar-menu-item">
+						<a href="/catalog/just-in" title="Новинки">Новинки</a>
+					</li>
+					<li class="topBar-menu-item">
+						<a href="/brands" title="Бренды">Бренды</a>
+					</li>
+					<li class="topBar-menu-item">
+						<a href="/catalog/new" title="Товары в идеальном состянии">С биркой</a>
+					</li>
+					<li class="dropdown_wide topBar-menu-item" th:each="root : ${catalog}" th:unless="${root.empty}">
+						<a href="#" th:href="@{/catalog/{url}(url=${root.urlName})}" th:text="${root.displayName}">Название категории</a>
+						<ul class="menu">
+							<li class="dropdown_wide-inner row">
+								<aside class="dropdown_wide-aside column">
+									<div class="menu vertical">
+										<ul class="no-bullet">
+											<li>
+												<a href="#" th:href="@{/catalog/just-in(category=${root.id})}">Новинки</a>
+											</li>
+											<li>
+												<a href="#" th:href="@{/catalog/new(category=${root.id})}">С биркой</a>
+											</li>
+											<!--/*
+											<li>
+												<a href="#">Популярное</a>
+											</li>
+											<li>
+												<a href="#">У нас</a>
+											</li>
+											*/-->
+											<li>
+												<a href="#" th:href="@{/catalog/{url}(url=${root.urlName},ourChoice=1)}">Наш выбор</a>
+											</li>
+											<li>
+												<a href="#" th:href="@{/catalog/{url}(url=${root.urlName},vintage=1)}">Винтаж</a>
+											</li>
+											<li>
+												<a class="red" th:href="@{/catalog/sale(category=${root.id})}">Sale</a>
+											</li>
+										</ul>
+									</div>
+								</aside>
+								<nav
+									class="column"
+									th:each="child : ${root.displayName == 'Женское'? root.womenProductsCategoryChildren : root.children}"
+									th:unless="${child.empty}"
+								>
+									<h3 class="h3 dropdown_wide-blockTitle">
+										<a href="#" th:href="@{/catalog/{url}(url=${child.urlName})}" th:text="${child.displayName}">Название
+											подкатегории
+										</a>
+									</h3>
+
+									<ul class="menu vertical dropdown_wide-block">
+										<li th:each="grandchild : ${child.sortedChildren}" th:unless="${grandchild.empty}">
+											<a href="#" th:href="@{/catalog/{url}(url=${grandchild.urlName})}" th:text="${grandchild.displayName}">
+												Название под-подкатегории
+											</a>
+										</li>
+									</ul>
+								</nav>
+							</li>
+						</ul>
+					</li>
+					<li class="topBar-menu-item">
+						<a href="/blog">Блог</a>
+					</li>
+				</ul>
+			</div>
+			<div class="topBar-right typeahead__resultSpot">
+				<ul class="topBar-menu menu">
+					<li>
+						<form action="/products">
+							<div class="typeahead__container searchHints">
+								<div class="typeahead__field">
+									<span class="typeahead__query">
+										<input
+											class="searchField" id="searchField" type="search" name="search" placeholder="Поиск" size="10"
+											autocomplete="off"
+										></span>
+									<span class="typeahead__button">
+										<button type="submit">
+											<span class="typeahead__search-icon"></span>
+										</button>
+									</span>
+								</div>
+							</div>
+						</form>
+						<script>
+                window.searchSuggestions = {
+                    // jQuery Typeahead Settings
+                    order: 'asc',
+                    maxItem: 20,
+                    maxItemPerGroup: 4,
+                    minLength: 3,
+                    groupOrder: ['brands', 'products'],
+                    display: [ // fields to search by
+                        'keywords',
+                        'title',
+                        'description'
+                    ],
+                    // Own Settings
+                    groupNames: {
+                        'brands': 'Бренды',
+                        'products': 'Товары'
+                    },
+                    groupKey: 'groupName',
+                    groupNameReplaceTemplate: '__GROUPNAME__',
+                    groupCountReplaceTemplate: '__COUNT__',
+                    imageSrcAttributeReplaceTemplate: 'data-img-src',
+                    groupTitleTemplate: function (item) {
+                        return this.groupTitleTemplatePrepare(
+                            $('#search-suggestion-template-group-title').html(),
+                            item
+                        )
+                    },
+                    groupTitleTemplatePrepare: function (string, item) {
+                        return string
+                            .replace(this.groupNameReplaceTemplate, this.groupNames[item.groupName])
+                            .replace(this.imageSrcAttributeReplaceTemplate, 'src')
+                    },
+                    itemTemplates: {
+                        'brands': function () {
+                            return window.searchSuggestions.itemTemplatesPrepare(
+                                $('#search-suggestion-template-item-brand').html()
+                            )
+                        },
+                        'products': function () {
+                            return window.searchSuggestions.itemTemplatesPrepare(
+                                $('#search-suggestion-template-item-product').html()
+                            )
+                        }
+                    },
+                    itemTemplatesPrepare: function (string) {
+                        return string
+                            .replace(this.imageSrcAttributeReplaceTemplate, 'src')
+                    },
+                }
+                window.searchSuggestionsData = []
+						</script>
+					</li>
+					<li>
+						<a href="page.html" title="Как это работает" data-toggle="how-it-works" th:href="@{/welcome}">Как это
+							работает
+						</a>
+					</li>
+					<li>
+						<a
+							href="product-add.html" title="Продать"
+							th:href="${not #authorization.expression('isAnonymous()')}? @{/publication}"
+							th:data-mfp-src="${#authorization.expression('isAnonymous()')}? '#login-popup'"
+						>Продать
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="how-it-works" class="dropdown-pane" data-dropdown data-hover="true" data-hover-pane="true">
+		<div class="row">
+			<div class="column">
+				<div class="row">
+					<div class="column">
+						<img
+							class="feature-image" src="images/pictures/sub-welcome.png" th:src="@{/images/pictures/sub-welcome.png}"
+							alt="добро пожаловать"
+						>
+					</div>
+					<div class="column">
+						<img src="images/pictures/sub-buy.png" th:src="@{/images/pictures/sub-buy.png}" alt="покупай">
+					</div>
+					<div class="column">
+						<img src="images/pictures/sub-sell.png" th:src="@{/images/pictures/sub-sell.png}" alt="продавай">
+					</div>
+				</div>
+				<div class="row">
+					<div class="column text-center top-space">
+						<p class="feature-header">OSKELLY</p>
+						<p class="feature-text">OSKELLY – онлайн-площадка, которая дарит вторую жизнь вещам премиум и люкс сегмента.
+							Покупайте. Продавайте. Делитесь!
+						</p>
+					</div>
+					<div class="column text-center top-space">
+						<p class="feature-header">Покупка</p>
+						<p class="feature-text">Выбирайте из тысяч оригинальных брендовых товаров по невероятным ценам. Все позиции
+							проверены нашими профессиональными экспертами.
+						</p>
+					</div>
+					<div class="column text-center top-space">
+						<p class="feature-header">Продажа</p>
+						<p class="feature-text">Откройте свой гардероб для истинных любителей моды. Зарабатывать на продаже вещей
+							еще никогда не было так просто!
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="column text-center">
+						<p>
+							<a class="feature-action" href="welcome.html" th:href="@{/welcome}">Подробнее</a>
+						</p>
+					</div>
+					<div class="column text-center">
+						<p>
+							<a class="feature-action" href="buypage.html" th:href="@{/buy}">Подробнее</a>
+						</p>
+					</div>
+					<div class="column text-center">
+						<p>
+							<a class="feature-action" href="sellpage.html" th:href="@{/sell}">Подробнее</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="sidr-inner" id="mobileNav">
+		<div>
+			<ul class="menu vertical">
+				<li class="hide-for-small-only">
+					<form action="/products">
+						<input class="searchField" type="search" name="search" placeholder="Поиск">
+					</form>
+				</li>
+				<li>
+					<a href="product-add.html" title="Продать" th:href="${not #authorization.expression('isAnonymous()')}? @{/publication}"
+					   th:data-mfp-src="${#authorization.expression('isAnonymous()')}? '#login-popup'"
+					>
+						Продать
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="mobileNav-drilldown-wrapper column">
+			<ul class="menu vertical" data-drilldown>
+				<li>
+					<a href="/catalog/just-in">Новинки</a>
+				</li>
+				<li>
+					<a href="/brands">Бренды</a>
+				</li>
+                <li>
+                    <a class="red" href="/catalog/sale">Sale</a>
+                </li>
+				<li>
+					<a href="/catalog/new">С биркой</a>
+				</li>
+				<li th:each="root : ${catalog}" th:unless="${root.empty}">
+					<a href="#" th:href="@{/catalog/{url}(url=${root.urlName})}" th:text="${root.displayName}">Название категории</a>
+					<ul class="menu">
+						<li>
+							<a href="#" th:href="@{/catalog/{url}(url=${root.urlName})}">Все</a>
+						</li>
+						<li
+							th:each="child : ${root.displayName == 'Женское'? root.womenProductsCategoryChildren : root.children}"
+							th:unless="${child.empty}"
+						>
+							<a href="#" th:href="@{/catalog/{url}(url=${child.urlName})}" th:text="${child.displayName}">Название
+								подкатегории
+							</a>
+							<ul class="menu">
+								<li>
+									<a href="#" th:href="@{/catalog/{url}(url=${child.urlName})}">Все</a>
+								</li>
+								<li th:each="grandchild : ${child.sortedChildren}" th:unless="${grandchild.empty}">
+									<a href="#" th:href="@{/catalog/{url}(url=${grandchild.urlName})}"
+										th:text="${grandchild.displayName}"
+									>
+										Название под-подкатегории
+									</a>
+								</li>
+
+							</ul>
+						</li>
+						<li>
+							<a href="#" th:href="@{/catalog/just-in(category=${root.id})}">Новинки</a>
+						</li>
+						<li>
+							<a href="#" th:href="@{/catalog/new(category=${root.id})}">С биркой</a>
+						</li>
+						<!--/*
+						<li>
+							<a href="#">Популярное</a>
+						</li>
+						<li>
+							<a href="#">У нас</a>
+						</li>
+						*/-->
+						<li>
+							<a href="#" th:href="@{/catalog/{url}(url=${root.urlName},ourChoice=1)}">Наш выбор</a>
+						</li>
+						<li>
+							<a href="#" th:href="@{/catalog/{url}(url=${root.urlName},vintage=1)}">Винтаж</a>
+						</li>
+						<li>
+							<a class="red" th:href="@{/catalog/sale(category=${root.id})}">Sale</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="/blog" title="Блог">Блог</a>
+				</li>
+			</ul>
+		</div>
+		<aside class="sidr-aside-hide-on-large" sec:authorize="isAnonymous()">
+			<ul class="menu vertical">
+				<li>
+					<a href="#" th:href="@{/cart}">
+						<img class="icon" src="images/icons/cart.svg" alt="Корзина" th:src="@{/images/icons/cart.svg}">
+						<span class="decorate">Корзина</span>
+						<span
+								class="badge headerPanel-badge" data-cart-size th:text="${cartSize}?: 0"
+								th:classappend="${cartSize == 0}? 'hide'"
+								style="top: 18% !important;"
+						>10
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="#" data-mfp-src="#login-popup">
+						<img class="icon" src="images/icons/logout.svg" alt="Вход" th:src="@{/images/icons/logout.svg}">
+						Вход
+					</a>
+				</li>
+				<li>
+					<a href="#" title="Регистрация" data-mfp-src="#register-popup">
+						<img
+							class="icon" src="images/icons/person-plus.svg" alt="Регистрация"
+							th:src="@{/images/icons/person-plus.svg}"
+						>
+						Регистрация
+					</a>
+				</li>
+			</ul>
+		</aside>
+		<aside class="sidr-aside-hide-on-large hide" sec:authorize="isAuthenticated()" th:class="sidr-aside-hide-on-large">
+			<ul class="menu vertical">
+				<li>
+					<a href="#" th:href="@{/cart}">
+						<img class="icon" src="images/icons/cart.svg" alt="Корзина" th:src="@{/images/icons/cart.svg}">
+						<span class="decorate">Корзина</span>
+						<span
+							class="badge headerPanel-badge" data-cart-size th:text="${cartSize}?: 0"
+							th:classappend="${cartSize == 0}? 'hide'"
+							style="top: 10% !important;"
+						>10
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="profile.html" th:href="@{/account}">
+						<img class="icon" src="images/icons/profile.svg" alt="Профиль" th:src="@{/images/icons/profile.svg}">
+						<span class="decorate">Профиль</span>
+					</a>
+				</li>
+				<li>
+					<a href="#" th:href="@{/account/wishlist}">
+						<img class="icon" src="images/icons/star.svg" alt="Избранное" th:src="@{/images/icons/star.svg}">
+						<span class="decorate">Избранное</span>
+					</a>
+				</li>
+				<li>
+					<a href="/logout">
+						<img class="icon" src="images/icons/logout.svg" alt="Выход" th:src="@{/images/icons/logout.svg}">
+						<span class="decorate">Выход</span>
+					</a>
+				</li>
+			</ul>
+		</aside>
+	</div>
+</div>
+</body>

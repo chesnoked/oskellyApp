@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240px" height="80px" viewBox="0 0 240 80" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 9</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop-Copy-2" transform="translate(-202.000000, -1350.000000)">
+            <g id="Group-13" transform="translate(20.000000, 1239.000000)">
+                <g id="Group-9" transform="translate(183.000000, 112.000000)">
+                    <g id="Group-7" transform="translate(0.000000, 0.500000)">
+                        <text id="35%" font-family="PTSans-Regular, PT Sans" font-size="28" font-weight="normal" letter-spacing="0.699999928" fill="#CFA788">
+                            <tspan x="11.3680001" y="48">35%</tspan>
+                        </text>
+                        <circle id="Oval-4-Copy" stroke="#CFA788" stroke-width="1.7" cx="38.5113941" cy="38.5113941" r="38.5113941"></circle>
+                    </g>
+                    <text id="Фиксированная-комисс" font-family="PTSans-Bold, PT Sans" font-size="12" font-weight="bold" letter-spacing="0.75" fill="#CFA788">
+                        <tspan x="88" y="43.5">Фиксированная комиссия</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

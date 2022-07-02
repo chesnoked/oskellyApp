@@ -1,0 +1,26 @@
+.article
+	@each $size, $headers in $header-styles
+		@include breakpoint($size)
+			@each $header, $font-size in $headers
+				#{unquote($header)}
+					@each $prop, $sizee in $font-size
+						$keys: map_keys($font-size)
+						$values: map_values($font-size)
+						#{$keys}: $values + px
+	p
+		a
+			text-decoration: underline
+		> img
+			&[style*="float: left"],
+			&[style*="float:left"]
+				margin-right: 1em
+			&[style*="float: right"],
+			&[style*="float:right"]
+				margin-left: 1em
+	figure
+		> img
+			margin-bottom: 0.5em
+	figcaption
+		text-align: center
+		font-size: 0.9em
+		color: hsl(0, 0%, 30%)

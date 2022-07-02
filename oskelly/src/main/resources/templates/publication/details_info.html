@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html
+		xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="category (c)" th:unless="${#lists.isEmpty(c.children)}">
+	<h6 th:text="${c.displayName}"></h6>
+	<label th:each="child: ${c.children}">
+		<input type="radio" name="category" th:value="${child.id}"/>
+		<span th:text="${child.displayName}"></span>
+		<div th:replace="this::category(${child})"></div>
+	</label>
+</div>
+<div th:fragment="details_info">
+	<div class="catalog-tree">
+		<h4>Подкатегория товара</h4>
+		<div th:remove="tag" th:each="category:${catalogTree}">
+			<div th:replace="this::category (${category})"></div>
+		</div>
+	</div>
+	<h4>Атрибуты товара</h4>
+	<div class="attributes">
+	</div>
+	<h4>Размер</h4>
+	<div class="size">
+		<div class="size-classification-container"></div>
+		<div class="size-values-container"></div>
+	</div>
+	<button class="publication-next">Продолжить</button>
+	<script>
+
+		var currentSizes;
+
+		$(function () {
+			$("#info_submit").click(function () {
+				//вот это значение берется из шаблона details
+				var productId = $(".product-info").attr("data-product-id");
+				var sizeId = $("#size-values").val();
+				var categoryId = $("input[name='category']:checked").val();
+				var attributes = [];
+				$(".attribute").each(function () {
+					var attributeValueId = $(this).find("input[type='radio']:checked").val();
+					if (attributeValueId != undefined) {
+						attributes.push(attributeValueId);
+					}
+				});
+				updateProductInfo(productId, categoryId, sizeId, attributes);
+			});
+
+			$("input:radio[name='category']").change(function () {
+				var categoryId = $(this).val();
+				loadAndRenderAttributes(categoryId);
+				loadAndRenderSizes(categoryId);
+			});
+		});
+
+		function loadAndRenderSizes(categoryId) {
+			$.ajax({
+				type: "GET",
+				url: "/publication/details/size",
+				data: {categoryId: categoryId}
+			}).done(function (sizes) {
+				currentSizes = sizes;
+
+				var classificationContainer = $(".size-classification-container");
+				if (sizes.length == 0) {
+					classificationContainer.empty();
+					$(".size-values-container").empty();
+					return;
+				}
+
+				//создаем селект для выбора классификации размерной сетки
+				classificationContainer.html("<select id='size-classification'></select>");
+				sizes.forEach(function (size, i) {
+					if (size.values.length > 0) {
+						var option = $("<option/>");
+						option.attr({"value": size.classification}).text(size.classification);
+						$("#size-classification").append(option);
+					}
+				});
+
+				var defaultSizeTable = $("#size-classification").find("option:selected").val();
+				renderSelectedSizeTable(defaultSizeTable);
+
+				$("#size-classification").change(function () {
+					if ($(this).val() == 0) return false;
+					renderSelectedSizeTable($(this).val());
+				});
+			}).fail(function (data) {
+				console.log(data.responseText);
+			});
+		}
+
+		function renderSelectedSizeTable(selectedClassification) {
+			currentSizes.forEach(function (item, i) {
+				if (item.classification == selectedClassification) {
+					var values = item.values;
+					$(".size-values-container").html("<select id='size-values'></select>");
+					values.forEach(function (item, i) {
+						var option = $("<option/>");
+						option.attr({"value": item.id}).text(item.name);
+						$("#size-values").append(option);
+					});
+					return;
+				}
+			});
+		}
+
+		function loadAndRenderAttributes(categoryId) {
+			$.ajax({
+				type: "GET",
+				url: "/publication/details/attributes",
+				data: {categoryId: categoryId}
+			}).done(function (data) {
+				var html = '';
+				data.forEach(function (item, i) {
+					html += createAttrHtml(item);
+				});
+				$(".attributes").html(html);
+			}).fail(function (data) {
+				console.log(data.responseText);
+			});
+		}
+
+		function createAttrHtml(catalogAttribute) {
+			var attr = "<div class='attribute' data-attribute-id='" + catalogAttribute.attribute.id + "'>";
+			attr += "<h5>" + catalogAttribute.attribute.name + "</h5>";
+			var attrValues = catalogAttribute.values;
+			attrValues.forEach(function (item, i) {
+				attr += "<label>";
+				attr += "<input type='radio' name='" + catalogAttribute.attribute.name + "' value='" + item.id + "'/>";
+				attr += "<span>" + item.value + "</span>";
+				attr += "</label>";
+			});
+			attr += "</div>";
+			return attr;
+		}
+	</script>
+</div>
+</body>
+</html>

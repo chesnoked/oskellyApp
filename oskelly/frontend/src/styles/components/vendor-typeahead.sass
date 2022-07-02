@@ -1,0 +1,92 @@
+.typeahead
+	&__container
+		&.result
+			%typeahead-result-focus
+				display: block
+		&.cancel
+			@extend %mobile-typeahead-cancellable-container
+	&__resultSpot
+		position: relative
+	&__result
+		@extend %typeahead-result-focus
+		@extend %mobile-typeahead-result
+		display: none
+		absolute: top 100% left
+		background: white
+		width: 100%
+		z-index: 100
+	&__cancel-button
+		@extend %mobile-typeahead-cancel-button
+		@extend %visible-mobile-typeahead-cancel-button
+		position: absolute
+	&__button
+		position: absolute
+	&__list
+		margin: 0
+		+breakpoint(large up)
+			border: 1px solid black
+				top: 0
+		list-style: none
+	&__group
+		background: black
+		padding: 0.1rem 0.5rem
+		font-size: 0.8rem
+		&,
+		a
+			color: white
+		+ %th-item-firstInGroup
+			%sh-item_brand-firstInGroup
+				border-top: 0
+	&__item
+		@extend %th-item-firstInGroup
+		%sh-item_brand
+			@extend %sh-item_brand-firstInGroup
+			border-top: 1px dotted hsl(0, 0%, 80%)
+		&:hover
+			background-color: rgba(black, 0.03)
+		> a
+			&:hover
+				text-decoration: none
+		strong
+			background-color: yellow
+			// font-weight: normal
+.searchHints
+	&-item
+		padding: 0.5rem
+		&_brand
+			@extend %sh-item_brand
+			%sh_brand-description
+				img
+					border: 1px solid hsl(0, 0%, 81.6%)
+					size: 22px
+				.imagesRow
+					overflow: hidden
+					white-space: nowrap
+		&_product
+			%sh_product-title
+				margin: 0
+				font-size: 0.8rem
+				font-weight: bold
+			%sh_product-image
+				width: 80px
+			%sh_product-description
+				color: hsl(0, 0%, 67.1%)
+				font-size: 0.6rem
+			%sh_product-price
+				font-size: 0.8rem
+				font-weight: bold
+		&-title
+			@extend %sh_product-title
+			font-weight: normal
+		&-description
+			@extend %sh_brand-description
+			@extend %sh_product-description
+		&-image
+			@extend %sh_product-image
+		&-price
+			@extend %sh_product-price
+		&-productsAmount
+			color: hsl(0, 0%, 40%)
+		img
+			font-size: 0.7em
+			mix-blend-mode: multiply

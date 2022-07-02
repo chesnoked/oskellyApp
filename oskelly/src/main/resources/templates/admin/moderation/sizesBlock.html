@@ -1,0 +1,28 @@
+<div class="oneItemsBlock">
+	<div  th:style="${sizes.size() == 1 and sizes[0].name == 'Без размера'}? 'display: none'"
+		  >
+		<label>Размер</label>
+		<select class="js-select size" data-search="data-search" name="size">
+			<option th:selected="${sizes.size() != 1}" selected="selected" class="is-placeholder" disabled="disabled">Выберите</option>
+			<option th:selected="${sizes.size() == 1}" th:each="size: ${sizes}" th:value="${size.id}" th:text="${size.name}">title</option>
+		</select>
+	</div>
+    <script th:if="${sizes.size() == 1 and sizes[0].name == 'Без размера'}">$("#addSizeButton").hide();</script>
+	<script th:unless="${sizes.size() == 1 and sizes[0].name == 'Без размера'}">$("#addSizeButton").show();</script>
+	<div>
+		<label>Количество</label>
+		<input class="input-group-field count" type="text" inputmode="numeric" />
+	</div>
+	<div>
+		<label>Цена</label>
+		<input type="text" inputmode="numeric" class="input-group-field price"
+			   onchange="calculateCommission(this);"
+			   onkeyup="this.onchange(this);"
+			   oninput="this.onchange(this);"
+		/>
+	</div>
+	<div>
+		<label>Цена с комиссией</label>
+		<input disabled="disabled" type="text" inputmode="numeric" class="input-group-field priceWithCommission" />
+	</div>
+</div>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{new/layout}" th:with="pageStyle='profilePage'">
+<head>
+	<link  href="/styles/cropper.css" rel="stylesheet">
+	<!--/* правильнее упаковывать стили плагина подсказок в main.css */-->
+	<link rel="stylesheet" href="/css/suggestions.min.css"/>
+	<style>
+		img {
+			max-width: 100%; /* This rule is very important, please do not ignore this! */
+		}
+	</style>
+</head>
+
+<!--/*@thymesVar id="profileView" type="su.reddot.domain.service.profile.ProfileView" */-->
+
+<body class="productPage">
+
+<main role="main" layout:fragment="content">
+	<div class="row large-unstack margin-from-header">
+		<div class="column">
+			<div class="row">
+				<div class="small-4 medium-3 large-4 xlarge-3 columns">
+					<img data-mfp-src="#avatar-popup" class="offsetStack-y_small profilePage-avatara" src="/images/tmp/users/userpic-1.jpg" alt="Ольга"
+						 th:src="@{${profileView.avatarUrl}?: '/images/no-photo.jpg'}" >
+
+					<button class="button hollow expanded offsetStack-y_small hide-for-large-only hide-for-small-only" type="button" data-mfp-src="#avatar-popup">Изменить фото</button>
+					<div class="mfp-hide" id="avatar-popup">
+						<div class="row align-center">
+							<div class="large-7 columns mfp-content-inner">
+								<div class="whitePopup offset_fill">
+									<div class="row">
+										<button class="mfp-close" type="button" title="Закрыть">×</button>
+										<input type="file" name="image" id="avatar-upload" onchange="readURL(this);" accept="image/*"/>
+										<div class="image_container">
+											<img id="blah" src="#" alt="Изображение профиля" th:src="@{${profileView.avatarUrl}?: '/images/no-photo.jpg'}"/>
+										</div>
+										<div id="cropped_result"></div>
+									</div>
+									<div class="row">
+										<div class="column large-3">
+											<button style="margin-top: 5px" disabled="disabled" class="button hollow expanded" id="crop_button">Сохранить</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="column profilePage-userInfo">
+					<h2 class="h3"><strong th:text="${profileView.nickname}">Ольга</strong> <span th:if="${profileView.isVip}" class="label golden">VIP</span>
+					</h2>
+					<div class="show-for-medium">
+						<ul class="text-secondary">
+							<li th:if="${profileView.birthDate}">День рождения <span class="text-black" th:text="|*{profileView.birthDate}|">15 января</span></li>
+							<li>Присоединилась к Oskelly
+								<span class="text-black nowrap" th:if="*{profileView.registrationTime}" th:text="|*{profileView.registrationTime}|">21 февраля 2017</span>
+							</li>
+							<li th:if="${profileView.countSoldProducts > 0}">Продано <span class="text-black" th:text="${profileView.countSoldProducts + ' товаров'}">17 товаров</span></li>
+							<li th:if="${profileView.isTrusted}" class="show-for-medium">Профиль <span class="text-black">Trusted</span> <img class="icon" src="/images/icons/trusted.svg" alt="Trusted">
+							</li>
+						</ul>
+					</div>
+					<div class="hide-for-medium"><a class="text-underlined" data-toggle="mobile-info" title="Показать дополнительную информацию">Инфо</a></div>
+					<button class="button hollow show-for-large-only" type="button" data-mfp-src="#avatar-popup">Изменить фото</button>
+				</div>
+				<div th:if="${false}" class="shrink column align-self-middle show-for-small-only"><span class="text-black">Trusted</span> <img class="icon" src="/images/icons/trusted.svg" alt="Trusted">
+				</div>
+				<div class="small-4 columns show-for-small-only"></div>
+				<div class="small-8 columns show-for-small-only">
+					<div class="hide no-bullet text-size-small offsetStack-y" id="mobile-info" data-toggler=".hide">
+						<ul class="text-secondary">
+							<li th:if="${false}">Город <span class="text-black">Москва</span></li>
+							<li>День рождения
+								<span class="text-black" th:if="*{profileView.birthDate}" th:text="|*{profileView.birthDate}|">15 января</span>
+							</li>
+							<li>Присоединилась к Oskelly
+								<span class="text-black nowrap" th:if="*{profileView.registrationTime}" th:text="|*{profileView.registrationTime}|">21 февраля 2017</span>
+							</li>
+							<li th:if="${profileView.countSoldProducts > 0}">Продано <span class="text-black" th:text="${profileView.countSoldProducts + ' товаров'}">17 товаров</span></li>
+							<li class="show-for-medium">Профиль <span class="text-black">Trusted</span> <img class="icon" src="/images/icons/trusted.svg" alt="Trusted">
+							</li>
+						</ul>
+						<fieldset th:if="${false}" class="ratingInput ratingInput_inline offsetStack-x_small" title="4 звезды" disabled="disabled">
+							<div class="ratingInput-inner">
+								<input type="radio" id="user-stars-sm-10" name="user-stars-sm" value="10" disabled="disabled">
+								<label class="full" for="user-stars-sm-10"></label>
+								<input type="radio" id="user-stars-sm-9" name="user-stars-sm" value="9" disabled="disabled">
+								<label class="half" for="user-stars-sm-9"></label>
+								<input type="radio" id="user-stars-sm-8" name="user-stars-sm" value="8" checked="checked" disabled="disabled">
+								<label class="full" for="user-stars-sm-8"></label>
+								<input type="radio" id="user-stars-sm-7" name="user-stars-sm" value="7" disabled="disabled">
+								<label class="half" for="user-stars-sm-7"></label>
+								<input type="radio" id="user-stars-sm-6" name="user-stars-sm" value="6" disabled="disabled">
+								<label class="full" for="user-stars-sm-6"></label>
+								<input type="radio" id="user-stars-sm-5" name="user-stars-sm" value="5" disabled="disabled">
+								<label class="half" for="user-stars-sm-5"></label>
+								<input type="radio" id="user-stars-sm-4" name="user-stars-sm" value="4" disabled="disabled">
+								<label class="full" for="user-stars-sm-4"></label>
+								<input type="radio" id="user-stars-sm-3" name="user-stars-sm" value="3" disabled="disabled">
+								<label class="half" for="user-stars-sm-3"></label>
+								<input type="radio" id="user-stars-sm-2" name="user-stars-sm" value="2" disabled="disabled">
+								<label class="full" for="user-stars-sm-2"></label>
+								<input type="radio" id="user-stars-sm-1" name="user-stars-sm" value="1" disabled="disabled">
+								<label class="half" for="user-stars-sm-1"></label>
+							</div>
+						</fieldset>
+					</div>
+					<div th:if="${false}" class="offsetStack-y"></div>
+				</div>
+			</div>
+		</div>
+		<div class="offsetStack-y_small xlarge-5 columns">
+			<div th:if="${false}" class="row align-right show-for-medium">
+				<div class="shrink column"><strong class="text-secondary offsetStack-x_small">Рейтинг:</strong>
+					<fieldset class="ratingInput ratingInput_inline offsetStack-x_small" title="4 звезды" disabled="disabled">
+						<div class="ratingInput-inner">
+							<input type="radio" id="user-stars-10" name="user-stars" value="10" disabled="disabled">
+							<label class="full" for="user-stars-10"></label>
+							<input type="radio" id="user-stars-9" name="user-stars" value="9" disabled="disabled">
+							<label class="half" for="user-stars-9"></label>
+							<input type="radio" id="user-stars-8" name="user-stars" value="8" checked="checked" disabled="disabled">
+							<label class="full" for="user-stars-8"></label>
+							<input type="radio" id="user-stars-7" name="user-stars" value="7" disabled="disabled">
+							<label class="half" for="user-stars-7"></label>
+							<input type="radio" id="user-stars-6" name="user-stars" value="6" disabled="disabled">
+							<label class="full" for="user-stars-6"></label>
+							<input type="radio" id="user-stars-5" name="user-stars" value="5" disabled="disabled">
+							<label class="half" for="user-stars-5"></label>
+							<input type="radio" id="user-stars-4" name="user-stars" value="4" disabled="disabled">
+							<label class="full" for="user-stars-4"></label>
+							<input type="radio" id="user-stars-3" name="user-stars" value="3" disabled="disabled">
+							<label class="half" for="user-stars-3"></label>
+							<input type="radio" id="user-stars-2" name="user-stars" value="2" disabled="disabled">
+							<label class="full" for="user-stars-2"></label>
+							<input type="radio" id="user-stars-1" name="user-stars" value="1" disabled="disabled">
+							<label class="half" for="user-stars-1"></label>
+						</div>
+					</fieldset><span class="text-secondary offsetStack-x_small">21 отзыв</span>
+				</div>
+			</div>
+			<hr th:if="${false}" class="show-for-medium">
+			<div class="row small-collapse large-uncollapse">
+				<div class="medium-3 columns userCard-statItem">
+					<div class="text-center profilePage-subscribe" th:classappend="${#request.getRequestURI() == '/account/followers'}? 'active'">
+						<span class="userCard-statItem-caption text-size-smaller">
+							<a href="/account/followers" title="Подписчики">Подписчики</a>
+						</span>
+					</div>
+					<div><strong class="text-size-x-large" th:text="${profileView.subscribers}">15</strong></div>
+				</div>
+				<div class="medium-3 columns userCard-statItem">
+					<div class="text-center profilePage-subscribe" th:classappend="${#request.getRequestURI() == '/account/followees'}? 'active'">
+						<span class="userCard-statItem-caption text-size-smaller">
+							<a href="/account/followees" title="Подписки">Подписки</a>
+						</span>
+					</div>
+					<div><strong class="text-size-x-large" th:text="${profileView.subscriptions}" data-followee-aware>5</strong></div>
+				</div>
+				<div class="medium-3 columns userCard-statItem">
+					<div><span class="userCard-statItem-caption text-size-smaller">Лайки</span></div>
+					<div><strong class="text-size-x-large" th:text="${profileView.likes}">135</strong></div>
+				</div>
+				<div class="medium-3 columns userCard-statItem">
+					<div><span class="userCard-statItem-caption text-size-smaller">Баллы</span></div>
+					<div><strong class="text-size-x-large">0</strong></div>
+				</div>
+			</div>
+		</div>
+		<div th:if="${false}" class="offsetStack-y_small small-12 columns show-for-small-only">
+			<button data-mfp-src="#avatar-popup" class="button hollow large expanded" type="button">Изменить фото</button>
+		</div>
+	</div>
+	<div class="row column show-for-medium">
+		<hr>
+	</div>
+	<!--/* Меню профиля */-->
+	<div class="row align-center">
+		<div class="column small-12 large-3 medium-4 medium-uncollapse-selfStacked small-margin-y">
+		  <div class="profilePage-scroll-menu">
+			<div class="profilePage-scroll-menu-arrowLeft hide">
+				<i class="fa fa-angle-left"></i>
+			</div>
+			<div class="profilePage-scroll-menu-arrowRight hide-for-medium">
+				<i class="fa fa-angle-right"></i>
+			</div>
+			<nav class="menu medium-vertical profilePage-styled-menu">
+			  <span class="profilePage-styled-menu-item" th:classappend="${#request.getRequestURI() == '/account'}? 'active'">
+				<a href="/account" title="Мой профиль">Мой профиль</a>
+			  </span>
+			  <span class="profilePage-styled-menu-item" th:classappend="${#request.getRequestURI() == '/account/products'}? 'active'">
+				<a href="/account/products?state=PUBLISHED" title="Мои товары">Мои товары</a>
+			  </span>
+			  <span class="profilePage-styled-menu-item" th:classappend="${#request.getRequestURI() == '/account/orders'}? 'active'">
+				<a href="/account/orders" title="Мои покупки">Мои заказы</a>
+			  </span>
+			  <span class="profilePage-styled-menu-item" th:classappend="${#request.getRequestURI() == '/account/sales'}? 'active'">
+				<a href="/account/sales" title="Мои покупки">Мои продажи</a>
+			  </span>
+			  <span class="profilePage-styled-menu-item" th:classappend="${#request.getRequestURI() == '/account/news'}? 'active'">
+				<a href="/account/news" title="Мои новости">Мои новости</a>
+			  </span>
+			  <span class="profilePage-styled-menu-item" th:classappend="${#request.getRequestURI() == '/account/wishlist'}? 'active'">
+				<a href="/account/wishlist" title="Мой Wish List">Мой Wish List</a>
+			  </span>
+			  <span class="profilePage-styled-menu-item" th:classappend="${#request.getRequestURI() == '/account/favorites'}? 'active'">
+				<a href="/account/favorites" title="Мои фавориты">Мои фавориты</a>
+			  </span>
+			  <span class="profilePage-styled-menu-item" th:classappend="${#request.getRequestURI() == '/account/notifications'}? 'active'">
+				<a href="/account/notifications" title="Мои уведомления">Мои уведомления</a>
+			  </span>
+			  <span class="profilePage-styled-menu-item" th:classappend="${#request.getRequestURI() == '/account/subscriptions/products'}? 'active'">
+				<a href="/account/subscriptions/products" title="Сообщить о наличии">Сообщить о наличии</a>
+			  </span>
+			  <span class="profilePage-styled-menu-item" th:classappend="${#lists.contains({'/account/pricesubscriptions', '/account/offers', '/account/offers-to-me'}, #request.getRequestURI())}? 'active'">
+				<a href="/account/pricesubscriptions" title="Подписки на снижение цены">Ценовые изменения</a>
+			  </span>
+			  <span class="profilePage-styled-menu-item" th:classappend="${#request.getRequestURI() == '/account/moderation'}? 'active'" th:if="${profileView.isPro}">
+				<a href="/admin/moderation" title="PRO" target="_blank">PRO</a>
+			  </span>
+			</nav>
+		  </div>
+    </div>
+		<div class="column small-12 large-6 medium-8">
+			<div layout:fragment="profileContent"></div>
+		</div>
+		<div class="column small-12 large-3 medium-8">
+			<button class="golden small button expanded" type="button">Заказать Консьерж-сервис</button>
+			<button class="golden small button expanded" type="button" onclick="window.location.href = '/publication';">Продать</button>
+			<button class="hollow small button expanded" type="button">Ушёл в отпуск</button>
+			<div class="bg-light-gray text-center offset-y_small_fill">
+				<div class="text-size-small">Свяжитесь с нами</div>
+				<div class="text-size-large"><strong class="nowrap">8 (800) 707-53-08</strong></div>
+				<div class="text-size-small"><a href="mailto:info@oskelly.ru" title="Написать письмо на адрес info@oskelly.ru">info@oskelly.ru</a></div>
+			</div>
+		</div>
+	</div>
+</main>
+
+<div layout:fragment="custom-scripts">
+	<!--/* TODO: скрипт относится к шаблону profile/products.html */-->
+	<script>
+		$(document).ready(function() {
+			$('input[type=radio][name=state]').change(function() {
+				window.location.replace("/account/products?state=" + this.value);
+			});
+		});
+	</script>
+	<script src="/js/canvas-to-blob.js"></script>
+	<script src="/js/cropper.js"></script>
+	<!--/* правильнее упаковывать плагин подсказок в index.js */-->
+	<script type="text/javascript" src="/js/jquery.suggestions.min.js"></script>
+
+    <!--/* Подтвреждение/отклонение предложения по снижению цены */-->
+	<script th:src="|/js/product/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+
+	<!--/* Отображение стрелок в навигационном меню в адаптивной версии */-->
+	<script src="/scripts/profile/responsiveNavMenuArrows.js"></script>
+
+	<!--/* Удаление алертов по товарам */-->
+	<script th:src="|/scripts/subscription/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+
+	<script src="/scripts/profile/client.js"></script>
+	<script src="/scripts/profile/component.js"></script>
+	<div layout:fragment="page-scripts"></div>
+	<script>
+
+		var cropper = null;
+
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+
+				var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
+				if ($.inArray($("#avatar-upload").val().split('.').pop().toLowerCase(), fileExtension) === -1) {
+					alert("Можно грузить только изображения: "+fileExtension.join(', '));
+					return;
+				}
+				console.log("File size:" + input.files[0].size);
+				if(input.files[0].size > 512 * 1024) {
+					alert("Не больше 512Kb, пожалуйста");
+					return;
+				}
+				
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					$('#blah').attr('src', e.target.result)
+				};
+				reader.readAsDataURL(input.files[0]);
+				setTimeout(initCropper, 10);
+			}
+		}
+
+		function initCropper(){
+			if(cropper !== null) {
+				cropper.destroy();
+			}
+
+			var image = document.getElementById('blah');
+			cropper = new Cropper(image, {
+				aspectRatio: 1 / 1,
+				zoomable: false,
+				crop: function(e) {}
+			});
+			$("#crop_button").removeAttr("disabled");
+
+			// On crop button clicked
+			function processCropEvent() {
+				cropper.getCroppedCanvas().toBlob(function (blob) {
+					var formData = new FormData();
+					formData.append('image', blob);
+					$.ajax('/account/image', {
+						method: "PUT",
+						data: formData,
+						processData: false,
+						contentType: false,
+						success: function () {
+							window.location.reload();
+						},
+						error: function (data) {
+							showErrorFieldAlert(data);
+						}
+					});
+				});
+			}
+
+			document.getElementById('crop_button').addEventListener('click', function(){
+				processCropEvent();
+			})
+		}
+
+		function showErrorFieldAlert(data) {
+			var errors = JSON.parse(data.responseText);
+			var errorText = '';
+			for (key in errors) {
+				errorText += errors[key] + "\n";
+			}
+			alert(errorText);
+		}
+
+		(function() {
+			let $personalInfoEditButton = $("#personal-info-edit-button");
+			let $personalInfoSaveButton = $("#personal-info-save-button");
+			let $personalInfoForm = $("#personal-info-form");
+			$personalInfoEditButton.click(function () {
+				$personalInfoForm.find(".styledTextInput").removeAttr("disabled");
+				$(this).hide();
+				$personalInfoSaveButton.show();
+			});
+
+			$personalInfoSaveButton.click(function () {
+				$.ajax('/account/info', {
+					method: "PUT",
+					data: $personalInfoForm.serializeArray(),
+					success: function () {
+						$personalInfoForm.find(".styledTextInput").attr("disabled", "disabled");
+						$personalInfoSaveButton.hide();
+						$personalInfoEditButton.show();
+					},
+					error: function (data) {
+						alert("Произошла ошибка");
+					}
+				});
+			});
+		})();
+
+		(function () {
+			let $personalAddressEditButton = $("#personal-address-edit-button");
+			let $personalAddressSaveButton = $("#personal-address-save-button");
+			let $personalAddressForm = $("#personal-address-form");
+			$personalAddressEditButton.click(function () {
+                $("#user-profile-delivery-address, #user-profile-delivery-city").removeAttr("disabled");
+				$(this).hide();
+				$personalAddressSaveButton.show();
+			});
+
+			$personalAddressSaveButton.click(function () {
+				$.ajax('/account/address', {
+					method: "PUT",
+					data: {
+					 	zipCode: $("#user-profile-delivery-index").val() || null,
+						city: $("#user-profile-delivery-city").val() || null,
+						address: $("#user-profile-delivery-address").val() || null,
+						country: $("#user-profile-delivery-country").val() || null,
+						extensiveAddress:  $("#user-profile-delivery-extensive-address").val() || null
+					},
+					success: function () {
+						$personalAddressForm.find(".styledTextInput").attr("disabled", "disabled");
+						$personalAddressSaveButton.hide();
+						$personalAddressEditButton.show();
+
+					},
+					error: function (data) {
+						alert("Произошла ошибка");
+					}
+				});
+			});
+		})();
+
+		(function () {
+			let $editButton = $("#seller-edit-button");
+			let $saveButton = $("#seller-save-button");
+			let $form = $("#seller-form");
+			$editButton.click(function () {
+				$form.find(".styledTextInput").removeAttr("disabled");
+				$(this).hide();
+				$saveButton.show();
+			});
+
+			$saveButton.click(function () {
+                var dataToSend = $form.serializeArray();
+                if (lastSuggest) {
+                    dataToSend.push({name: "extensiveAddress", value: JSON.stringify(lastSuggest)});
+                }
+
+                $.ajax('/account/seller', {
+					method: "PUT",
+					data: dataToSend,
+					success: function () {
+						$form.find(".styledTextInput").attr("disabled", "disabled");
+						$saveButton.hide();
+						$editButton.show();
+						alert("Сохранено");
+					},
+					error: function (data) {
+						alert("Произошла ошибка");
+					}
+				});
+			});
+
+			//--
+			var $city = $form.find("input[name=city]");
+            var $zipCode = $form.find("input[name=zipCode]");
+            var $address = $form.find("input[name=address]");
+            var lastSuggest;
+
+            $city.suggestions({
+                token: "abb1e065856a2c6747958a4a21c2ce8fd27ceacc",
+                type: "ADDRESS",
+                bounds: "city-settlement",
+                onSelect: handleSuggestedAddress,
+                onSelectNothing: function() { $(this).val(""); $zipCode.val(""); },
+                formatSelected: formatCity
+            });
+
+            $address.suggestions({
+                token: "abb1e065856a2c6747958a4a21c2ce8fd27ceacc",
+                type: "ADDRESS",
+                constraints: $city,
+                bounds: "street-house",
+                onSelect: handleSuggestedAddress,
+                onSelectNothing: function() { $(this).val("") }
+            });
+
+            function handleSuggestedAddress(suggest) {
+                $zipCode.val(suggest.data.postal_code);
+
+                lastSuggest = suggest.data;
+            }
+
+            function formatCity(suggestion) {
+                const address = suggestion.data;
+                if (address.city_with_type === address.region_with_type) {
+                    return address.settlement_with_type || address.city_with_type;
+                } else {
+                    return join([
+                        address.city,
+                        join([address.settlement_type_full, address.settlement]," ")]);
+                }
+            }
+
+            function join(strings, optionalSeparator) {
+                const sep = optionalSeparator || ", ";
+                return strings.filter(function(s) {return s}).join(sep);
+            }
+
+		})();
+
+        var $city = $("#user-profile-delivery-city");
+        var $address = $("#user-profile-delivery-address");
+        var $zipcode = $("#user-profile-delivery-index");
+
+        $city.suggestions({
+            token: "abb1e065856a2c6747958a4a21c2ce8fd27ceacc",
+            type: "ADDRESS",
+            bounds: "city-settlement",
+            onSelect: function(suggest) {
+                $zipcode.val(suggest.data.postal_code);
+                $("#user-profile-delivery-extensive-address").val(JSON.stringify(suggest));
+            },
+            onSelectNothing: function () {
+                $(this).val("");
+                $zipcode.val("");
+            },
+
+            formatSelected: formatCity,
+            hint: false
+        });
+
+        $address.suggestions({
+            token: "abb1e065856a2c6747958a4a21c2ce8fd27ceacc",
+            type: "ADDRESS",
+            hint: false,
+
+            constraints: $city,
+
+            onSelect: function(suggest) {
+                $zipcode.val(suggest.data.postal_code);
+                $("#user-profile-delivery-extensive-address").val(JSON.stringify(suggest));
+            },
+            onSelectNothing: function () {
+                $(this).val("")
+            }
+        });
+
+        function formatCity(suggestion) {
+            const address = suggestion.data;
+
+            if (address.city_with_type === address.region_with_type) {
+                return address.settlement_with_type || address.city_with_type;
+            } else {
+                return join([
+                    address.city,
+                    join([address.settlement_type_full, address.settlement], " ")]);
+            }
+        }
+
+        function join(strings, optionalSeparator) {
+            const sep = optionalSeparator || ", ";
+            return strings.filter(function (s) {
+                return s
+            }).join(sep);
+        }
+
+	</script>
+
+    <script src="/scripts/profile/product.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+.progressBar
+	display: flex
+	flex-flow: row
+	margin: 0
+	list-style: none
+	&-item
+		+breakpoint(medium down)
+			font-size: 0.7em
+			padding-x: 0
+		flex: 1
+		border-bottom: 5px solid mix($secondary-color, white, 25%)
+		padding: 0.5rem
+		text-align: center
+		color: $secondary-color
+		&.is-active
+			border-color: black
+			color: black

@@ -1,0 +1,20 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{admin/layout}">
+<head>
+	<link rel="stylesheet" href="/admin/styles/moderation.css" />
+</head>
+<body>
+
+<main layout:fragment="content" id="scrollContainer">
+	<div th:replace="admin/moderation/list-body"></div>
+</main>
+
+<div layout:fragment="custom-scripts">
+	<script src="/admin/scripts/moderation.js"></script>
+	<script src="/admin/scripts/moderation-add-product.js"></script>
+</div>
+
+</body>
+</html>
+

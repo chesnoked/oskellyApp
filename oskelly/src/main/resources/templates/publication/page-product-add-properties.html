@@ -1,0 +1,364 @@
+
+<div class="row align-center">
+  <div class="productAddPage-formHeader small-12 large-6 xlarge-2 columns bg-light-gray-at-small bg-light-gray-at-medium">
+    <div class="productAddPage-definedProduct text-center" id="productInfoBlock" th:data-product-id="${publicationInfo.id}">
+      <h4 class="text-serif" th:text="${publicationInfo.brand}">Gucci</h4>
+      <p><span id="topCategory" th:text="|${publicationInfo.topCategory} |" th:data-top-categoryId="${publicationInfo.topCategoryId}">женская </span><strong id="childCategory" th:text="${publicationInfo.childCategory}" th:data-child-categoryId="${publicationInfo.childCategoryId}">Сумка</strong></p>
+    </div>
+    <ul class="vertical tabs productAddPage-tabsTitles" id="form-tabs" data-tabs="data-tabs" data-deep-link="true">
+            <li class="tabs-title productAddPage-tabsTitles-title is-active"><a href="#tab-form-information" title="Информация" aria-selected="true"><span class="tabs-title-counter productAddPage-tabsTitles-counter">1</span><span class="productAddPage-tabsTitles-caption">Информация</span></a></li>
+            <li class="tabs-title productAddPage-tabsTitles-title"><a href="#tab-form-photos" title="Фотографии"><span class="tabs-title-counter productAddPage-tabsTitles-counter">2</span><span class="productAddPage-tabsTitles-caption">Фотографии</span></a></li>
+            <li class="tabs-title productAddPage-tabsTitles-title"><a href="#tab-form-description" title="Описание"><span class="tabs-title-counter productAddPage-tabsTitles-counter">3</span><span class="productAddPage-tabsTitles-caption">Описание</span></a></li>
+            <li class="tabs-title productAddPage-tabsTitles-title"><a href="#tab-form-condition-and-pricing" title="Состояние и цена"><span class="tabs-title-counter productAddPage-tabsTitles-counter">4</span><span class="productAddPage-tabsTitles-caption">Состояние и цена</span></a></li>
+            <li class="tabs-title productAddPage-tabsTitles-title"><a href="#tab-form-seller" title="Продавец"><span class="tabs-title-counter productAddPage-tabsTitles-counter">5</span><span class="productAddPage-tabsTitles-caption">Продавец</span></a></li>
+    </ul>
+    <div class="show-for-large text-center">
+      <p class="text-size-small offset-y" id="steps-hint">У вас осталось <strong>5 шагов</strong> перед проверкой вашей записи.</p>
+      <button class="button" id="complete-publication" type="button">Подтвердить</button>
+    </div>
+  </div>
+  <div class="small-12 xlarge-10 columns">
+    <div class="tabs-content" data-tabs-content="form-tabs">
+      <div class="tabs-panel is-active" id="tab-form-information">
+        <div class="offsetStack-y productAddHint-spot attributeBlock" th:each="avalaibleAttribute: ${publicationInfo.avalaibleAttributes}" th:object="${avalaibleAttribute}" th:data-name="*{name}">
+          <h4 class="h5 text-strong" th:text="*{displayName}">title <span class="productAddPage-optional" title="Обязательно">*</span>
+          </h4>
+          <div class="row collapse">
+            <div class="small-12 medium-4 columns productAddPage-styledCheck-container" th:each="item: *{items}">
+              <input class="styledRadio" th:value="${item.value}" th:checked="${item.checked}" th:name="*{name}" th:data-has-children="${item.hasChildren}" th:id="${#ids.seq(avalaibleAttribute.name)}" type="radio" name="unique-name" id="unique-name-value">
+              <label for="unique-name-value" th:for="${#ids.prev(avalaibleAttribute.name)}" th:text="${item.title}">title</label>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="offsetStack-y" th:object="${publicationInfo}">
+          <div class="row">
+            <div class="column">
+              <div id="size-type-block"
+                   th:class="*{avalaibleSizeTypes == null or !avalaibleSizeTypes.empty and avalaibleSizeTypes[0].id == 'NO_SIZE'}? 'hide'">
+                <h4 class="h5 text-strong">Тип размера</h4>
+                <select class="js-select" id="size-type">
+                  <option class="is-placeholder" selected="selected" disabled="disabled">Выберите</option>
+                  <option th:each="st: *{avalaibleSizeTypes}" th:value="${st.id}" th:selected="${st.id} == *{sizeType} ? 'selected' : _" th:text="${st.name}"></option>
+                </select>
+              </div>
+            </div>
+            <div class="column">
+              <div id="size-block" th:class="*{sizeType == null or sizeType == 'NO_SIZE'}? 'hide'">
+                <h4 class="h5 text-strong">Размер</h4>
+                <select class="js-select" id="size">
+                  <option class="is-placeholder" selected="selected" disabled="disabled">Выберите</option>
+                  <option th:if="*{avalaibleSizes != null}" th:each="size : *{avalaibleSizes}" th:value="${size.id}" th:text="${size.name}" th:selected="${size.checked}"></option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row align-justify offsetStack-y">
+          <div class="small-12 medium-4 columns small-order-2 medium-order-1">
+          </div>
+          <div class="small-12 shrink-at-medium-up columns small-order-1 medium-order-2 align-self-right"><a class="button expanded-at-small large-at-small" href="#tab-form-photos" id="confirm-info-next">Продолжить</a>
+            <p><span class="productAddPage-optional" title="Обязательно">*</span> Обязательные поля
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="tabs-panel" id="tab-form-photos">
+          <div id="dztemplate" style="display: none;">
+              <div class="dz-preview dz-complete dz-file-preview">
+                  <div class="dz-image">
+                      <img data-dz-thumbnail />
+                  </div>
+                  <div class="dz-details">
+                      <span data-dz-remove>УДАЛИТЬ ФОТО</span>
+                  </div>
+                  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                  <div class="dz-error-message"><span data-dz-errormessage></span></div>
+              </div>
+          </div>
+        <div class="offsetStack-y" id="test" th:object="${publicationInfo.images}">
+          <h4 class="h5 text-strong">
+            Фотографии<span class="productAddPage-optional" title="Обязательно">*</span>
+          </h4>
+          <p class="text-secondary">В качестве первого загрузите фото на белом фоне, чтобы товар было хорошо видно.</p>
+          <h4 class="h5 text-strong s-pdg-top">
+            Основная фотография<span class="productAddPage-optional" title="Обязательно">*</span>
+          </h4>
+          <div class="row publication-size">
+            <div class="column small-6 large-6">
+              <div class="row align-center max-hgt">
+                <div class="column small-10 large-6 no-pdng-x publication-border relative">
+                  <form id="photoDrop1" class="dropzone zone max-hgt" th:action="|/publication/properties/${publicationInfo.id}/photo|" th:data-tmb-src="*{first}">
+                    <input type="hidden" name="photoOrder" value="1" />
+                    <div class="dz-message"><span>ДОБАВИТЬ ФОТО</span></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="column small-6 large-6" th:if="${photoSamplesCount == 0}" data-photo-sample></div>
+
+            <!--/*/ <th:block th:if="${photoSamplesCount > 0}"> /*/-->
+            <div class="column small-6 large-6">
+              <div th:replace="publication/fragments/photo-sample :: photo-sample (${urlPrefix} + ${photoSamples[0].imagePath})"></div>
+            </div>
+            <!--/*/ <th:block> /*/-->
+
+          </div>
+          <h4 class="h5 text-strong s-pdg-top">2я фотография<span class="productAddPage-optional" title="Обязательно">*</span>
+          </h4>
+          <div class="row publication-size">
+            <div class="column small-6 large-6">
+              <div class="row align-center max-hgt">
+                <div class="column small-10 large-6 no-pdng-x publication-border relative">
+                  <form id="photoDrop2" class="dropzone zone max-hgt" th:action="|/publication/properties/${publicationInfo.id}/photo|" th:data-tmb-src="*{second}">
+                    <input type="hidden" name="photoOrder" value="2" />
+                    <div class="dz-message"><span>ДОБАВИТЬ ФОТО</span></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="small-6 large-6 columns" th:if="${photoSamplesCount == 0}" data-photo-sample></div>
+
+            <!--/*/ <th:block th:if="${photoSamplesCount > 1}"> /*/-->
+            <div class="small-6 large-6 columns">
+              <div th:replace="publication/fragments/photo-sample :: photo-sample (${urlPrefix} + ${photoSamples[1].imagePath})"></div>
+            </div>
+            <!--/*/ <th:block> /*/-->
+
+          </div>
+          <h4 class="h5 text-strong s-pdg-top">3я фотография</h4>
+          <div class="row publication-size">
+            <div class="column small-6 large-6">
+              <div class="row align-center max-hgt">
+                <div class="column small-10 large-6 no-pdng-x publication-border relative">
+                  <form id="photoDrop3" class="dropzone zone max-hgt" th:action="|/publication/properties/${publicationInfo.id}/photo|" th:data-tmb-src="*{third}">
+                    <input type="hidden" name="photoOrder" value="3" />
+                    <div class="dz-message"><span>ДОБАВИТЬ ФОТО</span></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="small-6 large-6 columns" th:if="${photoSamplesCount == 0}" data-photo-sample></div>
+
+            <!--/*/ <th:block th:if="${photoSamplesCount > 2}"> /*/-->
+            <div class="small-6 large-6 columns">
+              <div th:replace="publication/fragments/photo-sample :: photo-sample (${urlPrefix} + ${photoSamples[2].imagePath})"></div>
+            </div>
+            <!--/*/ <th:block> /*/-->
+          </div>
+
+          <h4 class="h5 text-strong s-pdg-top">4я фотография</h4>
+          <div class="row publication-size">
+            <div class="column small-6 large-6">
+              <div class="row align-center max-hgt">
+                <div class="column small-10 large-6 no-pdng-x publication-border relative">
+                  <form id="photoDrop4" class="dropzone zone max-hgt" th:action="|/publication/properties/${publicationInfo.id}/photo|" th:data-tmb-src="*{fourth}">
+                    <input type="hidden" name="photoOrder" value="4" />
+                    <div class="dz-message"><span>ДОБАВИТЬ ФОТО</span></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="small-6 large-6 columns" th:if="${photoSamplesCount == 0}" data-photo-sample></div>
+
+            <!--/*/ <th:block th:if="${photoSamplesCount > 3}"> /*/-->
+            <div class="small-6 large-6 columns">
+              <div th:replace="publication/fragments/photo-sample :: photo-sample (${urlPrefix} + ${photoSamples[3].imagePath})"></div>
+            </div>
+            <!--/*/ <th:block> /*/-->
+
+          </div>
+        </div>
+        <div class="row align-justify offsetStack-y">
+          <div class="small-12 medium-4 columns small-order-2 medium-order-1"><a class="button hollow" href="#tab-form-information" title="Назад" id="confirm-photos-back">‹ Назад</a>
+          </div>
+          <div class="small-12 shrink-at-medium-up columns small-order-1 medium-order-2 align-self-right"><a class="button expanded-at-small large-at-small" href="#tab-form-description" id="confirm-photos-next">Продолжить</a>
+            <p><span class="productAddPage-optional" title="Обязательно">*</span> Обязательные поля
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="tabs-panel" id="tab-form-description">
+        <div class="offsetStack-y">
+          <h4 class="h5 text-strong">Описание<span class="productAddPage-optional" title="Обязательно">*</span>
+          </h4>
+          <textarea name="description" rows="4" th:text="${publicationInfo.description}"></textarea>
+          <hr>
+        </div>
+        <div class="offsetStack-y">
+          <h4 class="h5 text-strong">Винтаж <em class="text-secondary text-size-small text-super productAddPage-optional">Не обязательно</em>
+          </h4>
+          <p class="text-secondary"><em>Возраст вещи составляет 15 или более лет</em></p>
+          <p>
+            <input class="styledCheckbox" id="vintage" type="checkbox" name="vintage" th:checked="${publicationInfo.vintage}">
+            <label for="vintage">Винтажная вещь</label>
+          </p>
+          <hr>
+        </div>
+        <div class="offsetStack-y">
+          <h4 class="h5 text-strong">Модель <em class="text-secondary text-size-small text-super productAddPage-optional">Не обязательно</em>
+          </h4>
+          <p>
+            <input id="model" class="ios-position-fix" type="text" th:value="${publicationInfo.model}">
+          </p>
+          <hr>
+        </div>
+        <div class="offsetStack-y">
+          <h4 class="h5 text-strong">Происхождение <em class="text-secondary text-size-small text-super productAddPage-optional">Не обязательно</em>
+          </h4>
+          <p class="text-secondary"><em>Эта информация не будет отображена публично</em></p>
+          <div class="row">
+            <div class="column">
+              <label class="label-over" for="origin">Место приобретения</label>
+              <textarea id="origin" rows="2" th:text="${publicationInfo.origin}"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column small-12 large-6">
+              <label class="label-over" for="purchase-price">Стоимость приобретения</label>
+              <div class="input-group">
+                <input class="input-group-field ios-position-fix" id="purchase-price" type="number" inputmode="numeric" th:value="${publicationInfo.purchasePrice}"><span class="input-group-label">₽</span>
+              </div>
+            </div>
+            <div class="column small-12 large-6">
+              <label class="label-over" for="purchase-year">Год приобретения</label>
+              <input id="purchase-year" class="ios-position-fix" type="number" maxlength="4" minlength="4" min="1900" max="2017" inputmode="numeric" th:value="${publicationInfo.purchaseYear}">
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="offsetStack-y">
+          <h4 class="h5 text-strong">Серийный номер <em class="text-secondary text-size-small text-super productAddPage-optional">Не обязательно</em>
+          </h4>
+          <p class="text-secondary"><em>Эта информация не будет отображена публично</em></p>
+          <input id="serial-number" class="ios-position-fix" type="text" name="serial-number" placeholder="Серийный номер" th:value="${publicationInfo.serialNumber}">
+          <hr>
+        </div>
+        <div class="row align-justify offsetStack-y">
+          <div class="small-12 medium-4 columns small-order-2 medium-order-1"><a class="button hollow" href="#tab-form-photos" title="Назад" id="confirm-description-back">‹ Назад</a>
+          </div>
+          <div class="small-12 shrink-at-medium-up columns small-order-1 medium-order-2 align-self-right"><a class="button expanded-at-small large-at-small" href="#tab-form-condition-and-pricing" id="confirm-description-next">Продолжить</a>
+            <p><span class="productAddPage-optional" title="Обязательно">*</span> Обязательные поля
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="tabs-panel" id="tab-form-condition-and-pricing">
+        <div class="offsetStack-y">
+          <h4 class="h5 text-strong">Состояние</h4>
+          <div class="offset-y productAddPage-styledCheck-container"></div>
+                  <div class="offset-y productAddPage-styledCheck-container" th:each="condition: ${publicationInfo.productConditions}">
+                    <input class="styledRadio" type="radio" name="condition" id="undefined-id" th:value="${condition.id}" th:checked="${condition.checked}" th:id="${#ids.seq('condition')}">
+                    <label for="undefined-id" th:for="${#ids.prev('condition')}">
+                      <h5 th:text="${condition.name}">title</h5>
+                      <p th:text="${condition.description}"></p>
+                    </label>
+                  </div>
+        </div>
+        <div class="offsetStack-y">
+          <h4 class="h5 text-strong">Стоимость</h4>
+          <div class="row">
+            <div class="column small-12 large-6">
+              <label class="label-over" for="price-oskelly">Цена на сайте</label>
+              <div class="input-group">
+                <input th:onchange="'calculateCommission(this);'"
+                        th:onkeyup="'this.onchange(this);'"
+                        th:oninput="'this.onchange(this);'"
+                        class="input-group-field ios-position-fix" id="price-oskelly" type="number" inputmode="numeric" th:value="${publicationInfo.priceWithCommission}"><span class="input-group-label">₽</span>
+              </div>
+            </div>
+            <div class="column small-12 large-6">
+              <label class="label-over" for="price-seller">Вы получите:</label>
+              <input id="price-seller" class="ios-position-fix" type="number" inputmode="numeric" disabled="disabled" th:value="${publicationInfo.price}">
+            </div>
+          </div>
+        </div>
+        <div class="row align-justify offsetStack-y">
+          <div class="small-12 medium-4 columns small-order-2 medium-order-1"><a class="button hollow" href="#tab-form-description" title="Назад" id="confirm-condition-back">‹ Назад</a>
+          </div>
+          <div class="small-12 shrink-at-medium-up columns small-order-1 medium-order-2 align-self-right"><a class="button expanded-at-small large-at-small" href="#tab-form-seller" id="confirm-condition-next">Продолжить</a>
+            <p><span class="productAddPage-optional" title="Обязательно">*</span> Обязательные поля
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="tabs-panel" id="tab-form-seller">
+        <div class="offsetStack-y">
+          <h4 class="h5 text-strong">Номер мобильного телефона<span class="productAddPage-optional" title="Обязательно">*</span>
+          </h4>
+          <p class="text-secondary"><em>Эта информация не будет отображена публично</em></p>
+          <div class="row">
+            <div class="column">
+              <label class="label-over" for="phone-number">Номер</label>
+              <div class="input-group"><span class="input-group-label">+7</span>
+                <input class="input-group-field ios-position-fix" id="phone-number" type="tel" inputmode="tel" th:value="${publicationInfo.seller.phone}">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="offsetStack-y">
+          <h4 class="h5 text-strong">Личная контактная информация<span class="productAddPage-optional" title="Обязательно">*</span>
+          </h4>
+          <p class="text-secondary"><em>Эта информация не будет отображена публично</em></p>
+          <div class="row">
+            <div class="column">
+              <label class="label-over" for="seller-first-name">Имя</label>
+              <input id="seller-first-name" class="ios-position-fix" type="text" th:value="${publicationInfo.seller.firstName}">
+            </div>
+            <div class="column">
+              <label class="label-over" for="seller-last-name">Фамилия</label>
+              <input id="seller-last-name" class="ios-position-fix" type="text" th:value="${publicationInfo.seller.lastName}">
+            </div>
+          </div>
+        </div>
+
+        <form data-abide novalidate data-address>
+        <div class="offsetStack-y offset-y">
+          <h4 class="h5 text-strong">Почтовый индекс<span class="productAddPage-optional" title="Обязательно">*</span>
+          </h4>
+          <div class="row column">
+            <input type="text" placeholder="Заполнится автоматически при вводе адреса" name="postal_code" class="ios-position-fix"
+                   th:value="${publicationInfo.seller.postcode}"
+                   required readonly data-postcode>
+            <span class="form-error">Обязательно для заполнения</span>
+          </div>
+        </div>
+
+        <div class="offsetStack-y">
+          <h4 class="h5 text-strong">Город<span class="productAddPage-optional" title="Обязательно">*</span>
+          </h4>
+          <div class="row column">
+            <input type="text" name="city" th:value="${publicationInfo.seller.city}"
+                   required data-city>
+            <span class="form-error">Обязательно для заполнения</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="h5 text-strong">Адрес<span class="productAddPage-optional" title="Обязательно">*</span>
+          </h4>
+          <p class="text-secondary"><em>На этот адрес к вам приедет курьер за вещами</em></p>
+          <div class="row column">
+            <input type="text" name="street" th:value="${publicationInfo.seller.address}" required data-street>
+            <span class="form-error">Обязательно для заполнения</span>
+          </div>
+        </div>
+        </form>
+
+        <div class="row align-justify offsetStack-y">
+          <div class="small-12 medium-4 columns small-order-2 medium-order-1"><a class="button hollow" href="#tab-form-condition-and-pricing" title="Назад" id="confirm-seller-back">‹ Назад</a>
+          </div>
+          <div class="small-12 shrink-at-medium-up columns small-order-1 medium-order-2 align-self-right"><a class="button expanded-at-small large-at-small" href="#" id="confirm-seller-next">Завершить</a>
+            <p><span class="productAddPage-optional" title="Обязательно">*</span> Обязательные поля
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

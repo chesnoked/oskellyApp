@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{new/layout}"
+      th:with="pageStyle='orderPage'">
+
+<head>
+    <link rel="stylesheet" href="/css/suggestions.min.css">
+</head>
+
+<!--/*@thymesVar id="cart" type="su.reddot.domain.service.cart.impl.dto.Cart"*/-->
+
+  <body>
+    <main role="main" layout:fragment="content">
+
+      <div class="row checkout align-center js-checkout">
+        <div th:replace="order/checkout-content :: content (${cart})"></div>
+      </div>
+
+    </main>
+
+  <div layout:fragment="custom-scripts">
+    <script src="/js/jquery.suggestions.min.js"></script>
+    <script th:src="|/scripts/checkout/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+    <script th:src="|/scripts/checkout/checkout.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+  </div>
+
+  </body>
+</html>

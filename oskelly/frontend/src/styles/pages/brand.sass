@@ -1,0 +1,46 @@
+.brandPage
+	h1
+		font-size: 1.8rem
+	.brandDescription
+		padding-left: 1.5rem
+		padding-right: 1.5rem
+	.widget
+		position: relative
+		margin-bottom: 1.5rem
+		border-bottom: 1px solid hsl(0, 0%, 80%)
+		padding-bottom: 1rem
+		&.is-active
+			%widgetResetButton_hidden
+				display: block
+		&-title
+			@extend %accordion-last-child-title
+			border: 0
+			padding-y: 0
+			&:hover
+				background: transparent
+				text-decoration: none
+			&::before
+				@extend %cataloguePage-widget-title-toggle
+				@include breakpoint(medium down)
+					content: '+'
+				color: black
+				content: attr(data-l10n-expand)
+			&-heading
+				text-transform: uppercase
+				color: black
+				font-size: 1.1rem
+				font-weight: bold
+		&-resetButton
+			@extend %widgetResetButton_hidden
+			display: none
+			position: absolute
+			top: 1.7rem
+			right: 1rem
+			z-index: 1
+			color: hsl(0, 0%, 53.3%)
+			font-size: 0.75rem
+		&-content
+			@extend %accordion-last-child
+			border: 0
+			max-height: 300px
+			overflow: auto

@@ -1,0 +1,107 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{admin/layout}">
+<body>
+
+<main layout:fragment="content">
+
+<header>
+	<div class="row align-center">
+		<div class="columns text-center">
+			<h3 th:text="${selection}? 'Добавление подборки товаров'">Редактирование подборки товаров</h3>
+		</div>
+	</div>
+</header>
+
+<section>
+	<div class="row align-center">
+		<div class="small-4 columns">
+			<label>
+				Тип промоблока (INDEX_PROMO, FAVORITES)
+				<input id="promoGroup" placeholder="Введите текст..." type="text" name="promoGroup"
+					   th:value="${selection?.promoGroup}">
+			</label>
+		</div>
+	</div>
+	<div class="row align-center">
+		<div class="small-4 columns">
+			<label>
+				Первая строка:
+				<input id="firstLine" placeholder="Введите текст..." type="text" name="firstLine"
+					   th:value="${selection?.firstLine}">
+			</label>
+		</div>
+	</div>
+	<div class="row align-center">
+		<div class="small-4 columns">
+			<label>
+				Вторая строка:
+				<input id="secondLine" placeholder="Введите текст..." type="text" name="secondLine"
+					   th:value="${selection?.secondLine}">
+			</label>
+		</div>
+	</div>
+	<div class="row align-center">
+		<div class="small-4 columns">
+			<label>
+				Третья строка:
+				<input id="thirdLine" placeholder="Введите текст..." type="text" name="thirdLine"
+					   th:value="${selection?.thirdLine}">
+			</label>
+		</div>
+	</div>
+	<div class="row align-center">
+		<div class="small-4 columns">
+			<label>
+				https://oskelly.ru
+				<input id="url" placeholder="Введите URL..." type="text" name="url"
+					   th:value="${selection?.url}">
+			</label>
+		</div>
+	</div>
+	<div class="row align-center">
+		<div class="small-4 columns">
+			<label>
+				Укажите, под каким номером по порядку отображать блок:
+				<input id="orderIndex" placeholder="Введите номер..." type="number" name="orderIndex"
+					   th:value="${selection?.orderIndex}">
+			</label>
+		</div>
+	</div>
+	<div class="row align-center">
+		<div class="small-4 columns">
+			<input type="file" name="image"/>
+		</div>
+	</div>
+	<div class="row align-center">
+		<div id="previewContainer" class="small-4 columns" style="margin-bottom:20px;">
+			<img th:if="${selection != null && selection.img != null}" th:src="${selection.img}" width="200px"
+				 height="200px"/>
+		</div>
+	</div>
+	<div class="row align-center">
+		<div class="small-4 columns">
+			<label>
+				Подпись под изображением:
+				<input id="alt" placeholder="Введите текст..." type="text" name="alt"
+					   th:value="${selection?.alt}">
+			</label>
+		</div>
+	</div>
+	<input type="hidden" name="id" th:value="${selection?.id}"/>
+	<div class="row align-center">
+		<div class="small-4 columns">
+			<button class="button small" id="submitButton">Сохранить</button>
+		</div>
+	</div>
+</section>
+</main>
+
+<div layout:fragment="custom-scripts">
+	<script src="/admin/scripts/promo/selection.js"></script>
+</div>
+
+</body>
+</html>
+

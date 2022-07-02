@@ -1,0 +1,62 @@
+\:root:root .frontPage
+	.top_section
+		margin-top: 1rem
+		margin-bottom: 2rem
+		&_menu
+			ul
+				display: flex
+				flex-direction: column
+				flex-wrap: nowrap
+				margin: 0
+				height: 100%
+				> li
+					flex-basis: calc(100% / 3)
+					margin-bottom: 0
+					width: 100%
+					list-style: none
+					&:not(:last-of-type)
+						padding-bottom: 1rem
+					&:nth-child(even)
+						.top_section_background
+							order: 2
+		&_wrapper
+			display: inline-block
+			flex-direction: column
+			justify-content: center
+			background-color: hsl(210, 12%, 97%)
+			padding: 1rem 0.5rem
+			text-align: center
+			text-transform: uppercase
+			color: hsl(348, 5.8%, 13%)
+			&:hover
+				background: hsl(60, 4%, 95%)
+		&_title
+			font-size: 9px
+		&_brand
+			margin-bottom: 1.8rem
+			white-space: nowrap
+			font-family: $font-family-serif
+			font-size: 1.5rem
+		&_link
+			color: hsl(348, 5.8%, 13%)
+			font-size: 8px
+			font-weight: 500
+			&::after
+				margin-left: 3px
+				vertical-align: middle
+				font-size: 7px
+				content: '►'
+			&:hover
+				text-decoration: underline
+		&_block
+			display: flex
+			align-items: stretch
+			padding: 0
+			height: 100%
+			.top_section_wrapper
+				flex-basis: 50%
+			.top_section_background
+				flex-basis: 50%
+				background-repeat: no-repeat
+				background-position: center
+				background-size: cover

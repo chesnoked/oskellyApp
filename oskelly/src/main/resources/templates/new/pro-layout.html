@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html class="no-js" lang=""
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>OSKELLY</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700,900&subset=cyrillic"
+          rel="stylesheet">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <link rel="stylesheet" href="/styles/main.css">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/fav/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/fav/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/fav/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/fav/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/fav/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/fav/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/fav/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/fav/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/fav/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/fav/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/fav/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/fav/favicon-16x16.png">
+
+    <!-- Google Tag Manager -->
+    <script th:if="${@environment.acceptsProfiles('prod')}">
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-PNJ99WJ');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter44496388 = new Ya.Metrika({
+                        id:44496388,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true,
+                        webvisor:true,
+                        trackHash:true
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <!-- /Yandex.Metrika counter -->
+
+</head>
+
+<body th:class="${pageStyle}">
+<!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNJ99WJ"
+          height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+    </noscript>
+<!-- End Google Tag Manager (noscript) —>
+<div class="siteWrapper scrollable"><!--[if lt IE 10]>
+    <p class="browserupgrade">Пожалуйста, <a href="http://browsehappy.com/">обновите свой браузер</a>.</p><![endif]-->
+
+    <header th:replace="new/header/header :: header"></header>
+
+    <div layout:fragment="content"></div>
+
+    <div th:replace="new/footer"></div>
+</div>
+
+
+
+<div layout:fragment="custom-scripts"></div>
+<noscript><div><img src="https://mc.yandex.ru/watch/44496388" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+</body>
+</html>

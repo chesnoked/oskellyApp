@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{profile/profile}" th:with="pageStyle='profilePage'">
+
+<!--/*@thymesVar id="myNotifications" type="java.util.List<su.reddot.domain.service.notification.NotificationView>"*/-->
+<body class="profilePage">
+<div role="main" layout:fragment="profileContent">
+    <div id="notifications" class="row column">
+        <div class="card" style="border-bottom: 1px solid #878787; margin-bottom: 10px"
+             th:each="notification : ${myNotifications}">
+            <div class="card-section notification-wrapper">
+                <!--/*FIXME - передаввать TimeZone в запросе*/-->
+                <p><span th:text="|${notification.prettyCreateTime}: |"></span><span th:text="*{(notification.initiatorNickname != null ? notification.initiatorNickname + ' ' : '') + notification.baseMessage + ' ' + (notification.targetUserId != null ? notification.targetUserNickname + ' ' : '')}"></span><span><a th:href="${notification.getUrlOfTargetObject()}">см. подробнее</a></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

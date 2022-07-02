@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{new/layout}" th:with="pageStyle='profilePage'">
+<head></head>
+<body>
+<main role="main" layout:fragment="content">
+  <div class="welcome-page-container row">
+    <div class="column">
+      <div class="row">
+        <div class="column">
+          <div class="row align-center">
+            <div class="column small-12">
+              <aside class="landing-page-nav">
+                <ul>
+                  <li><a href="#" class="landing-page-nav-link landing-page-nav-link-active"><span class="text-uppercase">Oskelly</span></a>
+                  </li>
+                  <li><a href="/buy" class="landing-page-nav-link">Покупайте</a></li>
+                  <li><a href="/sell" class="landing-page-nav-link">Продавайте</a></li>
+                </ul>
+              </aside>
+            </div>
+          </div>
+          <div class="row align-center">
+            <div class="column small-12 large-8 text-center">
+              <h1 class="landing-page-header-title landing-page-space">Welcome</h1>
+            </div>
+          </div>
+          <div class="row align-center">
+            <div class="column small-12 large-8 text-center">
+              <h2 class="landing-page-subtitle landing-page-space">Покупайте. Продавайте. Делитесь!</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="landing-page-slide column">
+          <div class="row align-center">
+            <div class="column small-12 large-4 text-center">
+              <h4 class="landing-page-slide-title">Покупайте</h4>
+            </div>
+          </div>
+          <div class="row landing-page-space">
+            <div class="column small-12 large-4 text-center">
+              <div class="landing-page-slide-icon"><img src="images/icons/1.svg"></div>
+              <p class="landing-page-slide-text">Выбирайте товары на сайте  или в мобильном приложении и оплачивайте их
+                банковской картой.</p>
+            </div>
+            <div class="column small-12 large-4 text-center">
+              <div class="landing-page-slide-icon"><img src="images/icons/2.svg"></div>
+              <p class="landing-page-slide-text">
+                Сразу после оплаты товар будет отправлен нам продавцом для&nbsp;проверки оригинальности
+                и заявленных характеристик товара.
+              </p>
+            </div>
+            <div class="column small-12 large-4 text-center">
+              <div class="landing-page-slide-icon">
+                <img src="images/icons/3.svg">
+              </div>
+              <p class="landing-page-slide-text">Мы убедимся в качестве и подлинности вещи и вышлем её вам курьерской
+                доставкой.</p>
+            </div>
+          </div>
+          <div class="row align-center">
+            <div class="column text-center buy-page-header-space">
+              <a href="/buy" class="landing-page-slide-action-button">Подробнее</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="landing-page-slide column">
+          <div class="row align-center">
+            <div class="column small-12 large-4 text-center">
+              <h4 class="landing-page-slide-title">Продавайте</h4>
+            </div>
+          </div>
+          <div class="row landing-page-space">
+            <div class="column small-12 large-4 text-center">
+              <div class="landing-page-slide-icon">
+                <img src="images/icons/1.svg">
+              </div>
+              <p class="landing-page-slide-text">
+                Добавляйте товары на продажу в два клика через сайт или мобильное приложение.
+                Все остальное сделаем мы.
+              </p>
+            </div>
+            <div class="column small-12 large-4 text-center">
+              <div class="landing-page-slide-icon">
+                <img src="images/icons/2.svg">
+              </div>
+              <p class="landing-page-slide-text">
+                Покупатель найден! Подтвердите сделку в личном кабинете.
+                После подтверждения  наш курьер заберет вещь и привезет на экспертизу в наш офис.
+                Платить ничего не нужно.
+              </p>
+            </div>
+            <div class="column small-12 large-4 text-center">
+              <div class="landing-page-slide-icon">
+                <img src="images/icons/3.svg">
+              </div>
+              <p class="landing-page-slide-text">
+                Проверено! Сразу после экспертизы подлинности и проверки заявленных характеристик
+                товар отправится к покупателю, а вы получите оплату на свой банковский счет.
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column text-center buy-page-header-space">
+              <a href="/sell" class="landing-page-slide-action-button">Подробнее</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="landing-page-slide column">
+          <div class="row align-middle">
+            <div class="column small-12 large-7 text-center landing-page-space">
+              <h4 class="landing-page-slide-title">Покупка</h4>
+              <p class="landing-page-slide-text landing-page-space">
+                Откройте для себя мир брендовых вещей превосходного качества по ценам ниже розничных.
+                Огромный выбор внимательно отобранных нашей командой товаров, ежедневные поступления и
+                многообразие брендов на OSKELLY – ваше пространство для вдохновения!
+              </p><a class="landing-page-slide-action-button" href="/catalog/just-in">Подробнее</a>
+            </div>
+            <div class="column small-12 large-5">
+              <img src="images/pictures/woman-in-black.png" alt="девушка в чёрном платье">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="landing-page-slide column">
+          <div class="row align-middle">
+            <div class="column small-12 large-5"><img src="images/pictures/shirt-tag-mockup.png" alt="Бирка"></div>
+            <div class="column small-12 large-7 text-center">
+              <h4 class="landing-page-slide-title">Качество и подлинность гарантированы</h4>
+              <p class="landing-page-slide-text landing-page-space">
+                Каждый товар, размещенный на сайте, тщательно проверяется нашими экспертами.
+                После проверки товар получает фирменную пломбу OSKELLY,
+                которая подтверждает качество и оригинальность его происхождения.
+              </p><a href="/info/kontrol-kachestva" class="landing-page-slide-action-button">Подробнее</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="landing-page-slide column">
+          <div class="row align-middle">
+            <div class="column small-12 large-7 text-center landing-page-space">
+              <h4 class="landing-page-slide-title">Продажа</h4>
+              <p class="landing-page-slide-text landing-page-space">
+                OSKELLY – это множество проверенных продавцов со всей России и тысячи
+                товаров именитых брендов. Обновлять гардероб и зарабатывать
+                на продаже вещей еще никогда не было так просто!
+              </p><a href="/publication" class="landing-page-slide-action-button">Подробнее</a>
+            </div>
+            <div class="column small-12 large-5"><img src="images/pictures/case.png" alt="шкаф"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column small-12 text-center">
+          <p class="landing-page-help-text">Остались вопросы? Обратитесь в <a href="/info/pomosch-i-podderzhka">службу поддержки</a>
+          </p>
+          <hr>
+          <aside class="landing-page-nav">
+            <ul>
+              <li><a href="#" class="landing-page-nav-link landing-page-nav-link-active">OSKELLY</a></li>
+              <li><a href="/buy" class="landing-page-nav-link">Покупайте</a></li>
+              <li><a href="/sell" class="landing-page-nav-link">Продавайте</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

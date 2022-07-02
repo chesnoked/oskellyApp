@@ -1,0 +1,2182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+		xmlns:soap12bind="http://schemas.xmlsoap.org/wsdl/soap12/"
+		xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/"
+		xmlns:tns="http://www.cargo3.ru"
+			 name="WebService"
+		targetNamespace="http://www.cargo3.ru">
+	<types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+				   targetNamespace="http://www.cargo3.ru"
+				   attributeFormDefault="unqualified"
+				   elementFormDefault="qualified">
+			<xs:complexType name="Cargo">
+				<xs:sequence>
+					<xs:element name="CargoDescription"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="CargoPackageQty"
+							type="xs:int"
+							nillable="true"/>
+					<xs:element name="Weight"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="VolumeWeight"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Length"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Width"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Height"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="InsuranceRate"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="InsuranceRateCurrency"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="DeclaredValueRate"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="DeclaredValueRateCurrency"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="ValueForCustomsPurposes"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="ValueForCustomsPurposesCurrency"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="PackageID"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="COD"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="CODPayer"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="CODDescription"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="SenderShippingCost"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="CargoPackages"
+							type="tns:CargoPackages"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="CargoDescriptionWhithoutType"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="InsuranceRateFee"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="InsuranceRateFeeCurrency"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="CargoPackages">
+				<xs:sequence>
+					<xs:element name="Length"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Width"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Height"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Package"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Weight"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="VolumeWeight"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="PackageQty"
+							type="xs:int"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="PackageID"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="DestinationAddress">
+				<xs:sequence>
+					<xs:element name="Geography"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Street"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="TypeOfHome"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Home"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="TypeOfBuilding"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Building"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="TypeOfApartment"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Apartment"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Index"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Info"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Comment"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="FreeForm"
+							type="xs:boolean"/>
+					<xs:element name="Country"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Region"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Disrcict"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="DestinationInformation">
+				<xs:sequence>
+					<xs:element name="Client"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Official"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Address"
+							type="tns:DestinationAddress"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="SubwayStation"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Phone"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="EMail"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Info"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Urgency"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Cargo"
+							type="tns:Cargo"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Products"
+							type="tns:Products"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="ProductsProcessingAction"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="StoreDependsOnDestination"
+							type="xs:boolean"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Materials"
+							type="tns:Materials"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="PVZ"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="DocumentsPhoto">
+				<xs:sequence>
+					<xs:element name="Document"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Required"
+							type="xs:boolean"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Element">
+				<xs:sequence>
+					<xs:element name="Key"
+							type="xs:string"/>
+					<xs:element name="Value"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="CultureSpecificValues"
+							type="tns:Element"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="ValueType"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Properties"
+							type="tns:Element"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Fields"
+							type="tns:Element"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="List"
+							type="tns:Element"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Tables"
+							type="tns:Element"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Values"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Rows"
+							type="tns:Row"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="BData"
+							type="xs:hexBinary"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ListOfCorrespondences">
+				<xs:sequence>
+					<xs:element name="Items"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Info"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Materials">
+				<xs:sequence>
+					<xs:element name="Name"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Price"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Qty"
+							type="xs:int"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Notifications">
+				<xs:sequence>
+					<xs:element name="Name"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="SMS"
+							type="xs:boolean"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Email"
+							type="xs:boolean"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Order">
+				<xs:sequence>
+					<xs:element name="Client"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="ClientContact"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Contract"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="CreateDate"
+							type="xs:dateTime"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="DeliveryDate"
+							type="xs:dateTime"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="DeliveryMethod"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="DeliveryTime"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Department"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Office"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Official"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Project"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Recipient"
+							type="tns:DestinationInformation"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="ReplyEMail"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="ReplySMSPhone"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Sender"
+							type="tns:DestinationInformation"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="TakeDate"
+							type="xs:dateTime"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="TakeTime"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="TypeOfCargo"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="TypeOfPayer"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Urgency"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="WayOfPayment"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="WithReturn"
+							type="xs:boolean"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="AutoType"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="AutoModel"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="SenderPowerOfAttorney"
+							type="xs:int"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="RecipientPowerOfAttorney"
+							type="xs:int"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="OrderForAutoReservation"
+							type="xs:int"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Comment"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="StoreDoor"
+							type="xs:boolean"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="DeliveryOfCargo"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Insurance"
+							type="xs:boolean"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Declared"
+							type="xs:boolean"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="PersonallyInHand"
+							type="xs:boolean"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="LUW"
+							type="xs:boolean"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="WithSignature"
+							type="xs:boolean"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="TypeOfOrder"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Distribution"
+							type="xs:boolean"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Notifications"
+							type="tns:Notifications"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="CallCourer"
+							type="xs:boolean"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="TypeOfParentForWaybill"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="ParentOrderForWaybill"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="ClientNumber"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="ArrayOfDocumentsPhoto"
+							type="tns:DocumentsPhoto"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Repository"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="ClientCodes"
+							type="tns:ListOfCorrespondences"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Products">
+				<xs:sequence>
+					<xs:element name="Article"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Name"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="BCProduct"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Party"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="DayOfParty"
+							type="xs:dateTime"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="ExpirationDate"
+							type="xs:date"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="SerialNumber"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Price"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Package"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="PackageQty"
+							type="xs:int"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Qty"
+							type="xs:int"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="VATRate"
+							type="xs:int"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="AssessedValue"
+							type="xs:float"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultArray">
+				<xs:sequence>
+					<xs:element name="Items"
+							type="tns:ResultString"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Error"
+							type="xs:boolean"/>
+					<xs:element name="ErrorInfo"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultArrayPrint">
+				<xs:sequence>
+					<xs:element name="Items"
+							type="tns:ResultPrint"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Error"
+							type="xs:boolean"/>
+					<xs:element name="ErrorInfo"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultPrint">
+				<xs:sequence>
+					<xs:element name="Value"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Name"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Size"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Error"
+							type="xs:boolean"/>
+					<xs:element name="ErrorInfo"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ResultString">
+				<xs:sequence>
+					<xs:element name="Value"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Error"
+							type="xs:boolean"/>
+					<xs:element name="ErrorInfo"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Row">
+				<xs:sequence>
+					<xs:element name="Cells"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Rows"
+							type="tns:Row"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Properties"
+							type="tns:Element"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="Calc">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="data"
+								type="tns:Element"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CalcResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Calculator">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="data"
+								type="tns:Element"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CalculatorResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DeleteDocuments">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="parameters"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DeleteDocumentsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetDocuments">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="data"
+								type="tns:Element"
+								nillable="true"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetDocumentsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetFormsForDocuments">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="documents"
+								type="tns:Element"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetFormsForDocumentsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetListOfDocuments">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="parameters"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetListOfDocumentsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetReferenceData">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="parameters"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetReferenceDataResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetUserInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetUserInfoResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PutReferenceData">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="data"
+								type="tns:Element"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PutReferenceDataResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PutUserInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PutUserInfoResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Report">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="name"
+								type="xs:string"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReportResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SaveDocuments">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="data"
+								type="tns:Element"
+								nillable="true"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SaveDocumentsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Tracking">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="documents"
+								type="tns:Element"
+								nillable="true"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TrackingResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SaveDocumentsCello">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="data"
+								type="tns:Element"
+								nillable="true"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+						<xs:element name="log"
+								type="xs:string"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SaveDocumentsCelloResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:boolean"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SaveAckansCello">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="data"
+								type="tns:Element"
+								nillable="true"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+						<xs:element name="log"
+								type="xs:string"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SaveAckansCelloResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:boolean"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SaveGenresCello">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="data"
+								type="tns:Element"
+								nillable="true"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+						<xs:element name="log"
+								type="xs:string"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SaveGenresCelloResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:boolean"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SaveWaybillOffice">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Language"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Company"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Number"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="ClientNumber"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="OrderData"
+								type="tns:Order"/>
+						<xs:element name="Office"
+								type="xs:string"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SaveWaybillOfficeResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:ResultArray"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Measurement">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Number"
+								type="xs:string"/>
+						<xs:element name="Length"
+								type="xs:float"
+								nillable="true"/>
+						<xs:element name="Height"
+								type="xs:float"
+								nillable="true"/>
+						<xs:element name="Width"
+								type="xs:float"
+								nillable="true"/>
+						<xs:element name="Weight"
+								type="xs:float"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MeasurementResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:ResultString"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PrintDocument">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Type"
+								type="xs:string"/>
+						<xs:element name="PrintFormName"
+								type="xs:string"/>
+						<xs:element name="Number"
+								type="xs:string"/>
+						<xs:element name="Parametrs"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PrintDocumentResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:ResultArrayPrint"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CheckClientNumber">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="data"
+								type="tns:Element"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CheckClientNumberResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CheckPlannedDeliveryDate">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="data"
+								type="tns:Element"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CheckPlannedDeliveryDateResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateClientProducts">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="data"
+								type="tns:Element"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateClientProductsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateGMH">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="data"
+								type="tns:Element"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateGMHResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DeleteGMH">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="data"
+								type="tns:Element"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DeleteGMHResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateDocument">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Login"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="Password"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="data"
+								type="tns:Element"/>
+						<xs:element name="parameters"
+								type="tns:Element"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UpdateDocumentResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="tns:Element"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+	</types>
+	<message name="CalcRequestMessage">
+		<part name="parameters"
+				element="tns:Calc"/>
+	</message>
+	<message name="CalcResponseMessage">
+		<part name="parameters"
+				element="tns:CalcResponse"/>
+	</message>
+	<message name="CalculatorRequestMessage">
+		<part name="parameters"
+				element="tns:Calculator"/>
+	</message>
+	<message name="CalculatorResponseMessage">
+		<part name="parameters"
+				element="tns:CalculatorResponse"/>
+	</message>
+	<message name="DeleteDocumentsRequestMessage">
+		<part name="parameters"
+				element="tns:DeleteDocuments"/>
+	</message>
+	<message name="DeleteDocumentsResponseMessage">
+		<part name="parameters"
+				element="tns:DeleteDocumentsResponse"/>
+	</message>
+	<message name="GetDocumentsRequestMessage">
+		<part name="parameters"
+				element="tns:GetDocuments"/>
+	</message>
+	<message name="GetDocumentsResponseMessage">
+		<part name="parameters"
+				element="tns:GetDocumentsResponse"/>
+	</message>
+	<message name="GetFormsForDocumentsRequestMessage">
+		<part name="parameters"
+				element="tns:GetFormsForDocuments"/>
+	</message>
+	<message name="GetFormsForDocumentsResponseMessage">
+		<part name="parameters"
+				element="tns:GetFormsForDocumentsResponse"/>
+	</message>
+	<message name="GetListOfDocumentsRequestMessage">
+		<part name="parameters"
+				element="tns:GetListOfDocuments"/>
+	</message>
+	<message name="GetListOfDocumentsResponseMessage">
+		<part name="parameters"
+				element="tns:GetListOfDocumentsResponse"/>
+	</message>
+	<message name="GetReferenceDataRequestMessage">
+		<part name="parameters"
+				element="tns:GetReferenceData"/>
+	</message>
+	<message name="GetReferenceDataResponseMessage">
+		<part name="parameters"
+				element="tns:GetReferenceDataResponse"/>
+	</message>
+	<message name="GetUserInfoRequestMessage">
+		<part name="parameters"
+				element="tns:GetUserInfo"/>
+	</message>
+	<message name="GetUserInfoResponseMessage">
+		<part name="parameters"
+				element="tns:GetUserInfoResponse"/>
+	</message>
+	<message name="PutReferenceDataRequestMessage">
+		<part name="parameters"
+				element="tns:PutReferenceData"/>
+	</message>
+	<message name="PutReferenceDataResponseMessage">
+		<part name="parameters"
+				element="tns:PutReferenceDataResponse"/>
+	</message>
+	<message name="PutUserInfoRequestMessage">
+		<part name="parameters"
+				element="tns:PutUserInfo"/>
+	</message>
+	<message name="PutUserInfoResponseMessage">
+		<part name="parameters"
+				element="tns:PutUserInfoResponse"/>
+	</message>
+	<message name="ReportRequestMessage">
+		<part name="parameters"
+				element="tns:Report"/>
+	</message>
+	<message name="ReportResponseMessage">
+		<part name="parameters"
+				element="tns:ReportResponse"/>
+	</message>
+	<message name="SaveDocumentsRequestMessage">
+		<part name="parameters"
+				element="tns:SaveDocuments"/>
+	</message>
+	<message name="SaveDocumentsResponseMessage">
+		<part name="parameters"
+				element="tns:SaveDocumentsResponse"/>
+	</message>
+	<message name="TrackingRequestMessage">
+		<part name="parameters"
+				element="tns:Tracking"/>
+	</message>
+	<message name="TrackingResponseMessage">
+		<part name="parameters"
+				element="tns:TrackingResponse"/>
+	</message>
+	<message name="SaveDocumentsCelloRequestMessage">
+		<part name="parameters"
+				element="tns:SaveDocumentsCello"/>
+	</message>
+	<message name="SaveDocumentsCelloResponseMessage">
+		<part name="parameters"
+				element="tns:SaveDocumentsCelloResponse"/>
+	</message>
+	<message name="SaveAckansCelloRequestMessage">
+		<part name="parameters"
+				element="tns:SaveAckansCello"/>
+	</message>
+	<message name="SaveAckansCelloResponseMessage">
+		<part name="parameters"
+				element="tns:SaveAckansCelloResponse"/>
+	</message>
+	<message name="SaveGenresCelloRequestMessage">
+		<part name="parameters"
+				element="tns:SaveGenresCello"/>
+	</message>
+	<message name="SaveGenresCelloResponseMessage">
+		<part name="parameters"
+				element="tns:SaveGenresCelloResponse"/>
+	</message>
+	<message name="SaveWaybillOfficeRequestMessage">
+		<part name="parameters"
+				element="tns:SaveWaybillOffice"/>
+	</message>
+	<message name="SaveWaybillOfficeResponseMessage">
+		<part name="parameters"
+				element="tns:SaveWaybillOfficeResponse"/>
+	</message>
+	<message name="MeasurementRequestMessage">
+		<part name="parameters"
+				element="tns:Measurement"/>
+	</message>
+	<message name="MeasurementResponseMessage">
+		<part name="parameters"
+				element="tns:MeasurementResponse"/>
+	</message>
+	<message name="PrintDocumentRequestMessage">
+		<part name="parameters"
+				element="tns:PrintDocument"/>
+	</message>
+	<message name="PrintDocumentResponseMessage">
+		<part name="parameters"
+				element="tns:PrintDocumentResponse"/>
+	</message>
+	<message name="CheckClientNumberRequestMessage">
+		<part name="parameters"
+				element="tns:CheckClientNumber"/>
+	</message>
+	<message name="CheckClientNumberResponseMessage">
+		<part name="parameters"
+				element="tns:CheckClientNumberResponse"/>
+	</message>
+	<message name="CheckPlannedDeliveryDateRequestMessage">
+		<part name="parameters"
+				element="tns:CheckPlannedDeliveryDate"/>
+	</message>
+	<message name="CheckPlannedDeliveryDateResponseMessage">
+		<part name="parameters"
+				element="tns:CheckPlannedDeliveryDateResponse"/>
+	</message>
+	<message name="UpdateClientProductsRequestMessage">
+		<part name="parameters"
+				element="tns:UpdateClientProducts"/>
+	</message>
+	<message name="UpdateClientProductsResponseMessage">
+		<part name="parameters"
+				element="tns:UpdateClientProductsResponse"/>
+	</message>
+	<message name="CreateGMHRequestMessage">
+		<part name="parameters"
+				element="tns:CreateGMH"/>
+	</message>
+	<message name="CreateGMHResponseMessage">
+		<part name="parameters"
+				element="tns:CreateGMHResponse"/>
+	</message>
+	<message name="DeleteGMHRequestMessage">
+		<part name="parameters"
+				element="tns:DeleteGMH"/>
+	</message>
+	<message name="DeleteGMHResponseMessage">
+		<part name="parameters"
+				element="tns:DeleteGMHResponse"/>
+	</message>
+	<message name="UpdateDocumentRequestMessage">
+		<part name="parameters"
+				element="tns:UpdateDocument"/>
+	</message>
+	<message name="UpdateDocumentResponseMessage">
+		<part name="parameters"
+				element="tns:UpdateDocumentResponse"/>
+	</message>
+	<portType name="WebServicePortType">
+		<operation name="Calc">
+			<input message="tns:CalcRequestMessage"/>
+			<output message="tns:CalcResponseMessage"/>
+		</operation>
+		<operation name="Calculator">
+			<input message="tns:CalculatorRequestMessage"/>
+			<output message="tns:CalculatorResponseMessage"/>
+		</operation>
+		<operation name="DeleteDocuments">
+			<input message="tns:DeleteDocumentsRequestMessage"/>
+			<output message="tns:DeleteDocumentsResponseMessage"/>
+		</operation>
+		<operation name="GetDocuments">
+			<input message="tns:GetDocumentsRequestMessage"/>
+			<output message="tns:GetDocumentsResponseMessage"/>
+		</operation>
+		<operation name="GetFormsForDocuments">
+			<input message="tns:GetFormsForDocumentsRequestMessage"/>
+			<output message="tns:GetFormsForDocumentsResponseMessage"/>
+		</operation>
+		<operation name="GetListOfDocuments">
+			<input message="tns:GetListOfDocumentsRequestMessage"/>
+			<output message="tns:GetListOfDocumentsResponseMessage"/>
+		</operation>
+		<operation name="GetReferenceData">
+			<input message="tns:GetReferenceDataRequestMessage"/>
+			<output message="tns:GetReferenceDataResponseMessage"/>
+		</operation>
+		<operation name="GetUserInfo">
+			<input message="tns:GetUserInfoRequestMessage"/>
+			<output message="tns:GetUserInfoResponseMessage"/>
+		</operation>
+		<operation name="PutReferenceData">
+			<input message="tns:PutReferenceDataRequestMessage"/>
+			<output message="tns:PutReferenceDataResponseMessage"/>
+		</operation>
+		<operation name="PutUserInfo">
+			<input message="tns:PutUserInfoRequestMessage"/>
+			<output message="tns:PutUserInfoResponseMessage"/>
+		</operation>
+		<operation name="Report">
+			<input message="tns:ReportRequestMessage"/>
+			<output message="tns:ReportResponseMessage"/>
+		</operation>
+		<operation name="SaveDocuments">
+			<input message="tns:SaveDocumentsRequestMessage"/>
+			<output message="tns:SaveDocumentsResponseMessage"/>
+		</operation>
+		<operation name="Tracking">
+			<input message="tns:TrackingRequestMessage"/>
+			<output message="tns:TrackingResponseMessage"/>
+		</operation>
+		<operation name="SaveDocumentsCello">
+			<input message="tns:SaveDocumentsCelloRequestMessage"/>
+			<output message="tns:SaveDocumentsCelloResponseMessage"/>
+		</operation>
+		<operation name="SaveAckansCello">
+			<input message="tns:SaveAckansCelloRequestMessage"/>
+			<output message="tns:SaveAckansCelloResponseMessage"/>
+		</operation>
+		<operation name="SaveGenresCello">
+			<input message="tns:SaveGenresCelloRequestMessage"/>
+			<output message="tns:SaveGenresCelloResponseMessage"/>
+		</operation>
+		<operation name="SaveWaybillOffice">
+			<input message="tns:SaveWaybillOfficeRequestMessage"/>
+			<output message="tns:SaveWaybillOfficeResponseMessage"/>
+		</operation>
+		<operation name="Measurement">
+			<input message="tns:MeasurementRequestMessage"/>
+			<output message="tns:MeasurementResponseMessage"/>
+		</operation>
+		<operation name="PrintDocument">
+			<input message="tns:PrintDocumentRequestMessage"/>
+			<output message="tns:PrintDocumentResponseMessage"/>
+		</operation>
+		<operation name="CheckClientNumber">
+			<input message="tns:CheckClientNumberRequestMessage"/>
+			<output message="tns:CheckClientNumberResponseMessage"/>
+		</operation>
+		<operation name="CheckPlannedDeliveryDate">
+			<input message="tns:CheckPlannedDeliveryDateRequestMessage"/>
+			<output message="tns:CheckPlannedDeliveryDateResponseMessage"/>
+		</operation>
+		<operation name="UpdateClientProducts">
+			<input message="tns:UpdateClientProductsRequestMessage"/>
+			<output message="tns:UpdateClientProductsResponseMessage"/>
+		</operation>
+		<operation name="CreateGMH">
+			<input message="tns:CreateGMHRequestMessage"/>
+			<output message="tns:CreateGMHResponseMessage"/>
+		</operation>
+		<operation name="DeleteGMH">
+			<input message="tns:DeleteGMHRequestMessage"/>
+			<output message="tns:DeleteGMHResponseMessage"/>
+		</operation>
+		<operation name="UpdateDocument">
+			<input message="tns:UpdateDocumentRequestMessage"/>
+			<output message="tns:UpdateDocumentResponseMessage"/>
+		</operation>
+	</portType>
+	<binding name="WebServiceSoapBinding"
+			type="tns:WebServicePortType">
+		<soapbind:binding style="document"
+				transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="Calc">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:Calc"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="Calculator">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:Calculator"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="DeleteDocuments">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:DeleteDocuments"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetDocuments">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:GetDocuments"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetFormsForDocuments">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:GetFormsForDocuments"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetListOfDocuments">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:GetListOfDocuments"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetReferenceData">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:GetReferenceData"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetUserInfo">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:GetUserInfo"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="PutReferenceData">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:PutReferenceData"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="PutUserInfo">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:PutUserInfo"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="Report">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:Report"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="SaveDocuments">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:SaveDocuments"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="Tracking">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:Tracking"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="SaveDocumentsCello">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:SaveDocumentsCello"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="SaveAckansCello">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:SaveAckansCello"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="SaveGenresCello">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:SaveGenresCello"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="SaveWaybillOffice">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:SaveWaybillOffice"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="Measurement">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:Measurement"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="PrintDocument">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:PrintDocument"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CheckClientNumber">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:CheckClientNumber"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CheckPlannedDeliveryDate">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:CheckPlannedDeliveryDate"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="UpdateClientProducts">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:UpdateClientProducts"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CreateGMH">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:CreateGMH"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="DeleteGMH">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:DeleteGMH"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="UpdateDocument">
+			<soapbind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:UpdateDocument"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<binding name="WebServiceSoap12Binding"
+			type="tns:WebServicePortType">
+		<soap12bind:binding style="document"
+				transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="Calc">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:Calc"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="Calculator">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:Calculator"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="DeleteDocuments">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:DeleteDocuments"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetDocuments">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:GetDocuments"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetFormsForDocuments">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:GetFormsForDocuments"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetListOfDocuments">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:GetListOfDocuments"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetReferenceData">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:GetReferenceData"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetUserInfo">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:GetUserInfo"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="PutReferenceData">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:PutReferenceData"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="PutUserInfo">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:PutUserInfo"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="Report">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:Report"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="SaveDocuments">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:SaveDocuments"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="Tracking">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:Tracking"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="SaveDocumentsCello">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:SaveDocumentsCello"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="SaveAckansCello">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:SaveAckansCello"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="SaveGenresCello">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:SaveGenresCello"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="SaveWaybillOffice">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:SaveWaybillOffice"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="Measurement">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:Measurement"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="PrintDocument">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:PrintDocument"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CheckClientNumber">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:CheckClientNumber"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CheckPlannedDeliveryDate">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:CheckPlannedDeliveryDate"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="UpdateClientProducts">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:UpdateClientProducts"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CreateGMH">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:CreateGMH"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="DeleteGMH">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:DeleteGMH"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="UpdateDocument">
+			<soap12bind:operation style="document"
+					soapAction="http://www.cargo3.ru#WebService:UpdateDocument"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="WebService">
+		<port name="WebServiceSoap"
+				binding="tns:WebServiceSoapBinding">
+			<documentation> 
+				<wsi:Claim xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/"
+						conformsTo="http://ws-i.org/profiles/basic/1.1"/>
+			</documentation>
+			<soapbind:address location="http://lk-test.cse.ru/1c/ws/web1c.1cws"/>
+		</port>
+		<port name="WebServiceSoap12"
+				binding="tns:WebServiceSoap12Binding">
+			<soap12bind:address location="http://lk-test.cse.ru/1c/ws/web1c.1cws"/>
+		</port>
+	</service>
+</definitions>

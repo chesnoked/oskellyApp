@@ -1,0 +1,42 @@
+<!doctype html>
+<html
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{admin/layout}">
+<head>
+    <title>Склад  OSKELLY</title>
+    <link rel="stylesheet" href="/admin/styles/warehouse.css"/>
+</head>
+<body>
+
+<main layout:fragment="content">
+    <header>
+        <div class="breadcrumbs">
+            <ul>
+                <li><a href="/admin">Админка</a></li>
+                <li>Склад</li>
+            </ul>
+        </div>
+        <ul class="menu" style="margin-bottom: 2rem;">
+            <li><a href="/admin/warehouse">Ожидаем прибытие</a></li>
+            <li><a href="/admin/warehouse/sold">Реализованные товары на склае</a></li>
+            <li class="active"><a href="#">Химчистка</a></li>
+            <li><a href="/admin/warehouse/ready-to-ship">Отправка получателю</a></li>
+        </ul>
+    </header>
+    <div id="warehouseModuleContent">
+        <h3>Модуль: Химчистка</h3>
+        <div>
+            <p> Модуль недоступен</p>
+
+        </div>
+
+    </div>
+
+</main>
+
+<div layout:fragment="custom-scripts">
+    <script src="/admin/scripts/warehouse.js"></script>
+</div>
+
+</body>
+</html>

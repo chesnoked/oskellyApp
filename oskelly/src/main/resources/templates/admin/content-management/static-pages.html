@@ -1,0 +1,41 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{admin/layout}">
+<body>
+
+<main layout:fragment="content">
+<header>
+	<div class="row" style="border-bottom: 1px dotted black;">
+		<div class="small-6 columns">
+			<h3>Статические страницы</h3>
+			<button id="create_page" class="button tiny" onclick="createStaticPage()">Добавить</button>
+		</div>
+	</div>
+</header>
+<section>
+	<div class="row" th:each="page: ${pages}" style="border-bottom: 1px dotted black;">
+		<div class="small-6 columns">
+			<h5 th:text="|Название страницы: ${page.name}|"></h5>
+			<a th:href="${page.pageGroup.url + page.url}">
+				<span th:text="|Группа страниц: ${page.pageGroup.url}|"></span><br/>
+				<span th:text="|Ссылка: ${page.url}|"></span>
+			</a>
+			<div>
+				<button class="button tiny" th:data-item-id="${page.id}"
+						th:onclick="|editStaticPage(${page.id})|">Редактировать
+				</button>
+				<button class="button tiny" th:data-item-id="${page.id}"
+						th:onclick="|deleteStaticPage(${page.id})|">Удалить
+				</button>
+			</div>
+		</div>
+	</div>
+</section>
+</main>
+
+<div layout:fragment="custom-scripts">
+	<script src="/admin/scripts/static-pages/pages.js"></script>
+</div>
+</body>
+</html>

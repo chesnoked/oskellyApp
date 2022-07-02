@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{profile/profile}">
+
+<!--/*@thymesVar id="header" type="java.lang.String" */-->
+<!--/*@thymesVar id="followers" type="java.util.List<su.reddot.domain.service.following.FollowingService.FollowRelated>"*/-->
+
+<body>
+
+<div role="main" layout:fragment="profileContent">
+
+    <h3 class="h5 text-serif" th:text="${followers.empty}? 'Подписчики' : |Подписчики (${followers.size()})|">Подписчики (42)</h3>
+
+    <div class="row column offsetStack-y" th:unless="${followers.empty}">
+
+        <table class="follow-list unstriped" data-follow>
+            <tbody>
+
+            <tr class="follow-element" th:each="element, iter: ${followers}" th:classappend="${not iter.last}? 'dottedBorder'">
+
+                <td class="follow-element__avatar">
+                    <a href="#" th:href="@{/profile/{id}(id=${element.id})}">
+                        <img alt="Ник пользователя"
+                             th:src="@{${element.avatarPath}?: '/images/no-photo.jpg'}"
+                             th:alt="|${element.nickname}|"></a></td>
+
+                <td>
+                    <div class="offset-y_tiny">
+                        <div>
+                            <a class="text-size-large" th:href="@{/profile/{id}(id=${element.id})}"><strong
+                                    th:text="${element.nickname}">Ник
+                                продавца</strong></a></div>
+
+                        <div class="text-size-small text-secondary" th:if="${element.availableProductsCount > 0}"
+                             th:text="|${element.availableProductsCount}
+                             ${T(su.reddot.presentation.Utils).getRightDeclension(element.availableProductsCount, {'товар', 'товара', 'товаров'})} на продажу|">
+                            42 товара на продажу
+                        </div>
+
+                        <div class="text-size-small text-secondary" th:if="${element.followersCount > 0}"
+                            th:text="|${element.followersCount}
+                            ${T(su.reddot.presentation.Utils).getRightDeclension(element.followersCount, {'подписчик', 'подписчика', 'подписчиков'})}|">
+                        </div>
+
+                        <div class="show-for-small-only" style="margin-top: .5rem">
+                            <button type="button" class="button small" style="padding: .4rem"
+                                    th:classappend="${not element.followingAvailable}? 'hide'"
+                                    th:data-submit-follow="${element.id}">Подписаться</button>
+
+                            <button type="button" class="button small hollow" style="padding: .4rem"
+                                    th:classappend="${not element.unfollowingAvailable}? 'hide'"
+                                    th:data-submit-unfollow="${element.id}"> Отписаться</button>
+                        </div>
+                    </div>
+                </td>
+
+                <td class="text-right hide-for-small-only">
+                    <button type="button" class="button small"
+                            th:classappend="${not element.followingAvailable}? 'hide'"
+                            th:data-submit-follow="${element.id}">Подписаться</button>
+
+                    <button type="button" class="button small hollow"
+                            th:classappend="${not element.unfollowingAvailable}? 'hide'"
+                            th:data-submit-unfollow="${element.id}">Отписаться</button>
+
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <p class="follow-list empty text-center text-secondary" style="margin-top: 2rem"
+       th:if="${followers.empty}">Список пуст
+    </p>
+
+</div>
+
+<div layout:fragment="custom-scripts">
+    <script th:src="|/js/cart/client.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+    <script th:src="|/js/cart/page.js?v=${#dates.format(#dates.createNow(),'YYYY-MM-DD')}|"></script>
+
+    <script src="/scripts/profile/client.js"></script>
+    <script src="/scripts/profile/component.js"></script>
+</div>
+
+</body>
+</html>

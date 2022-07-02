@@ -1,0 +1,164 @@
+# Профиль запуска на тестовом сервере
+spring:
+  datasource:
+    hikari:
+      jdbc-url: jdbc:postgresql://localhost:5432/oskelly
+      connection-test-query: SELECT 1
+      driver-class-name: org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+  thymeleaf:
+    mode: HTML
+
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      # При десериализации времени не преобразовывать его часовой пояс в часовой пояс системы (которое равно +0:00 по-умолчанию)
+      # То есть если в json указано время 2000-01-01T10:00:00+3:00, то и в системе оно будет
+      # иметь часовой пояс +3:00. Иначе jackson преобразует это время во время в часовом поясе UTC (0:00): 2000-01-01T07:00:00Z
+      adjust-dates-to-context-time-zone: false
+  http:
+    multipart:
+      max-file-size: 3MB
+
+  session:
+      store-type: jdbc
+
+flyway:
+  baseline-on-migrate: false
+  locations:
+    - /migrations/default
+  schemas:
+    - oskelly
+
+app:
+  host: http://oskelly.ml
+  feedExport:
+    yml:
+      defaultPathToExportFile: /tmp/
+      filename: yml_oskelly.xml
+    gmc:
+      defaultPathToExportFile: /tmp/
+      filename: gmc_oskelly.xml
+    facebook:
+      defaultPathToExportFile: /tmp/
+      filename: fb_oskelly.xml
+    oneass:
+      defaultPathToExportFile: /tmp/
+      customers-filename: Customers.xml
+      bank-accounts-filename: BankAccounts.xml
+      products-filename: Products.xml
+      sales-filename: Sales.xml
+      payments-filename: PaymentsToSellers.xml
+
+
+  mail:
+    # аккаунт для отправки письма с токеном подтверждения регистрации
+    registration:
+      host: smtp.yandex.ru
+      port: 25
+      username: registration@oskelly.ru
+      password: example
+      personal: Магазин брендовых вещей OSKELLY
+
+    # аккаунт для отправки уведомлений по почте
+    notification:
+      host: smtp.yandex.ru
+      port: 25
+      username: notification@oskelly.ru
+      password: example
+      personal: Магазин брендовых вещей OSKELLY
+
+  integration:
+    # тестовая группа
+    vk:
+      access-token: 18c2bc20ab6d8683afbce05348424ff1c07999ae9d4b2538023a778623e6fd283a88a2edb163f91ecc33f
+      group-id: 158774009 # идентификатор сообщества (группы) oskelly
+      album-by-category:
+        # категория товаров oskelly: ВК подборка, куда попадают товары этой категории
+        36: 4
+        37: 5
+        10: 6
+    tilda:
+      publickey: 3oxbphfygybgipeumfuj
+      secretkey: yx6wlmctha7lz4womcn3
+      filepath: /tmp/oskelly/tilda
+  push:
+    apple:
+      certificate-path: /home/oskelly/apple_prod_push.p12
+      certificate-password: 404519@gmail.com
+    android:
+      endpoint: https://fcm.googleapis.com/fcm/send
+      key: AAAA8mwbPzI:APA91bFMD1dENwzamEjThOmiBOuRX2y8Q5cf-tgfHZtyJvoyGNRZmJoZ6Z-SGXOGToMe33vzsC-WSkkOG1XkMKLcKw15AF1m0JeAoLvxa-N7xC39I38x6RZ9wTs_bR3pKF2SkYYZlPUq
+
+resources:
+  images:
+    urlPrefix: /img/
+
+acquirer:
+  mdm-pay:
+    token: BA:07:D3:CB:BC:37:82:4C:97:06:93:F3:A5:64:DF:F8
+    signing-key: C7B901B4FD0146CC8F6DE9FF3DCDDD5C
+    merchant-name: OSKELLY.RU
+    callback-url: http://oskelly.ml/api/v1/acquirers/mdm/callback
+    return-url: http://oskelly.ml
+    api-endpoint: https://mdm-webapi-mdmpay-financial-staging.mdmbank.ru/api/v1
+    web-endpoint: https://mdm-webapi-mdmpay-financial-staging.mdmbank.ru/web/v1
+
+server:
+  session:
+    persistent: true
+    store-dir: /tmp
+    cookie:
+      max-age: 172800
+    timeout: 172800 # 2 дня
+
+logistic:
+  endpoint: http://lk-test.cse.ru/1c/ws/web1c.1cws
+  login: test
+  password: 2016
+  office:
+    address: Москва, 3-й Голутвинский переулок 10 строение 6 офис 60 (этаж -1)
+    zip-code: 119180
+    phone: 8(800)222-33-09
+    name: Оскелли Груп
+
+cash-register:
+  starrys:
+    endpoint: https://fce.starrys.ru:4443/fr/api/v2/Complex
+    # тестовый клиентский сертификат
+    client-certificate-path: classpath:starrys-client.p12
+    client-certificate-password: oskelly
+
+    clientId: oskelly.ru
+    password: 1
+    payAttribute: 4
+    taxId: 4
+    place: OSKELLY.RU
+    fullResponse: true
+
+facebook:
+  client:
+    clientId: 411339342575994
+    clientSecret: 2ad48283d6fa1332dd2f42c7ea8d7c65
+    accessTokenUri: https://graph.facebook.com/oauth/access_token
+    userAuthorizationUri: https://www.facebook.com/dialog/oauth
+    tokenName: oauth_token
+    authenticationScheme: query
+    clientAuthenticationScheme: form
+    pre-established-redirect-uri: http://oskelly.ml/login/facebook
+    use-current-uri: false
+    userInfoUri: https://graph.facebook.com/me
+
+esputnik:
+    url: https://esputnik.com/api/v1
+    subscribeMethod: /contact/subscribe
+    subscribeGroup: Подписчики (не подтвердили)
+    login: ivan.belykh@gmail.com
+    password: OsPutn1k

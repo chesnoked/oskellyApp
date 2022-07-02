@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html
+	class="no-js" lang="ru_RU"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{profile/profile}" th:with="pageStyle='productAddPage'"
+>
+<body class="productPage">
+<div role="main" layout:fragment="profileContent">
+	<div id="scrollContainer">
+		<div
+			id="products" class="row goodsGrid" th:data-total-pages="${productsList.totalPages}"
+			th:data-current-state="${currentProductState}" th:data-seller-id="${currentUserId}"
+		>
+			<div class="column">
+				<div class="row">
+					<div class="column small-6">
+						<select id="state-select" size="1">
+							<!--/*/ <th:block th:each="state: ${productStates}"> /*/-->
+							<option
+                th:value="${state.name}" th:text="${state.description}"
+                th:selected="${currentProductState != null && state.name == currentProductState.name}"
+              >
+              </option>
+							<!--/*/ </th:block> /*/-->
+						</select>
+					</div>
+				</div>
+				<div class="row" id="products_container">
+					<div th:replace="catalog/product_card :: product_card (${productsList.products}, _)"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div layout:fragment="page-scripts">
+	<script src="/scripts/profile/filter-product-by-state.js"></script>
+</div>
+</body>
+</html>

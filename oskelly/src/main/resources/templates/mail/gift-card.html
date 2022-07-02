@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <h1>OSKELLY Luxury Resale Store</h1>
+
+    <p>Мы рады сообщить, что вы стали обладателем подарочного сертификата OSKELLY.<br/> Добро пожаловать в мир эксклюзивного шопинга!</p>
+
+    <p>С уважением, команда OSKELLY</p>
+
+    <p><strong th:text="|${value} ₽|">5 000 ₽</strong></p>
+
+    <p th:text="${code}">GH1899EZ</p>
+  </body>
+</html>

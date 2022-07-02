@@ -1,0 +1,165 @@
+.styledCheckbox
+  display: none
+  &:checked
+    + label
+      &::after
+        transform: scale(0.5)
+        opacity: 1
+  + label
+    position: relative
+    padding-left: 1.5em
+    margin-left: 0
+    margin-right: 0
+    &::before
+      z-index: 1
+      margin-top: -0.5em
+      margin-right: 0.5em
+      border: 1px solid hsl(0, 0%, 53.3%)
+      background: white
+      position: absolute
+      left: 0
+      top: .50rem
+      width: 1em
+      height: 1em
+      content: ''
+    &::after
+      transform: scale(0)
+      transition: transform 0.1s, opacity 0.1s
+      opacity: 0
+      z-index: 2
+      margin-top: -0.5em
+      margin-right: 0.5em
+      background: black
+      position: absolute
+      left: 0
+      top: .50rem
+      will-change: transform, opacity
+      width: 1em
+      height: 1em
+      content: ''
+
+.styledRadio
+  display: none
+  &:checked
+    + label
+      &::after
+        transform: scale(0.5)
+        opacity: 1
+  + label
+    $size: 1em
+    $top: 0.65em
+    position: relative
+    padding-left: $size + 0.5em
+    margin-x: 0
+    &::before
+      z-index: 1
+      margin-top: -0.5em
+      margin-right: 0.5em
+      border: 1px solid hsl(0, 0%, 53.3%)
+      border-radius: 100%
+      background: white
+      absolute: top $top left
+      size: $size
+      content: ''
+    &::after
+      transform: scale(0)
+      transition: transform 0.1s, opacity 0.1s
+      opacity: 0
+      z-index: 2
+      margin-top: -0.5em
+      margin-right: 0.5em
+      border-radius: 100%
+      background: black
+      absolute: top $top left
+      will-change: transform, opacity
+      size: $size
+      content: ''
+
+  .styledCheckboxDisabled
+    @extend .styledCheckbox
+    &:checked
+      &:before
+        border: 1px solid hsl(0, 0%, 90%) !important
+
+
+
+.picturedRadio
+  display: none
+  position: absolute
+  overflow: hidden
+  &:disabled
+    + label
+      cursor: default
+  &:checked
+    + label
+      %picturedRadio-checked-image
+        border-color: black
+      %picturedRadio-checked-title
+        color: black
+  + label
+    +breakpoint(small only)
+      flex-basis: 50%
+    display: flex
+    flex: 1
+    flex-flow: column
+    text-align: center
+    padding-x: 1rem
+    margin-x: 0
+    margin-y: 0.5rem
+    min-width: 150px
+  &-group
+    display: flex
+    flex-flow: row
+    flex-wrap: wrap
+    align-items: baseline
+    // align-content: baseline
+    max-width: 100%
+    overflow: hidden
+  &-image
+    @extend %picturedRadio-checked-image
+    transition: border-color 0.3s
+    border: 3px solid $light-gray
+    padding: 1.5rem
+    width: 100%
+    margin-y: auto
+    img
+      width: auto
+      height: 50px
+      object-fit: contain
+  &-title
+    @extend %picturedRadio-checked-title
+    transition: color 0.3s
+    margin-top: 0.5rem
+    color: $secondary-color
+
+.styledTextInput
+  background: transparent
+  padding-x: 0
+  border: 0
+    bottom: 1px solid black
+  box-shadow: none
+  &,
+  &:disabled
+    background-color: white
+  &:focus
+    border: 0
+      bottom: 1px solid black
+    box-shadow: none
+    &::placeholder
+      color: $light-gray
+  &::placeholder
+    transition: color 0.2s
+    color: black
+  &_secondary
+    border-bottom-color: $light-gray
+
+.styledSelect
+  border-color: transparent
+  background:
+    image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: black'></polygon></svg>")
+    position: right -1rem top 0.45em
+  text-transform: uppercase
+  color: black
+  &-label
+    padding-x: 0.5rem
+    margin-y: 0.3rem

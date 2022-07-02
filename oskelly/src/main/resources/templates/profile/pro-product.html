@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{new/pro-layout}" th:with="pageStyle='proProduct'">
+<head>
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
+</head>
+<body class="productPage">
+
+<main role="main" layout:fragment="content">
+	<div th:replace="admin/moderation/product-body"></div>
+</main>
+<div layout:fragment="custom-scripts">
+	<script src="/scripts/jquery-3.2.0.min.js"></script>
+	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+	<script src="/admin/scripts/vendor/what-input.js"></script>
+	<script src="/admin/scripts/vendor/foundation.min.js"></script>
+	<script src="/admin/scripts/vendor/jquery.magnific-popup.min.js"></script>
+	<script src="/admin/scripts/vendor/init.js"></script>
+
+	<script src="/admin/scripts/moderation-product.js"></script>
+
+	<script src="/scripts/publication/product-add-properties-global.js"></script>
+	<script src="/scripts/publication/product-add-properties-photos.js"></script>
+
+
+	<script src="/scripts/security/client.js"></script>
+	<script src="/scripts/security/component.js"></script>
+
+	<script src="/scripts/load-image.all.min.js"></script>
+</div>
+</body>
+</html>

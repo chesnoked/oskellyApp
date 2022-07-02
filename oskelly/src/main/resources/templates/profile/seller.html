@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ru_RU"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorate="~{profile/profile}" th:with="pageStyle='productAddPage'">
+<head>
+	<style>
+		.styledTextInput {
+			background-color: #fff !important;
+		}
+	</style>
+</head>
+<body class="productPage">
+<div role="main" layout:fragment="profileContent">
+
+	<form class="offset-y" id="seller-form">
+		<div class="offset-y_small row">
+			<div class="medium-11 columns">
+				<div class="row">
+					<div class="column">
+						<h4 class="text-strong">Данные продавца</h4>
+					</div>
+					<div class="shrink column">
+						<button id="seller-edit-button" class="transparent small hollow tight button" type="button"><span class="fa fa-flip-horizontal fa-pencil text-underlined"></span> <em>Редактировать</em>
+						</button>
+						<button id="seller-save-button" style="display: none;" class="transparent small hollow tight button" type="button"><span class="fa fa-flip-horizontal fa-pencil text-underlined"></span> <em>Сохранить</em>
+						</button>
+					</div>
+				</div>
+				<hr class="hr_no-top">
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 medium-4 columns">
+				<label class="middle">Фамилия:</label>
+			</div>
+			<div class="small-6 medium-8 columns">
+				<input name="lastName" disabled="disabled" th:value="${profileView.user.sellerRequisite != null ? profileView.user.sellerRequisite.lastName : ''}" class="styledTextInput styledTextInput_secondary"  type="text">
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 medium-4 columns">
+				<label class="middle">Имя:</label>
+			</div>
+			<div class="small-6 medium-8 columns">
+				<input name="firstName" disabled="disabled" th:value="${profileView.user.sellerRequisite != null ? profileView.user.sellerRequisite.firstName : ''}" class="styledTextInput styledTextInput_secondary"  type="text">
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 medium-4 columns">
+				<label class="middle">Название компании:</label>
+			</div>
+			<div class="small-6 medium-8 columns">
+				<input name="companyName" disabled="disabled" th:value="${profileView.user.sellerRequisite != null ? profileView.user.sellerRequisite.companyName : ''}" class="styledTextInput styledTextInput_secondary"  type="text">
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 medium-4 columns">
+				<label class="middle">Телефон:</label>
+			</div>
+			<div class="small-6 medium-8 columns">
+				<input name="phone" disabled="disabled" th:value="${profileView.user.sellerRequisite != null ? profileView.user.sellerRequisite.phone : ''}" class="styledTextInput styledTextInput_secondary"  type="text">
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 medium-4 columns">
+				<label class="middle">Индекс:</label>
+			</div>
+			<div class="small-6 medium-8 columns">
+				<input name="zipCode" disabled="disabled" th:value="${profileView.user.sellerRequisite != null ? profileView.user.sellerRequisite.zipCode : ''}" class="styledTextInput styledTextInput_secondary"  type="text">
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 medium-4 columns">
+				<label class="middle" for="user-profile-city">Город:</label>
+			</div>
+			<div class="small-6 medium-5 columns">
+				<input name="city" disabled="disabled" th:value="${profileView.user.sellerRequisite != null ? profileView.user.sellerRequisite.city : ''}" class="styledTextInput styledTextInput_secondary" id="user-profile-city" type="text">
+			</div>
+		</div>
+		<div class="row">
+			<div class="small-6 medium-4 columns">
+				<label class="middle">Адрес:</label>
+			</div>
+			<div class="small-6 medium-8 columns">
+				<input name="address" disabled="disabled" th:value="${profileView.user.sellerRequisite != null ? profileView.user.sellerRequisite.address : ''}"  class="styledTextInput styledTextInput_secondary" type="text">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="small-6 medium-4 columns">
+				<label class="middle">Паспорт:</label>
+			</div>
+			<div class="small-6 medium-8 columns">
+				<input name="passport" disabled="disabled" th:value="${profileView.user.passport}"  class="styledTextInput styledTextInput_secondary" type="text">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="small-6 medium-4 columns">
+				<label class="middle">ИНН:</label>
+			</div>
+			<div class="small-6 medium-8 columns">
+				<input name="INN" disabled="disabled" th:value="${profileView.user.INN}"  class="styledTextInput styledTextInput_secondary" type="text">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="small-6 medium-4 columns">
+				<label class="middle">ОГРНИП:</label>
+			</div>
+			<div class="small-6 medium-8 columns">
+				<input name="OGRNIP" disabled="disabled" th:value="${profileView.user.OGRNIP}"  class="styledTextInput styledTextInput_secondary" type="text">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="small-6 medium-4 columns">
+				<label class="middle">ОГРН:</label>
+			</div>
+			<div class="small-6 medium-8 columns">
+				<input name="OGRN" disabled="disabled" th:value="${profileView.user.OGRN}"  class="styledTextInput styledTextInput_secondary" type="text">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="small-6 medium-4 columns">
+				<label class="middle">КПП:</label>
+			</div>
+			<div class="small-6 medium-8 columns">
+				<input name="KPP" disabled="disabled" th:value="${profileView.user.KPP}"  class="styledTextInput styledTextInput_secondary" type="text">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="small-6 medium-4 columns">
+				<label class="middle">БИК:</label>
+			</div>
+			<div class="small-6 medium-8 columns">
+				<input name="BIK" disabled="disabled" th:value="${profileView.user.paymentRequisite != null ? profileView.user.paymentRequisite.BIK : ''}"  class="styledTextInput styledTextInput_secondary" type="text">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="small-6 medium-4 columns">
+				<label class="middle">Корреспондентский счет:</label>
+			</div>
+			<div class="small-6 medium-8 columns">
+				<input name="correspondentAccount" disabled="disabled" th:value="${profileView.user.paymentRequisite != null ? profileView.user.paymentRequisite.correspondentAccount : ''}"  class="styledTextInput styledTextInput_secondary" type="text">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="small-6 medium-4 columns">
+				<label class="middle">Лицевой/Расчетный счет:</label>
+			</div>
+			<div class="small-6 medium-8 columns">
+				<input name="paymentAccount" disabled="disabled" th:value="${profileView.user.paymentRequisite != null ? profileView.user.paymentRequisite.paymentAccount : ''}"  class="styledTextInput styledTextInput_secondary" type="text">
+			</div>
+		</div>
+	</form>
+
+</div>
+</body>
+</html>

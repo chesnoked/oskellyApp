@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <p>
+      Опубликован товар, который вы искали - <strong><a href="#" th:href="|${host}/products/${product.id}|" th:text="|${product.brand.name} ${product.displayName}|">Бренд товара наименование товара</a></strong>
+    </p>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--/*@thymesVar id="selectionItems" type="java.util.List<su.reddot.domain.service.promo.gallery.PromoGalleryResponse>"*/-->
+<!--/*@thymesVar id="galleryItems" type="java.util.List<su.reddot.domain.service.promo.gallery.PromoGalleryResponse>"*/-->
+<head>
+  <title>"OSKelly" - интернет-магазин брендовой одежды, элитной обуви и аксессуаров в Москве.</title>
+</head>
+<body>
+
+<div th:fragment="page-index" th:remove="tag">
+  <div class="top_section">
+    <div class="row">
+      <div class="top_section_menu columns large-5 show-for-large">
+        <ul>
+            <li th:each="selectionItem: ${selectionItems}"><a class="top_section_block" href="#" th:href="${selectionItem.url}" title="title — name" th:attr="title=''">
+                <div class="top_section_background" style="background-image: url('image');" th:style="|background-image: url('${selectionItem.img}')|"></div>
+                <div class="top_section_wrapper">
+                  <div class="top_section_title" th:text="${selectionItem.firstLine}">title</div>
+                  <div class="top_section_brand" th:text="${selectionItem.secondLine}">name</div><span class="top_section_link" th:text="${selectionItem.thirdLine}">Смотреть бренд</span>
+                </div></a></li>
+        </ul>
+      </div>
+      <div class="large-7 columns">
+        <div class="swiper-container frontpageSlider">
+          <div class="swiper-wrapper">
+                        <div class="swiper-slide" th:each="galleryItem: ${galleryItems}"><a href="#" title="title" th:attr="title=''" th:href="${galleryItem.url}"><img class="thumbnail" src="image" alt="OSKELLY" th:src="${galleryItem.img}"></a></div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row column text-center">
+    <h2 class="h2 ruledHeading text-serif text-uppercase">Новые поступления</h2>
+  </div>
+  <div class="row">
+
+    <!--/*@thymesVar id="productList" type="su.reddot.domain.service.product.view.ProductsList"*/-->
+    <div th:replace="catalog/product_card :: product_card (${productList.products}, 'xlarge-3')"></div>
+
+    <div class="small-up-2 large-up-3 xlarge-up-4 medium-6 large-4 xlarge-3 column show-for-medium">
+      <div class="productCardLast-wrapper">
+        <div class="productCardLast">
+          <h5 class="h5 title" th:text="${count}">2548</h5>
+          <p>
+            [[${T(su.reddot.presentation.Utils).getRightDeclension(count, {'новый товар', 'новых товара', 'новых товаров'})}]]
+            <br>
+            за неделю
+          </p>
+          <a class="hollow button" href="/catalog/just-in" title="Новые товары за неделю">Смотреть</a>
+        </div>
+      </div>
+    </div>
+    <div class="small-12 columns show-for-small-only">
+      <div class="productCardLast-wrapper">
+        <div class="productCardLast"><a class="hollow button large expanded" href="/catalog/just-in" title="Все новинки">Смотреть все новинки</a></div>
+      </div>
+    </div>
+  </div>
+  <!--/*
+  <div class="profiles">
+    <div class="row column text-center small-up-2 medium-up-3 large-up-6">
+      <h2 class="h2 ruledHeading text-serif text-uppercase">Новые профили</h2>
+      <div class="row collapse">
+        <div class="column large-up-8 profile-wrapper"><a class="profile-inner" href="profile-public.html" title="Ольга"><img class="thumbnail" src="images/tmp/users/userpic-1.jpg" alt="Ольга" th:src="@{/images/tmp/users/userpic-1.jpg}"></a></div>
+        <div class="column large-up-8 profile-wrapper"><a class="profile-inner" href="profile-public.html" title="Наталья"><img class="thumbnail" src="images/tmp/users/userpic-2.jpg" alt="Наталья" th:src="@{/images/tmp/users/userpic-2.jpg}"></a></div>
+        <div class="column large-up-8 profile-wrapper"><a class="profile-inner" href="profile-public.html" title="Ира"><img class="thumbnail" src="images/tmp/users/userpic-3.jpg" alt="Ира" th:src="@{/images/tmp/users/userpic-3.jpg}"></a></div>
+        <div class="column large-up-8 profile-wrapper"><a class="profile-inner" href="profile-public.html" title="Анна"><img class="thumbnail" src="images/tmp/users/userpic-4.jpg" alt="Анна" th:src="@{/images/tmp/users/userpic-4.jpg}"></a></div>
+        <div class="column large-up-8 profile-wrapper"><a class="profile-inner" href="profile-public.html" title="Александр"><img class="thumbnail" src="images/tmp/users/userpic-5.jpg" alt="Александр" th:src="@{/images/tmp/users/userpic-5.jpg}"></a></div>
+        <div class="column large-up-8 profile-wrapper"><a class="profile-inner" href="profile-public.html" title="Элла"><img class="thumbnail" src="images/tmp/users/userpic-6.jpg" alt="Элла" th:src="@{/images/tmp/users/userpic-6.jpg}"></a></div>
+        <div class="column large-up-8 profile-wrapper"><a class="profile-inner" href="profile-public.html" title="Настя"><img class="thumbnail" src="images/tmp/users/userpic-7.jpg" alt="Настя" th:src="@{/images/tmp/users/userpic-7.jpg}"></a></div>
+        <div class="column large-up-8 profile-wrapper"><a class="profile-inner profile_last" href="#" title="Новые профили">
+            <p><strong>1458</strong> новых профилей</p></a></div>
+      </div>
+    </div>
+  </div>
+  */-->
+  <div class="favorites row columns text-center">
+    <h2 class="h2 ruledHeading text-serif text-uppercase">Наши фавориты</h2>
+    <div class="favoritesSlider-wrapper">
+      <div class="swiper-container favoritesSlider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" th:each="item: ${favoritesItems}">
+            <a href="catalogue.html" title="Christian Louboutin — женские туфли"
+                th:href="${item.url}" th:title="${item.firstLine} + ' - '+ ${item.secondLine}">
+              <img class="thumbnail" src="images/tmp/favourite-brands/favourite-brand-1.jpg" alt="Christian Louboutin — женские туфли"
+                   th:src="${item.img}" th:alt="${item.firstLine} + ' - '+ ${item.secondLine}">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="favoritesSlider-next swiper-button-next"></div>
+      <div class="favoritesSlider-prev swiper-button-prev"></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

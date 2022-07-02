@@ -1,0 +1,49 @@
+.userCard
+	border: 1px solid hsl(0, 0%, 59.6%)
+	padding: 2rem
+	p
+		margin-bottom: 0.1em
+		line-height: 1.2
+		font-size: 0.9rem
+	&-username
+		margin-bottom: 0.5rem
+		+ p
+			margin-bottom: 0.3em
+		small
+			color: inherit
+			font-size: 60%
+	&-statItem
+		$bp: large up
+		+breakpoint(medium down)
+			text-align: center
+		&-caption
+			+breakpoint($bp)
+				font-style: italic
+		& + &
+			position: relative
+			+breakpoint($bp)
+				> *
+					padding-left: 0.5em
+			&::after
+				+breakpoint(small only)
+					display: none
+				display: block
+				content: ''
+				background-color: hsl(0, 0%, 75%)
+				width: 1px
+				height: 100%
+				left: 0
+				top: 0
+				position: absolute
+	&-followButton
+		margin-bottom: 0
+	&-cite
+		margin-right: -2rem
+		margin-left: -2rem
+		margin-bottom: -1rem
+		padding: 1rem 2rem
+		padding-bottom: 0
+		border-top: 1px dotted #989898
+		&-title
+			font-size: inherit
+			font-weight: bold

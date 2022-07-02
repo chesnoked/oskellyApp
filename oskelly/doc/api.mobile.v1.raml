@@ -1,0 +1,306 @@
+#%RAML 1.0
+---
+title: Oskelly mobile API
+baseUri: http://oskelly.ml/api/{version}
+version: v1
+
+/**:
+    get/post/put/delete:
+        description: все запросы в REST API
+        responses:
+            401:
+                body:
+                    application/json:
+                        example: |
+                            {
+                                "errorMessage": "unauthorized"
+                            }    
+
+/users:
+    /current:
+        get:
+            description: Возвращает статус пользователя
+            responses:
+                200:
+                    body:
+                        application/json:
+                            example: |
+                                {
+									"username": "example@oskelly.ru",
+									"firstName": "Ольга",
+									"description": "Профессиональный продавец",
+									"notificationsCount": 10,
+									"productForSaleCount": 78,
+									"productInWishListCount": 11
+									"registrationTime": "timestamp with timezone",
+									"cityName": "Москва"
+                                }
+
+	/registration:
+    		post:
+    			uriParameters:
+					"email": email
+					"password": password в открытом виде(завернуто в HTTPS)
+					"confirmPassword": подтверждение пароля
+					"fullName": полное имя пользователя
+    			description: производит процедуру регистрации пользователя
+    			responses:
+					200:
+						body:
+							application/json:
+								example: |
+									{}
+					400:
+						body:
+							application/json:
+								example: |
+									[
+										{
+											"errorParameter": "email"
+											"errorMessage": "User alredy registered"
+										},
+										{
+											"errorParameter": "confirmPassword"
+											"errorMessage": "Пароли не совпадают"
+										},
+										{
+											"errorParameter": "fullName"
+											"errorMessage": "Имя не указано"
+										}
+
+									]
+
+	/authentication:
+		post:
+			uriParameters:
+				"email": email
+				"password": password в хэшированном виде(завернуто в HTTPS)
+			description: производит процедуру аутентификации пользователя
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+								{
+								}
+				401:
+					boby:
+						application/json:
+							example: |
+								{"errorMessage": "Invadid email or password"}
+
+
+/images:
+	/mainGallery:
+		uriParameters:
+			"screenResolution": разрешение экрана enum {small, medium, large}
+		get:
+			description: Возвращает список изображений, размещенных на главной странице
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+								[{
+									"image": "{base64string}",
+									"uri": "https://oskelly.ml/progucts/1"
+								}]
+    /product:
+        /{id}:
+            /main:
+                uriParameters:
+                    "screenResolution": разрешение экрана enum {small, medium, large}
+                get:
+                    description: Возвращает основное изображение товара
+                    responses:
+                        200:
+                            body:
+                                application/json:
+                                    example: |
+                                        [{
+                                            "image": "{base64string}",
+                                        }]
+	/{id}:
+		uriParameters:
+			"screenResolution": разрешение экрана enum {small, medium, large}
+		get:
+			description: Возвращает основное изображение товара
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+								[{
+									"image": "{base64string}",
+								}]
+
+/products:
+	/getNew:
+		uriParameters:
+			"screenResolution": разрешение экрана enum {small, medium, large}
+			"offset": смещение относительто первого элемента
+		get:
+			description: Возвращает список новых поступлений
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+								{
+									result:
+										[{
+											"id": 1,
+											"name": "Очки",
+											"brandName": "FENDI",
+											"price": 250.00,
+											"size": "S",
+											"likesCount": 47,
+											"statuses":
+												[
+													"С биркой",
+													"На складе",
+													"Наш выбор"   //подумать над позиционирование, цветом, формой
+												],
+											"image": "{base64string}",
+										}],
+									meta: {
+										"total": 100,
+										"limit": 30,
+										"offset": 0
+									}
+								}
+	/getByCategory:
+		uriParameters:
+			"screenResolution": разрешение экрана enum {small, medium, large}
+			"categoryId": идентификатор категории
+			"attributes": массив значений атрибутов в формате json
+			"sizes": массим значений размеров в формате json
+			"offset": смещение относительто первого элемента
+		get:
+			description: выдает список товаров
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+								{
+									result:
+										[{
+											"id": 1,
+											"name": "Очки",
+											"brandName": "FENDI",
+											"price": 250.00,
+											"size": "S",
+											"likesCount": 47,
+											"statuses":
+												[
+													"С биркой",
+													"На складе",
+													"Наш выбор"   //подумать над позиционирование, цветом, формой
+												],
+											"image": "{base64string}",
+										}],
+									meta: {
+										"total": 100,
+										"limit": 30,
+										"offset": 0
+									}
+				400:
+					body:
+						application/json:
+							example: |
+								[
+									{
+										"errorParameter": "attributes"
+										"errorMessage": "Attribute with id: 155 not found"
+									},
+									{
+										"errorParameter": "sizes"
+										"errorMessage": "Size with id: 155 not found"
+									}
+								]
+	/{id}:
+		get:
+			description: получает json выбраннго товара
+				responses:
+					200:
+						body:
+							application/json:
+								example: |
+									{
+										"brandName": "Valentino"
+										"productName": "Платье"
+										"productDescription": "Розовое платье ....."
+										"currentPrice: 111500.00
+										"condition": "Отличное"
+										"size": "S"
+										"attributes": {
+											"Состав": "Полистер",
+											"Длина": "Мини",
+											"Цвет": "Синий"
+										},
+										"statuses":
+											[
+												"С биркой",
+												"На складе",
+												"Наш выбор"   //TODO: подумать над позиционирование, цветом, формой
+											],
+										 "primaryImage": "{base64string}"
+										 "thumbnails": [{
+										 	"imageId": "155",
+										 	"thumbnail": "{base64string}"
+										 }]
+									}
+
+
+/catalog:
+	/all:
+		get:
+			description: Возвращает все категории в виде массива деревьев
+			responses:
+				200:
+					body:
+						application/json:
+							example: |
+								[
+									{
+										"id": 1,
+										"name": "Женское",
+										"children": [
+											{
+												"id": 2,
+												"name": "Платья"
+											},
+											{
+												"id": 3,
+												"name": "Туфли"
+											}
+										]
+									},
+									{
+										"id": 4,
+										"name": "Мужское",
+										"children": [
+											{
+												"id": 5,
+												"name": "Ботинки",
+												"children": [
+													{
+														"id": 7,
+														"name": "Зимние ботинки"
+													},
+													{
+														"id": 8,
+														"name": "Летние ботинки"
+													}
+												]
+											},
+											{
+												"id": 6,
+												"name": "Пиджаки"
+											}
+										]
+									}
+								]
+
+

@@ -1,0 +1,34 @@
+.frontPage
+	.profiles
+		+breakpoint(medium down)
+			display: none
+		img
+			margin-bottom: 0
+		.profile
+			$offset: (15px / 2)
+			&-wrapper
+				position: relative
+			&-inner
+				display: block
+				box-sizing: border-box
+				padding-x: $offset
+				&:hover
+					background-color: rgba(black, 0.05)
+			&_last
+				display: flex
+				absolute: top left $offset right $offset
+				align-items: center
+				justify-content: center
+				border: 1px solid hsla(0, 0%, 30%, 0.5)
+				height: 100%
+				line-height: 1
+				font-size: 0.8rem
+				p
+					margin: 0
+					font-family: $body-font-family
+				strong
+					display: block
+					line-height: 0.8
+					font-size: 2rem
+				&:hover
+					text-decoration: none

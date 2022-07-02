@@ -1,0 +1,11 @@
+<div class="offsetStack-y productAddHint-spot attributeBlock" th:each="avalaibleAttribute: ${publicationInfo.avalaibleAttributes}" th:object="${avalaibleAttribute}" th:data-name="*{name}">
+	<h4 class="h5 text-strong" th:text="*{displayName}">title <span class="productAddPage-optional" title="Обязательно">*</span>
+	</h4>
+	<div class="row collapse">
+		<div class="small-12 medium-4 columns productAddPage-styledCheck-container" th:each="item: *{items}">
+			<input class="styledRadio" th:value="${item.value}" th:checked="${item.checked}" th:name="*{name}" th:data-has-children="${item.hasChildren}" th:id="${#ids.seq(avalaibleAttribute.name)}" type="radio" name="unique-name" id="unique-name-value">
+			<label for="unique-name-value" th:for="${#ids.prev(avalaibleAttribute.name)}" th:text="${item.title}">title</label>
+		</div>
+	</div>
+	<hr>
+</div>

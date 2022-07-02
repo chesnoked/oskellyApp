@@ -1,0 +1,126 @@
+.profilePage
+  &-label
+    color: black
+    border: 1px solid #ffae00
+    background: transparent
+  &-avatara
+    width: 100%
+    +breakpoint(small only)
+      border-radius: 9999px
+      margin-bottom: 1rem
+  &-userInfo
+    +breakpoint(small only)
+      display: flex
+      flex-flow: column
+      justify-content: center
+    & + .shrink
+      @media screen and (max-width: 420px)
+        margin-left: 2em
+        margin-top: -3.5em
+      @media screen and (max-width: 378px)
+        margin-top: -5em
+      @media screen and (max-width: 359px)
+        margin-top: -6.8em
+      @media screen and (max-width: 330px)
+        margin: 0
+        align-self: inherit
+
+  &-styled-menu
+    display: flex
+    flex-wrap: nowrap
+    font-size: .9rem
+    width: 100%
+    .active
+      > a
+        background: #0a0a0a
+        @media screen and (max-width: 640px)
+          background-color: transparent
+          $transparent: rgba(white, 0)
+          $color: #000
+          background-image: linear-gradient(to bottom, $transparent, $transparent 90%, $color 90%, $color)
+          color: #000
+
+  &-scroll-menu
+    position: relative
+    display: flex
+    flex-wrap: nowrap
+    overflow: auto
+    &-arrowLeft,
+    &-arrowRight
+      position: absolute
+      height: 100%
+      width: 1.5em
+      top: 0
+    &-arrowLeft i,
+    &-arrowRight i
+      font-size: 1.5em
+      margin: 15% 30%
+      opacity: .5
+    &-arrowLeft
+      left: 0
+      z-index: 2
+      background: -webkit-linear-gradient(to right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0))
+      background: -moz-linear-gradient(to right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0))
+      background: -o-linear-gradient(to right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0))
+      background: linear-gradient(to right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0))
+    &-arrowRight
+      right: 0
+      z-index: 2
+      background: -webkit-linear-gradient(to right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0))
+      background: -moz-linear-gradient(to right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0))
+      background: -o-linear-gradient(to right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0))
+      background: linear-gradient(to right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0))
+    @media screen and (max-width: 640px)
+      background-color: #fefefe
+      border: 1px #ebebeb
+      border-style: solid none
+
+  &-styled-menu-item
+    flex: 1 0 auto
+    > a
+      @media screen and (max-width: 640px)
+        color: #646464
+        padding: 1rem
+
+  &-buttom
+    display: inline-block
+    padding: .3em .7em
+    border: 1px solid #4a4a4a
+    color: #4a4a4a
+    font-size: 1rem
+
+  &-black
+    background-color: black
+    color: white
+    &:hover
+      color: white
+
+  &-white
+    background-color: white
+    color: black
+
+  &-text
+    font-size: .9rem
+
+  &-order-heading
+    vertical-align: middle
+
+  &-order-label
+    padding-bottom: .33rem
+    vertical-align: inherit
+
+  &-subscribe
+    color: #0b0b0b
+    border: 1px #0a0a0a solid
+    background: white
+    padding: 0 !important
+    &.active
+        background: #0a0a0a
+        a
+          color: white
+    +breakpoint(small only)
+      margin: 0 .3em
+
+@media screen and (max-width: 640px)
+  .news-avatar
+    border-radius: 9999px

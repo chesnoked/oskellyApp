@@ -1,0 +1,318 @@
+.productPage
+  &-img-size
+    max-height: 11rem !important
+    @media screen and (max-width: 640px)
+      max-height: 8rem !important
+  .siteWrapper > main
+    margin-bottom: 5rem
+  .siteSlogan
+    +breakpoint(small only)
+      @at-root :root &
+        margin-bottom: 0
+    margin-bottom: 1rem
+  &-productGallery
+    &-icons
+      absolute: bottom right 3.5rem
+      z-index: 2
+      pointer-events: none
+      > svg
+        size: 2rem
+    &-wrapper
+      +breakpoint(small only)
+        margin-top: 2rem
+      position: relative
+    &-inner
+      position: relative
+      display: flex
+      flex-flow: row
+      margin-right: 3rem
+      margin-bottom: 3rem
+      height: 500px
+      +breakpoint(small only)
+        width: 100%
+        height: 350px
+      @media (max-width: 320px)
+        height: 300px
+    &-meta
+      +breakpoint(medium up)
+        padding-right: 3rem
+        right: -1.3rem
+      position: absolute
+      flex-flow: row
+      z-index: 2
+      display: flex
+      right: 0
+      > :not(:last-child)
+        margin-right: 0.75rem
+      &-badge,
+      &-likes
+        display: flex
+        flex-flow: row
+        align-items: center
+        justify-content: center
+        text-align: center
+        line-height: 1
+      &-badge
+        border-radius: 100%
+        background: black
+        color: white
+        font-size: 0.7rem
+        font-weight: bold
+        padding-left: .5em
+        padding-right: .5em
+        width: 3rem
+        height: 3rem
+      &-likes
+        background:
+          position: center
+          image: url('../images/icons/heart-inactive.svg')
+          size: contain
+          repeat: no-repeat
+        text-align: center
+        color: white
+        font-size: 0.8rem
+        font-weight: bold
+        width: 3rem
+        height: 3rem
+        &:hover,
+        &.active
+          background-image: url('../images/icons/heart-full.svg')
+        &:hover
+          text-decoration: none
+          color: white
+        > span
+          margin-top: -0.3em
+    &-thumbnails
+      flex-basis: 100px
+      .swiper
+        &-slide
+          opacity: 0.4
+          &-active
+            opacity: 1
+    &-gallery
+      height: 100%
+      margin-right: 0
+      &-pagination
+        width: 100%
+        top: 100%
+        margin-top: 1rem
+        .swiper-pagination
+          &-bullet
+            background-color: #A3A3A3
+            margin-x: 0.5rem
+      .swiper
+        &-wrapper
+          height: 100%
+        &-slide
+          height: 100%
+          img
+            display: block
+            width: auto
+            height: 100%
+            margin-x: auto
+            object-fit: contain
+            cursor: zoom-in
+  &-userCard
+    margin-top: 1.5rem
+  &-productMeta
+    p
+      margin-bottom: 0.3em
+    &-price
+      display: inline-block
+      font-weight: bold
+      white-space: nowrap
+      &_discounted
+        text-decoration: line-through
+        color: black
+      &-sale-price
+        color: red
+    .desktop-vintage
+      margin-left: 16px
+      font-size: small
+  &-sizeSelect
+    position: relative
+    &-pane
+      absolute: top -6rem right
+      z-index: 1
+      opacity: 0
+      pointer-events: none
+      width: 100%
+      background-color: white
+      &.is-active
+        opacity: 1
+        pointer-events: initial
+        animation: productPage-sizeSelect-pane 0.5s
+      table
+        border-collapse: collapse
+        thead
+          background: transparent
+        th, td
+          border-color: hsl(0, 0%, 93%)
+    .SelectBox
+      @at-root :root:root &
+        margin: 0
+    &-popupLink
+      display: inline
+      border-bottom: dashed thin
+      text-decoration: none
+      cursor: pointer
+      &:hover
+        border-bottom-style: solid
+        text-decoration: none
+  &-buyButton
+    @at-root :root &
+      margin-top: .25rem
+      margin-bottom: 1rem
+    font-weight: bold
+    background-color: hsl(345, 6%, 13%)
+    &:hover
+      background-color: hsl(345, 6%, 30%)
+  &-productActions,
+  &-productStats
+    +breakpoint(small only)
+      text-align: center
+  &-productAction,
+  &-productStat
+    display: inline-block
+    margin-y: 0.3rem
+    .icon
+      margin-right: 0.5em
+      size: 1.3em
+  &-productAction
+    $color-for-small: $golden-color
+    +breakpoint(small only)
+      color: $color-for-small
+    &:hover
+      opacity: 0.65
+      text-decoration: none
+    .icon
+      > svg
+        +breakpoint(small only)
+          polygon
+            fill: $color-for-small
+            stroke: $color-for-small
+          polyline
+            stroke: $color-for-small
+          path
+            fill: $color-for-small
+            stroke: $color-for-small
+  &-productStat
+    $color-for-small: $medium-gray
+    +breakpoint(small only)
+      color: $color-for-small
+    .icon
+      > svg
+        +breakpoint(small only)
+          polygon
+            fill: $color-for-small
+            stroke: $color-for-small
+          polyline
+            stroke: $color-for-small
+          path
+            fill: $color-for-small
+            stroke: $color-for-small
+  &-tabs
+    $border-color: #989898
+    $bp-small: small only
+    +breakpoint($bp-small)
+      display: flex
+      flex-flow: row
+    border: 0
+    &-wrapper
+      margin-y: 1.5rem
+    &-title
+      +breakpoint($bp-small)
+        flex: 1
+        text-align: center
+      > a
+        +breakpoint(large down)
+          padding-x: 0.5em
+        border: 1px solid $border-color
+        border-bottom-color: transparent
+        color: #686969
+        font-size: 1rem
+        padding-y: 0.75em
+        &:hover
+          background-color: rgba(black, 0.05)
+          text-decoration: none
+          color: black
+      &.is-active
+        > a
+          border-bottom-color: white
+          background: transparent
+          cursor: default
+          color: black
+      & + &
+        > a
+          border-left: 0
+    &-content
+      margin-top: -1px
+      border-top: 1px solid
+      border-color: $border-color
+      background: transparent
+      font-size: 0.9rem
+    &-panel
+      +breakpoint($bp-small)
+        padding: 1rem
+      padding: 2rem
+      > :first-child
+        margin-top: 0
+      > :last-child
+        margin-bottom: 0
+    &-paymentlogo
+      height: 50px
+  &-productSuggestions
+    &-title
+      margin: 2rem 3rem 3rem
+      font-family: $font-family-serif
+      text-align: center
+  .inlineDescriptions
+    &-term
+      color: hsl(180, 0.5%, 41%)
+      font-weight: normal
+
+@keyframes productPage-sizeSelect-pane
+  from
+    opacity: 0
+    transform: translateY(2rem)
+  to
+    opacity: 1
+    transform: translateY(0)
+
+#symmetryRight
+  overflow: hidden
+
+#edit-product-price
+  display: none
+
+#product-tabs
+  li
+    width: 33.33%
+
+#commentContainer
+  word-wrap: break-word
+
+.delete-draft-product
+  top: 0!important
+  left: 0!important
+  @media screen and (max-width: 640px)
+    position: fixed
+    top: 50%!important
+    left: 6%!important
+
+.zoomContainer
+  width: 0!important
+  height: 0!important
+
+
+.swiper_wrap
+  padding: 0 50px
+  width: 100%
+  position: relative
+  display: block
+  text-align: left
+  .swiper-button-prev
+    height: 22px
+  .swiper-button-next
+    height: 22px
+
